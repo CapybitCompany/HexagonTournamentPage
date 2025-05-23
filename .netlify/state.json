@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Poznan",
+			"country": {
+				"code": "PL",
+				"name": "Poland"
+			},
+			"subdivision": {
+				"code": "30",
+				"name": "Greater Poland"
+			},
+			"timezone": "Europe/Warsaw",
+			"latitude": 52.395,
+			"longitude": 16.9614,
+			"postalCode": "61-131"
+		},
+		"timestamp": 1747977940351
+	}
+}
