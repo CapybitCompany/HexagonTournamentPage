@@ -1,0 +1,58 @@
+.submenuContainer {
+    max-height: 0;
+    width: 100%;
+    top: 60px;
+    position: absolute;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    transition: height 0.3s ease, max-height 0.3s ease;
+    z-index: 2;
+}
+
+.submenuContentWrapper{
+    opacity: 0;
+    transform: translateX(-40px);
+    height: fit-content;
+    padding: 2% 20%;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submenuText{
+    flex-direction: column;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+.submenuContainer.active {
+    opacity: 1;
+    max-height: 300px;
+}
+
+.submenuText{
+    text-align: start;
+    font-size: 18px;
+}
+
+.submenuText h2{
+    font-size: 18px;
+    text-align: start;
+    color: #888888;
+}
+
+.submenuText h3{
+    font-size: 16px;
+    font-weight: normal;
+    user-select: none;
+    color: #555;
+    margin: 10px 0 0 0;
+}
+
+.submenuText a{
+    text-decoration: none;
+    color: var(--text-primary-color);
+    margin: 3px 0;
+}

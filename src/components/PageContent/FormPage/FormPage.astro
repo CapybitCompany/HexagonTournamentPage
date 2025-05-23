@@ -1,0 +1,309 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import "../../../styles/global.css"
+import '../../NavBar/NavBar.css'
+import '../../PageContent/WelcomePage/Welcome.styles.css'
+import './FormPage.styles.css'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro';
+import ContentPartContainer from '../../ContentContainer/ContentPartContainer.astro'
+import Footer from '../../Footer/Footer.astro'
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #e5e5e5; align-items: center;">
+    <ContentPartContainer clazz="limitedWidth center">
+        <h1>Formularz kontaktowy</h1>
+        <p style="text-align: center;">Jeżeli posiadasz pytania, śmiało zadaj je przez ten formularz!</p>
+        <p style="text-align: center;">Wysłanie formularza nie zobowiązuje do udziału w praktykach. Umów się na darmową konsultację lub rozmowę wstępną!</p>
+        <form id="mainForm" method="POST" class="max-w-xl mx-auto space-y-6 bg-white p-6 rounded-xl shadow-md">
+            <div class="fieldRow">
+                <label for="courseType" class="block font-medium mb-1">Preferowany typ szkolenia*</label>
+                <select id="courseType" name="courseType" class="w-full border rounded p-2" onchange="handleCorseTypeChange(event)">
+
+                </select>
+            </div>
+
+            <div class="fieldRow" id="courseSubjectWrapper">
+                <label for="courseSubject" class="block font-medium mb-1">Preferowana tematyka szkolenia*</label>
+                <select id="courseSubject" name="courseSubject" class="w-full border rounded p-2">
+
+                </select>
+            </div>
+
+            <div class="fieldRow" id="courseTimeWrapper">
+                <label for="courseTime" class="block font-medium mb-1">Preferowany czas trwania kursu*</label>
+                <select id="courseTime" name="courseTime" class="w-full border rounded p-2">
+
+                </select>
+            </div>
+
+            <div class="fieldRow">
+                <label for="name" class="block font-medium mb-1">Imię i nazwisko*</label>
+                <input type="text" id="name" name="name" required class="w-full border rounded p-2" />
+            </div>
+
+            <div class="fieldRow">
+                <label for="email" class="block font-medium mb-1">Kontaktowy adres e-mail</label>
+                <input type="email" id="email" name="email" class="w-full border rounded p-2" />
+            </div>
+
+            <div class="fieldRow">
+                <label for="number" class="block font-medium mb-1">Kontaktowy numer telefonu</label>
+                <input id="number" name="number" class="w-full border rounded p-2" />
+            </div>
+
+            <p>
+                * Wymagane jest podanie <strong>adresu e-mail lub numeru telefonu</strong>.
+            </p>
+
+            <div class="fieldRow">
+                <label for="additional" class="block font-medium mb-1">Pytania i wiadomość do mentora</label>
+                <textarea id="additional" name="additional" rows="5" class="w-full border rounded p-2" placeholder="Miejsce na pytania, temat kontaktu ze szkołą lub rodzicem, godziny dostępności w przypadku podania numeru telefonu i inne informacje, które mentor powinien poznać przed rozmową."></textarea>
+            </div>
+
+            <div class="fieldRow">
+                <button class="g-recaptcha"
+                    data-sitekey="6LfIJjkrAAAAAMsx9pLM7bM0nOgKkkZrUXMK7PMV"
+                    data-callback="validateReCaptchaForm"
+                    data-action="submit">
+                        Wyślij zgłoszenie
+                </button>
+            </div>
+
+        </form>
+    </ContentPartContainer>
+</ContentContainer>
+<Footer/>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const courseFormOptions = [
+            { id: 'group', label: 'Grupowe' },
+            { id: 'individual', label: 'Indywidualne' },
+            { id: 'question', label: 'Jeszcze nie wiem/Mam pytanie' }
+        ];
+        const courseIndividualSubjectOptions = [
+            { id: 'frontend', label: 'Tworzenie stron internetowych - Frontend' },
+            { id: 'E13', label: 'Przygotowanie do egzaminów E13/E14/Matury z informatyki' },
+            { id: 'game', label: 'Tworzenie gier komputerowych' },
+            { id: 'programming', label: 'Nauka programowania - Java/C#' },
+            { id: 'frontendAndBackend', label: 'Tworzenie stron internetowych - Frontend + Backend' }
+        ];
+        const courseGroupSubjectOptions = [
+            { id: 'frontend', label: 'Tworzenie stron internetowych - Frontend' },
+            { id: 'frontendAndBackend', label: 'Tworzenie stron internetowych - Frontend + Backend' },
+            { id: 'E13', label: 'Przygotowanie do egzaminów E13/E14/Matury z informatyki' },
+        ];
+        const courseTimeOptions = [
+            { id: '90', label: '90 godzin' },
+            { id: '140', label: '140 godzin' },
+            { id: '320', label: '320 godzin' },
+            { id: 'another', label: 'inne'}
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedType = urlParams.get('type');
+        const selectedSubject = urlParams.get('subject');
+        const selectedTime = urlParams.get('time');
+
+        const courseTypeSelect = document.getElementById('courseType');
+        const courseSubjectSelect = document.getElementById('courseSubject');
+        const courseTimeSelect = document.getElementById('courseTime');
+        
+
+        courseFormOptions.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option.id;
+            opt.textContent = option.label;
+            if (option.id === selectedType) opt.selected = true;
+            courseTypeSelect.appendChild(opt);
+        });
+
+
+        courseTimeOptions.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option.id;
+            opt.textContent = option.label;
+            if (option.id === selectedTime) opt.selected = true;
+            courseTimeSelect.appendChild(opt);
+        });
+
+        function handleCorseTypeChange(event) {
+            const selectedValue = event?.target?.value || selectedType || "group";
+            const subjectWrapper = document.getElementById('courseSubjectWrapper');
+            const timeWrapper = document.getElementById('courseTimeWrapper');
+            while (courseSubjectSelect?.firstChild) {
+                courseSubjectSelect?.removeChild(courseSubjectSelect?.lastChild);
+            }
+            if (selectedValue === 'question') {
+                subjectWrapper?.classList.add("hidden");
+                timeWrapper?.classList.add("hidden");
+            } else {
+                subjectWrapper?.classList.remove("hidden");
+                timeWrapper?.classList.remove("hidden");
+            }
+
+            if(selectedValue === 'individual'){
+                courseIndividualSubjectOptions.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option.id;
+                    opt.textContent = option.label;
+                    if (option.id === selectedSubject) opt.selected = true;
+                    courseSubjectSelect.appendChild(opt);
+                });
+            }else if(selectedValue === 'group'){
+                    courseGroupSubjectOptions.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option.id;
+                    opt.textContent = option.label;
+                    if (option.id === selectedSubject) opt.selected = true;
+                    courseSubjectSelect.appendChild(opt);
+                });
+            }
+            
+        }
+
+        function validateContactForm() {
+            const email = document.getElementById('email')?.value.trim();
+            const telNumber = document.getElementById('number')?.value.trim();
+            const name = document.getElementById('name')?.value.trim();
+            const additional = document.getElementById('additional')?.value.trim();
+
+            
+            const response = window.grecaptcha.getResponse();
+
+            const telRegex = /^\+?[0-9\s\-]{5,}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            const nameRegex = /^[A-Za-zÀ-ÿąęółćżźńĄĘÓŁĆŻŹŃ'-]{2,}(\s[A-Za-zÀ-ÿąęółćżźńĄĘÓŁĆŻŹŃ'-]{2,}){1,2}$/;
+
+            if (!response) {
+                alert("Błąd reCaptcha");
+                return false;
+            }     
+
+            if(!name) {
+                alert("Nie podano imienia i nazwiska.");
+                return false;
+            }
+
+            if(!nameRegex.test(name)) {
+                alert("Niepoprawne imię lub nazwisko");
+                return false;
+            }
+
+            if (!email && !telNumber) {
+                alert("Proszę podać adres e-mail lub numer telefonu.");
+                return false;
+            }
+
+            if(email && !emailRegex.test(email)){
+                alert("Błędny adres e-mail");
+                return false;
+            }
+
+
+            if (telNumber && !telRegex.test(telNumber)) {
+                const cleanedPhone = telNumber.replace(/\D/g, '');
+                debugger;
+                if(cleanedPhone.length < 7) {
+                    alert("Numer telefonu jest nieprawidłowy. Podano zbyt krótki numer.");
+                } else if(cleanedPhone.length > 14){
+                    alert("Numer telefonu jest nieprawidłowy. Podano zbyt długi numer.");
+                } else {
+                    alert("Numer telefonu jest nieprawidłowy. Dozwolone są tylko cyfry, spacje, myślniki oraz opcjonalny znak +.");
+                }
+                return false;
+            }
+
+            if (!additional && !allowEmptyAdditional) {
+                const confirmed = confirm("Nie podałeś żadnych dodatkowych informacji. Czy na pewno chcesz kontynuować?");
+                if (!confirmed) {
+                    return false;
+                }
+            }
+
+            return true;
+            //document.getElementById("mainForm")?.submit();
+            
+        }
+
+        function showSuccessMessage() {
+            const formElement = document.getElementById("mainForm");
+            const formContainer = formElement?.parentElement;
+
+            if (formElement && formContainer) {
+
+                formElement.remove();
+
+                const message = document.createElement("p");
+                message.classList.add("success");
+                message.textContent = "Formularz został przesłany. Dziękuję za chęć nawiązania kontaktu. Mentor powinien niebawem się odezwać.";
+
+
+                formContainer.appendChild(message);
+            }
+        }
+
+        function validateReCaptchaForm(token) {
+            if (token && validateContactForm()) {
+                const courseTypeSelect = document.getElementById('courseType')?.value;
+                const courseSubjectSelect = document.getElementById('courseSubject')?.value;
+                const courseTimeSelect = document.getElementById('courseTime')?.value;
+                const email = document.getElementById('email')?.value.trim();
+                const telNumber = document.getElementById('number')?.value.trim();
+                const name = document.getElementById('name')?.value.trim();
+                const additional = document.getElementById('additional')?.value.trim();
+
+                const userData = {
+                    courseTypeSelect: courseTypeSelect,
+                    courseSubjectSelect: courseSubjectSelect,
+                    courseTimeSelect: courseTimeSelect,
+                    email: email,
+                    telNumber: telNumber,
+                    name: name,
+                    additional: additional,
+                };
+                
+                const formData = {
+                    ...userData,
+                    "recaptcha-token": token
+                };
+
+                const sendMailUrl = "/.netlify/functions/sendEmail";
+
+                fetch("/.netlify/functions/verify-recaptcha", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            fetch(sendMailUrl, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(userData)
+                            }).then(res => {
+                                res.json().then(data =>{
+                                    if(data.success) {
+                                        showSuccessMessage();
+                                    }else{
+                                        alert("Błąd podczas wysyłania formularza.");
+                                        console.log(data.error);
+                                    }
+                                });
+                            });
+                                
+                            
+                        } else {
+                            alert("Błąd weryfikacji reCAPTCHA.");
+                        }
+                    });
+            }
+        }
+
+        handleCorseTypeChange({ target: courseTypeSelect });
+
+        window.handleCorseTypeChange = handleCorseTypeChange;
+        window.validateReCaptchaForm = validateReCaptchaForm;
+    });
+</script>

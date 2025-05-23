@@ -1,0 +1,129 @@
+---
+import SimpleDataTable from "../../../SimpleTable/SimpleDataTable.astro"
+
+const columns = [
+  { label: "Moduł / Temat" },
+  { label: "Zawartość" },
+  { label: "90h" },
+  { label: "140h" },
+  { label: "320h" },
+]
+
+const rows = [
+  {
+    cells: [
+      "1. Wstęp do webdev, organizacja pracy w firmach i repozytorium Github",
+      "Przedstawienie zakresu kursu, wyjaśnienie pojęć jak frontend, backend, fullstack, pierwsza strona HTML, narzędzia (edytor, przeglądarki, DevTools), Github, metodologia pracy SCRUM, pytania do mentora o rynek pracy i pracę w firmie",
+      "1", "1", "1"
+    ]
+  },
+  {
+    cells: [
+      "2. HTML5 i CSS3 (Flexbox i responsywność od startu",
+      "Struktura dokumentu, elementy semantyczne, typografia, selektory CSS, Flex i jak szukać informacji",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "3. CSS od podstaw",
+      "Selektory, box-model, kaskada, pseudoklasy, pisanie własnych stylów (bez frameworków), obsługa różnych rozdzielczości",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "4. Kompozycja i UX/UI",
+      "Zasady układu, koloru, typografii, design system, podstawy projektowania",
+      "1", "1", "2"
+
+    ]
+  },
+  {
+    cells: [
+      "5. JavaScript - fundamenty",
+      "Zmienne, funkcje, DOM, zdarzenia, asynchroniczność (Promise/async-await), dodawanie multimediów (wideo, audio)",
+      "1", "1", " 2"
+    ]
+  },
+  {
+    cells: [
+      "6. Teoria renderowania (CSR, SSR, SSG)",
+      "Omówienie podejść do renderowania, porównanie zalet i wad",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "7. Frameworki: React + Astro",
+      "90h: krótkie wprowadzenie do React i Astro | 140h: budowa prostych aplikacji (komponenty, routing) | 320h: zaawansowane techniki, zarządzanie stanem, integracja z pakietami, CI",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "8. REST API",
+      "HTTP, AJAX/Fetch, JSON, konsumpcja API, CORS, podłączanie płatności do strony (sandbox PayPal)",
+      "0", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "9. Wstęp do backendu",
+      "90h: Next.js (API routes) | 140h: Next.js deeper dive + PHP | 320h: Java Spring Boot „hello world”, deploy",
+      "0", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "10. SEO, analityka i prawo",
+      "SEO on-page, Google Analytics, RODO, cookies, regulaminy",
+      "0.5", "0.5", "1"
+    ]
+  },
+  {
+    cells: [
+      "11. Mobilne UX/UI",
+      "Adaptacja interfejsu na urządzenia mobilne, dotykowe wzorce nawigacji",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "12. Deployment & sieć",
+      "Netlify/Vercel, GitHub Pages, hosting, DNS, domeny, certyfikaty SSL",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "13. Optymalizacja & testowanie",
+      "Lazy loading zasobów (obrazy, wideo), minifikacja, tree-shaking, Lighthouse; testy jednostkowe (Jest), e2e (Cypress)",
+      " 0", "0.5", "2"
+    ]
+  },
+  {
+    cells: [
+      "Suma webinarów",
+      "",
+      " 8", "12", "24"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czaspracy z mentorem dla każdej osoby (Szkolenie grupowe)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 2h", "4h", "7h"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czas z mentorem (Szkolenie indywidualne)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 6h", "10h", "15h"
+    ]
+  }
+]
+---
+
+<SimpleDataTable {columns} {rows} />

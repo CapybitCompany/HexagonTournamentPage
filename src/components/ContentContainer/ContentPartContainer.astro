@@ -1,0 +1,21 @@
+---
+import "../../styles/global.css";
+const {clazz} = Astro.props;
+---
+
+<div class=`contentPartContainer ${clazz}`>
+    <slot/>
+</div>
+
+<style>
+    .contentPartContainer{
+        width: 100%;
+        flex-direction: column;
+    }
+    .limitedWidth{
+        max-width: 980px;
+    }
+    .center{
+        align-items: center;
+    }
+</style>

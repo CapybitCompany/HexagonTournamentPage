@@ -1,0 +1,37 @@
+---
+import SimpleDataTable from "../../../SimpleTable/SimpleDataTable.astro"
+
+const columns = [
+  { label: "Moduł / Temat" },
+  { label: "Zawartość" },
+  { label: "90h" },
+  { label: "140h" },
+  { label: "320h" },
+]
+
+const rows = [
+{
+    cells: [
+      "Suma webinarów",
+      "",
+      " 8", "12", "24"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czaspracy z mentorem dla każdej osoby (Szkolenie grupowe)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 2h", "4h", "7h"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czas z mentorem (Szkolenie indywidualne)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 6h", "10h", "15h"
+    ]
+  }
+]
+---
+
+<SimpleDataTable {columns} {rows} />

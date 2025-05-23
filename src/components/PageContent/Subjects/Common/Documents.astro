@@ -1,0 +1,43 @@
+---
+import "../../../../styles/global.css"
+import '../../../NavBar/NavBar.css'
+import '../../../FullImageContainer/FullImageContainer.css'
+import '../../../PageContent/WelcomePage/Welcome.styles.css'
+import ContentPartContainer from "../../../ContentContainer/ContentPartContainer.astro";
+import Section from "../../../ContentContainer/Section.astro";
+import PdfSvg from "../../../../../public/icons/common/pdf.svg?raw"
+
+const {documentsClass} = Astro.props;
+---
+
+<Section clazz="sectionContainer center slanted">
+    <ContentPartContainer clazz="limitedWidth center">
+        <h2>Dokumenty</h2>
+        <p style="text-align: center;">Dokumenty związane z programem szkoleń, zakresem obowiązków i zdobywanej wiedzy.</p>
+        <div style="margin-top: 15px;" class=`${documentsClass}`> 
+            <a href="documents/targetPdf" download>
+                <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
+            </a>
+            <a href="documents/targetPdf" download>Cel i zakres pracy uczestnika</a>
+        </div>
+        <div style="margin-top: 15px;" class=`${documentsClass}`>
+            <a href="documents/targetPdf" download>
+                <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
+            </a>
+            <a href="documents/targetPdf " download>Obowiązki uczestnika</a>
+        </div>
+        <div style="margin-top: 15px;">
+             <a href="documentstargetPdf" download>
+                <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
+            </a> 
+            <a href="documents/Regulamin_Szkolen_Capybit.pdf" download>Regulamin szkoleń</a>
+        </div>
+    </ContentPartContainer>
+</Section>
+
+<style>
+    .WIP{
+        display: none;
+    }
+</style>
+

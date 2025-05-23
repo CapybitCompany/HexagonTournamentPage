@@ -1,0 +1,69 @@
+---
+import NavBar from '../../../NavBar/NavBar.astro'
+import "../../../../styles/global.css"
+import '../../../NavBar/NavBar.css'
+import '../../../PageContent/WelcomePage/Welcome.styles.css'
+import ContentContainer from '../../../ContentContainer/ContentContainer.astro';
+import ContentPartContainer from '../../../ContentContainer/ContentPartContainer.astro'
+import Footer from '../../../Footer/Footer.astro'
+import Grid21 from '../../../Grid/Grid2_1/Grid2_1.astro';
+import ImageBoxContent from '../../../ImageBoxContent/ImageBoxContent.astro';
+import Section from '../../../ContentContainer/Section.astro';
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #e5e5e5; align-items: center; text-align: center;">
+    <ContentPartContainer clazz="limitedWidth center">
+        <Section clazz="center">
+            <h1>Kontakt</h1>
+            <p style="width: 100%;"> Masz pytania dotyczące szkoleń, praktyk lub programu mentorskiego? Napisz - wspólnie znajdziemy najlepszą ścieżkę dopasowaną do Twoich potrzeb. </p>
+            <p style="width: 100%;"> Możesz śmiało skontaktować się, jeśli szukasz praktyk szkolnych, przygotowania do pracy w IT, konsultacji indywidualnych lub po prostu chcesz dopytać o szczegóły oferty. </p>
+            <p style="width: 100%;"> Jesteś przedstawicielem szkoły lub firmy? Możemy nawiązać kontakt i rozpocząć współpracę. </p>
+        </Section>
+    </ContentPartContainer>
+    <Section clazz="sectionContainer center slanted" style="background-color: white;">
+        <h1 class="mainHeader"> Formularz kontaktowy</h1>
+
+        <Grid21>
+            <ImageBoxContent wrapperClass="imageRight" slot="left" imagePath="../../../public/images/test/laptop.jpg" lazyMeanColor="#726d7e">
+                <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Zgłoś chęć udziału w szkoleniu</h1>
+                    <p>Temat szkoleń Cię zainteresował? Chciałbyś odbyć darmową konsultację?</p>
+                    <a href="/form"><b>Zgłoś chęć udziału</b></a>
+                </div>
+            </ImageBoxContent>
+            <ImageBoxContent slot="right" imagePath="../../../public/images/test/laptop.jpg" lazyMeanColor="#726d7e">
+                <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Mam pytania</h1>
+                    <p>Chciałbyś dowiedzieć się więcej? Masz propozycję szkolenia, którego nie widzisz na stronie?</p>
+                    <a href="/form?type=question"><b>Zadaj pytanie</b></a>
+                </div>
+            </ImageBoxContent>
+        </Grid21>
+    </Section>
+
+    <Section clazz="sectionContainer center">
+        <h1 class="mainHeader"> Partnerstwo </h1>
+
+        <Grid21>
+            <ImageBoxContent wrapperClass="imageRight" slot="left" imagePath="../../../public/images/test/laptop.jpg" lazyMeanColor="#726d7e">
+                <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Placówka edukacyjna</h1>
+                    <p>Jesteś przedstawicielem szkoły? Twoja placówka potrzebuje praktyk powiązanych z informatyką dla uczniów?</p>
+                    <a href="/form?type=question"><b>Nawiąż kontakt</b></a>
+                </div>
+            </ImageBoxContent>
+            <ImageBoxContent slot="right" imagePath="../../../public/images/test/laptop.jpg" lazyMeanColor="#726d7e">
+                <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Firma</h1>
+                    <p>Jesteś przedstawicielem firmy? Twoja firma potrzebuje nowych kandydatów, którzy poznali konkretne dziedziny?</p>
+                    <a href="/form?type=question"><b>Nawiąż kontakt</b></a>
+                </div>
+            </ImageBoxContent>
+        </Grid21>
+    </Section>
+    <div style="margin-bottom: 100px;"/>
+
+
+</ContentContainer>
+<Footer/>

@@ -1,0 +1,34 @@
+---
+import "./styles/SimpleDataTable.styles.css";
+
+interface Column {
+  label: string
+}
+
+interface Row {
+  cells: string[]
+}
+
+const { columns, rows }: { columns: Column[], rows: Row[] } = Astro.props;
+
+
+---
+
+<table class="custom-table">
+  <thead>
+    <tr>
+      {columns.map((col) => (
+        <th>{col.label}</th>
+      ))}
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => (
+      <tr>
+        {row.cells.map((cell) => (
+          <td><div class="cell">{cell}</div></td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>

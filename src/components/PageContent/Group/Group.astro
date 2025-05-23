@@ -1,0 +1,233 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import Footer from '../../Footer/Footer.astro'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro'
+import Carousel from '../../Carousel/Carousel.astro'
+import "./Group.styles.css"
+import "../../../styles/global.css"
+import ContentPartContainer from '../../ContentContainer/ContentPartContainer.astro'
+import CarouselElement from '../../Carousel/CarouselElement.astro'
+import CarouselElementLayout from '../../Carousel/CarouselElementLayout.astro'
+import Section from '../../ContentContainer/Section.astro'
+import IndividualTable from './GroupTable.astro'
+import Grid21 from '../../Grid/Grid2_1/Grid2_1.astro'
+import ImageBoxContent from '../../ImageBoxContent/ImageBoxContent.astro'
+import CheckboxFilledSvg from "../../../../public/icons/common/checkbox-filled.svg?raw"
+import '../../NavBar/NavBar.css'
+import '../../FullImageContainer/FullImageContainer.css'
+import '../../PageContent/WelcomePage/Welcome.styles.css'
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #e5e5e5">
+    <FullImageContainer id="mainBanner" imagePath="../../public/images/Welcome/Welcome.jpg" imageLink="#" wrapperClass="blackBackground imageToRight banner">
+        <div class="bannerContentContainer">
+            <h1 style="color: white">Praktyki/Szkolenia grupowe</h1>
+            <p style="color: white">
+                Twój profil to technik informatyk? Poszukujesz praktyk? Zastanawiasz się nad letnimi praktykami? Praktyki z informatyki, które wniosą coś w twój rozwój! Przekonaj się, jak mogą wyglądać praktyki z prawdziwym mentorem.
+            </p> 
+            <button class="cfa" onclick="goToForm()">Zgłoś chęć udziału!</button>
+        </div>
+    </FullImageContainer>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="../../../public/images/GroupCourse/Mentor.jpg" lazyMeanColor="#a3a5a9">
+            <Section clazz="center" style="flex: 1; justify-content: center;">
+                <h2 style="text-align: center;">Chcesz uczyć się u boku mentora zamiast filmików z kursów?</h2>
+
+            </Section>
+        </ImageBoxContent>
+        <ImageBoxContent slot="right" imagePath="../../../public/images/GroupCourse/Caffe.jpg" lazyMeanColor="#171514" wrapperClass="imageRight">
+            <Section clazz="center" style="flex: 1; justify-content: center;">
+                <h2 style="text-align: center;">Chcesz, aby praktyki zawodowe nie polegały jedynie na parzeniu kawy?</h2>
+            </Section>
+        </ImageBoxContent>
+    </Grid21>
+
+    <ImageBoxContent wrapperClass="imageRight" imagePath="../../../public/images/GroupCourse/ForWho.jpg" lazyMeanColor="#a46d57">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2>Dla kogo są te kursy?</h2>
+            <ul class="customList" style="font-size:20px; display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Uczniów zawodówek / techników / liceów a także studentów informatyki.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Osób poszukujących letnich praktyk lub po prostu wiedzy informatycznej w wakacje. </span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Kandydatów na juniorów chcących przygotować się praktycznie do pracy.</span></li>
+            </ul>
+        </Section>
+    </ImageBoxContent>
+
+    <Section clazz="center">
+        <h2>Dlaczego warto wybrać Capybit na praktyki/szkolenia?</h2>
+        <ContentPartContainer clazz="limitedWidth">
+            <IndividualTable/>
+        </ContentPartContainer>
+    </Section>
+
+    <Section clazz="center slanted" style="background-color: #ffffff">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Oferta</h2>
+            <p style="text-align:center">Każdy temat zaiwera 3 pakiety godzinowe: 90 godzin, 140 godzin oraz 320 godzin. Program każdego tematu został opisany indywidualnie na stronach poniżej. </p>
+            <Carousel carouselId="carousel">
+                <CarouselElement>
+                    <CarouselElementLayout imgSrc="../../public/images/Welcome/FrontendSubjectHome.jpg" styles="background-color: rgb(255, 230, 214);">
+                        <h3 style="margin-top: 0;">Tworzenie stron internetowych - Frontend</h3>
+                        <p>Wejdź do świata wizualnie przyciągających treści w internecie. Co więcej, stań się ich twórcą.</p>
+                        <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1300 zł</b></div>
+                        <div class="fullWidthTileContent" style="text-align: center; height: auto; ">
+                            <a href="/frontendSubject"><b>Sprawdź ofertę!</b></a>
+                        </div>
+                    </CarouselElementLayout>
+                </CarouselElement>
+                <CarouselElement>
+                    <CarouselElementLayout imgSrc="../../public/images/Welcome/E13SubjectHome.jpg" styles="background-color: rgb(255, 230, 214);">
+                        <h3 style="margin-top: 0;">Przygotowanie do egzaminów E13 / E14 / Matury z informatyki</h3>
+                        <p>Egzaminy zawodowe czy matura z informatyki nie muszą być trudne. Zmaksymalizuj wyniki, a zdobytą wiedzę i zaoszczędzony czas przekuj we własne projekty.</p>
+                        <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1400 zł</b></div>
+                        <div class="fullWidthTileContent" style="text-align: center; height: auto;">
+                            <a href="/E13Subject"><b>Sprawdź ofertę!</b></a>
+                        </div>
+                    </CarouselElementLayout>
+                </CarouselElement>
+                <CarouselElement>
+                    <CarouselElementLayout imgSrc="../../public/images/Welcome/FullstackSubjectHome.jpg" styles="background-color: rgb(255, 230, 214);">
+                        <h3 style="margin-top: 0;">Tworzenie stron internetowych - Frontend + Backend</h3>
+                        <p>Zacznij tworzyć strony internetowe z całym zapleczem po stronie serwera. Twórz aplikacje webowe, których złożoność nie będzie Cię już ograniczać.</p>
+                        <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1600 zł</b></div>
+                        <div class="fullWidthTileContent" style="text-align: center; height: auto;">
+                            <a href="/frontendAndBackendSubject"><b>Sprawdź ofertę!</b></a>
+                        </div>
+                    </CarouselElementLayout>
+                </CarouselElement>
+            </Carusel>
+        </ContentPartContainer>
+    </Section>
+
+    
+
+    
+    <Section clazz="center slanted">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Promocja</h2>
+            <p style="text-align:center">Jeżeli zapisujesz się z czyjegoś polecenia - <b>oboje dostajecie 10% zniżki na cały kurs!</b></p>
+            <p style="text-align:center"> 
+                <b>Polecenie może dotyczyć więcej niż 1 osoby</b> - wtedy wszystkie osoby mają 10% rabatu a 
+                Ty <b>dodatkowe 5% zniżki za drugą i kolejne osoby</b>, które dołączyły do kursu i z niego nie zrezygnowały.
+            </p>
+        
+            <p style="text-align:center" >Istnieje możliwość odbycia szkoleń o innym czasie trwania po indywidualnym ustaleniu tego podczas wstępnej rozmowy.</p>
+        </ContentPartContainer>
+    </Section>
+
+    <ImageBoxContent wrapperClass="imageRight" imagePath="../../public/images/GroupCourse/Profit.jpg" lazyMeanColor="#b8b4af">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2>Co zyskujesz?</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Sporo wiedzy, której nie ma w szkołach i kursach.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>W zależności od piektu 90h/140h/320h zyskujesz 14/22/43 godziny czasu pracy z mentorem oraz oceny opisowe.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zadania, które stanowią fundament pod Twoje CV.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Czas praktyk informatycznych online, których nie tracisz na siedzenie i czekanie.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Możliwość zaliczenia praktyk zdalnie, gdziekolwiek mieszkasz.</span></li>
+            </ul>
+        </Section>
+    </ImageBoxContent>
+
+    <Section clazz="center">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2 style="text-align: center;" >Dodatkowe informacje:</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Darmowa wstępna konsultacja - rozmowa o zainteresowaniach i oczekiwaniach.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Możliwa jest wstępna rozmowa z rodzicem. </span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Możliwy jest kontakt ze szkołą w temacie praktyk i ustalenia szczegółów dla grupy.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Istnieje opcja rezygnacji po 2 pierwszych zajęciach.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wystawiana jest faktura.</span></li>
+            </ul>
+        </ContentPartContainer>
+    </Section>
+    
+
+    <Section clazz="center" style="background-color: #ffffff">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>FAQ</h2>
+            <FAQ>
+                <FAQLine>
+                    <FAQQuestion>Jak długo trwa kurs?</FAQQuestion>
+                    <FAQAnswer>Od miesiąca do trzech - zależnie od pakietu.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>  
+                    <FAQQuestion>W jakiej formie odbywają się te szkolenia?</FAQQuestion>
+                    <FAQAnswer>W formie zdalnej przy użyciu dedykowanego serwera discord. W przypadku kodu używane będzie repozytorium Github. Lista wymaganego oprogramowania jest dostępna w każdej tematyce kursu.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy muszę wiedzieć cokolwiek, żeby brać udział w kursie?</FAQQuestion>
+                    <FAQAnswer>Im więcej wiesz tym na pewno będzie Ci łatwiej przyswoić i zrozumieć wiedzę kursu. Każda tematyka kursu może posiadać indywidualne sugerowane zagadnienia, które warto już znać.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co jeżeli nie mogę się zdecydować na kurs lub mam pytania?</FAQQuestion>
+                    <FAQAnswer>W formularzu zgłoszeniowym można napisać o trudności w doborze tematu. Wówczas istnieje możliwość darmowej konsultacji z mentorem, który pomoże ustalić preferencje.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Jeżeli chciałbym zaliczyć praktyki w formie tych szkoleń, co muszę zrobić?</FAQQuestion>
+                    <FAQAnswer>Należy wówczas podczas rozmowy wstępnej ustalić sposób dostarczenia odpowiednich dokumentów i wymagania szkoły/placówki edukacyjnej. Dodatkowo wymagane jest uzgodnienie ze szkołą czy taka forma praktyk będzie zaliczona. Organizator nie ponosi odpowiedzialności za sytuację, w której szkoła miałaby nie uznać takiego szkolenia jako praktyki.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy mogę zaliczać praktyki z dowolnego miejsca?</FAQQuestion>
+                    <FAQAnswer>Tak - o ile to miejsce pozwoli w odpowiednim terminie dostarczyć wymagane dokumenty. Jeżeli Twoja szkoła/uczelnia dopuszcza skany dokumentów - nie ma żadnego problemu z lokalizacją. Jeżeli wymagane są oryginalne dokumenty - należy uwzględnić czas ich dostarczenia w obie strony. Temat może być ustalany indywidualny.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy jeżeli szkoła chciałaby się skontaktować w celu ustalenia szczegółów praktyk, istnieje możliwość kontaktu?</FAQQuestion>
+                    <FAQAnswer>Tak - Po wysłaniu formularza i wstępnej rozmowie, można nakreślić sytuację i wówczas ustalić kanał komunikacji ze szkołą.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co jeżeli z powodów technicznych lub indywidualnych muszę skończyć zajęcia wcześniej?</FAQQuestion>
+                    <FAQAnswer>Jeżeli zostanie to zgłoszone z odpowiednim wyprzedzeniem, istnieje możliwość nagrania zajęć teoretycznych. W przypadku prywatnej konsultacji, przysługującej kursantowi - konsultację można przełożyć lub dokończyć w innym terminie.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy można zorganizować kurs, w innym wymiarze czasu trwania?</FAQQuestion>
+                    <FAQAnswer>Tak - podczas indywidualnej rozmowy wstępnej, możemy ustalić preferowany czas trwania i odpowiednio go wycenić. Musi jednak pojawić się wystarczająco chętnych. Jeżeli ich nie będzie, istnieje możliwość zapisania się indywidualnie, ze wszystkimi tego zaletami.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy mogę zmienić temat w trakcie?</FAQQuestion>
+                    <FAQAnswer>Tak - jeżeli mieści się w ramach ustalonego programu lub zmiana nastąpiła na odpowiednio wczesnym etapie szkoleń. Wówczas uwzględniana jest nowa wartość zajęć, jednak nie niższa niż kurs, do którego dołączono. Należy jednak zapisać się do istniejącej grupy, lub zmienić tematykę zajęć grupowo.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co jeżeli grupa z jakiegoś powodu w trakcie kursu zmaleje do mniejszej niż minimalna ilości osób?</FAQQuestion>
+                    <FAQAnswer>Wówczas kurs jest kontynuowany normalnie. Uczestnik nie może ponosić konsekwencji za wybory innych osób.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy to przygotuje mnie do pracy?</FAQQuestion>
+                    <FAQAnswer>Przy pełnym wykorzystaniu czasu indywidualnej pracy i pakiecie 320h - trudno mi sobie wyobrazić by zdobyta wiedza i praktyka nie przełożyła się na znaczne zmniejszenie truności w poszukiwaniu pracy. Niestety grupowe praktyki trwające miesiąc moga być jedynie drogowskazem i pokazać inną metodę nauki niż oferuje klasyczny system edukacji. Nie mniej pełne zaangażowanie w czasie szkolenia i zrozumienie materiału teoretycznego jak i praktycznego może być bardzo dobrym punktem wyjścia do pogłębiania swojej wiedzy konkretnie w kierunkach dziedzin poszukiwanych przez rynek pracy.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy można rozdzielić płatność na raty?</FAQQuestion>
+                    <FAQAnswer>Tak - podczas rozmowy wstępnej można poprosić o podzielenie płatności na ilość rat, która będzie odpowiednia.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>W jakiej formie wystawiany jest rachunek za szkolenia?</FAQQuestion>
+                    <FAQAnswer>Wystawiana jest faktura. Jeżeli płatność jest dzielona na raty, co miesiąc wystawiana jest faktura.  </FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy można zrezygnować z kursu?</FAQQuestion>
+                    <FAQAnswer>Tak - przez pierwsze 2 zajęcia można zrezygnować z kursu. Każdy ma prawo poznać metodologię zajęć oraz ocenić czy mu ona odpowiada. Zwracana jest kwota kursu z odjętą wartością odbytych już zajęć.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Kiedy należy opłacić kurs?</FAQQuestion>
+                    <FAQAnswer>Kurs należy opłacić przed jego rozpoczęciem.</FAQAnswer>
+                </FAQLine>
+                <button class="cfa" onclick="goToForm()">Zgłoś chęć udziału!</button>
+            </FAQ>
+            
+        </ContentPartContainer>
+    </Section>
+</ContentContainer>
+<Footer/>
+
+<script>
+    function goToForm() {
+      window.location.href = "/form?type=group";
+    }
+    window.goToForm = goToForm;
+</script>

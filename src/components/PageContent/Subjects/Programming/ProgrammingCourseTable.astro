@@ -1,0 +1,30 @@
+---
+import SimpleDataTable from "../../../SimpleTable/SimpleDataTable.astro"
+
+const columns = [
+  { label: "Moduł / Temat" },
+  { label: "Zawartość" },
+  { label: "90h" },
+  { label: "140h" },
+  { label: "320h" },
+]
+
+const rows = [
+  {
+    cells: [
+      "Sumarycznie spotkań",
+      "",
+      " 8", "12", "24"
+    ],
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czas z mentorem",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 6h", "10h", "15h"
+    ]
+  }
+]
+---
+
+<SimpleDataTable {columns} {rows} />

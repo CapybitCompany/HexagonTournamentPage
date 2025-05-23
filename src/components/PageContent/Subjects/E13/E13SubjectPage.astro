@@ -1,0 +1,213 @@
+---
+import "../../../../styles/global.css"
+import "./E13SubjectPage.styles.css"
+import '../../../NavBar/NavBar.css'
+import '../../../FullImageContainer/FullImageContainer.css'
+import '../../../PageContent/WelcomePage/Welcome.styles.css'
+import CheckboxFilledSvg from "../../../../../public/icons/common/checkbox-filled.svg?raw"
+import ContentContainer from "../../../ContentContainer/ContentContainer.astro"
+import Footer from "../../../Footer/Footer.astro"
+import FullImageContainer from "../../../FullImageContainer/FullImageContainer.astro"
+import NavBar from "../../../NavBar/NavBar.astro"
+import ContentPartContainer from "../../../ContentContainer/ContentPartContainer.astro"
+import CarouselElement from "../../../Carousel/CarouselElement.astro"
+import CarouselElementLayout from "../../../Carousel/CarouselElementLayout.astro"
+import Carousel from "../../../Carousel/Carousel.astro"
+import Section from "../../../ContentContainer/Section.astro"
+import Documents from "../Common/Documents.astro"
+import ImageBoxContent from "../../../ImageBoxContent/ImageBoxContent.astro"
+import E13CourseTable from "./E13CourseTable.astro"
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #e5e5e5">
+    <FullImageContainer id="mainBanner" imagePath="../../public/images/Subjects/E13/Banner.jpg" imageLink="#" wrapperClass="imageToRight noCorrection" wrapperStyle="background-color: #fcfcfc;">
+        <div class="bannerContentContainer">
+            <h1 style="color: rgb(0, 0, 0)">E13/E14 i matury z informatyki</h1>
+            <p style="color: rgb(0, 0, 0)">
+                Odpowiednie szkolenia dla uczniów i studentów szukających praktyk.
+                Poznaj edukację, której nie zaoferuje Ci klasyczny system edukacji!
+            </p> 
+            <button class="cfa" onclick="goToForm()">Zgłoś zainteresowanie kursem!</button>
+        </div>
+    </FullImageContainer>
+    
+    <section style="width: 100%; display: flex; flex-direction: column; align-items: center; padding: 10px 10px; box-sizing: border-box; text-align: center;">
+        <h2>Program szkoleń</h2>
+        <ContentPartContainer clazz="limitedWidth center">
+            <p>Szkolenie ma na celu omówienie zagadnień związanych z egzaminami E13 i E14 oraz maturą z informatyki w taki sposób, aby połączyć to z praktycznymi zadaniami,
+                z którymi uczestnik kursu mógłby się spotkać w zawodowym życiu.
+            </p>
+            <E13CourseTable/>
+            <p>Program szkolenia obecnie jest w trakcie przygotowywania.</p>
+
+            <!-- <p>Poniżej przedstawiona została tabela z programem szkoleniowym. Każdy wariant godzinowy szkolenia przewiduje określoną liczbę webinarów (spotkań w celu przekazania wiedzy teoretycznej) do danego zagadnienia. </p>
+            <div style="width: 100%; overflow-x: auto; box-sizing: border-box;">
+                <FrontentCourseTable/>
+            </div>
+            <p style="font-size: 14px;">*0.5 - oznacza, że połowa spotkania jest przeznaczona na dany temat.</p> -->
+        </ContentPartContainer>
+    </section>
+     
+    <Section clazz="sectionContainer center slanted" style="background-color: white; text-align: center;">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Harmonogram pracy</h2>
+            <h3>Szkolenia grupowe</h3>
+            <p><b>Szkolenie 90h - </b> 2 spotkania tygodniowo przez 4 tygodnie. </p>
+            <p><b>Szkolenie 140h - </b> 3 spotkania tygodniowo przez 4 tygodnie. </p>
+            <p><b>Szkolenie 320h - </b> 2 spotkania tygodniowo przez 12 tygodni. </p>
+            <p>Każde spotkanie trwa 90 minut. Dni spotkań ustalane są wspólnie. Możliwe terminy obejmuje poniższy terminarz:</p>
+            <div class="terms">
+                <p><b>Poniedziałek - </b> 17:00-20:00</p>
+                <p><b>Wtorek - </b> 16:00-20:00</p>
+                <p><b>Środa - </b> 16:00-18:00</p>
+                <p><b>Czwartek - </b> 17:00-20:00</p>
+                <p><b>Piątek - </b> 16:00-19:00</p>
+                <p><b>Sobota - </b> 10:00-13:00</p>
+            </div>
+            <h3>Szkolenia indywidualne</h3>
+            <p style="text-align: center;">Szablon spotkań jest analogiczny jak dla szkoleń grupowych. Elastyczność doboru godzin i dni jest znacznie większa. Można zmienić dzień i godzinę szkolenia w razie potrzeby.</p>
+        </ContentPartContainer>
+    </Section>
+
+    <Section clazz="sectionContainer center slanted">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Zadania praktyczne</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Do każdego tematu przygotowany jest zbiór zadań praktycznych.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Uczestnik wykonuje powierzone zadania praktyczne i wysyła rezultaty do określonego terminu.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Uczestnicy zajęć grupowych zachęcani są do współpracy przy wykonywaniu zadań.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Mentor może wesprzeć grupę lub indywidualnie uczestnika przy problemach z wykonaniem zadań.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wiele ćwiczeń posiada formę prawdziwego projektu, w którym należy dodać nową funkcjonalność lub poprawić błąd. Odwzorowuje to realne warunki pracy.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>W przypadku zajęć indywidualnych - zadania są na bieżąco tworzone w celu rozbudowy indywidualnego projektu uczestnika do swojego portfolio.</span></li>
+            </ul>
+        </ContentPartContainer>
+    </Section>
+
+    <ImageBoxContent wrapperClass="imageRight" imagePath="../../../public/images/Subjects/Frontend/Requirements.jpg" lazyMeanColor="#726d7e">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2>Wymagania</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zainstalowany komunikator <a href="https://discord.com" style="color: black;"><b>Discord</b></a> i dołączenie do wskazanego przez mentora serwera. Wymagany jest <b>mikrofon</b> do rozmów głosowych.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Komputer ze stałym dostępem do internetu i systemem <b>Windows</b>.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zarejestrowane konto na stronie <a href="https://github.com" style="color: black;"><b>Github</b></a> .</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zainstalowane darmowe oprogramowanie: 
+                    <a href="https://code.visualstudio.com/" style="color: black;"><b>Visual Studio Code</b></a>,
+                    <a href="https://unity.com/games?utm_source=google&utm_medium=cpc&utm_campaign=cc_dd_upr_emea_emea-t1_en_aw_sem-gg_acq_nb-pr_2023-11_cc-dd-solutions-emea-t1-nb_cc3022_ev-nb_id:71700000115996776&utm_content=cc_dd_upr_emea_aw_sem_gg_ev-br_pros_x_npd_cpc_kw_sd_all_x_x_game-develolpment_id:58700008606778986&utm_term=unity%20game%20development&&&&&gad_source=1&gad_campaignid=20786192293&gbraid=0AAAAAoc7hm7bT2z6yHSkDsZY4AC_F_jxm&gclid=Cj0KCQjw0LDBBhCnARIsAMpYlAphr1vTQrc9wTX0SfQvQylEe0wZaVoJ0msNBoZVAbdlLMQU26VemSwaAqbMEALw_wcB&gclsrc=aw.ds" style="color: black;"><b>Unity</b></a>,
+                    <a href="https://www.sourcetreeapp.com/" style="color: black;"><b>Sourcetree</b></a>.
+                    </span>
+                </li>
+            </ul>
+        </Section>
+    </ImageBoxContent>
+
+
+
+    <div style="width:100%; flex-direction: column; align-items: center; background-color: white; padding: 150px 0 30px 0;">
+        <h1>Dostępna oferta szkoleń grupowych</h1>
+        <Carousel carouselId="groupCarousel" startIndex="1">
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Group90h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Grupowe 90 godzin</h2>
+                    <p>8 spotkań, podczas których kompaktowo przerabiane są materiały egzaminacyjne z największym naciskiem na egzaminy E13 i E14.</p>
+                    <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: 1400 zł</b></div>
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=group&subject=E13&time=90"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Group140h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Grupowe 140 godzin</h2>
+                    <p>12 spotkań, podczas których oprócz materiałów na egzaminy E13 i E14 omawiane są zagadnienia związane z maturą z informatyki.</p>
+                    <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: 2500 zł</b></div>
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=group&subject=E13&time=140"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Group320h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Grupowe 320 godzin</h2>
+                    <p>24 spotkania, podczas których szeroko omawiane są zagaznienia związane z egzaminami E13, E14 i maturą z informatyki.</p>
+                    <div style="width: 100%; justify-content: center; flex-direction: column;" class="promotion"><b style="font-size: 20px;">Cena: 5200 zł</b>
+                        <span>(1400 zł za miesiąc)</span>
+                    </div>
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=group&subject=frontend&time=320"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+        </Carousel>
+    </div>
+
+    <div style="width:100%; flex-direction: column; align-items: center; background-color: white; padding: 100px 0 100px 0;">
+        <h1>Dostępna oferta szkoleń indywidualnych</h1>
+        <Carousel carouselId="carouselIndividual" startIndex="1">
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Individual90h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Indywidualne 90 godzin</h2>
+                    <p>Indywidualne 8 spotkań, podczas których omawiamy materiał związany z egzaminami E13 i E14.</p>
+                    <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: 2200 zł</b></div>
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=individual&subject=E13&time=90"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Individual140h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Indywidualne 140 godzin</h2>
+                    <p>Indywidualne 12 spotkań, podczas których omawiamy materiał związany z egzaminami E13 i E14 oraz elementy matury z informatyki.</p>
+                    <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: 3500 zł</b></div>
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=individual&subject=E13&time=140"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+            <CarouselElement>
+                <CarouselElementLayout imgSrc="../../public/images/Subjects/Frontend/Individual320h.jpg" styles="background-color: rgb(255, 230, 214);">
+                    <h2>Indywidualne 320 godzin</h2>
+                    <p>Indywidualne 24 spotkania, podczs których szeroko omawiamy materiał zwiazany z egzaminami E13, E14 oraz naturą z informatyki.</p>
+
+                    <div style="width: 100%; justify-content: center; flex-direction: column;" class="promotion"><b style="font-size: 20px;">Cena: 5400 zł</b>
+                        <span>(1800 zł za miesiąc)</span>
+                    </div>
+
+                    
+                    <div class="fullWidthTileContent" style="text-align: center; height: auto; margin-bottom: 40px;">
+                        <a href="/form?type=individual&subject=E13&time=320"><b>Zgłoś zainteresowanie kursem!</b></a>
+                    </div>
+                </CarouselElementLayout>
+            </CarouselElement>
+        </Carousel>
+    </div>
+
+    <Documents documentsClass="WIP"/>
+
+    <div style="margin-bottom: 100px;"/>
+
+</ContentContainer>
+<Footer/>
+
+<style>
+    .promotion b{
+        margin-bottom: 0;
+    }
+    .promotion span{
+        margin-bottom: 20px;
+    }
+    .terms{
+        flex-direction: column;
+    }
+    .terms p{
+        margin-block-end: 2px;
+        margin-block-start: 2px;
+    }
+</style>
+
+<script>
+    function goToForm() {
+      window.location.href = "/form?subject=E13";
+    }
+    window.goToForm = goToForm;
+</script>

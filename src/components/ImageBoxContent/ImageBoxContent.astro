@@ -1,0 +1,15 @@
+---
+import "../../styles/global.css";
+import "./ImageBoxContent.css";
+
+const { imagePath, wrapperClass, lazyMeanColor } = Astro.props;
+---
+
+<div class=`imageBoxWrapper ${wrapperClass}`>
+    <div class="imageBoxContent" >
+        <slot/>
+    </div>
+    <div class="imageBoxImageContainer">
+        <img class="imageBoxImage" src=`${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}`>
+    </div>
+</div>

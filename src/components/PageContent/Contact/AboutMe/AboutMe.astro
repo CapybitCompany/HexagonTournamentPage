@@ -1,0 +1,71 @@
+---
+import NavBar from '../../../NavBar/NavBar.astro'
+import "../../../../styles/global.css"
+import '../../../NavBar/NavBar.css'
+import '../../../PageContent/WelcomePage/Welcome.styles.css'
+import ContentContainer from '../../../ContentContainer/ContentContainer.astro';
+import ContentPartContainer from '../../../ContentContainer/ContentPartContainer.astro'
+import Footer from '../../../Footer/Footer.astro'
+import CheckboxFilledSvg from "../../../../../public/icons/common/checkbox-filled.svg?raw"
+import Section from '../../../ContentContainer/Section.astro';
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #e5e5e5; align-items: center;">
+    <Section clazz="sectionContainer center">
+        <ContentPartContainer clazz="limitedWidth center">
+            <div style="margin: 10px; flex-direction: column;">
+                <h1>O mnie</h1>
+                <p> 
+                    Od ponad 6 lat jestem związany z branżą IT — zarówno jako praktyk, jak i mentor. Przez ten czas miałem okazję pracować przy projektach frontendowych, backendowych,
+                    integracjach systemów oraz wdrożeniach aplikacji dla klientów w Polsce i za granicą.
+                </p>
+                <p>
+                    Na co dzień poruszam się w technologiach takich jak JavaScript, React, TypeScript, Java (Spring) czy C#. Mam doświadczenie z bazami SQL i NoSQL, środowiskami
+                    kontenerowymi (Kubernetes), integracjami (Apache Camel), a także narzędziami ORM (Hibernate). Pracowałem również z zagranicznymi 
+                    zespołami, m.in. przy projekcie związanym z technologią OCR.
+                </p>
+                <p>
+                    Od kilku lat, oprócz codziennej pracy w IT, zajmuję się również edukacją. Prowadzę zajęcia praktyczne, indywidualne i grupowe, dla osób chcących wejść do branży
+                    — zarówno uczniów techników, studentów, jak i dorosłych kandydatów na juniorów. Pomagam zrozumieć, jak naprawdę wygląda praca w IT, uczę praktycznych umiejętności,
+                    których nie znajdzie się w podręcznikach. Wszystkie osoby, które dotąd przygotowywałem indywidualnie do pracy w branży, z sukcesem znalazły zatrudnienie.
+                </p>
+                <p>
+                    Szczególnie interesuję się edukacją nowoczesną — śledzę rozwiązania systemowe, takie jak fiński model edukacji, rozwój chmury edukacyjnej,
+                    metody nauczania oparte na projektach i technikach samodzielnego rozwoju. Wierzę, że najlepsza nauka to ta, która odpowiada na realne
+                    potrzeby — dlatego program każdego kursu dostosowuję do konkretnego człowieka i jego celów.
+                </p>
+                <p>
+                    Prywatnie jestem pasjonatem tworzenia gier w stylu retro. Tworzę projekty w Unity, SFML i LibGDX — od map proceduralnych, przez optymalizację kodu,
+                    po gry mobilne i przeglądarkowe.
+                </p>
+                <p>
+                    Jeśli szukasz mentora, który przełoży wiedzę z branży na konkretne cele — własne projekty, certyfikaty, znalezienie pierwszej pracy — zapraszam do kontaktu.
+                </p>
+            </div>
+                
+        
+        </ContentPartContainer>
+    </Section>
+    <div style="width: 100%; position: relative;">
+        <div style="height: 50%; width: 100%; position: absolute; bottom: 0; background-color: white;"></div>
+        <Section clazz="sectionContainer center slanted" style="background-color: white;">
+            <ContentPartContainer clazz="limitedWidth center">
+                <h2> Co mogę Ci zaproponować? </h2>
+                <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Indywidualne ścieżki nauki — dobry start w kierunku pracy w IT.</span></li>
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zajęcia grupowe w kameralnych zespołach (2-6 osób).</span></li>
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Przygotowanie do egzaminów E12, E13, E14 i matury z informatyki.</span></li>
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Projekty frontend, backend, fullstack i obiektowe.</span></li>
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Konsultacje i mentoring przy Twoich projektach.</span></li>
+                    <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Edukację opartą o realne potrzeby rynku.</span></li>
+                </ul>
+            </ContentPartContainer>
+        </Section>
+    
+        <div style="margin-bottom: 100px;"/>
+    </div>
+
+
+</ContentContainer>
+<Footer/>

@@ -1,0 +1,85 @@
+.hidden{
+    display: none;
+}
+
+form{
+    width: 100%;
+}
+
+.fieldRow{
+    margin: 15px 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fieldRow label{
+    margin-bottom: 10px;
+    width:100%;
+}
+
+.fieldRow input, .fieldRow select{
+    border: white 1px solid;
+    height: 30px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.fieldRow select{
+    height: 34px;
+    padding: 1px 2px;
+}
+
+.fieldRow textarea{
+    resize: none;
+    width: 100%;
+    height: 200px;
+    border-color: white;
+    border-radius: 3px;
+}
+
+.fieldRow button{
+    width: 100%;
+    max-width: 490px;
+    margin-top: 30px;
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: var(--accent-color);
+    color: var(--text-secondary-color);
+    cursor: pointer;
+    border-color: #c07d00;
+}
+
+.fieldRow button:hover {
+    background-color:#ffb52a;
+    color: #181818
+}
+
+.fieldRow button:active {
+    background-color:#c07d00;
+    color: #f0f0f0
+}
+
+p.success{
+    font-size: 24px;
+    font-weight: 700;
+    margin: 50px 0 200px 0;
+    text-align: center;
+}
+
+@media (max-width: 970px) {
+    .contentPartContainer{
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .fieldRow textarea{
+        height: 350px;
+    }
+
+    .fieldRow button{
+        max-width: 100%;
+        width: 100%;
+    }
+}

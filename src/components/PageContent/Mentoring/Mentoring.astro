@@ -1,0 +1,22 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import "../../../styles/global.css"
+import '../../NavBar/NavBar.css'
+import '../../PageContent/WelcomePage/Welcome.styles.css'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro';
+import ContentPartContainer from '../../ContentContainer/ContentPartContainer.astro'
+import Footer from '../../Footer/Footer.astro'
+import Section from '../../ContentContainer/Section.astro';
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #000000; align-items: center; text-align: center; color: white; height: 100vh; align-items: center;">
+    <ContentPartContainer clazz="limitedWidth center">
+        <Section clazz="center">
+            <h1>Własna droga - program mentorski</h1>
+
+            <p>Niebawem pojawi się tutaj kontent!</p>
+        </Section>
+    </ContentPartContainer>
+</ContentContainer>
+<Footer/>

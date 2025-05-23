@@ -1,0 +1,81 @@
+.imageBoxWrapper{
+    width: 100%;
+    height: 500px;
+}
+
+.imageBoxContent{
+    flex-direction: column;
+    width: 50%;
+    padding: 20px;
+    background-color: #f3f3f3;
+    box-sizing: border-box;
+
+}
+
+.imageRight{
+    flex-direction: row-reverse;
+}
+
+.imageBoxImageContainer{
+    width: 50%;
+    overflow: hidden;
+}
+
+.bottomGap{
+    margin-bottom: 10px;
+}
+
+.imageBoxImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.imageBoxImageContainer img{
+    transition: transform 0.5s ease;
+}
+
+.imageBoxImageContainer img:hover{
+    transform: scale(1.05);
+}
+
+@media (max-width: 870px) {
+    /* Twoje style tutaj */
+    .imageBoxWrapper{
+        flex-direction: column-reverse;
+        height: 800px;
+    }
+
+    .imageBoxContent{
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+        background-color: #f3f3f3;
+        height: 50%;   
+    }
+    .imageBoxImageContainer{
+        width: 100%;
+        height: 50%;  
+    }
+}
+
+@media (max-width: 500px) {
+    /* Twoje style tutaj */
+    .imageBoxWrapper{
+        flex-direction: column-reverse;
+        height: 1000px;
+    }
+
+    .imageBoxContent{
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+        background-color: #f3f3f3;
+        height: 60%;   
+    }
+    .imageBoxImageContainer{
+        width: 100%;
+        height: 40%;  
+    }
+}

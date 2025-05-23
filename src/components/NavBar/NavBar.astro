@@ -1,0 +1,193 @@
+---
+import "../../styles/global.css";
+import logoIcon from "../../../public/logo.svg?raw";
+import SubMenuContainer from "./Submenu/Submenu.astro";
+import NavBarItem from './NavBarItem.astro';
+import MobileMenu from "./Mobile/MobileMenu.astro";
+import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
+---
+
+<nav id="navBar" class="navBarWrapper">
+    <div class="logoContainer">
+        <Fragment set:html={logoIcon} />
+        <a href="/" style="position: absolute; width: 100%; height: 100%; z-index:1"></a>
+
+    </div>
+    <div class="navBarContainer">
+        <NavBarItem dataId="Group"><a href="/group">Szkolenia grupowe</a></NavBarItem>
+        <NavBarItem dataId="Individual"><a href="/individual">Szkolenia indywidualne</a></NavBarItem>
+        <NavBarItem dataId="Mentoring"><a href="/mentoring">Oferta mentorska</a></NavBarItem>
+        <NavBarItem dataId="Contact"><a href="/contact">Kontakt</a></NavBarItem>
+    </div>
+    <MobileMenuHamburder/>
+    <MobileMenu/>
+
+    <SubMenuContainer>
+        
+    </SubMenuContainer>
+</nav>
+
+
+<script>
+
+    function generateSubmenuHTML(menuItems) {
+        return `<div class="submenuText">
+            ${menuItems.map(item => {
+                if(item?.type === "header"){
+                    return `<h2>${item.label}</h2>`;
+                }else if(item?.type === "subheader"){
+                    return `<h3>${item.label}</h3>`;
+                }else{
+                    return `<div><a href="${item.href}">${item.label}</a></div>`;
+                }
+            }).join('')}
+        </div>`;
+    };
+
+    const courseSubmenus = [
+        {label: "Tworzenie stron internetowych", type: "subheader"},
+        {label: "Frontend", href: "/frontendSubject"},
+        {label: "Frontend + Backend", href: "/frontendAndBackendSubject"},
+        {label: "Pozostałe tematy", type: "subheader"},
+        {label: "E13/E14 i matury z informatyki", href: "/E13Subject"},
+        
+        
+    ];
+
+    const individualSubmenus = [
+        ...courseSubmenus,
+        {label: "Tworzenie gier", href: "/gameSubject"},
+        {label: "Nauka programowania", href: "/programmingSubject"},
+    ]
+
+    const groupSubmenus = [
+        ...courseSubmenus
+    ]
+
+    const mentoringSubmenus = [
+        {label: "Trener IT", type: "subheader"},
+        {label: "Przykładowe programy mentorskie", href: "/aboutme"},
+        {label: "O mentorze", href: "/aboutme"},
+    ];
+
+    const contactSubmenus = [
+        {label: "Mentor", type: "subheader"},
+        {label: "O mentorze", href: "/aboutme"},
+        {label: "Formularze kontaktowe", type: "subheader"},
+        {label: "Zgłoś chęć udziału", href: "/form"},
+        {label: "Mam pytanie", href:'/form?type=question'},
+        {label: "Partnerstwo", type: "subheader"},
+        {label: "Dla szkół", href: "/form?type=question"},
+        {label: "Dla firm", href:'/form?type=question'}
+    ];
+
+    const contentMap = {
+        Group: generateSubmenuHTML(groupSubmenus),
+        Individual: generateSubmenuHTML(individualSubmenus),
+        Mentoring: generateSubmenuHTML(mentoringSubmenus),
+        Contact: generateSubmenuHTML(contactSubmenus)
+    };
+
+    const setSubmenuContent = (id: String, submenu: HTMLElement) => {
+        const previousHeight = submenu.offsetHeight + "px";
+        submenu.innerHTML = `
+            <div id="submenuContent" class="submenuContentWrapper">
+                ${contentMap[id] || ""}
+            </div>
+        `;
+
+        const submenuContent = submenu.getElementsByClassName("submenuContentWrapper")[0];
+
+        submenu.classList.add("active");
+        submenu.style.height = previousHeight;
+
+        submenu.offsetHeight;
+
+        const newHeight = submenuContent.scrollHeight + 1 +"px";// +  + "px";
+        submenu.style.height = newHeight;
+        submenuContent.classList.add("fade-in");
+
+ 
+
+    }
+
+    const hideSubmenu = (submenu: HTMLElement) => {
+        submenu.classList.remove("active");
+        submenu.style.height = "0";
+    }
+
+    const hadnleNavBarSubmenu = () => {
+        const navBar = document.querySelector("#navBar");
+        const navItems = document.querySelectorAll("[data-id]");
+        const submenu = document.getElementById("submenuContainer");
+    
+        if(submenu && navBar) {
+            navItems.forEach((item) => {
+            item.addEventListener("mouseenter", () => {
+                const id = item.getAttribute("data-id");
+                if(id){
+                    submenu.classList.add("active");
+                    setSubmenuContent(id, submenu );
+                    
+                }
+                
+            });
+
+            });
+            navBar.addEventListener("mouseleave", () => hideSubmenu(submenu));
+        } 
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        hadnleNavBarSubmenu();
+
+        const toggle = document.getElementById("mobileMenuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        if (toggle && mobileMenu) {
+            toggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("active");
+                document.body.classList.toggle("no-scroll");
+            });
+
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+  });
+});
+        }
+    });
+</script>
+
+
+<style>
+    nav{
+        display: flex;
+    }
+
+    .logoContainer{
+        position: relative;
+        height: 100%;
+        width: 62px;
+        z-index: 3;
+    }
+    .navBarWrapper{
+        position: relative;
+        width: 100%;
+        height: 60px;
+        justify-content: center;
+    }
+    .navBarContainer{
+        position: relative;
+        height: 100%;
+        background-color: var(--background-color);
+    }
+
+    @media (max-width: 950px) {
+        .navBarWrapper{
+            justify-content: flex-start;
+        }
+    }
+
+
+</style>

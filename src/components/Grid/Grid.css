@@ -1,0 +1,17 @@
+.grid2_1_container{
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.grid2_1_separator{
+    min-width: 10px;
+    min-height: 10px;
+}
+
+@media (max-width: 1100px) {
+
+    .grid2_1_container {
+        flex-direction: column;
+    }
+}

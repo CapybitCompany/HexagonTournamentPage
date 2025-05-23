@@ -1,0 +1,142 @@
+---
+import SimpleDataTable from "../../../SimpleTable/SimpleDataTable.astro"
+
+const columns = [
+  { label: "Moduł / Temat" },
+  { label: "Zawartość" },
+  { label: "90h" },
+  { label: "140h" },
+  { label: "320h" },
+]
+
+const rows = [
+  {
+    cells: [
+      "1. Wprowadzenie i konfiguracja środowiska",
+      "Przedstawienie sposobu pracy, narzędzia programistyczne, informacje o Node, z jakimi narzędziami będziemy pracować, jak wygląda praca Fullstack developera, czym jest DevOps, wyjaśnienie podstawowych zagadnień, praca z GitHub i pytania do mentora o pracę w firmie oraz rynek pracy",
+      "1", "1", "1"
+    ]
+  },
+  {
+    cells: [
+      "2. Podstawy frontendu (HTML, CSS, JS)",
+      "Przegląd HTML/CSS/JS: responsywność (Flex)",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "3. Zaawansowany frontend (React, Hooks)",
+      "React od podstaw: JSX, komponenty funkcyjne/klasowe, hooki, zarządzanie stanem (useState/useEffect)",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "4. Next.js i integracja z API",
+      "CSSG/SSR, routowanie, optymalizacja obrazów/zasobów, uwierzytelnianie w Next.js, pobieranie danych (REST/GraphQL)",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "5. Backend Node.js (Express)",
+      "Zaawansowany serwer Node.js: routery, middleware, uwierzytelnianie (Passport.js), relacje z bazą danych",
+      "0", "0.5", "1"
+    ]
+  },
+  {
+    cells: [
+      "6. Backend Java Spring Boot",
+      "Tworzenie skalowalnego API: kontrolery REST, Spring Data JPA, Spring Security, profile, dependency injection",
+      "1", "2", "2"
+    ]
+  },
+  {
+    cells: [
+      "7. Bazy danych SQL (MySQL/PostgreSQL)",
+      "Zaawansowane SQL: indeksy, transakcje, procedury. Hibernate/JPA w Springu",
+      "0.5", "0.5", "1"
+    ]
+  },
+  {
+    cells: [
+      "8. Bazy danych NoSQL (MongoDB)",
+      "Dokumentowy model danych, Mongoose, agregacje, bazy rozproszone, podstawy skalowania",
+      "0.5", "0.5", "1"
+    ]
+  },
+  {
+    cells: [
+      "9. Integracje z zewnętrznymi API i mikroserwisy",
+      "REST/GraphQL, webhooki, integracja z usługami zewnętrznymi (np. płatności Stripe, Google APIs)",
+      "0.5", "0.5", "2"
+    ]
+  },
+  {
+    cells: [
+      "10. Autentykacja i autoryzacja",
+      "OpenID Connect, OAuth2, Keycloak (serwer tożsamości), zarządzanie rolami i sesjami, zabezpieczenia JWT",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "11. Bezpieczeństwo aplikacji",
+      "OWASP, testy penetracyjne podstawy, szyfrowanie (HTTPS, algorytmy), zabezpieczenia serwera",
+      "0.5", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "12. Architektura i wzorce projektowe",
+      "Wzorzec MVC, czysta architektura, mikroserwisy i monolit. Wzorce projektowe (Singleton, Factory, itp.)",
+      "0", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "13. Docker i konteneryzacja",
+      "Tworzenie kontenerów Docker dla aplikacji, zarządzanie obrazami, Docker Compose",
+      "1", "1", "2"
+    ]
+  },
+  {
+    cells: [
+      "14. CI/CD i chmura",
+      "Konfiguracja pipeline CI/CD (Jenkins), deployment na chmurze (AWS/GCP/Azure), serwery wirtualne",
+      "0", "0", "1"
+    ]
+  },
+  {
+    cells: [
+      "15. Testowanie",
+      "Testy jednostkowe (JUnit, Jest), integracyjne, end-to-end (Cypress). Test-Driven Development (TDD)",
+      "0", "0", "1"
+    ]
+  },
+  {
+    cells: [
+      "Suma webinarów",
+      "",
+      " 8", "12", "24"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czaspracy z mentorem dla każdej osoby (Szkolenie grupowe)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 2h", "4h", "7h"
+    ]
+  },
+  {
+    cells: [
+      "Przwidziany dodatkowy indywidualny czas z mentorem (Szkolenie indywidualne)",
+      "Czas na pomoc; indywidualne omówienie projektu czy przekazanie ponadprogramowej wiedzy.",
+      " 6h", "10h", "15h"
+    ]
+  }
+]
+---
+
+<SimpleDataTable {columns} {rows} />

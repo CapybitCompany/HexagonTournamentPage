@@ -1,0 +1,40 @@
+.limitedWidth .grid2_1_container{
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.footerIcon{
+    position: relative;
+}
+
+.footerIcon svg{
+    width: 48px;
+    height: 48px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-right: 15px;
+    filter: invert(1);
+}
+
+.center{
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1100px){
+    .limitedWidth .grid2_1_container{
+        padding: 0 10%
+    }
+}
+
+@media (max-width: 600px){
+    .limitedWidth .grid2_1_container.breakMobile{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,97 @@
+
+
+.bannerContentContainer{
+    width: 50%;
+    height: 100%;
+    padding: 10 60px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.bannerContentContainer h1 {
+    font-size: 48px;
+}
+
+.bannerContentContainer p {
+    font-size: 28px;
+    width: 80%;
+    margin-block-start: 6px;
+    margin-block-end: 12px;
+}
+
+button.cfa {
+    margin-top: 30px;
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+    
+}
+
+button.cfa:hover {
+    background-color:#ffb52a;
+    color: #181818
+}
+
+button.cfa:active {
+    background-color:#c07d00;
+    color: #f0f0f0
+}
+
+.fullWidthTileContent {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fullWidthTileContent p{
+    max-width: 80%;
+    font-size: 21px;
+}
+
+.fullWidthTileContent a{
+    position: relative;
+    font-size: 21px;
+    color: var(--text-primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.fullWidthTileContent a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: currentColor; 
+    transition: width 0.2s ease;
+  }
+
+.fullWidthTileContent a:hover {
+    color: var(--accent-color);
+}
+
+.fullWidthTileContent a:hover::after {
+    width: 100%; 
+}
+
+@media (max-width: 550px){
+    .bannerContentContainer h1{
+        font-size: 35px;
+    }
+
+    .bannerContentContainer p {
+        font-size: 20px;
+        width: 80%;
+        margin-block-start: 6px;
+        margin-block-end: 12px;
+    }
+}

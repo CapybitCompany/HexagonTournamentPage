@@ -1,0 +1,26 @@
+---
+import '../../styles/global.css';
+const {dataId} = Astro.props;
+---
+
+<div data-id=`${dataId}` class={`navBarItemContainer`}>
+    <slot/>
+</div>
+
+<style>
+.navBarItemContainer{
+    height: 80%;
+    min-width: fit-content;
+    color: var(--primary-text-color);
+    padding: 1% 1%;
+    font-weight: 500;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    a{
+        text-decoration: none;
+        color: var(--primary-text-color);
+    }
+}
+
+</style>

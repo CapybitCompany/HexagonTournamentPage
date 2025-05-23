@@ -1,0 +1,24 @@
+---
+import "../../styles/global.css";
+const {clazz, style} = Astro.props;
+---
+
+<section class=`sectionContainer ${clazz}` style=`${style}`>
+    <slot/>
+</section>
+
+<style>
+    .sectionContainer{
+        width: 100%;
+    }
+
+    .center{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slanted {
+        clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+        padding: 5rem 0;
+    }
+</style>

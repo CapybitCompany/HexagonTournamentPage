@@ -1,3 +1,6 @@
+---
+import '../styles/global.css';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -17,6 +20,19 @@
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		background-color: var(--background-color);
+		overflow-x: hidden;
 	}
 </style>
+
+<script type="module" defer>
+	function initCarouselsOnPage() {
+		const carousels = document.querySelectorAll('[data-carousel-id]');
+		carousels.forEach(carousel => {
+			const id = carousel.dataset.carouselId;
+			initCarouselLogic(id);
+		});
+	}
+
+	initCarouselsOnPage();
+</script>

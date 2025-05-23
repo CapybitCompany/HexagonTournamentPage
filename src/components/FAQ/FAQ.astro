@@ -1,0 +1,28 @@
+---
+import "../../styles/global.css"
+---
+
+<div class="faqContainer">
+    <slot></slot>
+</div>
+
+<style>
+    .faqContainer{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 200px;
+    }
+
+    @media (max-width: 1200px) {
+        .faqContainer{
+            margin-bottom: 150px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .faqContainer{
+            margin-bottom: 100px;
+        }
+    }
+</style>

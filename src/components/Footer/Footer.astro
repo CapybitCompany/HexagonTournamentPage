@@ -1,0 +1,77 @@
+---
+import "../../styles/global.css";
+import ContentPartContainer from "../ContentContainer/ContentPartContainer.astro";
+import Grid21 from "../Grid/Grid2_1/Grid2_1.astro";
+import "../Grid/Grid.css";
+import "./Footer.styles.css"
+import YoutubeSvg from "../../../public/icons/media/youtube.svg?raw"
+import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
+import InstagramSvg from "../../../public/icons/media/instagram.svg?raw"
+---
+
+<footer class="footerContainer">
+    
+    <ContentPartContainer clazz="limitedWidth">
+        <Grid21>
+            <div class="footerColumn" slot="left">
+                <a href="/">Strona główna</a>
+                <a href="/individual">Praktyki indywidualne</a>
+                <a href="/group">Praktyki grupowe</a>
+                <!-- <a href="/mentoring">Oferta mentorska</a> -->
+                <a href="/contact">Kontakt</a>
+                
+            </div>
+            <div class="footerColumn" slot="right">
+                <a href="/form">Formularz zgłoszeniowy</a>
+                <a href="/documents/Regulamin_Szkolen_Capybit.pdf" download>Regulamin szkoleń</a>
+                <a href="/privacy">Polityka prywatności</a>
+                <a href="/form?type=question">Mam pytania</a>
+            </div>
+        </Grid21>
+        <Grid21 clazz="breakMobile">
+            <div slot="left" style="margin-top: 20px; flex-direction: column; align-items: start;">
+                <a class="center" href="http://www.freepik.com">Designed by Freepik</a>
+                <a class="center" href="http://www.freepik.com">Images designed by pch.vector / Freepik</a>
+                <a href="http://www.freepik.com">Designed by starline / Freepik</a>
+            </div>
+            
+            <div slot="right">
+                <div class="footerIcon" set:html={YoutubeSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.youtube.com/channel/UCezqoOzpH_CX-CrzdmuDj5w"/></div>
+                <div class="footerIcon" set:html={TikTokSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.tiktok.com/@capybitcourses"/></div>
+                <div class="footerIcon" set:html={InstagramSvg} > <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.instagram.com/capybitcourses/"/></div>
+            </div>
+        </Grid21>
+        <div style="width: 100%; justify-content: center; color: #999999; margin-top: 20px;">
+            Copyright @ 2025 Radosław Rybarczyk "Capybit". Wszelkie prawa zastrzeżone. 
+        </div>
+       
+    </ContentPartContainer>
+
+
+
+</footer>
+
+<style>
+    footer{
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+    }
+    .footerContainer{
+        background-color: var(--secondary-color);
+        color: var(--text-secondary-color);
+        width: 100%;
+        height: fit-content;
+        padding: 3% 0;
+
+    }
+    a {
+        text-decoration: none;
+        color: #999999;
+        margin-bottom: 5px;
+    }
+
+    .footerColumn{
+        flex-direction: column;
+    }
+</style>

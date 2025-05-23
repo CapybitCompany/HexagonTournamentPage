@@ -1,0 +1,47 @@
+---
+// Importowanie komponentu Table
+import Table from '../../SimpleTable/SimpleTable.astro';
+
+
+const headers = [
+  'Szkolenie grupowe', 
+  'Szkolenie indywidualne'
+];
+
+const rows = [
+  [
+    { text: 'Tempo wspólne dla wszystkich.', icon: '/icons/individualTableIcons/lowSpeed.svg' },
+    { text: 'Nie limituje Cię tempo innych osób.', icon: '/icons/individualTableIcons/mediumSpeed.svg' },
+  ],
+  [
+    { text: 'Zmiana tematyki wymaga zainteresowania całej grupy.', icon: '/icons/individualTableIcons/groupSubject.svg' },
+    { text: 'Tematyka dobierana do Twoich zainteresowań.', icon: '/icons/individualTableIcons/singleSubject.svg' },
+  ],
+  [
+    { text: 'Wiele różnych mniejszych projektów.', icon: '/icons/individualTableIcons/fragments.svg' },
+    { text: 'Szkolenie odbywa się na Twoim autorskim projekcie.', icon: '/icons/individualTableIcons/singleProject.svg' },
+  ],
+  [
+    { text: 'Grupa do 6 osób.', icon: '/icons/individualTableIcons/people.svg' },
+    { text: 'Tylko Ty.', icon: '/icons/individualTableIcons/singlePerson.svg' },
+  ],
+  [
+    { text: 'Ustalony harmonogram.', icon: '/icons/individualTableIcons/groupCalendar.svg' },
+    { text: 'Ty wybierasz terminy.', icon: '/icons/individualTableIcons/singleCalendar.svg' },
+  ],
+  [
+    { text: '2h/3h/7h pracy indywidualnej z mentorem w zależności od pakietu.', icon: '/icons/individualTableIcons/limitedTime.svg' },
+    { text: '18h/28h/51h pracy indywidualnej z mentorem w zależności od pakietu.', icon: '/icons/individualTableIcons/longTime.svg' },
+  ],
+  [
+    { text: 'Czas z mentorem dzielony jest na całą grupę.', icon: '/icons/individualTableIcons/groupTeacher.svg' },
+    { text: 'Mentor jest dla Ciebie nawet po godzinach trwaniach kursu.', icon: '/icons/individualTableIcons/singleTeacher.svg' },
+  ],
+  [
+    { text: 'Zmiana kierunku wymaga znalezienie odpowiedniej grupy.', icon: '/icons/individualTableIcons/groupChange.svg' },
+    { text: 'Jeśli w trakcie kursu poczujesz, że chcesz zmienić jego kierunek - możemy to zrealizować.', icon: '/icons/individualTableIcons/singleChange.svg' },
+  ]
+];
+---
+
+<Table headers={headers} rows={rows} />

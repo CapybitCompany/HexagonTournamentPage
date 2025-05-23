@@ -1,0 +1,47 @@
+---
+// Importowanie komponentu Table
+import Table from '../../SimpleTable/SimpleTable.astro';
+
+
+const headers = [
+  'Zwykłe praktyki/Kursy online', 
+  'Szkolenie grupowe w Capybit'
+];
+
+const rows = [
+  [
+    { text: 'Filmiki z kursów nie dają Ci interakcji.', icon: '/icons/individualTableIcons/groupSubject.svg' },
+    { text: 'Elastyczność, gdy grupa przejawia zainteresowanie tematem poza programem.', icon: '/icons/individualTableIcons/singleSubject.svg' },
+  ],
+  [
+    { text: 'Powierzone zadania bywają mało rozwojowe i nie wnoszą wartości do CV.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Wiele różnych mniejszych projektów do zamieszczenia w CV.', icon: '/icons/individualTableIcons/fragments.svg' },
+  ],
+  [
+    { text: 'Liczne grupy - mało lub brak czasu na indywidualne konsultacje.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Mała grupa do 6 osób pozwala na indywidualny kontakt. 2/4/7 godzin indywidualnego czasu uwagi od mentora w zależności od pakietu szkoleń.', icon: '/icons/individualTableIcons/people.svg' },
+  ],
+  [
+    { text: 'Gdy spotka Cię problem, często nie ma nikogo kto Ci pomoże.', icon: '/icons/individualTableIcons/lowSpeed.svg' },
+    { text: 'Będąc w małej grupie, mentor może wspomóc Cię na każdym etapie.', icon: '/icons/individualTableIcons/mediumSpeed.svg' },
+  ],
+  [
+    { text: 'Narzucony harmonogram lub zupełny brak harmonogramu.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Ustalony harmonogram i elastyczny czas własnej pracy.', icon: '/icons/individualTableIcons/groupCalendar.svg' },
+  ],
+  [
+    { text: 'Często brak indywidualnego wsparcia.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Przewidziane wsparcie indywidualne.', icon: '/icons/individualTableIcons/limitedTime.svg' },
+  ],
+  [
+    { text: 'Brak mentora - wszystko musisz zrobić samodzielnie.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Mentor może Ci pomóc, gdy potrzebujesz pomocy.', icon: '/icons/individualTableIcons/groupTeacher.svg' },
+  ],
+  [
+    { text: 'Brak elastyczności zmiany tematu po rozpoczęciu kursu.', icon: '/icons/individualTableIcons/no.svg' },
+    { text: 'Istnieje możliwość zmiany grupy w razie porzeby.', icon: '/icons/individualTableIcons/groupChange.svg' },
+  ]
+];
+---
+
+<Table headers={headers} rows={rows} />

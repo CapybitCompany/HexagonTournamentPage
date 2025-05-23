@@ -1,0 +1,35 @@
+---
+
+import "../../styles/global.css";
+import "./fullImageContainer.css"
+
+const {imagePath, imageLink, wrapperClass, imageClass, lazyMeanColor, wrapperStyle} = Astro.props;
+var {id} = Astro.props;
+---
+
+<div id={id} class=`fullImageWrapper ${wrapperClass}` style=`${wrapperStyle}`>
+    <div class="imageWrapper">
+      <img class=`fullImage ${imageClass}` src=`${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}`/>
+      <a class="linkContainer" href=`${imageLink}`/>
+    </div>
+    
+    <div class="fullImageContent">
+        <slot></slot>
+    </div>
+</div>
+
+<script define:vars={{id}}>
+    document.addEventListener('DOMContentLoaded', () => {
+    const img = document.getElementById(id).getElementsByClassName("fullImage")[0];
+    console.log(id, img);
+    if (img) {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+        img.onload = () => {
+          img.classList.add('loaded');
+        };
+      }
+    }
+  });
+  </script>
