@@ -26,14 +26,18 @@
     height: 100vh;
     width: 100%;
     background-color: white;
-    overflow-y: scroll;
     z-index: 2;
-    padding: 60px 20px 20px 50px;
+    padding: 60px 0px 50px 0px;
     transform: translateY(-100%);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
     pointer-events: none;
     box-sizing: border-box;
+}
+.mobileMenuInnerWrapper{
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
   .mobileMenuInner {
     display: flex;

@@ -21,4 +21,9 @@ const {clazz, style} = Astro.props;
         clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
         padding: 5rem 0;
     }
+    @media (max-width: 1500px) {
+        .slanted {
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+        }
+    }
 </style>

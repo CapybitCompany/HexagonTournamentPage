@@ -14,10 +14,10 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
 
     </div>
     <div class="navBarContainer">
-        <NavBarItem dataId="Group"><a href="/group">Szkolenia grupowe</a></NavBarItem>
-        <NavBarItem dataId="Individual"><a href="/individual">Szkolenia indywidualne</a></NavBarItem>
-        <NavBarItem dataId="Mentoring"><a href="/mentoring">Oferta mentorska</a></NavBarItem>
-        <NavBarItem dataId="Contact"><a href="/contact">Kontakt</a></NavBarItem>
+        <NavBarItem dataId="Group"><div class="fullWidthTileContent"><a href="/group">Szkolenia grupowe</a></div></NavBarItem>
+        <NavBarItem dataId="Individual"><div class="fullWidthTileContent"><a href="/individual">Szkolenia indywidualne</a></div></NavBarItem>
+        <NavBarItem dataId="Mentoring"><div class="fullWidthTileContent"><a href="/mentoring">Oferta mentorska</a></div></NavBarItem>
+        <NavBarItem dataId="Contact"><div class="fullWidthTileContent"><a href="/contact">Kontakt</a></div></NavBarItem>
     </div>
     <MobileMenuHamburder/>
     <MobileMenu/>
@@ -38,7 +38,7 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
                 }else if(item?.type === "subheader"){
                     return `<h3>${item.label}</h3>`;
                 }else{
-                    return `<div><a href="${item.href}">${item.label}</a></div>`;
+                    return `<div class="fullWidthTileContent" style="width:fit-content;"><a href="${item.href}">${item.label}</a></div>`;
                 }
             }).join('')}
         </div>`;
@@ -71,14 +71,14 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
     ];
 
     const contactSubmenus = [
-        {label: "Mentor", type: "subheader"},
-        {label: "O mentorze", href: "/aboutme"},
         {label: "Formularze kontaktowe", type: "subheader"},
         {label: "Zgłoś chęć udziału", href: "/form"},
         {label: "Mam pytanie", href:'/form?type=question'},
         {label: "Partnerstwo", type: "subheader"},
         {label: "Dla szkół", href: "/form?type=question"},
-        {label: "Dla firm", href:'/form?type=question'}
+        {label: "Dla firm", href:'/form?type=question'},
+        {label: "Mentor", type: "subheader"},
+        {label: "O mentorze", href: "/aboutme"}
     ];
 
     const contentMap = {

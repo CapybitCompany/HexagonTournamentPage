@@ -1,14 +1,17 @@
 ---
 import '../styles/global.css';
+const {customTiltle, customDescriptin} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
 	<head>
+		<title>Capybit</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content=`${customDescriptin}`>
+		<meta property="title" content=`${customTiltle}`>
 	</head>
 	<body>
 		<slot />
