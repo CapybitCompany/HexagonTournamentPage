@@ -2,7 +2,6 @@
 import '../styles/global.css';
 
 const {customTiltle, customDescriptin} = Astro.props;
-const GA_ID = import.meta.env.PUBLIC_GA_ID;
 ---
 <!doctype html>
 <html lang="en">
@@ -17,13 +16,6 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID;
 		<meta property="title" content=`${customTiltle}`>
 	</head>
 	<body>
-		<script async src=`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`></script>
-		<script >
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', `${import.meta.env.PUBLIC_GA_ID}`);
-		</script>
 		<slot />
 	</body>
 </html>
