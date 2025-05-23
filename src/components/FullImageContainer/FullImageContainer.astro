@@ -21,7 +21,6 @@ var {id} = Astro.props;
 <script define:vars={{id}}>
     document.addEventListener('DOMContentLoaded', () => {
     const img = document.getElementById(id).getElementsByClassName("fullImage")[0];
-    console.log(id, img);
     if (img) {
         if (img.complete) {
             img.classList.add('loaded');

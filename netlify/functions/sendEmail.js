@@ -2,8 +2,7 @@ const nodemailer = require('nodemailer');
 
 exports.handler = async function (event, context) {
   const { courseTypeSelect, courseSubjectSelect, courseTimeSelect, name, telNumber, email, additional } = JSON.parse(event.body);
-  console.log("Email:", process.env.MY_EMAIL_PASS);
-  // Konfiguracja SMTP (przykład: Gmail — lepiej używać konta SMTP, np. Mailersend, Mailgun)
+
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {

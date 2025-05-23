@@ -130,101 +130,8 @@ const {carouselId, startIndex} = Astro.props
 
 
 <script>
-    function initCarouselLogic(id: string) {
-
-    document.addEventListener("DOMContentLoaded", ()=>{
-        const carouselWrapper = document.querySelector(`.carousel-outer-wrapper[data-carousel-id="${id}"]`);
-        const carousel = carouselWrapper?.getElementsByClassName('carousel')[0];
-        const indicatorsContainer = carouselWrapper?.getElementsByClassName('carousel-indicators')[0];
-        const leftBtn = carouselWrapper?.querySelector('.left');
-        const rightBtn = carouselWrapper?.querySelector('.right');
-
-        const defaultIndex = Number(carouselWrapper?.dataset?.startIndex) || 0;
-
-        if(carousel && leftBtn && rightBtn && indicatorsContainer){
-            var slides = Array.from(carousel.children);
-            let totalSlides = slides.length;
-            var currentIndex = defaultIndex;
-
-            const dots: Element[] = [];
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === defaultIndex) dot.classList.add('active');
-                indicatorsContainer.appendChild(dot);
-                dots.push(dot);
-
-                dot.addEventListener('click', () => {
-                    currentIndex = i;
-                    updateCarousel();
-                });
-            }
-
-            function updateIndicators() {
-                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-            }
-
-            function updateCarousel() {
-                position = slideWidth * (currentIndex + 1); // +1 for the cloned first slide
-                console.log("SLIDE: ", slideWidth);
-                carousel.scrollTo({ left: position, behavior: 'smooth' });
-                updateIndicators();
-            }
-
-            const getSlideWidth = () => slides[1].offsetWidth;
-
-            const prepend = slides[slides.length - 1].cloneNode(true);
-            const append = slides[0].cloneNode(true);
-            carousel.prepend(prepend);
-            carousel.append(append);
-            slides = Array.from(carousel.children);
-        
-            const slideWidth = getSlideWidth();
-
-            let position = slideWidth;
-            carousel.scrollLeft = position;
-        
-            const move = (dir: string) => {
-                if (dir === 'left') {
-                    currentIndex--;
-                } else {
-                    currentIndex++;
-                }
-
-                if (currentIndex < 0) currentIndex = totalSlides - 1;
-                if (currentIndex >= totalSlides) currentIndex = 0;
-
-                updateCarousel();
-            };
-        
-            leftBtn.addEventListener('click', () => move('left'));
-            rightBtn.addEventListener('click', () => move('right'));
-        
-            // Touch support
-            let startX = 0;
-            carousel.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            });
-        
-            carousel.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
-                if (Math.abs(diff) > 50) {
-                    move(diff > 0 ? 'right' : 'left');
-                }
-            });
-
-            updateCarousel();
-        }
-    
-        
-    });
-}
-window.initCarouselLogic = initCarouselLogic;
-</script>
-
-<script type="module">
-    function reportSize() {
+    var slideWidth;
+    function reportSize(id) {
         const carouselWrapper = document.querySelector(`.carousel-outer-wrapper[data-carousel-id="${id}"]`);
         const carousel = carouselWrapper?.getElementsByClassName('carousel')[0];
         const indicatorsContainer = carouselWrapper?.getElementsByClassName('carousel-indicators')[0];
@@ -234,11 +141,102 @@ window.initCarouselLogic = initCarouselLogic;
 
         if(carousel && activeIndex != -1){
             var slides = Array.from(carousel.children);
-            const slideWidth = slides[1].offsetWidth;
+            slideWidth = slides[1].offsetWidth;
             carousel.scrollTo({ left: slideWidth * (activeIndex + 1) , behavior: 'smooth' });
-            console.log("TEST", slideWidth, activeIndex)
         }
     }
-  
-    window.addEventListener('resize', reportSize);
+
+    function initCarouselLogic(id: string) {
+
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const carouselWrapper = document.querySelector(`.carousel-outer-wrapper[data-carousel-id="${id}"]`);
+            const carousel = carouselWrapper?.getElementsByClassName('carousel')[0];
+            const indicatorsContainer = carouselWrapper?.getElementsByClassName('carousel-indicators')[0];
+            const leftBtn = carouselWrapper?.querySelector('.left');
+            const rightBtn = carouselWrapper?.querySelector('.right');
+
+            const defaultIndex = Number(carouselWrapper?.dataset?.startIndex) || 0;
+
+            if(carousel && leftBtn && rightBtn && indicatorsContainer){
+                var slides = Array.from(carousel.children);
+                let totalSlides = slides.length;
+                var currentIndex = defaultIndex;
+
+                const dots: Element[] = [];
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === defaultIndex) dot.classList.add('active');
+                    indicatorsContainer.appendChild(dot);
+                    dots.push(dot);
+
+                    dot.addEventListener('click', () => {
+                        currentIndex = i;
+                        updateCarousel();
+                    });
+                }
+
+                function updateIndicators() {
+                    dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+                }
+
+                function updateCarousel() {
+                    position = slideWidth * (currentIndex + 1); // +1 for the cloned first slide
+                    carousel.scrollTo({ left: position, behavior: 'smooth' });
+                    updateIndicators();
+                }
+
+                const getSlideWidth = () => slides[1].offsetWidth;
+
+                const prepend = slides[slides.length - 1].cloneNode(true);
+                const append = slides[0].cloneNode(true);
+                carousel.prepend(prepend);
+                carousel.append(append);
+                slides = Array.from(carousel.children);
+            
+                if(!slideWidth){
+                    slideWidth = getSlideWidth();
+                } 
+
+                let position = slideWidth;
+                carousel.scrollLeft = position;
+            
+                const move = (dir: string) => {
+                    if (dir === 'left') {
+                        currentIndex--;
+                    } else {
+                        currentIndex++;
+                    }
+
+                    if (currentIndex < 0) currentIndex = totalSlides - 1;
+                    if (currentIndex >= totalSlides) currentIndex = 0;
+
+                    updateCarousel();
+                };
+            
+                leftBtn.addEventListener('click', () => move('left'));
+                rightBtn.addEventListener('click', () => move('right'));
+            
+                // Touch support
+                let startX = 0;
+                carousel.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+            
+                carousel.addEventListener('touchend', (e) => {
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    if (Math.abs(diff) > 50) {
+                        move(diff > 0 ? 'right' : 'left');
+                    }
+                });
+
+                updateCarousel();
+            }
+            
+            
+                window.addEventListener('resize', () => reportSize(id));
+        });
+    }
+    window.initCarouselLogic = initCarouselLogic;
 </script>

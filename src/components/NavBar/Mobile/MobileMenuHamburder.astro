@@ -1,8 +1,9 @@
 ---
 import "../../../styles/global.css"
 import "./MobileMenu.styles.css"
+import HamburgerIcon from "../../../../public/icons/common/hamburger.svg?raw"
 ---
 
 <div class="mobileMenuToggle" id="mobileMenuToggle">
-    <span></span><span></span><span></span>
+    <Fragment set:html={HamburgerIcon}>
 </div>
