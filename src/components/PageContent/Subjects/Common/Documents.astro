@@ -7,7 +7,7 @@ import ContentPartContainer from "../../../ContentContainer/ContentPartContainer
 import Section from "../../../ContentContainer/Section.astro";
 import PdfSvg from "../../../../../public/icons/common/pdf.svg?raw"
 
-const {documentsClass} = Astro.props;
+const {documentsClass, targetPath, dutiesPath} = Astro.props;
 ---
 
 <Section clazz="sectionContainer center slanted">
@@ -15,22 +15,34 @@ const {documentsClass} = Astro.props;
         <h2>Dokumenty</h2>
         <p style="text-align: center;">Dokumenty związane z programem szkoleń, zakresem obowiązków i zdobywanej wiedzy.</p>
         <div style="margin-top: 15px;" class=`${documentsClass}`> 
-            <a href="documents/targetPdf" download>
+            <a href=`${targetPath}` download>
                 <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
             </a>
-            <a href="documents/targetPdf" download>Cel i zakres pracy uczestnika</a>
+            <a href=`${targetPath}` download>Cel i zakres pracy uczestnika</a>
         </div>
         <div style="margin-top: 15px;" class=`${documentsClass}`>
-            <a href="documents/targetPdf" download>
+            <a href=`${dutiesPath}` download>
                 <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
             </a>
-            <a href="documents/targetPdf " download>Obowiązki uczestnika</a>
+            <a href=`${dutiesPath}` download>Obowiązki uczestnika</a>
         </div>
         <div style="margin-top: 15px;">
-             <a href="documentstargetPdf" download>
+             <a href="documents/Regulamin_Szkolen_Capybit.pdf" download>
                 <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
             </a> 
             <a href="documents/Regulamin_Szkolen_Capybit.pdf" download>Regulamin szkoleń</a>
+        </div>
+        <div style="margin-top: 15px;">
+             <a href="/documents/Subjects/Umowa_szkoleniowa_Capybit_Szablon.pdf" download>
+                <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
+            </a> 
+            <a href="/documents/Subjects/Umowa_Szkoleniowa_Capybit_Szablon.pdf" download>Szablon umowy</a>
+        </div>
+        <div style="margin-top: 15px;">
+             <a href="/documents/Subjects/Wzor_Rezygnacji_Capybit.pdf" download>
+                <div style="width: 24px; height: 24px;" set:html={PdfSvg}/>
+            </a> 
+            <a href="/documents/Subjects/Wzor_Rezygnacji_Capybit.pdf" download>Szablon rezygnacji z umowy</a>
         </div>
     </ContentPartContainer>
 </Section>

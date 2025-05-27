@@ -7,6 +7,7 @@ import "./Footer.styles.css"
 import YoutubeSvg from "../../../public/icons/media/youtube.svg?raw"
 import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
 import InstagramSvg from "../../../public/icons/media/instagram.svg?raw"
+import FacebookSvg from "../../../public/icons/media/facebook.svg?raw"
 ---
 
 <footer class="footerContainer">
@@ -17,7 +18,7 @@ import InstagramSvg from "../../../public/icons/media/instagram.svg?raw"
                 <a href="/">Strona główna</a>
                 <a href="/individual">Praktyki indywidualne</a>
                 <a href="/group">Praktyki grupowe</a>
-                <!-- <a href="/mentoring">Oferta mentorska</a> -->
+                <a href="/mentoring">Oferta mentorska</a>
                 <a href="/contact">Kontakt</a>
                 
             </div>
@@ -29,16 +30,19 @@ import InstagramSvg from "../../../public/icons/media/instagram.svg?raw"
             </div>
         </Grid21>
         <Grid21 clazz="breakMobile">
-            <div slot="left" style="margin-top: 20px; flex-direction: column; align-items: start;">
+            <div slot="left" style="margin-top: 30px; flex-direction: column; align-items: start;">
                 <a class="center" href="http://www.freepik.com">Designed by Freepik</a>
                 <a class="center" href="http://www.freepik.com">Images designed by pch.vector / Freepik</a>
                 <a href="http://www.freepik.com">Designed by starline / Freepik</a>
+                <a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>
+                <a href="http://www.freepik.com">Designed by Sketchepedia / Freepik</a>
             </div>
             
-            <div slot="right">
+            <div style="align-items: center;" slot="right">
                 <div class="footerIcon" set:html={YoutubeSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.youtube.com/channel/UCezqoOzpH_CX-CrzdmuDj5w"/></div>
                 <div class="footerIcon" set:html={TikTokSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.tiktok.com/@capybitcourses"/></div>
                 <div class="footerIcon" set:html={InstagramSvg} > <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.instagram.com/capybitcourses/"/></div>
+                <div class="footerIcon" set:html={FacebookSvg} > <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.facebook.com/profile.php?id=61576675835839"/></div>
             </div>
         </Grid21>
         <div style="width: 100%; justify-content: center; color: #999999; margin-top: 20px;">

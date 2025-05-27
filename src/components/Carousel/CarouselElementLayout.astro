@@ -7,7 +7,7 @@ const {imgSrc, styles} = Astro.props;
 
 <div class="carouselElementContainer" style=`${styles}`>
     <div class="carouselImageWrapper">
-        <img class="carouselImage" src=`${imgSrc}`/>
+        <img class="carouselImage" src=`${imgSrc}` alt="" loading="lazy" decoding="async" />
     </div>
     <div class="carouselContentWrapper">
         <slot/>

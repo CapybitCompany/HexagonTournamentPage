@@ -7,16 +7,123 @@ import ContentContainer from '../../ContentContainer/ContentContainer.astro';
 import ContentPartContainer from '../../ContentContainer/ContentPartContainer.astro'
 import Footer from '../../Footer/Footer.astro'
 import Section from '../../ContentContainer/Section.astro';
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro';
+import Grid21 from '../../Grid/Grid2_1/Grid2_1.astro';
+import ImageBoxContent from '../../ImageBoxContent/ImageBoxContent.astro';
+import CheckboxFilledSvg from "../../../../public/icons/common/checkbox-filled.svg?raw"
+import MentoringTable from "./MentoringTable.astro";
 ---
 
 <NavBar/>
-<ContentContainer style="background-color: #000000; align-items: center; text-align: center; color: white; height: 100vh; align-items: center;">
-    <ContentPartContainer clazz="limitedWidth center">
-        <Section clazz="center">
-            <h1>Własna droga - program mentorski</h1>
+<ContentContainer style="background-color: #111111; align-items: center; text-align: center; color: white; align-items: center; tra">
+    <FullImageContainer id="mainBanner" imagePath="/images/Welcome/MentoringHome.jpg" imageLink="#" wrapperClass="imageToRight banner noCorrection" imageClass="fade-image2" wrapperStyle="background-color: #0d0d0d;">
+        <div class="bannerContentContainer">
+            <h1 style="color: white">Własna droga - program mentorski</h1>
+            <p style="color: white">
+                Twoje cele, Twój projekt, Twoje tempo. Zróbmy to razem.
+            </p>
 
-            <p>Niebawem pojawi się tutaj kontent!</p>
+            <button class="cfa" onclick="goToForm()">Poproś o darmową konsultację</button>
+        </div>
+    </FullImageContainer>
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Mentoring/Progress.jpg" lazyMeanColor="#3a3a3a" wrapperClass="black">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <h1>Trener IT</h1>
+                <p>Rozwiń swoją wiedzę i umiejętności w wybranym obszarze IT z własnym mentorem. Osiągaj postawione przez siebie cele.</p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="right" imagePath="/images/Mentoring/Begining.jpg" lazyMeanColor="#0a0a0a" wrapperClass="black imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <h1>Własne cele, własna droga</h1>
+                <p>Wspólnie ustalamy twoje oczekiwania i etapami realizujemy twoje długoterminowe i krótkoterminowe cele.</p>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+    <ImageBoxContent imagePath="/images/Mentoring/Who.jpg" lazyMeanColor="#030303" wrapperClass="black bottomGap">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2> "Własna droga" jest dla każdego, kto chce:</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>przygotować się do pierwszej pracy w IT,</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>nauczyć się wybranego tematu (frontend, backend, gry, bazy danych, gry i aplikacje sieciowe, wielowątkowe, łączące się z elektroniką i wiele więcej),</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>zrealizować własny projekt (np. gra, aplikacja webowa, portfolio),</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>po prostu uczyć się z mentorem, który zna realia pracy i edukacji.</span></li>
+            </ul>
+
         </Section>
-    </ContentPartContainer>
+    </ImageBoxContent>
+        
+    <Section clazz="center slanted ">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Co obejmuje mentoring?</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Diagnoza poziomu i potrzeb.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Indywidualny plan rozwoju lub projektu.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Regularne spotkania (np. 1-2 razy w tygodniu).</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zadania, przeglądy kodu, feedback.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wsparcie poza spotkaniami (chat, e-mail).</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Pomoc w projektach, CV, rozmowach technicznych.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Certyfikat i referencja po zakończeniu dłuższego mentoringu.</span></li>
+            </ul>
+        </ContentPartContainer>
+    </Section>
+
+    <Section clazz="center" style="background-color: #0d0d0d;">
+        <ContentPartContainer clazz="limitedWidth center">
+            <MentoringTable style="background-color: #0d0d0d; color: rgb(255, 255, 255);" clazz="invertIcons"/>
+        </ContentPartContainer>
+
+    </Section>
+
+    <ImageBoxContent  imagePath="/images/Mentoring/Start.jpg" lazyMeanColor="#060603" wrapperClass="black bottomGap">
+        <h2>Jak zacząć?</h2>
+        <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wypełnij formularz zgłoszeniowy.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Umów się na bezpłatną konsultację.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Jeśli się dogadamy - zaczynamy mentoring.</span></li>
+        </ul>
+    </ImageBoxContent>
+
+    <ImageBoxContent  imagePath="/images/Mentoring/Goals.jpg" lazyMeanColor="#202020" wrapperClass="black imageRight bottomGap">
+        <h2>Dlaczego warto?</h2>
+        <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Mentoring oparty na realnych projektach i doświadczeniu komercyjnym.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Indywidualne podejście - żadnych szablonów.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Praktyczne, jasne tłumaczenie zagadnień technicznych.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Pełna elastyczność tematyczna i czasowa.</span></li>
+        </ul>
+    </ImageBoxContent>
+    
+
+    <Section clazz="center slanted ">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>Cennik</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>220 zł za każdą aktywną godzinę pracy mentora</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Pojedyncze spotkanie może trwać od 30 minut do 3 godzin.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Przewidziane są zniżki przy zadeklarowaniu chęci dłuższej współpracy.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Dla uczniów i studentów przewidziane jest 10% zniżki.</span></li>
+            </ul>
+        </ContentPartContainer>
+    </Section>
+
+    <ImageBoxContent  imagePath="/images/Mentoring/Examples.jpg" lazyMeanColor="#dcc5ea" wrapperClass="black imageRight bottomGap">
+        <h2>Na czym może polegać współpraca?</h2>
+        <p>Masz długoterminowy cel np. znalezienie pierwszej pracy w IT i zostanie juniorem?</p>
+        <p>Masz krótkoterminowy cel jak zgłębienie konkretnego tematu podczas jednego lub dwóch spotkań?</p>
+        <a style="margin-top: 20px;" href="/mentoringExamples"><b>Sprawdź przykładowe programy mentorskie</b></a>
+    </ImageBoxContent>
+
+    <button class="cfa" onclick="goToForm()">Poproś o darmową konsultację</button>
+
+    <div style="margin-bottom: 150px;"></div>
+    
 </ContentContainer>
 <Footer/>
+
+<script>
+    function goToForm() {
+      window.location.href = "/form?type=mentoring";
+    }
+    window.goToForm = goToForm;
+</script>

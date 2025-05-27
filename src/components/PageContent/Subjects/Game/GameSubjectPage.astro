@@ -86,13 +86,14 @@ import GameCourseTable from "./GameCourseTable.astro"
             <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
                 <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zainstalowany komunikator <a href="https://discord.com" style="color: black;"><b>Discord</b></a> i dołączenie do wskazanego przez mentora serwera. Wymagany jest <b>mikrofon</b> do rozmów głosowych.</span></li>
                 <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Komputer ze stałym dostępem do internetu i systemem <b>Windows</b>.</span></li>
-                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zarejestrowane konto na stronie <a href="https://github.com" style="color: black;"><b>Github</b></a> .</span></li>
                 <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zainstalowane darmowe oprogramowanie: 
                     <a href="https://code.visualstudio.com/" style="color: black;"><b>Visual Studio Code</b></a>,
                     <a href="https://unity.com/games?utm_source=google&utm_medium=cpc&utm_campaign=cc_dd_upr_emea_emea-t1_en_aw_sem-gg_acq_nb-pr_2023-11_cc-dd-solutions-emea-t1-nb_cc3022_ev-nb_id:71700000115996776&utm_content=cc_dd_upr_emea_aw_sem_gg_ev-br_pros_x_npd_cpc_kw_sd_all_x_x_game-develolpment_id:58700008606778986&utm_term=unity%20game%20development&&&&&gad_source=1&gad_campaignid=20786192293&gbraid=0AAAAAoc7hm7bT2z6yHSkDsZY4AC_F_jxm&gclid=Cj0KCQjw0LDBBhCnARIsAMpYlAphr1vTQrc9wTX0SfQvQylEe0wZaVoJ0msNBoZVAbdlLMQU26VemSwaAqbMEALw_wcB&gclsrc=aw.ds" style="color: black;"><b>Unity</b></a>,
-                    <a href="https://www.sourcetreeapp.com/" style="color: black;"><b>Sourcetree</b></a>.
-                    </span>
+                    <a href="https://www.sourcetreeapp.com/" style="color: black;"><b>Sourcetree</b></a>
+                     oraz zarejestrowane konto na stronie <a href="https://github.com" style="color: black;"><b>Github</b></a> .</span>
                 </li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Podstawowa umiejętnośc programowania (najlepiej w językach C++, C# lub Java) oraz znajomość podstaw programowania obiektowego.</span></li>
+
             </ul>
         </Section>
     </ImageBoxContent>
@@ -137,7 +138,9 @@ import GameCourseTable from "./GameCourseTable.astro"
         </Carousel>
     </div>
 
-    <Documents documentsClass="WIP"/>
+    <Documents targetPath="/documents/Subjects/Games/Cel_i_zakres_szkolenia_Tworzenie_Gier_2D.pdf"
+               dutiesPath="/documents/Subjects/Games/Zakres_obowiazkow_uczestnika_Tworzenie_Gier_2D.pdf"
+    />
 
     <div style="margin-bottom: 100px;"/>
 

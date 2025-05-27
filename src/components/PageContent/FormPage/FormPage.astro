@@ -12,7 +12,7 @@ import Footer from '../../Footer/Footer.astro'
 <NavBar/>
 <ContentContainer style="background-color: #e5e5e5; align-items: center;">
     <ContentPartContainer clazz="limitedWidth center">
-        <h1>Formularz kontaktowy</h1>
+        <h1 style="margin-top: 100px;">Formularz kontaktowy</h1>
         <p style="text-align: center;">Jeżeli posiadasz pytania, śmiało zadaj je przez ten formularz!</p>
         <p style="text-align: center;">Wysłanie formularza nie zobowiązuje do udziału w praktykach. Umów się na darmową konsultację lub rozmowę wstępną!</p>
         <form id="mainForm" method="POST" class="max-w-xl mx-auto space-y-6 bg-white p-6 rounded-xl shadow-md">
@@ -80,6 +80,7 @@ import Footer from '../../Footer/Footer.astro'
         const courseFormOptions = [
             { id: 'group', label: 'Grupowe' },
             { id: 'individual', label: 'Indywidualne' },
+            { id: 'mentoring', label: 'Mentor IT'},
             { id: 'question', label: 'Jeszcze nie wiem/Mam pytanie' }
         ];
         const courseIndividualSubjectOptions = [
@@ -135,7 +136,7 @@ import Footer from '../../Footer/Footer.astro'
             while (courseSubjectSelect?.firstChild) {
                 courseSubjectSelect?.removeChild(courseSubjectSelect?.lastChild);
             }
-            if (selectedValue === 'question') {
+            if (selectedValue === 'question' || selectedValue === 'mentoring') {
                 subjectWrapper?.classList.add("hidden");
                 timeWrapper?.classList.add("hidden");
             } else {

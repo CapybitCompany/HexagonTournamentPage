@@ -3,13 +3,21 @@ import "../../styles/global.css";
 const {style} = Astro.props;
 ---
 
-<main class="contentContainer" style=`${style}`>
+<main id="main" class="contentContainer" style=`${style}`>
     <slot/>
 </main>
 
 <style>
     main{
         display: flex;
+        background-color: white;
+        color: black;
+        transition: background-color 2s ease, color 2s ease;
+    }
+
+    main.premium {
+        background-color: black;
+        color: white;
     }
 
     .contentContainer{
@@ -18,5 +26,8 @@ const {style} = Astro.props;
         background-color: var(--primary-color);
         flex-direction: column;
     }
+    
+    
+    
 
 </style>

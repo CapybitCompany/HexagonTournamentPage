@@ -64,6 +64,29 @@
     z-index: 0;
 }
 
+.fade-image2 {
+    opacity: 0;
+    transform: scale(10.05) translateX(80%);
+    filter: blur(10px);
+    z-index: 0;
+
+    transition: opacity 2s ease, transform 2s ease, filter 2s ease, z-index 2s ease;
+}
+
+.fade-image2:is(:loaded, :not([src])) {
+/* fallback for older browsers */
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+}
+
+.fade-image2.loaded {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    filter: blur(0);
+    z-index: 0;
+}
+
 @media (max-width: 1760px){
     .fullImageWrapper .bannerContentContainer{
         padding: 0 0 0 10px;
@@ -118,7 +141,7 @@
     }
 
     .imageWrapper{
-        width: 100%;
+        width: auto;
         height: auto;
         overflow: hidden;
         align-items: center;
@@ -158,6 +181,11 @@
         transform: scale(30.05) translateX(30%) translateY(50%);
         z-index: 0;
     }
+
+    .fade-imag2{
+        transform: scale(30.05) translateX(-50%) translateY(50%);
+        z-index: 0;
+    }
 }
 
 @media(max-width:900px){
@@ -187,6 +215,11 @@
         transform: scale(30.05) translateX(30%) translateY(50%);
         z-index: 0;
     }
+
+    .fade-image2{
+        transform: scale(30.05) translateX(30%) translateY(50%);
+        z-index: 0;
+    }
 }
 
 @media (max-width: 400px){
@@ -203,6 +236,10 @@
     }
 
     .fade-image{
+        transform: scale(30.05) translateX(30%) translateY(50%);
+        z-index: 0;
+    }
+    .fade-image2{
         transform: scale(30.05) translateX(30%) translateY(50%);
         z-index: 0;
     }

@@ -12,6 +12,23 @@
 
 }
 
+.imageBoxWrapper.black{
+    background-color: #0d0d0d;
+    color: white;
+}
+
+.imageBoxWrapper.black a{
+    color: white;
+}
+
+.imageBoxWrapper.black a:hover{
+    color: var(--accent-color);
+}
+
+.imageBoxWrapper.black .imageBoxContent{
+    background-color: #0d0d0d;
+}
+
 .imageRight{
     flex-direction: row-reverse;
 }

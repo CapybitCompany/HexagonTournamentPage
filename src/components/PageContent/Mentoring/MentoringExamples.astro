@@ -1,0 +1,83 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import "../../../styles/global.css"
+import '../../NavBar/NavBar.css'
+import '../../PageContent/WelcomePage/Welcome.styles.css'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro';
+import ContentPartContainer from '../../ContentContainer/ContentPartContainer.astro'
+import Footer from '../../Footer/Footer.astro'
+import Section from '../../ContentContainer/Section.astro';
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro';
+import Grid21 from '../../Grid/Grid2_1/Grid2_1.astro';
+import ImageBoxContent from '../../ImageBoxContent/ImageBoxContent.astro';
+import CheckboxFilledSvg from "../../../../public/icons/common/checkbox-filled.svg?raw"
+import MentoringTable from "./MentoringTable.astro";
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #111111; align-items: center; text-align: center; color: white; align-items: center; tra">
+    <FullImageContainer id="mainBanner" imagePath="/images/Welcome/MentoringHome.jpg" imageLink="#" wrapperClass="imageToRight noCorrection" wrapperStyle="background-color: #0d0d0d;">
+        <div class="bannerContentContainer">
+            <h1 style="color: white">Przykładowe programy mentorskie</h1>
+            <p style="color: white">
+                Poszukuj możliwości, nie ograniczeń.
+            </p>
+
+            <button class="cfa" onclick="goToForm()">Poproś o darmową konsultację</button>
+        </div>
+    </FullImageContainer>
+    <ImageBoxContent imagePath="/images/Mentoring/LongTerm.jpg" lazyMeanColor="#030303" wrapperClass="black bottomGap">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2> Cele długoterminowe: </h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Przygotowanie do pierwszej pracy w IT lub konkretnej pracy np. frontend, gamedev, backend, aplikacje desktopowe/mobilne.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Realizacja swoich marzeń np. o własnym smarthome, układach cyfrowych, grze, stronie internetowej, biznesie związanym z IT.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Pomoc w pracy z projektem - masz projekt i potrzebujesz wsparcia.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wsparcie w rozwoju z juniora na mida - pomoc z jakością kodu, porządkiem w projekcie, spojrzeniu na architekturą i technologiami.</span></li>
+            </ul>
+
+        </Section>
+    </ImageBoxContent>
+    <ImageBoxContent  imagePath="/images/Mentoring/ShortTerm.jpg" lazyMeanColor="#161616" wrapperClass="black imageRight bottomGap">
+        <h2>Cele krótkoterminowe: </h2>
+        <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Zgłębienie konkretnego tematu: programowanie wielowątkowe, multiplayer w grach, publikowanie strony internetowej...</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Pomoc z konkretnym zagadnieniem w projekcie. Szczególnie jeśli to projekt do portfolio.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Sprawdzenie CV, portfolio, refaktor kodu. Symulowana rozmowa rekrutacyjna.</span></li>
+            <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Przećwiczenie kilku zadań do matury z informatyki/egzaminu E13/E14 lub omówienie dowolnego innego tematu z IT</span></li>
+        </ul>
+    </ImageBoxContent>
+        <ImageBoxContent imagePath="/images/Mentoring/Levels.jpg" lazyMeanColor="#030303" wrapperClass="black bottomGap">
+        <Section clazz="center" style="flex: 1; justify-content: center;">
+            <h2> Współpraca z dziećmi, nastolatkami i dorosłymi </h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Jeżeli twoje dziecko ma smykałkę do informatyki i chciałbyś rozwijać w nim zapał - to oferta dla Ciebie.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Jeżeli jesteś na etapie szkoły średniej lub szkoły branżowej i chciałbyś pod okiem doświadczonej osoby zdobywać wiedzę i umiejętności - to oferta dla Ciebie.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Jeżeli jesteś pełnoletni i chciałbyś się przebranżowić, rozwijać zawodowo lub hobbystycznie w kierunku IT - to oferta dla Ciebie.</span></li>
+            </ul>
+
+        </Section>
+    </ImageBoxContent>
+        
+    <Section clazz="center slanted ">
+        <ContentPartContainer clazz="limitedWidth center">
+            <h2>W jakich tematach mogę wesprzeć?</h2>
+            <ul class="customList" style="display: flex; justify-content: center; flex-direction: column;">
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wszystkie omawiane w ramach szkoleń.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Elektronika, mikrokomputery i mikrokontrolery w ograniczonym zakresie.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Połączenia sieciowe i protokoły sieciowe w aplikacjach.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Kierunek kariery zawodowej.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Kierunek studiów.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Dobór technologii/języków/bibliotek do projektu.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Tematy związane z naprawami komputerów, laptopów i doborem części do nich.</span></li>
+                <li class="customLi"><span class="marker"><span><div class="checkboxFilled" set:html={CheckboxFilledSvg} /></span> <span>Wprowadzeniem do informatyki dziecka, nastolatka i dorosłego.</span></li>
+            </ul>
+        </ContentPartContainer>
+    </Section>
+
+    <button class="cfa" onclick="goToForm()">Poproś o darmową konsultację</button>
+
+    <div style="margin-bottom: 150px;"></div>
+    
+</ContentContainer>
+<Footer/>

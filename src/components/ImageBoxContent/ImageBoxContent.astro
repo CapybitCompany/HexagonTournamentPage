@@ -10,6 +10,6 @@ const { imagePath, wrapperClass, lazyMeanColor } = Astro.props;
         <slot/>
     </div>
     <div class="imageBoxImageContainer">
-        <img class="imageBoxImage" src=`${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}`>
+        <img class="imageBoxImage" src=`${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt="">
     </div>
 </div>

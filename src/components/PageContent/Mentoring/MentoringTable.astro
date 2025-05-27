@@ -1,0 +1,33 @@
+---
+// Importowanie komponentu Table
+import Table from '../../SimpleTable/SimpleTable.astro';
+
+
+const headers = [
+  'Szkolenie indywidualne', 
+  'Mentoring'
+];
+
+const rows = [
+  [
+    { text: 'Określony czas szkoleń', icon: '/icons/MentoringTableIcons/timeSingle.svg' },
+    { text: 'Liczba spotkań: od jednego do tylu ile potrzebujesz.', icon: '/icons/MentoringTableIcons/timeMentoring.svg' },
+  ],
+  [
+    { text: 'Ogólne omówienie konkretnych dziedzin IT.', icon: '/icons/MentoringTableIcons/desiresSingle.svg' },
+    { text: 'Możemy podejść specjalistycznie do danego wąskiego zagadnienia.', icon: '/icons/MentoringTableIcons/desiresMentoring.svg' },
+  ],
+  [
+    { text: '5 tematów szkoleń.', icon: '/icons/MentoringTableIcons/subjectsSingle.svg' },
+    { text: 'Liczba możliwych tematów jest nieograniczona.', icon: '/icons/MentoringTableIcons/subjectsMentoring.svg' },
+  ],
+  [
+    { text: 'Pewne ustalone proporcje form nauki z mentorem - konkretna ilość webinarów, godzin indywidualnei z mentorem i pracy własnej.', icon: '/icons/MentoringTableIcons/proportionsSingle.svg' },
+    { text: 'Dostosowane proporcje form nauki z mentorem - razem ustalamy ile czasu poświęcamy na przekazanie teorii, wspólną pracę, code review i pracę własną.', icon: '/icons/MentoringTableIcons/proportionsMentoring.svg' },
+  ]
+];
+
+const {style, clazz} = Astro.props;
+---
+
+<Table headers={headers} rows={rows} style={style} clazz={clazz}/>

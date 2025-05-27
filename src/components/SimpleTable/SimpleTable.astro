@@ -1,9 +1,9 @@
 ---
 // Komponent, który tworzy tabelę na podstawie przekazanych nagłówków i wierszy
-const { headers, rows } = Astro.props;
+const { headers, rows, style, clazz } = Astro.props;
 ---
 
-<table class="table">
+<table class=`table ${clazz}` style={style}>
   <thead>
     <tr>
       {headers.map((header) => (
@@ -17,7 +17,7 @@ const { headers, rows } = Astro.props;
           {row.map((cell) => (
             <td>
                 <div class="tableCell">
-                {cell.icon && <img src={cell.icon} alt="" class="cellIcon" />}
+                {cell.icon && <img src={cell.icon} alt="" class="cellIcon" loading="lazy" decoding="async" />}
                 <div class="cellText">{cell.text}</div>
 
                 </div>
@@ -104,6 +104,10 @@ const { headers, rows } = Astro.props;
         background-color: red;
         mix-blend-mode: multiply;
         pointer-events: none;
+    }
+
+    .invertIcons img{
+        filter: invert();
     }
 
 </style>
