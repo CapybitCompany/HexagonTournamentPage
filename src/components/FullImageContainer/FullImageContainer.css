@@ -97,6 +97,11 @@
         height: 80%;
         overflow: hidden;
     }
+
+    .noCorrection .imageWrapper{
+        height: 100%;
+        align-items: flex-end;
+    }
 }
 
 @media (max-width: 1550px){
@@ -185,6 +190,12 @@
     .fade-imag2{
         transform: scale(30.05) translateX(-50%) translateY(50%);
         z-index: 0;
+    }
+}
+
+@media(max-width:1070px){
+    .banner{
+        margin-top:60px;
     }
 }
 
