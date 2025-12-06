@@ -19,16 +19,55 @@ var {id} = Astro.props;
 </div>
 
 <script define:vars={{id}}>
-    document.addEventListener('DOMContentLoaded', () => {
-    const img = document.getElementById(id).getElementsByClassName("fullImage")[0];
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    // Twoje obecne ładowanie obrazka:
+    const img = root.getElementsByClassName("fullImage")[0];
     if (img) {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
+      if (img.complete) {
+        img.classList.add('loaded');
+      } else {
         img.onload = () => {
           img.classList.add('loaded');
         };
       }
     }
+
+    // Drag-to-scroll tylko dla wariantu .horizontalScroll
+    if (root.classList.contains('horizontalScroll')) {
+      const wrapper = root.querySelector('.imageWrapper');
+      if (!wrapper) return;
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      wrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        wrapper.classList.add('dragging');
+        startX = e.pageX - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        isDown = false;
+        wrapper.classList.remove('dragging');
+      });
+
+      wrapper.addEventListener('mouseup', () => {
+        isDown = false;
+        wrapper.classList.remove('dragging');
+      });
+
+      wrapper.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = x - startX;     // możesz pomnożyć np. * 1.5 dla szybszego scrolla
+        wrapper.scrollLeft = scrollLeft - walk;
+      });
+    }
   });
-  </script>
+</script>

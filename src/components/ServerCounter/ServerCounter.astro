@@ -1,0 +1,32 @@
+
+
+<div id="mc-status" style="font-family: minecraft; font-weight: bold; font-size: 2rem; font-color: white;">
+  Aktywni gracze: <span style="margin-left: 1rem;" id="mc-players">...</span>
+</div>
+
+<script >
+  const SERVER_IP = 'Minecrafthex.pl';
+
+  async function loadPlayers() {
+    try {
+      const res = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
+      const data = await res.json();
+
+      const el = document.getElementById('mc-players');
+      if (!el) return;
+
+      if (data && data.players && typeof data.players.online === 'number') {
+        el.textContent = " " + data.players.online + " / " + data.players.max;
+      } else {
+        el.textContent = 'offline';
+      }
+    } catch (e) {
+      console.error(e);
+      const el = document.getElementById('mc-players');
+      if (el) el.textContent = 'błąd';
+    }
+  }
+
+  loadPlayers();
+</script>
+

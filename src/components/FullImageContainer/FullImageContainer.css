@@ -10,11 +10,12 @@
 .imageWrapper{
     height: 100%;
     overflow: hidden;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .banner{
-    height: 700px;
+    margin-top: 60px;
+    height: 770px;
 }
 .fullImage{
     height: 100%;
@@ -40,12 +41,20 @@
     align-items: flex-end;
 }
 
-
 .fade-image {
     opacity: 0;
     transform: scale(10.05) translateX(-80%);
     filter: blur(10px);
     z-index: 2;
+    width: 100%;
+}
+
+.banner .fade-image{
+    opacity: 0;
+    transform: scale(10.05) translateX(-80%);
+    filter: blur(10px);
+    z-index: 2;
+    width: auto;
 
     transition: opacity 2s ease, transform 2s ease, filter 2s ease, z-index 2s ease;
 }
@@ -93,8 +102,7 @@
     }
 
     .imageWrapper{
-        width: 80%;
-        height: 80%;
+        width: 100%;
         overflow: hidden;
     }
 
@@ -120,17 +128,12 @@
         font-size: 18px;
         text-align: center;
     }
-    .banner .fullImage{
-        left: 20%;
-    }
+
     .fullImage{
         position: relative;
-        left: 10%;
     }
 
-    .noCorrection .fullImage{
-        left: 0;
-    }
+
     
 }
 
@@ -141,36 +144,31 @@
 
     .fullImageWrapper .bannerContentContainer{
         width:100%;
-        justify-content: flex-start;
+        justify-content: center;
         text-align: center;
     }
 
     .imageWrapper{
-        width: auto;
-        height: auto;
+        
+        height: 100%;
         overflow: hidden;
         align-items: center;
     }
 
     .banner{
-        height: 800px;
+        height: 400px;
     }
 
     .banner .imageWrapper{
         position: relative;
-        bottom: -10%;
     }
 
-    .banner .fullImage{
-        left: -20%;
-    }
 
     .fullImage{
         position: relative;
         bottom: 0;
-        height: auto;
-        width: 100%;
-        left: -20%;
+        height: 100%;
+       
     }
 
     .noCorrection .fullImage{
@@ -259,3 +257,50 @@
         height: 700px;
     }
 }
+
+.horizontalScroll{
+    height: 700px;
+}
+
+@media (max-width: 600px) {
+    .horizontalScroll {
+        height: 500px;
+    }
+}
+
+.horizontalScroll .imageWrapper {
+    justify-content: flex-start;
+    overflow-x: scroll;
+    overflow-y: hidden;      /* żeby nie wyskakiwał pionowy */
+    cursor: grab;
+    user-select: none;       /* brak zaznaczania tekstu przy drag */
+    /* scrollbar-width: none; */
+}
+
+.horizontalScroll .imageWrapper::-webkit-scrollbar {
+  /* display: none; */
+}
+
+.horizontalScroll .imageWrapper.dragging {
+    cursor: grabbing;
+}
+
+.horizontalScroll .fullImageContent{
+   display: none;
+}
+
+.horizontalScroll .linkContainer{
+   display: none;
+}
+
+.horizontalScroll img {
+    height: 100%;
+    width: auto;
+    pointer-events: none;    /* żeby nie „łapało” samego obrazka */
+    transition: transform 0.3s ease;
+}
+
+.horizontalScroll:hover img{
+  transform: scale(1.05); /* powiększenie o 10% */
+}
+

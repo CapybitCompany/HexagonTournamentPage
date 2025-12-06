@@ -28,22 +28,20 @@
     font-weight: 700;
     font-style: normal;
 }
-/* 
+
 @font-face {
-  font-family: 'Geologica';
-  src: url('/fonts/geologica/Geologica-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Minecraft';
+    src: url('/minecraft-font/MinecraftBold-nMK1.otf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Geologica';
-  src: url('/fonts/geologica/Geologica-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-} */
+    font-family: 'Minecraft';
+    src: url('/minecraft-font/MinecraftRegular-Bmg3.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 div {
     display: flex;

@@ -1,0 +1,235 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
+import Grid21 from './Grid/Grid2_1/Grid2_1.astro'
+import TimeContainer from './DiscordContainer/TimeContainer.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="/images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground" >
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <h1 style="color: white; font-size: 6rem; font-family: minecraft; ">Archiwum turniejów</h1>
+        </div>
+        
+    </FullImageContainer>
+
+     <div style="display: flex; width: 100%; justify-content: center;">    
+        <TimeContainer />
+    </div>
+
+    <h1>Piąta edycja - inspirowana światem Harrego Pottera</h1>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex5/1.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
+                <h1>500 zł </h1>
+                
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex5/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
+                <h1>love_kanye</h1>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex5/3.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>18.10.2025</strong></p>
+                <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>31</strong></p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex5/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Gry:</h1>
+                    <ol>
+                        <li>Lot przez obręcze</li>
+                        <li>Komnata tajemnic</li>
+                        <li>Berek</li>
+                        <li>Smok, Czarne jezioro, Labirynt</li>
+                        <li>Pojedynek na różdżki</li>
+                        <li>Pokój życzeń</li>
+                        <li>Most</li>
+                    </ol>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <h1>Czwarta edycja - inspirowana światem Squid Game</h1>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex4/1.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
+                <h1>1000 zł </h1>
+                
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex4/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
+                <h1>soonne, Gizzeusz</h1>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex4/3.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>2.08.2025</strong></p>
+                <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>33</strong></p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex4/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Gry:</h1>
+                    <ol>
+                        <li>Simon mówi</li>
+                        <li>Skakanka</li>
+                        <li>Mingle</li>
+                        <li>Bierki</li>
+                        <li>Bomberman</li>
+                        <li>Quiz</li>
+                        <li>Gra w chowanego</li>
+                    </ol>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+     <h1>Trzecia edycja - inspirowana światem Pokemon</h1>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex3/1.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
+                <h1>400 zł </h1>
+                
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex3/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
+                <h1>Bartimoza17777, soonne</h1>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex3/3.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>31.05.2025</strong></p>
+                <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>17</strong></p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex3/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Gry:</h1>
+                    <ol>
+                        <li>Bulbasaur (Spleef)</li>
+                        <li>Charmander (Hot Head)</li>
+                        <li>Gengar (Escape Room)</li>
+                        <li>Snorlax (Odszukaj odpowiednią ilość przedmiotów i unikaj Snorlaxów)</li>
+                        <li>Decidueye (PVP Łuki - Dwie drużyny)</li>
+                        <li>Voltorb (Bomberman)</li>
+                    </ol>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <h1>Druga edycja</h1>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex2/1.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
+                <h1>650 zł </h1>
+                
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex2/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
+                <h1>Grzesztof</h1>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex2/3.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>19.04.2025</strong></p>
+                <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>15</strong></p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex2/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Gry:</h1>
+                    <ol>
+                        <li>Czerwone, zielone</li>
+                        <li>Mingle</li>
+                        <li>Lot przez tunel</li>
+                        <li>Wieża Breeze'a</li>
+                        <li>Lodowy wyścig</li>
+                    </ol>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+    
+    <h1>Pierwsza edycja</h1>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex1/1.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
+                <h1>300 zł </h1>
+                
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex1/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
+                <h1>Endrju_</h1>
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex1/3.png" lazyMeanColor="#dcc5ea" >
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>15.03.2025</strong></p>
+                <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>10</strong></p>
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="left" imagePath="/images/Archive/Hex1/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                    <h1>Gry:</h1>
+                    <ol>
+                        <li>Wybierz i zbuduj</li>
+                        <li>Walc kwiatów</li>
+                        <li>Cztery pory roku</li>
+                        <li>Szklany most + Escape Room</li>
+                        <li>Labirynt</li>
+                    </ol>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+    <i>Motywy edycji jest wyłącznie inspirowany światem </i>
+
+</ContentContainer>
+<Footer/>
+
+

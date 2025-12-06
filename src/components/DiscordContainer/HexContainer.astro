@@ -1,0 +1,86 @@
+---
+import ServerCounter from "../ServerCounter/ServerCounter.astro";
+---
+<div class="discordContainerWrapper">
+    <div class="discordContainer">
+        <div class="headerWrapper">
+            <h2 class="discordHeader">Serwer Hex</h2>
+        </div>
+        <div class="imageContainer">
+            <img class="hexImage" src="../../../public/images/Welcome/MinibanerSerweraHex.png"/>
+        </div>
+        
+        <ServerCounter/>
+    </div>
+</div>
+
+<style>
+    .discordContainerWrapper{
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .discordContainer {
+        width: 100%;
+        flex-direction: column;
+        background-color:#4c2e2e;
+        color: white;
+        border-radius: 20px;
+        border: 1px solid #623e3e;
+        padding: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+    .headerWrapper{
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 10px 0 10;
+        color: white;
+    }
+    .subHeaderWrapper{
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 10px 15px 0px;
+        color: white;
+    }
+    .discordHeader {
+        text-align: center;
+    }
+    .discordSubHeader {
+        margin: 0 0 0 15px;
+        text-align: center;
+    }
+    .discordText {
+        color: white;
+        text-align: center;
+    }
+    .discordUrl{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: 	#7289da;
+        font-weight: 600;
+        font-size: 32px;
+    }
+    .discordUrl:hover{
+        color: 	#b8c4f0;
+    }
+
+    .discordIcon {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        overflow: hidden;
+    }
+
+    .discordIcon svg{
+        width: 50px !important;
+        height: 50px !important; 
+    }
+
+</style>

@@ -96,3 +96,19 @@
         height: 40%;  
     }
 }
+.imageBoxWrapper.lowwer_H{
+    height: 250px;
+}
+
+.imageBoxWrapper.lowwer_H img{
+    height: 100%;
+    width: 100%;
+    
+}
+
+.imageBoxWrapper.lowwer{
+    height: 50%;
+}
+.imageBoxWrapper.lowwer img{
+    transform: scale(1.4);
+}

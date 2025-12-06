@@ -1,0 +1,13 @@
+---
+import "../../../styles/global.css";
+import "../Grid.css"
+
+const {clazz} = Astro.props;
+
+---
+
+<div class=`grid3_1_container ${clazz}`>
+    <slot name="left"/>
+    <slot name="center"/>
+    <slot name="right"/>
+</div>

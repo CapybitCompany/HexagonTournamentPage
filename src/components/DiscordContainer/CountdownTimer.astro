@@ -1,0 +1,180 @@
+---
+/**
+ * Prosty komponent odliczający do 13 grudnia 2025, godz. 18:00
+ * Na froncie używa czasu lokalnego przeglądarki.
+ */
+---
+
+<div class="countdown" data-state="before" style="font-family: minecraft;">
+  <div class="countdown__time">
+    <span class="countdown__item">
+      <span class="countdown__label">Dni:</span>
+      <span id="countdown-days">00</span>
+    </span>
+    <span class="countdown__item">
+      <span class="countdown__label">Godziny:</span>
+      <span id="countdown-hours">00</span>
+    </span>
+    <span class="countdown__item">
+      <span class="countdown__label">Minuty:</span>
+      <span id="countdown-minutes">00</span>
+    </span>
+    <span class="countdown__item">
+      <span class="countdown__label">Sekundy:</span>
+      <span id="countdown-seconds">00</span>
+    </span>
+  </div>
+
+  <div class="countdown__message countdown__message--ongoing">
+    Turniej właśnie trwa!
+  </div>
+
+  <div class="countdown__message countdown__message--finished">
+    Turniej się skończył. Niebawem pojawi sie termin kolejnego.
+  </div>
+</div>
+
+<style>
+  .countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 48px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+
+  }
+
+  .countdown__time {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  #countdown-minutes, #countdown-days, #countdown-seconds, #countdown-hours{
+    color: #fff1ab;
+  }
+
+  .countdown__item {
+    display: flex;
+    gap: 4px;
+  }
+
+  .countdown__label {
+    font-weight: 600;
+  }
+
+  .countdown__message {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    display: none; /* domyślnie ukryte, sterowane przez data-state */
+  }
+
+  .countdown__message--ongoing {
+    color: #777; /* szary */
+  }
+
+  .countdown__message--finished {
+    color: #c0392b; /* czerwony */
+  }
+
+  /* Sterowanie stanem przez data-state */
+  .countdown[data-state="before"] .countdown__time {
+    display: flex;
+  }
+
+  .countdown[data-state="before"] .countdown__message {
+    display: none;
+  }
+
+  .countdown[data-state="ongoing"] .countdown__time {
+    display: none;
+  }
+
+  .countdown[data-state="ongoing"] .countdown__message--ongoing {
+    display: block;
+  }
+
+  .countdown[data-state="finished"] .countdown__time {
+    display: none;
+  }
+
+  .countdown[data-state="finished"] .countdown__message--finished {
+    display: block;
+  }
+</style>
+
+<script client:load>
+  // Docelowe daty (miesiące w JS: 0 = styczeń, 11 = grudzień)
+  const targetStart = new Date(2025, 11, 13, 18, 0, 0); // 13.12.2025 18:00
+  const targetEnd = new Date(2025, 11, 13, 20, 0, 0);   // 13.12.2025 20:00
+
+  const root = document.querySelector(".countdown");
+  if (!root) console.error("Countdown root not found");
+
+  const daysEl = document.getElementById("countdown-days");
+  const hoursEl = document.getElementById("countdown-hours");
+  const minutesEl = document.getElementById("countdown-minutes");
+  const secondsEl = document.getElementById("countdown-seconds");
+
+  function pad(value, length = 2) {
+    return String(value).padStart(length, "0");
+  }
+
+  function updateCountdown() {
+    if (!root) return;
+
+    const now = new Date();
+
+    // Przed startem turnieju – odliczamy
+    if (now < targetStart) {
+      root.dataset.state = "before";
+
+      const diff = targetStart.getTime() - now.getTime();
+      // zabezpieczenie: nieujemne
+      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor(
+        (totalSeconds % (60 * 60 * 24)) / (60 * 60)
+      );
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      if (daysEl) daysEl.textContent = pad(days);
+      if (hoursEl) hoursEl.textContent = pad(hours);
+      if (minutesEl) minutesEl.textContent = pad(minutes);
+      if (secondsEl) secondsEl.textContent = pad(seconds);
+
+      return;
+    }
+
+    // Turniej trwa (13.12.2025 18:00–20:00)
+    if (now >= targetStart && now < targetEnd) {
+      root.dataset.state = "ongoing";
+      return;
+    }
+
+    // Po turnieju (po 20:00)
+    root.dataset.state = "finished";
+  }
+
+  // Pierwsze wywołanie od razu
+  updateCountdown();
+
+  // Aktualizacja co sekundę
+  const intervalId = setInterval(() => {
+    updateCountdown();
+
+    // jeśli już trwale po turnieju, można zatrzymać interval
+    const now = new Date();
+    if (now >= targetEnd) {
+      clearInterval(intervalId);
+    }
+  }, 1000);
+</script>

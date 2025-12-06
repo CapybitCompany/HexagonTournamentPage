@@ -7,113 +7,79 @@ import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
 import Grid21 from './Grid/Grid2_1/Grid2_1.astro'
+import Grid31 from './Grid/Grid3_1/Grid3_1.astro'
+import DiscordContainer from './DiscordContainer/DiscordContainer.astro'
+import ServerCounter from './ServerCounter/ServerCounter.astro'
+import HexContainer from './DiscordContainer/HexContainer.astro'
+import TimeContainer from './DiscordContainer/TimeContainer.astro'
 
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer id="mainBanner" imagePath="/images/Welcome/Welcome.jpg" imageLink="#" wrapperClass="blackBackground imageToRight banner" imageClass="fade-image">
-        <div class="bannerContentContainer">
-            <h1 style="color: white">Praktyki/Szkolenia i rozwój w IT</h1>
-            <p style="color: white; margin-bottom: 30px;">
-                Potrzebujesz praktyk?
-            </p>
-            <p style="color: white">
-                Chcesz się rozwijać w wybranym kierunku pod okiem doświadczonego mentora?
-            </p>
-            <button class="cfa" onclick="goToForm()">Zgłoś chęć udziału!</button>
-        </div>
-    </FullImageContainer>
-    <ImageBoxContent imagePath="/images/Welcome/GroupCourseHome.jpg" wrapperClass="bottomGap" lazyMeanColor="#596872">
-        <div class="fullWidthTileContent" >
-            <h1>Praktyki/Szkolenia grupowe</h1>
-            <h2> Marzy Ci się ucieczka od klasycznego systemu edukacji? </h2>
-            <p style="font-size: 18px; text-align: center;"> Zadawaj pytania i ucz się w nowoczesny sposób w małych grupach! <br/> Sprawdź sam!</p>
-            <a href="/group"><b>Więcej informacji</b></a>
-        </div>
-    </ImageBoxContent>
-    <ImageBoxContent imagePath="/images/Welcome/IndividualCourseHome.jpg" wrapperClass="bottomGap imageRight" lazyMeanColor="#4d4f4f">
-        <div class="fullWidthTileContent">
-            <h1>Praktyki/Szkolenia indywidualne</h1>
-            <h2> Szkolenia, które wyróżnią Cię na rynku. Start, który może odmienić Twoje życie!</h2>
-            <p style="font-size: 18px; text-align: center;"> Miej prywatnego mentora, który skupi się na Twoim rozwoju. Program dostosuje się do Ciebie, a nie odwrotnie! Poczuj różnicę w edukacji, która da Ci przewagę! </p>
-            <a href="/individual"><b>Więcej informacji</b></a>
-        </div>
-    </ImageBoxContent>
-    <h1 class="mainHeader">Szkolenie z tworzenia stron internetowych</h1>
-    <Grid21>
-        <ImageBoxContent slot="left" imagePath="/images/Welcome/FrontendSubjectHome.jpg" lazyMeanColor="#c3c1e6">
-            <div class="fullWidthTileContent" style="text-align: center;">
-                <h1>Frontend</h1>
-                <p>Szkolenie obejmuje tworzenia wizualnej części strony (Frontend), design stron, podstawy łączenia z innymi serwisami i obsługi danych.</p>
-                <a href="/frontendSubject"><b>Więcej informacji</b></a>
-            </div>
-        </ImageBoxContent>
-        <ImageBoxContent slot="right" imagePath="/images/Welcome/FullstackSubjectHome.jpg" lazyMeanColor="#dcc5ea">
-            <div class="fullWidthTileContent" style="text-align: center;">
-                <h1>Frontend + Backend = Fullstack</h1>
-                <p>Szkolenie obejmuje tworzenie wizualnej części strony (Frontend) oraz tworzenie logiki po stronie serwera (backend). Twórz własne serwisy i całe aplikacje webowe.</p>
-                <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a>
-            </div>
-        </ImageBoxContent>
-    </Grid21>
-    <h1 class="mainHeader">Inne szkolenia</h1>
-    <ImageBoxContent imagePath="/images/Welcome/GameSubjectHome.jpg" wrapperClass="bottomGap imageRight" lazyMeanColor="#114283">
-        <div class="fullWidthTileContent" style="text-align: center;">
-            <h1>Tworzenie gier</h1>
-            <p>Zgłębiaj temat tworzenia gier, optymalizacji kodu, generowania map i aspektu wizualnego. Spełnij marzenie o stworzeniu własnej gry!</p>
-            <a href="/gameSubject"><b>Więcej informacji</b></a>
-        </div>
-    </ImageBoxContent>
-    <Grid21>
-        <ImageBoxContent slot="left" imagePath="/images/Welcome/ProgrammingSubjectHome.jpg" lazyMeanColor="#c1c0c4">
-            <div class="fullWidthTileContent" style="text-align: center;">
-                <h1>Nauka programowania</h1>
-                <p>Programowanie obiektowe Java/C# nie musi być trudne. Poznaj metody pisania czystego kodu. Przygotuj projekt, który możesz rozwijać latami, małymi modułami!</p>
-                <a href="/programmingSubject"><b>Więcej informacji</b></a>
-            </div>
-        </ImageBoxContent>
-        <ImageBoxContent slot="right" imagePath="/images/Welcome/E13SubjectHome.jpg" lazyMeanColor="#c3d6ec">
-            <div class="fullWidthTileContent" style="text-align: center;">
-                <h1>Przygotowanie do egzaminów E02 / E03 / Matury z informatyki</h1>
-                <p> Egzaminy zawodowe oraz matura z informatyki nie muszą być trudne. Przygotuj się teraz a zdobytą wiedzę przełóż na własne projekty i rozwój!</p>
-                <a href="/E13Subject"><b>Więcej informacji</b></a>
-            </div>
-        </ImageBoxContent>
-    </Grid21>
-    <FullImageContainer id="mainBanner" imagePath="/images/Welcome/MentoringHome.jpg" imageLink="#" wrapperClass="imageToRight" wrapperStyle="background-color: #0d0d0d;">
-        <div class="bannerContentContainer">
-            <h1 style="color: white">Własna droga - program mentorki</h1>
-            <p style="color: white">
-                Chciałbyś realizować długoterminowy plan rozwoju pod okiem doświadczonego mentora w rozsądnej cenie?
-            </p>    
-            <p style="color: white">
-                Masz własny pomysł na siebie? 
-            </p>       
-            <button class="cfa" onclick="goToMentoring()"> Dowiedz się więcej...</button>
-        </div>
-        
+    <FullImageContainer id="mainBanner" imagePath="/images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image">
+    
     </FullImageContainer>
 
+     <div style="display: flex; width: 100%; justify-content: center;">    
+        <TimeContainer />
+    </div>
+
+
     
+    <Grid31>
+        <div style="width: 100%; display: flex; justify-content: center;" slot=left>
+            <div style="width: 100%;" >
+                <DiscordContainer />
+            </div>
+        </div>
+
+        <div style="width: 100%; display: flex; justify-content: center;" slot=right>
+            <div style="width: 100%;" >
+                <HexContainer />
+            </div>
+        </div>
+
+    </Grid31>
+
+    <Grid21>
+        <ImageBoxContent slot="left" imagePath="/images/Welcome/MinibanerSerweraHexPlay_S.png" lazyMeanColor="#dcc5ea" wrapperClass="lowwer_H">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <h1>Serwer HexPlay</h1>
+                <p style="font-size: 1.5rem; font-weight: 600;">Od lutego 2026!</p>
+                <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+        <ImageBoxContent slot="right" imagePath="/images/Welcome/MinibanerSerweraHexHogwart_S.png" lazyMeanColor="#c3c1e6" wrapperClass="lowwer_H imageRight">
+            <div class="fullWidthTileContent" style="text-align: center;">
+                <h1>Serwer HexHogwart</h1>
+                <p style="font-size: 1.5rem; font-weight: 600;">Już w 2027 roku!</p>
+                <!-- <a href="/frontendSubject"><b>Więcej informacji</b></a> -->
+            </div>
+        </ImageBoxContent>
+    </Grid21>
+
+    <ImageBoxContent imagePath="/images/Welcome/Archive.png" wrapperClass="bottomGap" lazyMeanColor="#596872">
+        <div class="fullWidthTileContent" >
+            <h1>Archiwum edycji</h1>
+            <h2>Wspomnienia z poprzednich edycji. Zatrzymaj się i zobacz co już udało się zorganizowac.</h2>
+            <p style="font-size: 18px; text-align: center; font-size: 1.5rem;"> Różne motywy, konkurencje i wiele wspomnień.</p>
+            <a style="font-size: 2rem;" href="/archive"><b>Zobacz relację!</b></a>
+        </div>
+    </ImageBoxContent>
+    <ImageBoxContent imagePath="/images/Welcome/Shop.jpg" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd">
+        <div class="fullWidthTileContent" >
+            <h1>Sklep</h1>
+            <h2>Chcesz się wyróżnić jako VIP? Może chcesz utrudnić przyszłe konkurencje innym?</h2>
+            <a style="font-size: 2rem;" href="/shop"><b>Sprawdź sklep!</b></a>
+        </div>
+    </ImageBoxContent>
+    <h1 class="mainHeader">Plany na najbliższe rozgrywki</h1>
+    <FullImageContainer id="timeAxis" imagePath="/images/Welcome/timeAxis.png" imageLink="#" wrapperClass="blackBackground horizontalScroll" imageClass="fade-image" wrapperStyle=" display: flex; justify-content:center;">
+       
+    </FullImageContainer>
 
 </ContentContainer>
 <Footer/>
 
 
-<style>
-
-</style>
-
-<script>
-    function goToForm() {
-      window.location.href = "/form";
-    }
-
-    function goToMentoring() {
-      window.location.href = "/mentoring";
-    }
-
-    window.goToForm = goToForm;
-    window.goToMentoring = goToMentoring;
-</script>

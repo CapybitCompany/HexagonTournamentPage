@@ -9,6 +9,20 @@
     min-height: 10px;
 }
 
+.grid3_1_container {
+  display: flex;
+  flex-wrap: wrap;        /* pozwala elementom spadać do nowych linii */
+  justify-content: center; /* centrowanie w poziomie */
+  gap: 20px;              /* opcjonalnie */
+}
+
+/* Każdy slot reprezentuje element – style nakładamy na dzieci */
+.grid3_1_container > * {
+  flex: 1 1 auto;
+  min-width: 450px;       /* kluczowe! minimalna szerokość komponentu */
+  max-width: 600px;       /* opcjonalne ograniczenie */
+}
+
 @media (max-width: 1100px) {
 
     .grid2_1_container {

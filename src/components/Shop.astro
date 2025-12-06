@@ -1,0 +1,108 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+---
+
+<NavBar/>
+<ContentContainer>
+    <div style="width: 100%; display: flex; justify-content: center; margin: 20px 0; min-height: calc(100vh - 300px);">
+        <div class="box">
+            <h1>Za chwilę nastąpi przekierowanie do sklepu</h1>
+            <p>Możesz przejść do sklepu teraz klikając <a href="https://vishop.pl/shop/24611/server/23302">Tutaj</a> </p>
+            <p>Pozostały czas:</p>
+            <div class="countdown" id="countdown">10</div>
+
+            <div class="legal">
+            <p>
+                <strong>Informacja prawna:</strong><br />
+                Zakup i rozliczenie realizowane są w całości za pośrednictwem platformy
+                <strong>ViShop</strong>. Administrator tej strony nie ponosi
+                odpowiedzialności za kwestie prawne, regulamin, płatności ani proces
+                realizacji transakcji w sklepie.
+            </p>
+            <p>
+                <strong>Produkt cyfrowy:</strong><br />
+                Zakup dotyczy <strong>produktu cyfrowego</strong>. Po dokonaniu płatności
+                nie ma możliwości odstąpienia od umowy ani zwrotu, zgodnie z
+                obowiązującymi przepisami dla treści cyfrowych udostępnianych
+                natychmiast po zakupie.
+            </p>
+            </div>
+    </div>
+    
+  </div>
+</ContentContainer>
+<Footer/>
+
+<script>
+    // <<< PODMIEŃ TĘ ZMIENNĄ NA SWÓJ LINK DO SKLEPU >>>
+    const SHOP_URL = "https://vishop.pl/shop/24611/server/23302";
+
+    const countdownEl = document.getElementById("countdown");
+    let timeLeft = 10; // sekundy
+
+    const interval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        countdownEl.textContent = "0";
+        clearInterval(interval);
+        window.location.href = SHOP_URL;
+      } else {
+        countdownEl.textContent = timeLeft;
+      }
+    }, 1000);
+  </script>
+
+<style>
+    .box {
+      display: flex;
+      margin-top: 60px;
+      flex-direction: column;
+      border: 1px solid #4b5563;
+      background: #111827;
+      padding: 20px 24px;
+      max-width: 600px;
+      text-align: center;
+      color: white;
+      max-height: 350px;
+    }
+
+    
+    a {
+        color: var(--accent-color);
+    }
+
+    .box h1 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .box p {
+      margin: 6px 0;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 8px;
+      color: var(--accent-color);
+    }
+
+    .legal {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      text-align: left;
+    }
+
+    .legal strong {
+      color: #e5e7eb;
+    }
+
+  </style>
