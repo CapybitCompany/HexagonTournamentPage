@@ -207,7 +207,7 @@
 @media (max-width: 550px){
 
     .fullImageWrapper{
-        height: 600px;
+        height: 380px;
     }
     .fullImageWrapper .bannerContentContainer {
         padding: 10px 40px;
