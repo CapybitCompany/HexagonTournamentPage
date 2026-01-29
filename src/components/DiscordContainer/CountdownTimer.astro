@@ -26,11 +26,11 @@
   </div>
 
   <div class="countdown__message countdown__message--ongoing">
-    Turniej właśnie trwa!
+    Wielkie otwarcie już trwa!
   </div>
 
   <div class="countdown__message countdown__message--finished">
-    Turniej się skończył. Niebawem pojawi sie termin kolejnego.
+    Niebawem pojawi sie termin kolejnego wydarzenia.
   </div>
 </div>
 
@@ -109,10 +109,10 @@
   }
 </style>
 
-<script client:load>
+<script>
   // Docelowe daty (miesiące w JS: 0 = styczeń, 11 = grudzień)
-  const targetStart = new Date(2025, 11, 13, 18, 0, 0); // 13.12.2025 18:00
-  const targetEnd = new Date(2025, 11, 13, 20, 0, 0);   // 13.12.2025 20:00
+  const targetStart = new Date(2026, 1, 27, 18, 0, 0); // 13.12.2025 18:00
+  const targetEnd = new Date(2026, 1, 27, 21, 0, 0);   // 13.12.2025 21:00
 
   const root = document.querySelector(".countdown");
   if (!root) console.error("Countdown root not found");

@@ -3,6 +3,10 @@
     height: 500px;
 }
 
+.small{
+    height: 400px;
+}
+
 .imageBoxContent{
     flex-direction: column;
     width: 50%;
@@ -49,6 +53,10 @@
     object-position: center;
 }
 
+a .imageBoxImage{
+    object-fit: contain;
+}
+
 .imageBoxImageContainer img{
     transition: transform 0.5s ease;
 }
@@ -56,6 +64,7 @@
 .imageBoxImageContainer img:hover{
     transform: scale(1.05);
 }
+
 
 @media (max-width: 870px) {
     /* Twoje style tutaj */
@@ -74,6 +83,10 @@
     .imageBoxImageContainer{
         width: 100%;
         height: 50%;  
+    }
+
+    .imageBoxImageContainer a{
+        width: 100%;
     }
 }
 

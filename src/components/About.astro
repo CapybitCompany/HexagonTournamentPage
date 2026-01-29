@@ -1,0 +1,120 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
+import Section from './ContentContainer/Section.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;"}>
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+        </div>
+        
+    </FullImageContainer>
+
+    <Section>
+        <section class="about">
+            <header class="about__header">
+                <h1>O nas</h1>
+                <p>
+                Tworzymy HEX Network - community Minecraft, które łączy stały serwer, mini-gry i cykliczne eventy/turnieje.
+                Zaczęliśmy od turniejów dla znajomych, a dziś budujemy miejsce, gdzie można rywalizować, współpracować i dobrze się bawić.
+                </p>
+            </header>
+
+            <section class="about__section">
+                <h2>Co robimy</h2>
+                <ul>
+                <li>Organizujemy turnieje i eventy Minecraft z rankingiem punktowym.</li>
+                <li>Prowadzimy stały serwer (Survival/SMP) oraz osobny świat mini-gier.</li>
+                <li>Budujemy aktywne community na Discordzie - tam dzieje się większość komunikacji.</li>
+                <li>Testujemy nowe pomysły, mapy i tryby w krótszych, eventowych formatach.</li>
+                <li>Przygotowujemy projekty, które wykraczają po za świat Minecraft.</li>
+                </ul>
+            </section>
+
+            <section class="about__section">
+                <h2>Dla kogo jest HEX Network</h2>
+                <p>
+                Dla graczy, którzy lubią Minecrafta i chcą mieć:
+                <strong>stały serwer</strong> do grania na co dzień oraz <strong>wydarzenia</strong>, które dodają emocji i celów na dłużej.
+                Najczęściej trafiają do nas nastolatkowie i młodzi dorośli, ale każdy szanujący zasady jest mile widziany.
+                </p>
+            </section>
+
+            <section class="about__section">
+                <h2>Nasze zasady</h2>
+                <ul>
+                <li><strong>Fair-play</strong> - stawiamy na uczciwą rywalizację i przejrzyste reguły.</li>
+                <li><strong>Szacunek</strong> - zero toksyczności, wyzwisk i nękania.</li>
+                <li><strong>Bezpieczeństwo</strong> - moderacja i jasne zasady porządku na serwerze oraz Discordzie.</li>
+                <li><strong>Transparentność</strong> - komunikujemy zmiany, terminy eventów i zasady nagród.</li>
+                </ul>
+            </section>
+
+            <section class="about__section">
+                <h2>Jak działają eventy i nagrody</h2>
+                <p>
+                Organizujemy turnieje i wyzwania sezonowe. Za udział i wyniki można zdobywać punkty do rankingów,
+                a najlepsze osoby zgarniają nagrody oraz wyróżnienia. Informacje o konkretnych zasadach, terminach i pulach nagród
+                zawsze publikujemy z wyprzedzeniem na Discordzie.
+                </p>
+            </section>
+
+            <section class="about__section">
+                <h2>Skąd to wszystko się bierze</h2>
+                <p>
+                Utrzymanie serwera i organizacja eventów kosztują (hosting, zabezpieczenia, narzędzia, czas). Dlatego mamy sklep z
+                opcjami wspierającymi projekt (np. VIP i dodatki kosmetyczne / quality-of-life). Naszym celem jest, aby wsparcie
+                <strong>nie psuło rozgrywki</strong> i było uczciwe wobec graczy.
+                </p>
+            </section>
+
+            <section class="about__section">
+                
+                <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd">
+                    <div class="fullWidthTileContent" >
+                        <h1>Dołącz do community</h1>
+                        <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
+                            Wbijaj - tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera. </p>
+                        <div class="fullWidthTileContent" >
+                            <a style="font-size: 2rem; text-align:center;" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na serwer discord!</b></a>
+                        </div>
+                    </div>
+                </ImageBoxContent>
+            </section>
+        </section>
+
+    </Section>
+
+</ContentContainer>
+<Footer/>
+
+<style>
+    section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    li {
+        text-align: left;
+    }
+
+    .archiveBannerText{
+        color: white;
+        font-size: 6rem;
+        font-family: "minecraft";
+    }
+
+    @media(max-width: 870px){
+        .archiveBannerText{
+            font-size: 4rem;
+        }
+        
+    }
+</style>

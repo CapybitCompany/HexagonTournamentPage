@@ -1,10 +1,10 @@
 ---
 import "../../styles/global.css";
 import LogoIcon from "../../../public/logo.ico";
-import SubMenuContainer from "./Submenu/Submenu.astro";
 import NavBarItem from './NavBarItem.astro';
 import MobileMenu from "./Mobile/MobileMenu.astro";
 import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
+import SubMenuContainer from "./Submenu/Submenu.astro";
 ---
 
 <nav id="navBar" class="navBarWrapper">
@@ -16,15 +16,22 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
     </div>
     <div class="navBarContainer">
         <!-- <NavBarItem dataId="Future"><div class="fullWidthTileContent"><a href="/future">Przyszłe projekty</a></div></NavBarItem> -->
-        <NavBarItem dataId="Archive"><div class="fullWidthTileContent"><a href="/archive">Archiwum turniejów</a></div></NavBarItem>
+        <NavBarItem dataId="Server"><div class="fullWidthTileContent"><a href="/">Serwer</a></div></NavBarItem>
+        <NavBarItem dataId="Archive"><div class="fullWidthTileContent"><a href="/archive">Archiwum eventów</a></div></NavBarItem>
         <NavBarItem dataId="Shop"><div class="fullWidthTileContent"><a href="/shop">Sklep</a></div></NavBarItem>
+        <NavBarItem dataId="Contact"><div class="fullWidthTileContent"><a href="/contact">Kontakt</a></div></NavBarItem>
     </div>
     <MobileMenuHamburder/>
     <MobileMenu/>
-    
+
+    <SubMenuContainer>
+        
+    </SubMenuContainer>
 </nav>
 
+
 <script>
+
     function generateSubmenuHTML(menuItems) {
         return `<div class="submenuText">
             ${menuItems.map(item => {
@@ -39,51 +46,36 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
         </div>`;
     };
 
-    const courseSubmenus = [];
-
-    const individualSubmenus = [
-        ...courseSubmenus,
-        {label: "Tworzenie gier", href: "/gameSubject"},
-        {label: "Nauka programowania", href: "/programmingSubject"},
+    const serverSubmenus = [
+        {label: "Tryby Minecrafthex", type: "subheader"},
+        {label: "Hex Event", href: "/hexEvent"},
+        {label: "Hex Mini-Games", href: "/hexMiniGames"},
+        {label: "Hex Economy SMP", href: "/hexSMP"},
     ]
-
-    const groupSubmenus = [
-        ...courseSubmenus
-    ]
-
-    const mentoringSubmenus = [
-        {label: "Trener IT", type: "subheader"},
-        {label: "Przykładowe programy mentorskie", href: "/mentoringExamples"},
-        {label: "O mentorze", href: "/aboutme"},
-    ];
 
     const contactSubmenus = [
-        {label: "Formularze kontaktowe", type: "subheader"},
-        {label: "Zgłoś chęć udziału", href: "/form"},
-        {label: "Mam pytanie", href:'/form?type=question'},
-        {label: "Partnerstwo", type: "subheader"},
-        {label: "Dla szkół", href: "/form?type=question"},
-        {label: "Dla firm", href:'/form?type=question'},
+        {label: "Kim jesteśmy", type: "subheader"},
+        {label: "O nas", href: "/about"},
+        {label: "Informacje", type: "subheader"},
+        {label: "Kontakt", href: "/contact"},
     ];
 
     const contentMap = {
-        Group: generateSubmenuHTML(groupSubmenus),
-        Individual: generateSubmenuHTML(individualSubmenus),
-        Mentoring: generateSubmenuHTML(mentoringSubmenus),
+        Server: generateSubmenuHTML(serverSubmenus),
         Contact: generateSubmenuHTML(contactSubmenus)
     };
 
     const setSubmenuContent = (id: String, submenu: HTMLElement) => {
         const previousHeight = submenu.offsetHeight + "px";
-        submenu.innerHTML = `
+        submenu.innerHTML = contentMap[id] ? `
             <div id="submenuContent" class="submenuContentWrapper">
                 ${contentMap[id] || ""}
             </div>
-        `;
+        `: ``;
 
         const submenuContent = submenu.getElementsByClassName("submenuContentWrapper")[0];
 
-        submenu.classList.add("active");
+        contentMap[id] ? submenu.classList.add("active") : submenu.classList.remove("active");
         submenu.style.height = previousHeight;
 
         submenu.offsetHeight;
@@ -199,11 +191,40 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
     lastScrollY = currentScrollY;
   });
 
+  // Kliknięcie lub najechanie
+  nav.addEventListener('click', () => {
+    if (!shouldHandleBehavior()) return;
+    resetHideTimer();
+  });
+
+  nav.addEventListener('mouseenter', () => {
+    if (!shouldHandleBehavior()) return;
+    resetHideTimer();
+  });
+
+  nav.addEventListener('mouseleave', () => {
+    if (!shouldHandleBehavior()) return;
+    startHideTimer();
+  });
+
   // Szerokość okna
   window.addEventListener('resize', () => {
     if (!shouldHandleBehavior()) {
       resetHideTimer();
       showNav();
+    }
+  });
+
+  // ✨ Kursor blisko górnej krawędzi
+  window.addEventListener('mousemove', (e) => {
+    if (!shouldHandleBehavior()) return;
+
+    if (e.clientY <= 50) {
+      isCursorNearTop = true;
+      showNav();
+      resetHideTimer();
+    } else {
+      isCursorNearTop = false;
     }
   });
 </script>
@@ -234,21 +255,25 @@ import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
         width: 100%;
         height: 60px;
         justify-content: center;
-        gap:  2%;
+        gap: 30px;
     }
     .navBarContainer{
+        display: flex;
+        align-items: center;
         position: relative;
         height: 100%;
         background-color: var(--background-color);
-        gap: 5%;
+        gap: 35px;
     }
 
     @media (max-width: 950px) {
         .navBarWrapper{
             justify-content: flex-start;
         }
+        .navBarContainer{
+            display: none;
+        }
     }
-
 
 
 </style>

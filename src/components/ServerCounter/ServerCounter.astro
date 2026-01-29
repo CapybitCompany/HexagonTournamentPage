@@ -1,15 +1,17 @@
-
+---
+const {sourceIP} = Astro.props;
+---
 
 <div id="mc-status" style="font-family: minecraft; font-weight: bold; font-size: 2rem; font-color: white;">
   Aktywni gracze: <span style="margin-left: 1rem;" id="mc-players">...</span>
 </div>
 
-<script >
+<script define:vars={{sourceIP}}>
   const SERVER_IP = 'Minecrafthex.pl';
 
   async function loadPlayers() {
     try {
-      const res = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
+      const res = await fetch(`https://api.mcsrvstat.us/2/${sourceIP}`);
       const data = await res.json();
 
       const el = document.getElementById('mc-players');

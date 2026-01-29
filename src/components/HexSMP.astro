@@ -1,0 +1,38 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
+import TimeContainer from './DiscordContainer/TimeContainer.astro'
+import Section from './ContentContainer/Section.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction">
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <h1 class="archiveBannerText"></h1>
+        </div>
+        
+    </FullImageContainer>
+
+    <Section>
+        <h1>Serwer SMP</h1>
+        <p style="text-align: center; width: 100%">Tutaj znajdą się w niedalekiej przyszłości informacje o świecie na naszym serwerze Minecraft, na którym odbywać będą się cyklicznie wydarzenia, zadania i inne atrakcje. Dodatkowo na serwerze będzie wykorzystana mechanizm ekonomi, handlu i świat, który nie będzie resetowany. Jednocześnie dążymy do tego, aby balans rozgrywki sprzyjał nowym graczom, wynagradzał regularną grę oraz pozwalał na wykazanie się topce graczy. </p>
+    </Section>
+
+     <div style="display: flex; width: 100%; justify-content: center;">    
+        <TimeContainer />
+    </div>
+
+
+
+</ContentContainer>
+<Footer/>
+
+<style>
+
+</style>

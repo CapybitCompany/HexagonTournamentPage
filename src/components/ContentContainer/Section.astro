@@ -4,12 +4,27 @@ const {clazz, style} = Astro.props;
 ---
 
 <section class=`sectionContainer ${clazz}` style=`${style}`>
-    <slot/>
+    <div class="sectionSubContainer">
+        <slot/>
+    </div>
+
 </section>
 
 <style>
     .sectionContainer{
+        display: flex;
+        flex-direction: column;
         width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .sectionSubContainer{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1220px;
     }
 
     .center{
@@ -25,5 +40,16 @@ const {clazz, style} = Astro.props;
         .slanted {
             clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
         }
+    }
+
+    @media(max-width: 1220px) {
+        .sectionContainer{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5%;
+    }
     }
 </style>

@@ -1,0 +1,40 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
+import Grid21 from './Grid/Grid2_1/Grid2_1.astro'
+import TimeContainer from './DiscordContainer/TimeContainer.astro'
+import Section from './ContentContainer/Section.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction">
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <h1 class="archiveBannerText"></h1>
+        </div>
+        
+    </FullImageContainer>
+
+    <Section>
+        <h1>Serwer Mini-Games</h1>
+        <p style="text-align: center; width: 100%">Tutaj znajdą się w niedalekiej przyszłości informacje o świecie na naszym serwerze Minecraft, na którym dostępne będą liczne mini gry oraz mapy parkour do pokonywania z możliwością pobijania rekordów swoich i innych graczy.</p>
+        
+    </Section>
+
+     <div style="display: flex; width: 100%; justify-content: center;">    
+        <TimeContainer />
+    </div>
+
+
+
+</ContentContainer>
+<Footer/>
+
+<style>
+
+</style>

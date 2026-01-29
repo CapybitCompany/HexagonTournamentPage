@@ -14,7 +14,8 @@
     "@astrojs/ts-plugin": "^1.10.4",
     "astro": "^5.5.5",
     "ngrok": "^5.0.0-beta.2",
-    "nodemailer": "^7.0.3"
+    "nodemailer": "^7.0.3",
+    "photoswipe": "^5.4.4"
   },
   "devDependencies": {
     "vite-plugin-svgr": "^4.3.0"
