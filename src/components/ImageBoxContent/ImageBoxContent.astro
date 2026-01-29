@@ -2,14 +2,33 @@
 import "../../styles/global.css";
 import "./ImageBoxContent.css";
 
-const { imagePath, wrapperClass, lazyMeanColor } = Astro.props;
+import "photoswipe/style.css";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+const { imagePath, wrapperClass, lazyMeanColor, isLightBox} = Astro.props;
 ---
 
-<div class=`imageBoxWrapper ${wrapperClass}`>
+<div class=`imageBoxWrapper ${wrapperClass}` style={{height: isLightBox ? "400px" : "500px"}}>
     <div class="imageBoxContent" >
         <slot/>
     </div>
-    <div class="imageBoxImageContainer">
-        <img class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt="">
+    <div class=`imageBoxImageContainer ${isLightBox ? "pswp-img" : ""}`>
+        <a style={{display: isLightBox ? "initial" : "none"}} href=`/${imagePath}` data-pswp-width="1920" data-pswp-height="1080" >
+            <img class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${isLightBox ? "#f3f3f3" : lazyMeanColor}` alt="">
+        </a>
+        <img style={{display: isLightBox ? "none" : "initial"}} class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt="">
     </div>
+    
 </div>
+
+
+<script>
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: ".pswp-img",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+  });
+  lightbox.init();
+</script>

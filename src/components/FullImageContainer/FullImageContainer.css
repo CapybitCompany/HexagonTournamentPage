@@ -8,19 +8,33 @@
 }
 
 .imageWrapper{
-    height: 100%;
+    width: 100%;
     overflow: hidden;
     justify-content: center;
 }
 
 .banner{
     margin-top: 60px;
-    height: 770px;
+    height: 600px;
 }
 .fullImage{
     height: 100%;
     object-fit: contain;
 } 
+.fullImage.shadow{
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgb(0, 0, 0) 15%,
+        rgb(0, 0, 0) 85%,
+        transparent 100%
+    );
+}
+.fullImage.otherAspect{
+    width: 100%;
+    height: initial;
+    object-fit: cover;
+}
 .linkContainer{
     width: 100%;
     height: 100%;
@@ -96,6 +110,34 @@
     z-index: 0;
 }
 
+h1{
+    font-size: 45px;
+}
+
+.fullWidthTileContent p{
+    text-align: center;
+    font-size: 25px;
+}
+
+.construction{
+    height: 900px !important;
+}
+
+.construction img{
+    height: 100%;
+    object-fit: contain;
+}
+
+
+@media (min-width: 2000px){
+        .fullImageWrapper{
+            height: 850px;
+        }
+        .banner{
+            height: 30vw;
+        }
+}
+
 @media (max-width: 1760px){
     .fullImageWrapper .bannerContentContainer{
         padding: 0 0 0 10px;
@@ -114,7 +156,7 @@
 
 @media (max-width: 1550px){
     h1{
-        font-size: 30px;
+        font-size: 40px;
     }
 
 
@@ -125,7 +167,7 @@
         width:65%;
     }
     .fullWidthTileContent p{
-        font-size: 18px;
+        font-size: 24px;
         text-align: center;
     }
 
@@ -195,6 +237,15 @@
     .banner{
         margin-top:60px;
     }
+
+    .fullWidthTileContent p{
+        font-size: 20px;
+        margin: 5px 0;
+    }
+
+    h1{
+        margin: 5px 0;
+    }
 }
 
 @media(max-width:900px){
@@ -202,6 +253,24 @@
         position: relative;
         bottom: 0;
     }
+
+    h1{
+        font-size: 36px;
+    }
+
+    ol {
+        font-size: 14px;
+    }
+
+    .fullWidthTileContent p{
+        font-size: 14px;
+    }
+
+    .fullImage.otherAspect{
+    width: initial;
+    height: 100%;
+    object-fit: cover;
+}
 }
 
 @media (max-width: 550px){
@@ -213,11 +282,11 @@
         padding: 10px 40px;
     }
     h1{
-        font-size: 25px;
+        font-size: 32px;
     }
 
     .banner{
-        height: 650px;
+        height: 300px;
     }
 
     .fade-image{
@@ -233,7 +302,7 @@
 
 @media (max-width: 400px){
     .fullImageWrapper{
-        height: 650px;
+        height: 250px;
     }
 
     .fullImageWrapper .bannerContentContainer {
@@ -241,7 +310,7 @@
     }
 
     h1{
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .fade-image{
@@ -254,7 +323,7 @@
     }
 
     .banner{
-        height: 700px;
+        height: 600px;
     }
 }
 

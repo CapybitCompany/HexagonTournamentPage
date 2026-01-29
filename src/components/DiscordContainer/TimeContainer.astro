@@ -4,7 +4,7 @@ import CountdownTimer from "./CountdownTimer.astro";
 <div class="discordContainerWrapper">
     <div class="discordContainer">
         <div class="headerWrapper">
-            <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Czas do turnieju</h2>
+            <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Start serwera za:</h2>
         </div>
         <CountdownTimer />
     
@@ -21,7 +21,11 @@ import CountdownTimer from "./CountdownTimer.astro";
     .discordContainer {
         width: 100%;
         flex-direction: column;
-        background-color:#2c2d32;
+        background: linear-gradient(
+            rgba(44, 45, 50, 1) 0%,
+            rgba(0,0,0,1) 100%
+        );
+        /* background-color:rgb(44, 45, 50); */
         color: white;
         border-radius: 20px;
         border: 1px solid #424549;
