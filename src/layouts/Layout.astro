@@ -1,17 +1,21 @@
 ---
 import '../styles/global.css';
-const {customTiltle, customDescriptin} = Astro.props;
+const {customTitle, customDescription} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Minecraft Turniej Hex - turnieje Minecraft</title>
+		<title>{customTitle}</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/x-icon" href="/logo.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content=`${customDescriptin}`>
-		<meta property="title" content=`${customTiltle}`>
+		<meta name="description" content=`${customDescription}`>
+		<meta property="title" content=`${customTitle}`>
+		<meta property="og:title" content=`${customTitle}`>
+		<meta property="og:description" content=`${customDescription}`>
+		<meta property="og:image" content="https://capybitcompany.github.io/Welcome/Banner.jpg">
+
 	</head>
 	<body>
 		<slot />
