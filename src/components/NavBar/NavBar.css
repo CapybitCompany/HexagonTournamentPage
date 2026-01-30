@@ -10,7 +10,6 @@
 }
 
 .submenuContentWrapper{
-    width: 100%;
     opacity: 0;
     transform: translateX(-40px);
     height: fit-content;
