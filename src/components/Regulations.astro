@@ -1,0 +1,166 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+---
+
+<NavBar/>
+<ContentContainer>
+    <div style="width: 100%; display: flex; justify-content: center; margin: 80px 0; min-height: calc(100vh - 300px); text-align: center; flex-direction: column; align-items: center;">
+
+            <h1>Regulamin sklepu HEX Network</h1>
+
+              <p>
+              Niniejszy regulamin określa zasady korzystania ze sklepu internetowego HEX Network,
+              prowadzonego przez <strong>Radosław Rybarczyk</strong>, prowadzącego jednoosobową działalność gospodarczą.
+              Kontakt e-mail: <strong>minecrafthexagon@gmail.com</strong>.
+              </p>
+
+              <h2>1. Postanowienia ogólne</h2>
+              <ol>
+                <li>Sklep internetowy HEX Network prowadzi sprzedaż usług cyfrowych związanych z funkcjonowaniem serwera Minecraft.</li>
+                <li>Regulamin jest dostępny nieodpłatnie na stronie internetowej sklepu.</li>
+                <li>Każdy użytkownik dokonujący zakupu zobowiązany jest do zapoznania się z regulaminem.</li>
+              </ol>
+
+              <h2>2. Zakres oferty</h2>
+              <ol>
+                <li>Sklep oferuje wyłącznie usługi cyfrowe, w szczególności:</li>
+                <ul>
+                  <li>dostęp VIP (czasowy lub stały),</li>
+                  <li>dodatki typu quality-of-life,</li>
+                  <li>pakiety i dodatki eventowe,</li>
+                  <li>wirtualne punkty lub waluty wykorzystywane wyłącznie w ramach serwera.</li>
+                </ul>
+                <li>Sklep nie oferuje produktów fizycznych.</li>
+                <li>Wirtualne punkty i waluty nie podlegają wymianie na środki pieniężne ani inne ekwiwalenty.</li>
+              </ol>
+
+              <h2>3. Składanie zamówień</h2>
+              <ol>
+                <li>Zamówienia składane są poprzez sklep internetowy.</li>
+                <li>Warunkiem realizacji zamówienia jest podanie prawidłowego nicku gracza.</li>
+                <li>Usługi realizowane są automatycznie po zaksięgowaniu płatności.</li>
+              </ol>
+
+              <h2>4. Płatności</h2>
+              <ol>
+                <li>Płatności realizowane są za pośrednictwem zewnętrznych operatorów płatności.</li>
+                <li>Dostępne metody płatności mogą obejmować:</li>
+                <ul>
+                  <li>BLIK,</li>
+                  <li>szybkie przelewy online,</li>
+                  <li>karty płatnicze,</li>
+                  <li>Paysafecard.</li>
+                </ul>
+                <li>Administrator nie przetwarza danych kart płatniczych.</li>
+              </ol>
+
+              <h2>5. Realizacja zamówień</h2>
+              <ol>
+                <li>Realizacja usług cyfrowych następuje automatycznie po potwierdzeniu płatności.</li>
+                <li>W wyjątkowych przypadkach realizacja może ulec opóźnieniu z przyczyn technicznych.</li>
+                <li>W przypadku problemów z realizacją użytkownik powinien skontaktować się z administratorem.</li>
+                <li>
+                  Sklep internetowy funkcjonuje w oparciu o zewnętrzną platformę techniczną (VIShop),
+                  która odpowiada za obsługę procesu zamówień i automatyczną realizację usług.
+                  Administrator pozostaje stroną umowy i ponosi odpowiedzialność za świadczone usługi.
+                </li>
+              </ol>
+
+              <h2>6. Prawo odstąpienia od umowy</h2>
+              <ol>
+                <li>Zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta, użytkownikowi nie przysługuje prawo odstąpienia od umowy po rozpoczęciu realizacji usługi cyfrowej.</li>
+                <li>Dokonując zakupu, użytkownik wyraża zgodę na natychmiastowe rozpoczęcie realizacji usługi.</li>
+              </ol>
+
+              <h2>7. Reklamacje</h2>
+              <ol>
+                <li>Reklamacje dotyczące funkcjonowania sklepu lub realizacji usług można składać drogą mailową.</li>
+                <li>Reklamacja powinna zawierać nick gracza oraz opis problemu.</li>
+                <li>Administrator rozpatruje reklamacje w terminie do 14 dni.</li>
+              </ol>
+
+              <h2>8. Odpowiedzialność</h2>
+              <ol>
+                <li>Administrator nie ponosi odpowiedzialności za przerwy w działaniu serwera wynikające z przyczyn technicznych lub niezależnych.</li>
+                <li>Administrator zastrzega sobie prawo do modyfikacji usług, jeżeli jest to konieczne dla prawidłowego funkcjonowania serwera.</li>
+                <li>Zabronione jest wykorzystywanie usług sklepu w sposób sprzeczny z regulaminem serwera.</li>
+              </ol>
+
+              <h2>9. Dane osobowe</h2>
+              <p>
+              Zasady przetwarzania danych osobowych określa odrębny dokument – Polityka prywatności,
+              dostępna na stronie internetowej.
+              </p>
+
+              <h2>10. Postanowienia końcowe</h2>
+              <ol>
+                <li>Administrator zastrzega sobie prawo do zmiany regulaminu.</li>
+                <li>Zmiany regulaminu nie wpływają na zamówienia złożone przed ich wprowadzeniem.</li>
+                <li>W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</li>
+              </ol>
+
+
+                  
+  </div>
+</ContentContainer>
+<Footer/>
+
+<style>
+    .box {
+      display: flex;
+      margin-top: 60px;
+      flex-direction: column;
+      border: 1px solid #4b5563;
+      background: #111827;
+      padding: 20px 24px;
+      max-width: 600px;
+      text-align: center;
+      color: white;
+      max-height: 350px;
+    }
+    
+    a {
+        color: var(--accent-color);
+    }
+
+    .box h1 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .box p {
+      margin: 6px 0;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 8px;
+      color: var(--accent-color);
+    }
+
+    .legal {
+      display: flex;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      text-align: left;
+      flex-direction: column;
+    }
+
+    .legal strong {
+      color: #e5e7eb;
+    }
+
+    section {
+      flex-direction: column;
+    }
+
+  </style>
