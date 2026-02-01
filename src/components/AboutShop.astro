@@ -1,0 +1,159 @@
+---
+import NavBar from './NavBar/NavBar.astro'
+import Footer from './Footer/Footer.astro'
+import ContentContainer from './ContentContainer/ContentContainer.astro'
+import './NavBar/NavBar.css'
+import './PageContent/WelcomePage/Welcome.styles.css'
+---
+
+<NavBar/>
+<ContentContainer>
+    <div style="text-align: center; width: 100%; display: flex; justify-content: center; margin: 80px 0; min-height: calc(100vh - 300px); flex-direction: column; align-items: center;">
+
+            <h1>O sklepie</h1>
+            <p>Możesz przejść do sklepu teraz klikając <a href="https://vishop.pl/shop/24611/server/23302">Tutaj</a> </p>
+            
+            <section class="shop-info">
+              <header class="shop-info__header">
+                <h1>Sklep HEX Network</h1>
+                <p>
+                  Sklep HEX Network oferuje <strong>usługi cyfrowe</strong> powiązane z serwerem Minecraft HEX Network.
+                  Nie sprzedajemy produktów fizycznych — zakupy dotyczą wyłącznie funkcji i dodatków dostępnych w ramach serwera.
+                </p>
+              </header>
+
+              <section class="shop-info__section">
+                <h2>Co znajdziesz w sklepie</h2>
+                <ul>
+                  <li>
+                    <strong>VIP</strong> (czasowy lub stały) – dodatkowe funkcje quality-of-life oraz wyróżnienia na serwerze.
+                  </li>
+                  <li>
+                    <strong>Dodatki quality-of-life</strong> – ułatwienia rozgrywki, które nie wpływają na uczciwą rywalizację (brak pay-to-win).
+                  </li>
+                  <li>
+                    <strong>Pakiety i dodatki eventowe</strong> – elementy związane z eventami/turniejami (np. dostęp, kosmetyki, drobne bonusy).
+                  </li>
+                  <li>
+                    <strong>Punkty / wirtualna waluta</strong> wykorzystywana wyłącznie w ramach serwera (bez możliwości wymiany na środki pieniężne).
+                  </li>
+                </ul>
+              </section>
+
+              <section class="shop-info__section">
+                <h2>Jak działa realizacja zamówienia</h2>
+                <ol>
+                  <li>Wybierasz usługę w sklepie i przechodzisz do płatności.</li>
+                  <li>Po zaksięgowaniu płatności zamówienie jest realizowane <strong>automatycznie</strong> na Twoim koncie w grze.</li>
+                  <li>W większości przypadków realizacja trwa chwilę. Jeśli wystąpi problem, skontaktuj się z nami.</li>
+                </ol>
+                <p>
+                  Uwaga: zakupione usługi są usługami cyfrowymi. Po ich zrealizowaniu (np. nadaniu VIP lub dodatku) nie ma możliwości
+                  „zwrotu produktu” w sensie fizycznym.
+                </p>
+              </section>
+
+              <section class="shop-info__section">
+                <h2>Płatności</h2>
+                <p>
+                  Płatności w sklepie realizowane są przez zewnętrznego operatora płatności. Dostępne metody to m.in.:
+                  <strong>BLIK</strong>, <strong>szybkie przelewy online</strong> oraz <strong>karta płatnicza</strong>.
+                </p>
+                <p>
+                  Jeżeli w danym momencie któraś metoda płatności jest niedostępna, może to wynikać z prac integracyjnych lub przerwy
+                  technicznej po stronie operatora.
+                </p>
+              </section>
+
+              <section class="shop-info__section">
+                <h2>Kontakt i wsparcie</h2>
+                <p>
+                  Najszybciej złapiesz nas na Discordzie. W sprawach formalnych (np. płatności, współprace) możesz napisać maila.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Discord:</strong>
+                    <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz do serwera</a>
+                  </li>
+                  <li><strong>E-mail:</strong> <a href="mailto:minecrafthexagon@gmail.com">minecrafthexagon@gmail.com.</a></li>
+                </ul>
+              </section>
+
+              <section class="shop-info__section">
+                <h2>Dokumenty</h2>
+                <ul>
+                  <li><a href="/regulations" target="_blank" rel="noopener">Regulamin sklepu</a></li>
+                  <li><a href="/politics" target="_blank" rel="noopener">Polityka prywatności</a></li>
+                </ul>
+              </section>
+
+              <footer class="shop-info__footer">
+                <p>
+                  <strong>Dane sprzedawcy (JDG):</strong>
+                  <span>Radosław Rybarczyk</span>,
+                  <span>NIP: 7831843408</span>
+                </p>
+              </footer>
+            </section>
+
+
+    
+  </div>
+</ContentContainer>
+<Footer/>
+
+<style>
+    .box {
+      display: flex;
+      margin-top: 60px;
+      flex-direction: column;
+      border: 1px solid #4b5563;
+      background: #111827;
+      padding: 20px 24px;
+      max-width: 600px;
+      text-align: center;
+      color: white;
+      max-height: 350px;
+    }
+    
+    a {
+        color: var(--accent-color);
+    }
+
+    .box h1 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .box p {
+      margin: 6px 0;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 8px;
+      color: var(--accent-color);
+    }
+
+    .legal {
+      display: flex;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      text-align: left;
+      flex-direction: column;
+    }
+
+    .legal strong {
+      color: #e5e7eb;
+    }
+
+    section {
+      flex-direction: column;
+    }
+
+  </style>
