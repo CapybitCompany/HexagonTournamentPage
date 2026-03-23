@@ -1,0 +1,63 @@
+---
+import HexPvpPage from '../components/PageContent/ServerArticles/HexPvp.astro';
+import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Czy na serwerze PVP beda tryby 1v1 i team?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Tak, planujemy areny 1v1 oraz formaty druzynowe z osobnymi tabelami wynikow."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak dziala ranking PVP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Ranking bedzie oparty o zwyciestwa, serie wygranych i aktywnosc w sezonie."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie zglaszac uwagi do balansu?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Feedback i propozycje zmian balansu zbieramy na Discordzie HEX."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "PVP",
+				item: "https://www.minecrafthex.pl/hexPvp/"
+			}
+		]
+	}
+];
+---
+
+<Layout
+	customTitle="Hex PVP - serwer Minecraft w przygotowaniu"
+	customDescription="Hex PVP - nowy serwer Minecraft z arenami i rankingiem graczy. Wkrótce więcej informacji."
+	structuredData={structuredData}
+>
+	<HexPvpPage />
+</Layout>

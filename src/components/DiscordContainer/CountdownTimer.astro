@@ -1,6 +1,6 @@
 ---
 /**
- * Prosty komponent odliczający do 13 grudnia 2025, godz. 18:00
+ * Prosty komponent odliczający do 4 kwietnia 2026, godz. 19:00
  * Na froncie używa czasu lokalnego przeglądarki.
  */
 ---
@@ -26,11 +26,11 @@
   </div>
 
   <div class="countdown__message countdown__message--ongoing">
-    Wielkie otwarcie już trwa!
+    Turniej Minecraft już trwa. Powodzenia!
   </div>
 
   <div class="countdown__message countdown__message--finished">
-    Niebawem pojawi sie termin kolejnego wydarzenia.
+    Turniej wystartował. Śledź Discord po kolejne terminy.
   </div>
 </div>
 
@@ -111,10 +111,10 @@
 
 <script>
   // Docelowe daty (miesiące w JS: 0 = styczeń, 11 = grudzień)
-  const targetStart = new Date(2026, 1, 27, 18, 0, 0); // 13.12.2025 18:00
-  const targetEnd = new Date(2026, 1, 27, 21, 0, 0);   // 13.12.2025 21:00
+  const targetStart = new Date(2026, 3, 4, 19, 0, 0); // 04.04.2026 19:00
+  const targetEnd = new Date(2026, 3, 4, 23, 0, 0);   // 04.04.2026 23:00
 
-  const root = document.querySelector(".countdown");
+  const root = document.querySelector(".countdown") as HTMLElement | null;
   if (!root) console.error("Countdown root not found");
 
   const daysEl = document.getElementById("countdown-days");
@@ -122,7 +122,7 @@
   const minutesEl = document.getElementById("countdown-minutes");
   const secondsEl = document.getElementById("countdown-seconds");
 
-  function pad(value, length = 2) {
+  function pad(value: number, length = 2) {
     return String(value).padStart(length, "0");
   }
 
@@ -154,13 +154,13 @@
       return;
     }
 
-    // Turniej trwa (13.12.2025 19:00–23:00)
+    // Turniej trwa (04.04.2026 19:00-23:00)
     if (now >= targetStart && now < targetEnd) {
       root.dataset.state = "ongoing";
       return;
     }
 
-    // Po turnieju (po 20:00)
+    // Po turnieju (po 23:00)
     root.dataset.state = "finished";
   }
 

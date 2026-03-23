@@ -13,28 +13,30 @@ import Section from './ContentContainer/Section.astro'
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground" wrapperStyle="height: 500px;">
+    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground" wrapperStyle="height: 500px;" altText="Archiwum turniejow Minecraft HEX - poprzednie edycje, zwyciezcy i nagrody">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
             <h1 class="archiveBannerText">Archiwum turniejów</h1>
         </div>
     </FullImageContainer>
 
-     <div style="display: flex; width: 100%; justify-content: center;">    
-        <TimeContainer />
-    </div>
-
     <Section>
+        <section class="archiveSeoIntro">
+            <h2>Historia turniejow HEX Network</h2>
+            <p>W archiwum znajdziesz poprzednie edycje turniejow Minecraft HEX: daty, liczbe graczy, pule nagrod i zwyciezcow.</p>
+            <p>To miejsce, w ktorym dokumentujemy rozwoj wydarzen i najwazniejsze momenty kazdego sezonu.</p>
+        </section>
+
         <h1 class="eventHeader">Truniej Hex VI - Świąteczny</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/1.png" lazyMeanColor="#dcc5ea" isLightBox wrapperClass="small">
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/1.jpg" lazyMeanColor="#dcc5ea" isLightBox wrapperClass="small">
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>400zł + 200zł w bonusach</h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight small" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight small" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
                     <h1>Grzesztof</h1>
@@ -43,13 +45,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>13.12.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>35</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -69,14 +71,14 @@ import Section from './ContentContainer/Section.astro'
         <h1 class="eventHeader">Truniej Hex V - inspirowana światem Harrego Pottera</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/1.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>500 zł </h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
                     <h1>love_kanye</h1>
@@ -85,13 +87,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>18.10.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>31</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -111,14 +113,14 @@ import Section from './ContentContainer/Section.astro'
         <h1 class="eventHeader">Truniej Hex IV - inspirowana światem Squid Game</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/1.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>1000 zł </h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
                     <h1>soonne, Gizzeusz</h1>
@@ -127,13 +129,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>2.08.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>33</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -153,14 +155,14 @@ import Section from './ContentContainer/Section.astro'
         <h1 class="eventHeader">Truniej Hex III - inspirowana światem Pokemon</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/1.png" lazyMeanColor="#dcc5ea" isLightBox >
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/1.jpg" lazyMeanColor="#dcc5ea" isLightBox >
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>400 zł </h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
                     <h1>Bartimoza, soonne</h1>
@@ -169,13 +171,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>31.05.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>17</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -194,14 +196,14 @@ import Section from './ContentContainer/Section.astro'
         <h1 class="eventHeader">Truniej Hex II</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/1.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>650 zł </h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
                     <h1>Grzesztof</h1>
@@ -210,13 +212,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>19.04.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>15</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -234,14 +236,14 @@ import Section from './ContentContainer/Section.astro'
         <h1 class="eventHeader">Truniej Hex I</h1>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/1.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
                     <h1>300 zł </h1>
                     
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/2.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
                     <h1>Endrju_</h1>
@@ -250,13 +252,13 @@ import Section from './ContentContainer/Section.astro'
         </Grid21>
 
         <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/3.png" lazyMeanColor="#dcc5ea" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                     <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>15.03.2025</strong></p>
                     <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>10</strong></p>
                 </div>
             </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/4.png" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
+            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
                 <div class="fullWidthTileContent" style="text-align: center;">
                         <h1>Gry:</h1>
                         <ol>
@@ -273,6 +275,22 @@ import Section from './ContentContainer/Section.astro'
         <div style="">
             <i>Motywy edycji jest wyłącznie inspirowany światem </i>
         </div>
+
+        <section class="archiveFaq showcaseFaq">
+            <h2>FAQ - Archiwum wydarzen</h2>
+            <article class="showcaseFaqCard">
+                <h3>Skad pochodza dane o turniejach?</h3>
+                <p>Dane o liczbie graczy, nagrodach i zwyciezcach pochodza z oficjalnych podsumowan kazdej edycji HEX.</p>
+            </article>
+            <article class="showcaseFaqCard">
+                <h3>Czy archiwum zawiera wszystkie poprzednie edycje?</h3>
+                <p>Tak, sukcesywnie uzupelniamy archiwum, aby kazdy sezon i event byly opisane w jednym miejscu.</p>
+            </article>
+            <article class="showcaseFaqCard">
+                <h3>Gdzie szukac informacji o nadchodzacych turniejach?</h3>
+                <p>Aktualne zapowiedzi i harmonogramy publikujemy na stronie glownej oraz na Discordzie HEX.</p>
+            </article>
+        </section>
         
     </Section>
 </ContentContainer>
@@ -281,6 +299,66 @@ import Section from './ContentContainer/Section.astro'
 <style>
     .eventHeader {
         margin: 100px 0 40px 0;
+    }
+
+    .archiveSeoIntro,
+    .archiveFaq {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .archiveSeoIntro p {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .archiveFaq {
+        width: min(1100px, 96%);
+        margin: 10px auto 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 18px;
+        padding: 16px;
+        color: #f6f0dd;
+        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .archiveFaq::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+    }
+
+    .archiveFaq h2 {
+        margin: 0 0 4px 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .archiveFaq article {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.24);
+        position: relative;
+        z-index: 1;
+    }
+
+    .archiveFaq h3 {
+        margin: 0 0 6px 0;
+        color: #ffd88c;
+    }
+
+    .archiveFaq p {
+        margin: 0;
+        line-height: 1.6;
     }
 
     li {

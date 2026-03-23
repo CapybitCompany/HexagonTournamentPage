@@ -5,7 +5,7 @@ import "./ImageBoxContent.css";
 import "photoswipe/style.css";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 
-const { imagePath, wrapperClass, lazyMeanColor, isLightBox} = Astro.props;
+const { imagePath, wrapperClass, lazyMeanColor, isLightBox, altText = ""} = Astro.props;
 ---
 
 <div class=`imageBoxWrapper ${wrapperClass}` style={{height: isLightBox ? "400px" : "500px"}}>
@@ -14,9 +14,9 @@ const { imagePath, wrapperClass, lazyMeanColor, isLightBox} = Astro.props;
     </div>
     <div class=`imageBoxImageContainer ${isLightBox ? "pswp-img" : ""}`>
         <a style={{display: isLightBox ? "initial" : "none"}} href=`/${imagePath}` data-pswp-width="1920" data-pswp-height="1080" >
-            <img class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${isLightBox ? "#f3f3f3" : lazyMeanColor}` alt="">
+            <img class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${isLightBox ? "#f3f3f3" : lazyMeanColor}` alt={altText}>
         </a>
-        <img style={{display: isLightBox ? "none" : "initial"}} class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt="">
+          <img style={{display: isLightBox ? "none" : "initial"}} class="imageBoxImage" src=`/${imagePath}` loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt={altText}>
     </div>
     
 </div>

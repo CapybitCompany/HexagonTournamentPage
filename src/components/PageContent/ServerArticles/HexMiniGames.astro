@@ -1,0 +1,72 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import Footer from '../../Footer/Footer.astro'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro'
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro'
+import '../../NavBar/NavBar.css'
+import '../WelcomePage/Welcome.styles.css'
+import './ServerArticle.styles.css'
+import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
+import Section from '../../ContentContainer/Section.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer Mini-Games Minecraft HEX - strona w przygotowaniu">
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <h1 class="archiveBannerText"></h1>
+        </div>
+    </FullImageContainer>
+
+    <div style="display: flex; width: 100%; justify-content: center;">
+        <TimeContainer />
+    </div>
+
+    <Section>
+        <article class="serverArticle">
+            <header class="articleHeader">
+                <p class="statusKicker">Status projektu</p>
+                <h1>Serwer Mini-Games</h1>
+                <p class="articleLead">Serwer Mini-Games jest w przygotowaniu. Trwają testy mini-gier, rankingów i map parkour pod rekordy czasu.</p>
+            </header>
+
+            <div class="articleColumns">
+                <section>
+                    <h2>Kierunek projektu</h2>
+                    <p>Budujemy lekki, dynamiczny tryb nastawiony na krótsze sesje i zdrową rywalizację między graczami.</p>
+                </section>
+
+                <section>
+                    <h2>Na starcie planujemy</h2>
+                    <ul>
+                        <li>Wybrane mini-gry i rotację map.</li>
+                        <li>Tablice wyników i rankingi sezonowe.</li>
+                        <li>System rekordów czasu dla tras parkour.</li>
+                    </ul>
+                </section>
+            </div>
+
+            <section class="faqSection">
+                <h2>FAQ - Mini-Games</h2>
+                <div class="faqList">
+                    <article class="faqItem">
+                        <h3>Jakie mini-gry beda dostepne na starcie?</h3>
+                        <p>Na start planujemy rotacje najpopularniejszych mini-gier oraz mapy parkour z tabela rekordow.</p>
+                    </article>
+                    <article class="faqItem">
+                        <h3>Czy rankingi w Mini-Games beda sezonowe?</h3>
+                        <p>Tak, rankingi beda resetowane sezonowo, a najlepsze wyniki trafia do archiwum i podsumowan.</p>
+                    </article>
+                    <article class="faqItem">
+                        <h3>Gdzie sledzic aktualizacje map i trybow?</h3>
+                        <p>Aktualizacje publikujemy regularnie na stronie glownej oraz na Discordzie HEX.</p>
+                    </article>
+                </div>
+            </section>
+
+            <p class="comingSoon">NIEBAWEM</p>
+        </article>
+    </Section>
+
+</ContentContainer>
+<Footer/>

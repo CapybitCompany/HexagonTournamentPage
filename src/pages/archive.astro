@@ -1,6 +1,56 @@
 ---
-import Archive from '../components/Archive.astro';
 import Layout from '../layouts/Layout.astro';
+const ArchiveComponent = (await import('../components/Archive.astro')).default;
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		name: "Archiwum wydarzen HEX",
+		description: "Archiwum turniejow i eventow Minecraft HEX z nagrodami, datami i relacjami.",
+		url: "https://www.minecrafthex.pl/archive/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Gdzie sprawdzic wyniki poprzednich turniejow HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Wyniki, daty i informacje o nagrodach znajdziesz w archiwum wydarzen na stronie HEX."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak czesto aktualizowane jest archiwum eventow?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Archiwum aktualizujemy po zakonczeniu kazdej edycji turnieju i wiekszych wydarzen."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Archiwum",
+				item: "https://www.minecrafthex.pl/archive/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -9,6 +59,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout 
 	customTitle="Archiwum wydarzeń - turnieje i eventy Minecraft Hex" 
 	customDescription="Archiwum wydarzeń Minecraft Hex - opisy turniejów i eventów, liczba uczestników, nagrody oraz galerie zdjęć z dotychczasowych edycji."
+	structuredData={structuredData}
 >
-	<Archive />
+	<ArchiveComponent />
 </Layout>

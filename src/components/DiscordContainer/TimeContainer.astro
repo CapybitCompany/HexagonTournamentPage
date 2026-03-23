@@ -4,9 +4,10 @@ import CountdownTimer from "./CountdownTimer.astro";
 <div class="discordContainerWrapper">
     <div class="discordContainer">
         <div class="headerWrapper">
-            <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Start serwera za:</h2>
+            <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Start turnieju Minecraft za:</h2>
         </div>
         <CountdownTimer />
+        <p class="countdownExtraInfo">Końcówka kwietnia: startuje serwer <b>Mini Games</b>.</p>
     
     </div>
 </div>
@@ -56,6 +57,14 @@ import CountdownTimer from "./CountdownTimer.astro";
     .discordText {
         color: white;
         text-align: center;
+    }
+
+    .countdownExtraInfo {
+        margin: 4px 0 0 0;
+        text-align: center;
+        color: #ffd88c;
+        font-weight: 600;
+        font-size: clamp(1rem, 1.4vw, 1.2rem);
     }
     .discordUrl{
         display: flex;

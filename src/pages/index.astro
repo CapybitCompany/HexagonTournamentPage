@@ -2,13 +2,79 @@
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jak dolaczyc do serwera Minecraft HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Dodaj adres Minecrafthex.pl w launcherze Minecraft, wejdz na serwer i dolacz na Discord: https://discord.gg/e6SuCrQHak."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak dzialaja bany na serwerze Hardcore SMP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Po smierci gracz dostaje tymczasowego bana, ktorego czas zalezy od czasu zycia i liczby zabojstw, zgodnie z zasadami trybu Hardcore SMP."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak zapisac sie na turniej Minecraft?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Zapisy i harmonogram turniejow publikujemy na stronie oraz na Discordzie HEX Network."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "Event",
+		name: "Turniej Minecraft HEX",
+		eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+		eventStatus: "https://schema.org/EventScheduled",
+		startDate: "2026-04-04T19:00:00+01:00",
+		endDate: "2026-04-04T23:00:00+01:00",
+		
+		description: "Turniej Minecraft HEX z nagrodami, rankingiem graczy i zapisem przez Discord.",
+		location: {
+			"@type": "VirtualLocation",
+			url: "https://www.minecrafthex.pl"
+		},
+		organizer: {
+			"@type": "Organization",
+			name: "HEX Network",
+			url: "https://www.minecrafthex.pl"
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			}
+		]
+	}
+];
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout 
-	customTitle="Turniej Minecraft Hex – turnieje, serwer SMP i społeczność" 
-	customDescription="Minecraft Hex – serwer SMP, mini gry, turnieje i wydarzenia. Dołącz do społeczności graczy i bierz udział w regularnych eventach."
+	customTitle="Serwer Minecraft Polska - turnieje, PVP, Parkour | HEX" 
+	customDescription="HEX Network to serwer Minecraft Polska z trybami Event, Mini Games, PVP, Parkour i Hardcore SMP. Turnieje, nagrody, ranking graczy i aktywny Discord."
+	structuredData={structuredData}
 >
 	<Welcome />
 </Layout>

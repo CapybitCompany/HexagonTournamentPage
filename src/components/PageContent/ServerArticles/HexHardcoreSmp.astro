@@ -1,0 +1,466 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import Footer from '../../Footer/Footer.astro'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro'
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro'
+import '../../NavBar/NavBar.css'
+import '../WelcomePage/Welcome.styles.css'
+import './ServerArticle.styles.css'
+import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
+import Section from '../../ContentContainer/Section.astro'
+---
+
+<NavBar/>
+<ContentContainer>
+    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer Hardcore SMP Minecraft HEX - strona w przygotowaniu">
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <h1 class="archiveBannerText"></h1>
+        </div>
+    </FullImageContainer>
+
+    <div style="display: flex; width: 100%; justify-content: center;">
+        <TimeContainer />
+    </div>
+
+    <Section>
+        <article class="serverArticle">
+            <header class="articleHeader">
+                <p class="statusKicker">Status projektu</p>
+                <h1>Serwer Hardcore SMP</h1>
+                <p class="articleLead">Hardcore SMP, w ktorym smierc oznacza bana, a im jestes lepszy, tym wiecej ryzykujesz. Zabijaj, przetrwaj i zostan legenda serwera.</p>
+            </header>
+
+            <div class="ctaRowTop">
+                <a class="ctaButton" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dolacz na Discord</a>
+                <a class="ctaButton ctaGhost copyIpButton" href="#" data-copy-ip="Minecrafthex.pl" aria-label="Skopiuj adres IP serwera">IP serwera: Minecrafthex.pl</a>
+            </div>
+
+            <section class="featureSection">
+                <h2>Dlaczego ten tryb jest inny?</h2>
+                <div class="featureGrid">
+                    <div class="featureTile"><strong>Smierc = ban</strong><span>Kazdy zgon realnie kosztuje.</span></div>
+                    <div class="featureTile"><strong>Im dluzej zyjesz, tym wieksze ryzyko</strong><span>Ban rosnie wraz z czasem przezycia.</span></div>
+                    <div class="featureTile"><strong>Zabijasz = podbijasz stawke</strong><span>Kille zwiekszaja ryzyko przy kolejnym zgonie.</span></div>
+                    <div class="featureTile"><strong>Heart Fragmenty ratuja sytuacje</strong><span>Skracaj bana i wracaj szybciej do gry.</span></div>
+                    <div class="featureTile"><strong>Publiczna smierc</strong><span>Serwer widzi, kto polegl i przez kogo.</span></div>
+                    <div class="featureTile"><strong>Rangi za zabojstwa</strong><span>Wiecej mocy, ale i wieksza kara za blad.</span></div>
+                </div>
+            </section>
+
+            <section class="quickRules">
+                <h2>Zasady w 30 sekund</h2>
+                <div class="ruleLine"><b>SMIERC</b><span>tymczasowy ban</span></div>
+                <div class="ruleLine"><b>Kazda godzina zycia</b><span>+1h bana</span></div>
+                <div class="ruleLine"><b>Kazde zabojstwo</b><span>+0.5h bana</span></div>
+                <div class="ruleLine"><b>Limit</b><span>maksymalnie 24h</span></div>
+            </section>
+
+            <div class="articleColumns hardcoreGrid">
+                <section>
+                    <h2>Smierc = tymczasowy ban</h2>
+                    <p>Ban za smierc rośnie wraz z tym, jak dlugo zyjesz i ile masz zabojstw.</p>
+                    <div class="formulaBox">
+                        <p><b>Czas bana</b></p>
+                        <p>Za kazda godzine gry bez smierci: <b>+1h</b> bana.</p>
+                        <p>Za kazde zabojstwo: <b>+0.5h</b> bana.</p>
+                        <p>Limit maksymalny: <b>24h</b>.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Publiczny komunikat smierci</h2>
+                    <ul>
+                        <li>Kto zginal.</li>
+                        <li>Ile mial zabojstw.</li>
+                        <li>Jak dlugo zyl.</li>
+                        <li>Na ile godzin dostal bana.</li>
+                        <li>Kto go zabil.</li>
+                    </ul>
+                    <p class="smallNote">Im wyzsza ranga poleglego gracza, tym mocniejszy i bardziej widoczny komunikat globalny. Zabicie topowego gracza ma byc glosne i widoczne dla calego serwera.</p>
+                </section>
+
+                <section>
+                    <h2>Informacje live dla graczy</h2>
+                    <ul>
+                        <li>Nad graczem: liczba killi i czas zycia.</li>
+                        <li>Komenda podgladu: ile godzin bana grozi graczowi przy smierci.</li>
+                    </ul>
+                    <p class="smallNote">Cel: gracz ma stale swiadomosc ryzyka i moze podejmowac taktyczne decyzje.</p>
+                </section>
+
+                <section>
+                    <h2>Rangi zalezne od zabojstw</h2>
+                    <div class="rankTable">
+                        <div><span>Ranga 0</span><b>0 killi</b></div>
+                        <div><span>Ranga 1</span><b>1 kill</b></div>
+                        <div><span>Ranga 2</span><b>3 kille</b></div>
+                        <div><span>Ranga 3</span><b>5 killi</b></div>
+                        <div><span>Ranga 4</span><b>10 killi</b></div>
+                        <div><span>Ranga 5</span><b>20 killi</b></div>
+                    </div>
+                    <p class="smallNote">Im wyzsza ranga, tym wiekszy mnoznik obrazen (latwiej umrzec), ale tez mocniejsze benefity.</p>
+                </section>
+
+                <section>
+                    <h2>Benefity i balans ryzyka</h2>
+                    <ul>
+                        <li>Lepsze kosmetyki na wyzszych rangach.</li>
+                        <li>Czestszy Heal i dodatkowe komendy QOL.</li>
+                        <li>AirDropy z lepszym lootem wraz z ranga.</li>
+                        <li>Dodatkowe bonusy wspierajace grupe/klan.</li>
+                    </ul>
+                    <p class="smallNote">Zasada: im bardziej ryzykujesz i im dluzej utrzymujesz forme, tym wieksza nagroda.</p>
+                </section>
+
+                <section>
+                    <h2>Heart Fragment</h2>
+                    <p>Specjalne przedmioty redukujace czas bana po smierci:</p>
+                    <ul>
+                        <li><b>Heart Fragment</b>: skraca bana o 1h.</li>
+                        <li><b>Big Heart Fragment</b>: skraca bana o 3h.</li>
+                    </ul>
+                    <div class="formulaBox">
+                        <p><b>Crafting:</b></p>
+                        <p>32 szt. zlota -> 1x Heart Fragment</p>
+                        <p>64 szt. zlota -> 1x Big Heart Fragment</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Dropy fragmentow</h2>
+                    <p>Heart Fragment moze wypadac z kilku zrodel:</p>
+                    <ul>
+                        <li>Ruda zlota (plan: tylko pierwsze rozbicie konkretnego bloku).</li>
+                        <li>AirDrop (niska szansa).</li>
+                        <li>Zabojstwo gracza (im wiecej killi mial zabity gracz, tym wieksza szansa).</li>
+                    </ul>
+                    <div class="rankTable compact">
+                        <div><span>Ranga 0</span><b>0.8%</b></div>
+                        <div><span>Ranga 1</span><b>0.7%</b></div>
+                        <div><span>Ranga 2</span><b>0.5%</b></div>
+                        <div><span>Ranga 3</span><b>0.3%</b></div>
+                        <div><span>Ranga 4</span><b>0.2%</b></div>
+                        <div><span>Ranga 5</span><b>0.1%</b></div>
+                    </div>
+                    <p class="smallNote">Niższa ranga = wyzsza szansa z dropu zlota. To pomaga nowym graczom wracac do gry.</p>
+                </section>
+            </div>
+
+            <section class="storiesSection">
+                <h2>Historie z serwera (miejsce pod highlighty)</h2>
+                <div class="storyGrid">
+                    <article><h3>Najdluzsze zycie dnia</h3><p>Miejsce na wpis, np. "Gracz X zyl 14h i zginal - ban 18h".</p></article>
+                    <article><h3>Najglosniejszy frag</h3><p>Miejsce na wpis, np. "Top 1 zostal zabity po serii 20 killi".</p></article>
+                    <article><h3>Powrot po banie</h3><p>Miejsce na wpis, np. "Gracz Y skrocil bana fragmentami i odrobil straty".</p></article>
+                </div>
+            </section>
+
+            <section class="gallerySection" id="event-signup">
+                <h2>Galeria i materialy promocyjne (miejsce na screeny)</h2>
+                <div class="galleryGrid">
+                    <div class="mediaPlaceholder">Miejsce na screen: walka PVP</div>
+                    <div class="mediaPlaceholder">Miejsce na screen: Airdrop i loot</div>
+                    <div class="mediaPlaceholder">Miejsce na screen: leaderboard i top graczy</div>
+                    <div class="mediaPlaceholder">Miejsce na screen: boss/event specjalny</div>
+                </div>
+            </section>
+
+            <section class="faqSection">
+                <h2>FAQ - Hardcore SMP</h2>
+                <div class="faqList">
+                    <article class="faqItem">
+                        <h3>Jak naliczany jest ban po smierci?</h3>
+                        <p>Ban rosnie wraz z czasem przezycia i liczba zabojstw. Szczegoly i limity opisane sa w sekcji zasad.</p>
+                    </article>
+                    <article class="faqItem">
+                        <h3>Do czego sluza Heart Fragmenty?</h3>
+                        <p>Fragmenty pozwalaja skrocic czas bana i szybciej wrocic do rozgrywki po smierci.</p>
+                    </article>
+                    <article class="faqItem">
+                        <h3>Gdzie dolaczyc i sledzic ogloszenia trybu?</h3>
+                        <p>Najwazniejsze komunikaty, zapisy i aktualizacje znajdziesz na Discordzie HEX.</p>
+                    </article>
+                </div>
+            </section>
+
+            <div class="ctaRowBottom">
+                <a class="ctaButton" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dolacz na Discord</a>
+                <a class="ctaButton ctaGhost" href="/contact">Zarejestruj sie na event</a>
+            </div>
+
+            <p class="comingSoon">NIEBAWEM</p>
+        </article>
+    </Section>
+</ContentContainer>
+<Footer/>
+
+<script>
+    const ipButtons = document.querySelectorAll<HTMLAnchorElement>('.copyIpButton');
+
+    ipButtons.forEach((button) => {
+        button.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const ip = button.dataset.copyIp || 'Minecrafthex.pl';
+            const defaultLabel = `IP serwera: ${ip}`;
+            let copied = false;
+
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(ip);
+                    copied = true;
+                }
+            } catch {
+                copied = false;
+            }
+
+            if (!copied) {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = ip;
+                tempInput.setAttribute('readonly', '');
+                tempInput.style.position = 'fixed';
+                tempInput.style.opacity = '0';
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    copied = document.execCommand('copy');
+                } catch {
+                    copied = false;
+                }
+                document.body.removeChild(tempInput);
+            }
+
+            button.textContent = copied ? `Skopiowano IP: ${ip}` : 'Nie udalo sie skopiowac';
+            button.classList.add(copied ? 'copied' : 'copyError');
+
+            window.setTimeout(() => {
+                button.textContent = defaultLabel;
+                button.classList.remove('copied', 'copyError');
+            }, 1800);
+        });
+    });
+</script>
+
+<style>
+    .hardcoreGrid {
+        margin-top: 24px;
+    }
+
+    .ctaRowTop,
+    .ctaRowBottom {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .ctaButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 10px 18px;
+        color: #181818;
+        background: #ffcf5a;
+        border: 1px solid #ffcf5a;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .ctaButton:hover {
+        background: #ffd97a;
+        transform: translateY(-1px);
+    }
+
+    .ctaGhost {
+        color: #ffe8b7;
+        background: transparent;
+        border-color: rgba(255, 232, 183, 0.5);
+    }
+
+    .copyIpButton {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .copyIpButton.copied {
+        color: #dff7d8;
+        border-color: rgba(120, 222, 132, 0.7);
+        background: rgba(82, 166, 96, 0.2);
+    }
+
+    .copyIpButton.copyError {
+        color: #ffd0d0;
+        border-color: rgba(255, 132, 132, 0.7);
+        background: rgba(156, 63, 63, 0.24);
+    }
+
+    .featureSection,
+    .quickRules,
+    .storiesSection,
+    .gallerySection {
+        display: flex;
+        flex-direction: column;
+        margin-top: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .featureSection h2,
+    .quickRules h2,
+    .storiesSection h2,
+    .gallerySection h2 {
+        margin: 0 0 12px 0;
+        text-align: center;
+    }
+
+    .featureGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .featureTile {
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .featureTile strong {
+        color: #ffdf97;
+    }
+
+    .quickRules {
+        display: grid;
+        gap: 8px;
+    }
+
+    .ruleLine {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.24);
+    }
+
+    .ruleLine b {
+        color: #ffd88c;
+    }
+
+    .formulaBox {
+        margin-top: 10px;
+        border: 1px dashed rgba(255, 207, 90, 0.55);
+        background: rgba(0, 0, 0, 0.28);
+        border-radius: 12px;
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .smallNote {
+        margin-top: 10px;
+        color: #ffdca3;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .rankTable {
+        margin-top: 6px;
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .rankTable div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        padding: 8px 10px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .rankTable.compact {
+        margin-top: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rankTable div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        padding: 8px 10px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .rankTable span {
+        color: #ffe3b0;
+        font-weight: 600;
+    }
+
+    .storyGrid,
+    .galleryGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .storyGrid article,
+    .mediaPlaceholder {
+        border-radius: 10px;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .storyGrid h3 {
+        margin: 0 0 6px 0;
+        color: #ffd88c;
+    }
+
+    .mediaPlaceholder {
+        min-height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #f5ddb2;
+        border-style: dashed;
+    }
+
+    @media (max-width: 640px) {
+        .featureGrid,
+        .storyGrid,
+        .galleryGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .rankTable {
+            grid-template-columns: 1fr;
+        }
+
+        .rankTable.compact {
+            grid-template-columns: 1fr;
+        }
+
+        .ruleLine {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>

@@ -11,7 +11,7 @@ import Section from './ContentContainer/Section.astro'
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;"}>
+    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;" altText="Zespol HEX Network i spolecznosc Minecraft podczas wydarzenia">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
         </div>
         
@@ -77,7 +77,7 @@ import Section from './ContentContainer/Section.astro'
 
             <section class="about__section">
                 
-                <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd">
+                <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd" altText="Discord HEX Network - dolacz do spolecznosci Minecraft">
                     <div class="fullWidthTileContent" >
                         <h1>Dołącz do community</h1>
                         <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
@@ -109,6 +109,27 @@ import Section from './ContentContainer/Section.astro'
         color: white;
         font-size: 6rem;
         font-family: "minecraft";
+    }
+
+    .faqSection {
+        gap: 12px;
+    }
+
+    .faqSection article {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.22);
+    }
+
+    .faqSection h3 {
+        margin: 0 0 6px 0;
+        color: #ffd88c;
+    }
+
+    .faqSection p {
+        margin: 0;
+        line-height: 1.6;
     }
 
     @media(max-width: 870px){

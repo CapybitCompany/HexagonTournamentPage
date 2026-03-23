@@ -16,8 +16,12 @@ import Section from './ContentContainer/Section.astro'
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image">
-    <h1 class="bannerText">Minecraft: Turnieje • SMP • Społeczność</h1>
+    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy">
+    <div class="bannerHero">
+        <h1 class="bannerTitle">Serwer Minecraft Polska - turnieje, PVP i Parkour w HEX Network</h1>
+        <p class="bannerSubtitle">IP serwera: <b>Minecrafthex.pl</b>. Najbliższy turniej: <b>4.04.2026, 19:00</b>. Regularne eventy, ranking graczy i nagrody dla najlepszych.</p>
+        <a class="bannerCta welcomeButton" href="https://minecrafthex.pl/discord">Dołącz</a>
+    </div>
     </FullImageContainer>
 
      <div style="display: flex; width: 100%; justify-content: center;">    
@@ -27,53 +31,191 @@ import Section from './ContentContainer/Section.astro'
 
     <ServerContainerWrapper sourceIP="Minecrafthex.pl">
 
-        <HexContainer src="images/Welcome/ServerBanner4.png" headerText="" href="/hexSMP"/>
+        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href="/hexEvent"/>
 
-        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="" href="/hexEvent"/>
+        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="MINI GAMES" href="/hexMiniGames"/>
 
-        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="" href="/hexMiniGames"/>
+        <HexContainer headerText="PARKOUR" href="/hexParkour" comingSoon={true} soonText="Niebawem"/>
+
+        <HexContainer headerText="PVP" href="/hexPvp" comingSoon={true} soonText="Niebawem"/>
+
+        <HexContainer headerText="HARDCORE SMP" href="/hexHardcoreSmp" comingSoon={true} soonText="Niebawem"/>
 
     </ServerContainerWrapper>
-    
-    <div style="width: 100%; display: flex; justify-content: center;">
-        <div style="width: 100%;" >
-            <DiscordContainer />
-        </div>
-    </div>
 
     <Section>
-        <h1>Aktualności i plany</h1>
-
-        <ImageBoxContent imagePath="images/Welcome/ServerBanner3.png" lazyMeanColor="#c3c1e6" wrapperClass="imageRight" isLightBox>
-            <div class="fullWidthTileContent" style="text-align: center;">
-                <h1>Serwer HexHogwart</h1>
-                <p>Serwer RPG w klimatach świata inspirowanego Hogwartem.</p>
-                <p>Już w 2027 roku!</p>
-            </div>
-        </ImageBoxContent>
+        <h2>Nagrody w turniejach Minecraft i harmonogram eventów</h2>
+        <div class="seoIntro">
+            <p>W HEX Network organizujemy turnieje Minecraft i wydarzenia sezonowe na serwerze Minecraft Polska. Z poprzednich edycji: pule nagród od <b>300 zł do 1000 zł</b> oraz bonusy eventowe.</p>
+            <p>Co znajdziesz na serwerze: <b>Event Zone</b>, <b>Mini Games</b>, <b>Parkour</b>, <b>PVP</b> i <b>Hardcore SMP</b>. Aktualne zapowiedzi i zapisy publikujemy na Discordzie.</p>
+            <p>Adres serwera: <b>Minecrafthex.pl</b>. Aktualizacje harmonogramu, ranking graczy Minecraft i archiwum turniejów są dostępne na stronie.</p>
+        </div>
     </Section>
 
     <Section>
-        <h1>Zobacz też...</h1>
+        <h2>Aktualności i plany serwera Minecraft</h2>
 
-        <ImageBoxContent imagePath="images/Welcome/Shop.jpg" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd">
-            <div class="fullWidthTileContent" >
-                <h1>Sklep</h1>
-                <p>Chcesz się wyróżnić jako VIP? Przyspieszyć rozwój na serwerze SMP? Dodać nagły zwrot akcji w trakcie turnieju?</p>
-                <a style="font-size: 2rem;" href="/shop"><b>Sprawdź sklep!</b></a>
+        <div class="hogwartShowcase" aria-label="Zapowiedz serwera Minecraft HexHogwart - wydarzenia i nagrody">
+            <div class="hogwartShowcaseMedia" role="img" aria-label="Grafika promocyjna serwera HexHogwart"></div>
+            <div class="hogwartShowcaseContent hogwartTile">
+                <h3 class="hogwartTitle">Serwer HexHogwart - magiczny RPG Minecraft</h3>
+                <p class="hogwartLead">Nowy projekt RPG inspirowany klimatem szkoły magii: fabuła sezonowa, rozwijanie postaci i eventy specjalne dla społeczności HEX.</p>
+                <div class="hogwartBadges" aria-label="Najważniejsze cechy serwera HexHogwart">
+                    <span>RPG i fabuła</span>
+                    <span>questy i rozwój postaci</span>
+                    <span>wydarzenia sezonowe</span>
+                </div>
+                <p class="hogwartRelease">Planowany start: <b>2027</b>. Zapowiedzi i informacje o testach pojawiają się na Discordzie.</p>
+                <a class="hogwartLink welcomeButton" href="https://minecrafthex.pl/discord" target="_blank" rel="noopener noreferrer"><b>Śledź zapowiedzi HexHogwart</b></a>
+            </div>
+        </div>
+    </Section>
+
+    <Section>
+        <h2>Jak dołączyć do serwera Minecraft krok po kroku</h2>
+        <div class="showcasePanel stepsPanel">
+            <p class="showcaseLead">Dołączenie zajmuje chwilę. Poniżej masz szybką instrukcję wejścia na serwer Minecraft Polska i dostęp do eventów HEX.</p>
+            <div class="showcaseGrid stepsGrid">
+                <article class="showcaseCard stepCard">
+                    <span class="stepIndex">01</span>
+                    <h3>Uruchom Minecraft Java Edition</h3>
+                    <p>Wejdź w tryb multiplayer i przygotuj listę serwerów.</p>
+                </article>
+                <article class="showcaseCard stepCard">
+                    <span class="stepIndex">02</span>
+                    <h3>Dodaj adres serwera</h3>
+                    <p>Wpisz adres <b>Minecrafthex.pl</b> i zapisz serwer na liście.</p>
+                </article>
+                <article class="showcaseCard stepCard">
+                    <span class="stepIndex">03</span>
+                    <h3>Dołącz na Discord</h3>
+                    <p>Wejdź na <b>minecrafthex.pl/discord</b>, aby dostawać terminy, zapisy i info o nagrodach oraz brać udział w turniejach.</p>
+                </article>
+            </div>
+        </div>
+    </Section>
+
+    <Section>
+        <h2>Terminy turniejów Minecraft i zapisy</h2>
+        <div class="showcasePanel timelinePanel">
+            <p class="showcaseLead">Turnieje Minecraft w HEX mają jasny harmonogram. Sprawdź najbliższy termin i jak działają zapisy.</p>
+            <div class="showcaseGrid timelineGrid">
+                <article class="showcaseCard timelineCard">
+                    <p class="timelineLabel">Najbliższy turniej</p>
+                    <h3>4.04.2026, 19:00</h3>
+                    <p>Start głównego eventu sezonu z rankingiem i nagrodami.</p>
+                </article>
+                <article class="showcaseCard timelineCard">
+                    <p class="timelineLabel">Zapisy</p>
+                    <h3>Discord + strona</h3>
+                    <p>Instrukcje publikujemy przez ogłoszenia oraz kanał społeczności.</p>
+                </article>
+                <article class="showcaseCard timelineCard">
+                    <p class="timelineLabel">Aktualizacje</p>
+                    <h3>Sezonowo i cyklicznie</h3>
+                    <p>Terminy i formaty są przedstawiane na naszym discordzie, a termin następnego wydarzenia widoczny jest na stronie.</p>
+                </article>
+            </div>
+        </div>
+    </Section>
+
+    <Section>
+        <h2>Top gracze sezonu i roku</h2>
+        <div class="showcasePanel leaderboardPanel">
+            <p class="showcaseLead">Top gracze sezonu i roku pojawiają się tutaj jako centralny ranking HEX. Sekcja jest przygotowana pod live update statystyk.</p>
+            <div class="showcaseGrid leaderboardGrid">
+                <article class="showcaseCard leaderboardCard">
+                    <p class="timelineLabel">Ranking sezonowy</p>
+                    <h3>Top gracze sezonu</h3>
+                    <p>Punkty, kille, zwycięstwa, streak oraz forma w bieżących eventach.</p>
+                </article>
+                <article class="showcaseCard leaderboardCard">
+                    <p class="timelineLabel">Ranking roczny</p>
+                    <h3>Top gracze roku</h3>
+                    <p>Klasyfikacja roczna oparta o wyniki sezonowe, MVP eventów i regularność gry.</p>
+                </article>
+            </div>
+            <div class="rulesInline">
+                <span>punkty rankingowe</span>
+                <span>kille i zwycięstwa</span>
+                <span>mvp sezonu i roku</span>
+            </div>
+        </div>
+    </Section>
+
+    <Section>
+        <h2 class="spotlightSectionTitle">Sklep Minecraft HEX i archiwum eventów</h2>
+
+        <ImageBoxContent imagePath="images/Welcome/Shop.jpg" wrapperClass="bottomGap imageRight welcomeFeatureBox" lazyMeanColor="#e5e3dd" altText="Sklep serwera Minecraft HEX - nagrody i pakiety">
+            <div class="fullWidthTileContent spotlightTile" >
+                <h3 class="spotlightCardTitle">Sklep serwera Minecraft HEX</h3>
+                <p class="spotlightCardText">Sprawdź pakiety VIP i dodatki, które wspierają rozwój projektu oraz organizację turniejów Minecraft.</p>
+                <p class="spotlightCardText">W sklepie znajdziesz usługi cyfrowe związane z eventami, sezonami i codzienną rozgrywką na serwerze.</p>
+                <a class="spotlightLink welcomeButton" href="/shop"><b>Przejdź do sklepu</b></a>
             </div>
         </ImageBoxContent>
-        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap" lazyMeanColor="#596872">
-            <div class="fullWidthTileContent" >
-                <h1>Archiwum eventów</h1>
-                <p>Wspomnienia z poprzednich turniejów. Zatrzymaj się i zobacz co już udało się zorganizowac.</p>
-                <p> Różne motywy, konkurencje i wiele wspomnień.</p>
-                <a style="font-size: 2rem;" href="/archive"><b>Zobacz relację!</b></a>
+        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap welcomeFeatureBox" lazyMeanColor="#596872" altText="Archiwum turniejów Minecraft HEX - wyniki i relacje">
+            <div class="fullWidthTileContent spotlightTile" >
+                <h3 class="spotlightCardTitle">Archiwum eventów Minecraft</h3>
+                <p class="spotlightCardText">Zobacz poprzednie edycje turniejów HEX: zwycięzców, pule nagród, daty wydarzeń i kluczowe momenty sezonu.</p>
+                <p class="spotlightCardText">Archiwum pokazuje historię społeczności i pomaga przygotować się do kolejnych eventów.</p>
+                <a class="spotlightLink welcomeButton" href="/archive"><b>Zobacz archiwum eventów</b></a>
             </div>
         </ImageBoxContent>
 
         </FullImageContainer>
     </Section>
+
+    <Section>
+        <h2>Nagrody i zasady punktacji</h2>
+        <div class="showcasePanel rewardsPanel">
+            <p class="showcaseLead">System nagród i punktacji promuje regularną grę, wyniki turniejowe i aktywność w eventach.</p>
+            <div class="showcaseGrid rewardsGrid">
+                <article class="showcaseCard rewardStat">
+                    <p>Pula nagród</p>
+                    <h3>300 zł - 1000 zł</h3>
+                </article>
+                <article class="showcaseCard rewardStat">
+                    <p>Punkty za</p>
+                    <h3>Wyniki, aktywność, daily questy, udział w livach i wydarzeniach.</h3>
+                </article>
+                <article class="showcaseCard rewardStat">
+                    <p>Publikacja zasad</p>
+                    <h3>Przed każdym eventem</h3>
+                </article>
+            </div>
+        </div>
+    </Section>
+
+    <Section>
+        <div class="faqSection showcasePanel faqPanel">
+            <h2>FAQ - serwer Minecraft HEX</h2>
+            <div class="faqList">
+                <article class="faqItem showcaseCard">
+                    <h3>Jak zapisać się na turniej Minecraft?</h3>
+                    <p>Zapisy uruchamiane są przez Discord oraz ogłoszenia na stronie przed każdą edycją turnieju.</p>
+                </article>
+                <article class="faqItem showcaseCard">
+                    <h3>Co dają punkty?</h3>
+                    <p>Punkty rankingowe pozwalają śledzić postępy graczy, zdobywać nagrody i awansować w rankingach sezonowych oraz rocznych.</p>
+                </article>
+                <article class="faqItem showcaseCard">
+                    <h3>Co to jest sezon?</h3>
+                    <p>Sezon to okres, w którym gracze rywalizują o punkty rankingowe. Na koniec sezonu przyznawane są nagrody i aktualizowane rankingi. Terminy sezonów są ustalane przez administrację serwera i będą wyświetlane na stronie oraz ogłaszane na naszym Discordzie.</p>
+                </article>
+                <article class="faqItem showcaseCard">
+                    <h3>Kiedy pojawią się kolejne serwery?</h3>
+                    <p>Informacje o nowych serwerach będą ogłaszane na naszym Discordzie oraz stronie internetowej. Śledź nasze kanały, aby być na bieżąco z nowościami. Planujemy wprowadzać je cyklicznie w kolejnych miesiącach.</p>
+                </article>
+                <article class="faqItem showcaseCard">
+                    <h3>Jak działają bany na Hardcore SMP?</h3>
+                    <p>Po śmierci gracz otrzymuje tymczasowego bana, który zależy od czasu życia i liczby zabójstw zgodnie z zasadami trybu. Dłuższe ryzyko bana będzie wynagradzane premiami oraz prestiżem.</p>
+                </article>
+            </div>
+        </div>
+    </Section>
+
+
 
 </ContentContainer>
 <Footer/>
@@ -93,39 +235,494 @@ import Section from './ContentContainer/Section.astro'
         }
     }
 
-    .bannerText{
-        width: 100%;
-        height: 60px;
-        position:relative;
-        font-weight: bold;
+    .bannerHero{
+        width: min(900px, 92%);
+        margin: 0 auto;
+        height: 100%;
+        position: relative;
         display: flex;
-        justify-content: center; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
         color: white;
-        top: 430px;
-        height: 60px;
+        text-align: center;
+        z-index: 1;
         opacity: 0; 
         animation: fadeIn 0.6s ease forwards;
         animation-delay: 1.4s;
-
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
     }
+
+    .bannerTitle {
+        margin: 0;
+        font-size: clamp(2rem, 3.2vw, 3.15rem);
+        line-height: 1.15;
+        font-weight: 700;
+    }
+
+    .bannerSubtitle {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+        line-height: 1.45;
+    }
+
+    .welcomeButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+        padding: 12px 34px;
+        border-radius: 999px;
+        background-color: var(--accent-color);
+        color: #141414;
+        font-size: clamp(1.05rem, 1.2vw, 1.35rem);
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
+    }
+
+    .welcomeButton b {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .welcomeButton:hover {
+        background-color: #ffb52a;
+        transform: translateY(-2px);
+        color: #141414;
+        text-decoration: none;
+    }
+
+    .welcomeButton:active {
+        transform: translateY(0);
+    }
+
+    .welcomeButton::after,
+    .welcomeButton:hover::after {
+        content: none;
+        width: 0;
+    }
+
+    .seoIntro {
+        width: min(1100px, 96%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .seoIntro p {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .showcasePanel {
+        display: flex;
+        flex-direction: column;
+        width: min(1120px, 96%);
+        margin: 0 auto;
+        border-radius: 18px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        color: #fff4d8;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+    }
+
+    .showcasePanel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+    }
+
+    .stepsPanel,
+    .timelinePanel,
+    .rewardsPanel,
+    .leaderboardPanel {
+        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+    }
+
+    .showcaseLead {
+        margin: 0 0 14px 0;
+        text-align: center;
+        line-height: 1.6;
+        font-size: clamp(1rem, 1.2vw, 1.12rem);
+        position: relative;
+        z-index: 1;
+    }
+
+    .showcaseGrid {
+        display: grid;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .stepsGrid,
+    .timelineGrid,
+    .rewardsGrid,
+    .leaderboardGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcaseCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.42);
+        padding: 12px;
+    }
+
+    .showcaseCard h3,
+    .showcaseCard p {
+        margin: 0;
+    }
+
+    .showcaseCard h3 {
+        color: #ffe39f;
+        font-size: clamp(1.03rem, 1.4vw, 1.22rem);
+        line-height: 1.3;
+    }
+
+    .showcaseCard p {
+        color: #f1eadb;
+        line-height: 1.5;
+    }
+
+    .stepIndex {
+        display: inline-flex;
+        width: fit-content;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 224, 160, 0.5);
+        color: #ffd88c;
+        padding: 2px 9px;
+        font-weight: 700;
+        font-size: 0.86rem;
+    }
+
+    .timelineLabel {
+        color: #ffd49c;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.86rem;
+        font-weight: 700;
+    }
+
+    .rewardStat h3 {
+        font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+    }
+
+    .rulesInline {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .rulesInline span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        background: rgba(0, 0, 0, 0.22);
+        color: #ffe4b6;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .faqSection {
+        display: flex;
+        flex-direction: column;
+        width: min(1100px, 96%);
+        margin: 0 auto;
+        padding: 14px 16px;
+        color: white;
+    }
+
+    .faqPanel {
+        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+    }
+
+    .faqSection h2 {
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+
+    .faqList {
+        display: grid;
+        gap: 10px;
+    }
+
+    .faqItem {
+        gap: 6px;
+    }
+
+    .faqItem h3 {
+        margin: 0;
+        color: #ffd88c;
+    }
+
+    .faqItem p {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .spotlightSectionTitle {
+        margin-bottom: 8px;
+        font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+        letter-spacing: 0.01em;
+    }
+
+    .spotlightCardTitle {
+        margin: 0 0 8px 0;
+        font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+        line-height: 1.2;
+    }
+
+    .spotlightCardText {
+        margin: 0;
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
+        line-height: 1.55;
+    }
+
+    .spotlightLink {
+        margin-top: 8px;
+    }
+
+    .spotlightLink b,
+    .hogwartLink b {
+        font-weight: 700;
+    }
+
+    .hogwartTile {
+        gap: 10px;
+    }
+
+    .hogwartTile,
+    .spotlightTile {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hogwartShowcase {
+        width: min(1120px, 96%);
+        margin: 0 auto;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        display: grid;
+        grid-template-columns: minmax(260px, 42%) 1fr;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+    }
+
+    .hogwartShowcaseMedia {
+        min-height: 420px;
+        background-image: url('/images/Welcome/ServerBanner3.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hogwartShowcaseContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 18px;
+        gap: 10px;
+        color: #fff3d2;
+        background: linear-gradient(165deg, rgba(9, 10, 14, 0.7), rgba(9, 10, 14, 0.9));
+    }
+
+    .hogwartTitle {
+        margin: 0;
+        font-size: clamp(1.45rem, 2.2vw, 2rem);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        color: #ffe39f;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+    }
+
+    .hogwartLead {
+        margin: 0;
+        font-size: clamp(1rem, 1.2vw, 1.14rem);
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+        color: #f5efde;
+    }
+
+    .hogwartBadges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .hogwartBadges span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        background: rgba(0, 0, 0, 0.46);
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        max-width: 100%;
+        text-align: center;
+        overflow-wrap: anywhere;
+        box-sizing: border-box;
+        color: #fff1cc;
+    }
+
+    .hogwartRelease {
+        margin: 0;
+        font-size: clamp(0.96rem, 1.1vw, 1.05rem);
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+        color: #f5efde;
+    }
+
+    .hogwartLink {
+        margin-top: 2px;
+    }
+
     @media (max-width: 1070px){
-        .bannerText{
-            top: 270px;
-            font-size: 30px;
+        .bannerHero{
+            gap: 14px;
+            width: min(760px, 94%);
         }
     }
 
     @media (max-width: 900px){
-        .bannerText{
-            top: 0;
-            top: 250px;
-            font-size: 30px;
+        .bannerSubtitle {
+            max-width: 620px;
+        }
+
+    }
+    @media (max-width: 980px) {
+        .hogwartShowcase {
+            grid-template-columns: 1fr;
+        }
+
+        .hogwartShowcaseMedia {
+            min-height: 260px;
         }
     }
+
     @media (max-width: 900px){
-        .bannerText{
-            top: 280px;
-            font-size: 21px;
+        .bannerHero{
+            justify-content: center;
+            padding-bottom: max(60px, env(safe-area-inset-bottom));
+            gap: 12px;
+        }
+
+        .bannerTitle {
+            font-size: clamp(1.5rem, 7vw, 2rem);
+        }
+
+        .bannerSubtitle {
+            font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+        }
+
+        .welcomeButton {
+            width: min(220px, 90%);
+            padding: 11px 24px;
+        }
+    }
+
+    @media (max-width: 870px) {
+        .imageBoxWrapper.welcomeFeatureBox {
+            height: 980px;
+        }
+
+        .imageBoxWrapper.welcomeFeatureBox .imageBoxContent {
+            height: 58%;
+            justify-content: flex-start;
+            padding: 14px 14px 20px 14px;
+        }
+
+        .imageBoxWrapper.welcomeFeatureBox .imageBoxImageContainer {
+            height: 42%;
+        }
+
+        .hogwartTile,
+        .spotlightTile {
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .hogwartTitle,
+        .spotlightCardTitle {
+            font-size: clamp(1.2rem, 4.6vw, 1.55rem);
+            line-height: 1.22;
+        }
+
+        .hogwartLead,
+        .spotlightCardText,
+        .hogwartRelease {
+            max-width: 96%;
+            font-size: clamp(0.94rem, 3.4vw, 1rem);
+            line-height: 1.45;
+        }
+
+        .hogwartBadges span {
+            font-size: 0.78rem;
+            padding: 5px 8px;
+            width: min(100%, 260px);
+        }
+
+        .welcomeButton {
+            width: min(100%, 320px);
+            padding: 10px 14px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .imageBoxWrapper.welcomeFeatureBox {
+            height: 1180px;
+        }
+
+        .hogwartShowcaseMedia {
+            min-height: 220px;
+        }
+
+        .hogwartShowcaseContent {
+            padding: 14px 12px 18px 12px;
+            gap: 8px;
+        }
+
+        .imageBoxWrapper.welcomeFeatureBox .imageBoxContent {
+            height: 64%;
+        }
+
+        .imageBoxWrapper.welcomeFeatureBox .imageBoxImageContainer {
+            height: 36%;
         }
     }
 </style>

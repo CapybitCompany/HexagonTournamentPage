@@ -1,6 +1,56 @@
 ---
-import Contact from '../components/Contact.astro';
 import Layout from '../layouts/Layout.astro';
+const ContactComponent = (await import('../components/Contact.astro')).default;
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		name: "Kontakt HEX Network",
+		description: "Kontakt do zespolu HEX Network: Discord i e-mail do spraw wspolpracy i wsparcia.",
+		url: "https://www.minecrafthex.pl/contact/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jak skontaktowac sie z administracja HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Najlatwiej przez Discord HEX lub mailowo na minecrafthexagon@gmail.com."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie zglosic wspolprace lub reklame?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Zapytania o wspolprace i reklame przyjmujemy mailowo oraz przez Discord."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Kontakt",
+				item: "https://www.minecrafthex.pl/contact/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -9,6 +59,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout 
 	customTitle="Kontakt – Minecraft Hex" 
 	customDescription="Skontaktuj się z zespołem Minecraft Hex. Pytania, współpraca, wsparcie techniczne i informacje o wydarzeniach."
+	structuredData={structuredData}
 >
-	<Contact />
+	<ContactComponent />
 </Layout>

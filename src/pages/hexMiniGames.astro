@@ -1,14 +1,66 @@
 ---
-import HexMiniGames from '../components/HexEvent.astro';
+import HexMiniGamesPage from '../components/PageContent/ServerArticles/HexMiniGames.astro';
 import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jakie mini-gry beda dostepne na starcie?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Na start planujemy rotacje najpopularniejszych mini-gier oraz mapy parkour z tabela rekordow."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Czy rankingi w Mini-Games beda sezonowe?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Tak, rankingi beda resetowane sezonowo, a najlepsze wyniki trafia do archiwum i podsumowan."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie sledzic aktualizacje map i trybow?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Aktualizacje publikujemy regularnie na stronie glownej oraz na Discordzie HEX."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Mini-Games",
+				item: "https://www.minecrafthex.pl/hexMiniGames/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout 
-	customTitle="Hex MiniGames – serwer Minecraft z parkour i rekordami" 
-	customDescription="Turnieje minecraft Hex -Hex MiniGames - serwer Minecraft z parkour, mini grami i systemem rekordów. Graj ze znajomymi, rywalizuj i bij najlepsze czasy."
+	customTitle="Hex MiniGames - serwer Minecraft w przygotowaniu" 
+	customDescription="Hex MiniGames - serwer Minecraft z mini-grami i parkour jest w przygotowaniu. Wkrótce więcej informacji."
+	structuredData={structuredData}
 >
-	<HexMiniGames />
+	<HexMiniGamesPage />
 </Layout>

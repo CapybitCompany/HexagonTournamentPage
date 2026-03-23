@@ -1,14 +1,66 @@
 ---
-import HexEvent from '../components/HexEvent.astro';
+import HexEventPage from '../components/PageContent/ServerArticles/HexEvent.astro';
 import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jak zapisac sie na turniej Event Zone?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Zapisy publikujemy na stronie i na Discordzie HEX przed kazda edycja wydarzenia."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Kiedy ruszaja pierwsze eventy?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Najblizszy turniej zaplanowany jest na 4.04.2026 o 19:00, a kolejne terminy beda oglaszane cyklicznie."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie sprawdzic wyniki poprzednich eventow?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Wyniki i relacje trafiaja do archiwum eventow oraz komunikatow na Discordzie."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Event Zone",
+				item: "https://www.minecrafthex.pl/hexEvent/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout 
-	customTitle="Serwer Hex Event - turnieje i wydarzenia Minecraft z nagrodami" 
-	customDescription="Hex Event – serwer Minecraft z turniejami, sezonowymi wyzwaniami i nagrodami. Rywalizacja, eventy i aktywna społeczność graczy."
+	customTitle="Hex Event Zone - serwer Minecraft w przygotowaniu" 
+	customDescription="Hex Event Zone - serwer turniejowy Minecraft jest w przygotowaniu. Wkrótce mapy, harmonogramy i kolejne wydarzenia."
+	structuredData={structuredData}
 >
-	<HexEvent />
+	<HexEventPage />
 </Layout>

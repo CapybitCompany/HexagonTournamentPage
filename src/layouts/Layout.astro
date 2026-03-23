@@ -1,6 +1,56 @@
 ---
 import '../styles/global.css';
-const {customTitle, customDescription} = Astro.props;
+const {customTitle, customDescription, structuredData = []} = Astro.props;
+
+const defaultStructuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "HEX Network",
+		url: "https://www.minecrafthex.pl",
+		logo: "https://www.minecrafthex.pl/logo.ico",
+		sameAs: ["https://discord.gg/e6SuCrQHak"]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "HEX Network",
+		url: "https://www.minecrafthex.pl"
+	}
+];
+
+const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) ? structuredData : [structuredData])];
+
+const currentPath = Astro.url.pathname;
+const pathSegments = currentPath.split('/').filter(Boolean);
+
+const breadcrumbLabelMap: Record<string, string> = {
+	about: 'O nas',
+	aboutShop: 'O sklepie',
+	archive: 'Archiwum',
+	contact: 'Kontakt',
+	hexEvent: 'Event Zone',
+	hexMiniGames: 'Mini-Games',
+	hexParkour: 'Parkour',
+	hexPvp: 'PVP',
+	hexHardcoreSmp: 'Hardcore SMP',
+	hexHardcoreSsmp: 'Hardcore SMP',
+	hexSMP: 'SMP',
+	politics: 'Polityka prywatnosci',
+	regulations: 'Regulamin',
+	shop: 'Sklep'
+};
+
+const breadcrumbs = [{label: 'Strona glowna', href: '/'}];
+
+let accPath = '';
+for (const segment of pathSegments) {
+	accPath += `/${segment}`;
+	breadcrumbs.push({
+		label: breadcrumbLabelMap[segment] ?? segment,
+		href: `${accPath}/`
+	});
+}
 ---
 <!doctype html>
 <html lang="en">
@@ -15,9 +65,26 @@ const {customTitle, customDescription} = Astro.props;
 		<meta property="og:title" content=`${customTitle}`>
 		<meta property="og:description" content=`${customDescription}`>
 		<meta property="og:image" content="https://www.minecrafthex.pl/images/Welcome/Banner.jpg">
+		{schemaList.map((schema) => (
+			<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+		))}
 
 	</head>
 	<body>
+		<nav class="globalBreadcrumb" aria-label="Breadcrumb" data-global-breadcrumb>
+			<ol>
+				{breadcrumbs.map((crumb, index) => (
+					<li>
+						{index < breadcrumbs.length - 1 ? (
+							<a href={crumb.href}>{crumb.label}</a>
+						) : (
+							<span aria-current="page">{crumb.label}</span>
+						)}
+						{index < breadcrumbs.length - 1 ? <span class="separator" aria-hidden="true">&gt;</span> : null}
+					</li>
+				))}
+			</ol>
+		</nav>
 		<slot />
 	</body>
 </html>
@@ -30,9 +97,89 @@ const {customTitle, customDescription} = Astro.props;
 		background-color: var(--background-color);
 		overflow-x: hidden;
 	}
+
+	.globalBreadcrumb {
+		display: flex;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 12px 18px;
+		background: rgba(0, 0, 0, 0.82);
+		color: #f5e1b5;
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+		visibility: hidden;
+		margin-bottom: 10px;
+	}
+
+	.globalBreadcrumb ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.globalBreadcrumb li {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.globalBreadcrumb a {
+		color: #ffd88c;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.globalBreadcrumb a:hover {
+		text-decoration: underline;
+	}
+
+	.globalBreadcrumb span[aria-current="page"] {
+		color: #ffffff;
+		font-weight: 700;
+	}
+
+	.globalBreadcrumb .separator {
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	.globalBreadcrumb.ready {
+		visibility: visible;
+	}
+
+	@media (max-width: 640px) {
+		.globalBreadcrumb {
+			padding: 10px 12px;
+			font-size: 0.9rem;
+		}
+	}
 </style>
 
 <script type="module" defer>
+	function placeGlobalBreadcrumb() {
+		const breadcrumb = document.querySelector('[data-global-breadcrumb]');
+		if (!breadcrumb) {
+			return;
+		}
+
+		const mainContent = document.querySelector('main.contentContainer');
+		if (!mainContent) {
+			breadcrumb.classList.add('ready');
+			return;
+		}
+
+		const topBanner = mainContent.querySelector(':scope > .blackBackground');
+		if (topBanner && topBanner.parentElement === mainContent) {
+			topBanner.insertAdjacentElement('afterend', breadcrumb);
+		} else {
+			mainContent.insertAdjacentElement('afterbegin', breadcrumb);
+		}
+
+		breadcrumb.classList.add('ready');
+	}
+
 	function initCarouselsOnPage() {
 		const carousels = document.querySelectorAll('[data-carousel-id]');
 		carousels.forEach(carousel => {
@@ -41,5 +188,6 @@ const {customTitle, customDescription} = Astro.props;
 		});
 	}
 
+	placeGlobalBreadcrumb();
 	initCarouselsOnPage();
 </script>

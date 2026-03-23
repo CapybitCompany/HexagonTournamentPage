@@ -1,6 +1,56 @@
 ---
-import About from '../components/About.astro';
+import AboutPage from '../components/About.astro';
 import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		name: "O nas - HEX Network",
+		description: "Informacje o spolecznosci HEX Network, eventach, turniejach i zasadach serwera Minecraft.",
+		url: "https://www.minecrafthex.pl/about/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Czym jest HEX Network?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "HEX Network to spolecznosc graczy Minecraft z turniejami, eventami i siecia serwerow."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie publikowane sa informacje o eventach?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Najwazniejsze aktualizacje i harmonogramy wydarzen publikujemy na stronie glownej i Discordzie HEX."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "O nas",
+				item: "https://www.minecrafthex.pl/about/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -9,6 +59,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout 
 	customTitle="O nas - Minecraft Hex | Społeczność i wydarzenia" 
 	customDescription="Minecraft Hex to społeczność graczy organizująca turnieje, wydarzenia i serwery Minecraft. Tworzymy miejsce do wspólnej gry i rywalizacji."
+	structuredData={structuredData}
 >
-	<About />
+	<AboutPage />
 </Layout>

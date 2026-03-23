@@ -1,0 +1,63 @@
+---
+import HexParkourPage from '../components/PageContent/ServerArticles/HexParkour.astro';
+import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jak dziala ranking czasu na Parkour?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Kazda trasa ma oddzielna tabele wynikow, a ranking aktualizuje sie po ukonczeniu biegu."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Czy beda trasy dla poczatkujacych?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Tak, planujemy poziomy trudnosci od tras treningowych po wymagajace challenge."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak czesto pojawiaja sie nowe mapy Parkour?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Nowe mapy beda dodawane sezonowo wraz z resetem tabel i wydarzeniami specjalnymi."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Parkour",
+				item: "https://www.minecrafthex.pl/hexParkour/"
+			}
+		]
+	}
+];
+---
+
+<Layout
+	customTitle="Hex Parkour - serwer Minecraft w przygotowaniu"
+	customDescription="Hex Parkour - nowy serwer Minecraft z trasami parkour i rankingami. Wkrótce więcej informacji."
+	structuredData={structuredData}
+>
+	<HexParkourPage />
+</Layout>

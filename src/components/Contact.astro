@@ -11,7 +11,7 @@ import Section from './ContentContainer/Section.astro'
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/contact/contact.png" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;"}>
+    <FullImageContainer imagePath="images/contact/contact.png" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;" altText="Kontakt do zespolu HEX Network Minecraft">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
         </div>
         
@@ -20,20 +20,36 @@ import Section from './ContentContainer/Section.astro'
     <Section>
         <h1>Kontakt</h1>
 
-        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap" lazyMeanColor="#596872">
+        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap" lazyMeanColor="#596872" altText="Kontakt e-mail do zespolu HEX Network">
             <div class="fullWidthTileContent" >
                 <h1>E-mail</h1>
                 <p> Chciałbyś skontaktować się w sprawie współpracy? Szukasz miejsca reklamowego? Masz jakieś pytania? </p>
                 <p> minecrafthexagon@gmail.com</p>
             </div>
         </ImageBoxContent>
-        <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd">
+        <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd" altText="Discord HEX Network - wsparcie i komunikacja z administracja">
             <div class="fullWidthTileContent" >
                 <h1>Discord</h1>
                 <p>Chciałbyś dołączyć do społeczności i brać udział w przyszłych wydarzeniach? </p>
                 <a style="font-size: 2rem; text-align:center;" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na serwer discord!</b></a>
             </div>
         </ImageBoxContent>
+
+        <section class="contactFaq showcaseFaq">
+            <h2>FAQ - Kontakt</h2>
+            <article class="showcaseFaqCard">
+                <h3>Gdzie najszybciej uzyskam odpowiedz?</h3>
+                <p>Najszybciej przez Discord HEX, gdzie aktywnie odpowiadamy na pytania graczy.</p>
+            </article>
+            <article class="showcaseFaqCard">
+                <h3>Jak zglosic wspolprace lub reklame?</h3>
+                <p>Napisz do nas mailowo na minecrafthexagon@gmail.com lub skontaktuj sie przez Discord.</p>
+            </article>
+            <article class="showcaseFaqCard">
+                <h3>Czy moge zglosic problem techniczny?</h3>
+                <p>Tak, zgloszenia techniczne przyjmujemy przez Discord i w kanalach wsparcia.</p>
+            </article>
+        </section>
     </Section>
 
 </ContentContainer>
@@ -48,6 +64,58 @@ import Section from './ContentContainer/Section.astro'
         color: white;
         font-size: 6rem;
         font-family: "minecraft";
+    }
+
+    .contactFaq {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: min(1100px, 96%);
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 18px;
+        padding: 16px;
+        color: #f6f0dd;
+        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .contactFaq::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+    }
+
+    .contactFaq h2 {
+        margin: 0 0 4px 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .contactFaq article {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.24);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .contactFaq h3 {
+        margin: 0 0 6px 0;
+        color: #ffd88c;
+    }
+
+    .contactFaq p {
+        margin: 0;
+        line-height: 1.6;
     }
 
     @media(max-width: 870px){

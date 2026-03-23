@@ -10,7 +10,9 @@ const {sourceIP} = Astro.props;
         <div class="contentWrapper">
             <slot/>
         </div>
-        <ServerCounter sourceIP={sourceIP}/>
+        <div class="serverCounterWrapper">
+          <ServerCounter sourceIP={sourceIP}/>
+        </div>
 
         <div class="toast" id="copy-toast" aria-live="polite" aria-atomic="true"></div>
     </div>
@@ -51,6 +53,31 @@ const {sourceIP} = Astro.props;
     .contentWrapper{
         display: flex;
         width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .serverCounterWrapper {
+        width: 100%;
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .contentWrapper :global(.discordContainerWrapper) {
+      flex: 0 0 calc(33.333% - 10px);
+      max-width: calc(33.333% - 10px);
+      min-width: 250px;
+      margin: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .contentWrapper :global(.discordContainerWrapper) {
+        flex: 0 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+      }
     }
 
     h1{
@@ -89,24 +116,32 @@ const {sourceIP} = Astro.props;
         .contentWrapper{
             flex-direction: column;
             width: 90%;
+          padding: 0;
+        }
+
+        .contentWrapper :global(.discordContainerWrapper) {
+          flex: 0 0 100%;
+          max-width: 100%;
+          min-width: 100%;
         }
 
     }
 </style>
 
 <script>
-  const header = document.querySelector(".copyHeader");
-  const toast = document.getElementById("copy-toast");
-  let toastTimer;
+  const header = document.querySelector(".copyHeader") as HTMLElement | null;
+  const toast = document.getElementById("copy-toast") as HTMLElement | null;
+  let toastTimer: ReturnType<typeof setTimeout> | null = null;
 
-  function showToast(text) {
+  function showToast(text: string) {
+    if (!toast) return;
     toast.textContent = text;
     toast.classList.add("show");
-    clearTimeout(toastTimer);
+    if (toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
   }
 
-  async function copyText(text) {
+  async function copyText(text: string) {
     try {
       await navigator.clipboard.writeText(text);
       showToast(`Adres serwera skopiowano do schowka`);

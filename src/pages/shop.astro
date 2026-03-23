@@ -1,6 +1,56 @@
 ---
-import Shop from '../components/Shop.astro';
 import Layout from '../layouts/Layout.astro';
+const ShopComponent = (await import('../components/Shop.astro')).default;
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Sklep HEX Network",
+		description: "Sklep serwera Minecraft HEX z uslugami cyfrowymi, VIP i dodatkami do rozgrywki.",
+		url: "https://www.minecrafthex.pl/shop/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Jak dziala zakup w sklepie HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Po wybraniu uslugi przechodzisz do platnosci przez operatora, a realizacja jest automatycznie przypisywana do konta gracza."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Czy zakupione uslugi cyfrowe podlegaja zwrotowi?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Zakup dotyczy uslug cyfrowych i po ich realizacji nie ma mozliwosci standardowego zwrotu."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona glowna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Sklep",
+				item: "https://www.minecrafthex.pl/shop/"
+			}
+		]
+	}
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -9,6 +59,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout 
 	customTitle="Turniej Minecraft Hex - Sklep" 
 	customDescription="Turniej Minecraft Hex – turnieje z nagrodami, serwer SMP i aktywna społeczność. Sklep VIP wspiera organizację wydarzeń i daje benefity."
+	structuredData={structuredData}
 >
-	<Shop />
+	<ShopComponent />
 </Layout>

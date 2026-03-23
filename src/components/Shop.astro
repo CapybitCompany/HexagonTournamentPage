@@ -32,9 +32,25 @@ import './PageContent/WelcomePage/Welcome.styles.css'
             </p>
             <p>
                 <strong>Informacje o sklepie i regulamin</strong><br />
-                <p>Więcej o zasadach korzystania ze sklepu oraz polityce prywatności znajdziesz <a href="/aboutShop">Tutaj</a> </p>
+              Wiecej o zasadach korzystania ze sklepu oraz polityce prywatnosci znajdziesz <a href="/aboutShop">tutaj</a>.
             </p>
             </div>
+
+            <section class="faqSection">
+              <h2>FAQ - Sklep HEX</h2>
+              <article>
+                <h3>Jak szybko realizowane sa zakupy w sklepie?</h3>
+                <p>W wiekszosci przypadkow uslugi cyfrowe sa realizowane automatycznie zaraz po zaksiogowaniu platnosci.</p>
+              </article>
+              <article>
+                <h3>Czy uslugi ze sklepu daja przewage pay-to-win?</h3>
+                <p>Nie, sklep jest projektowany pod wsparcie projektu i dodatki quality-of-life bez psucia balansu rozgrywki.</p>
+              </article>
+              <article>
+                <h3>Gdzie zglosic problem z platnoscia?</h3>
+                <p>W razie problemu napisz do nas na Discordzie lub mailowo, podajac nick gracza i szczegoly zamowienia.</p>
+              </article>
+            </section>
     </div>
     
   </div>
@@ -46,18 +62,20 @@ import './PageContent/WelcomePage/Welcome.styles.css'
     const SHOP_URL = "https://vishop.pl/shop/24611/server/23302";
 
     const countdownEl = document.getElementById("countdown");
-    let timeLeft = 10; // sekundy
+    let timeLeft = 10;
 
-    const interval = setInterval(() => {
-      timeLeft--;
-      if (timeLeft <= 0) {
-        countdownEl.textContent = "0";
-        clearInterval(interval);
-        window.location.href = SHOP_URL;
-      } else {
-        countdownEl.textContent = timeLeft;
-      }
-    }, 1000);
+    if (countdownEl) {
+      const interval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          countdownEl.textContent = "0";
+          clearInterval(interval);
+          window.location.href = SHOP_URL;
+        } else {
+          countdownEl.textContent = String(timeLeft);
+        }
+      }, 1000);
+    }
   </script>
 
 <style>
@@ -71,7 +89,7 @@ import './PageContent/WelcomePage/Welcome.styles.css'
       max-width: 600px;
       text-align: center;
       color: white;
-      max-height: 450px;
+      max-height: none;
     }
     
     a {
@@ -108,6 +126,36 @@ import './PageContent/WelcomePage/Welcome.styles.css'
 
     .legal strong {
       color: #e5e7eb;
+    }
+
+    .faqSection {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .faqSection h2 {
+      text-align: center;
+      margin: 0;
+    }
+
+    .faqSection article {
+      border: 1px solid #4b5563;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .faqSection h3 {
+      margin: 0 0 6px 0;
+      color: #ffd88c;
+    }
+
+    .faqSection p {
+      margin: 0;
+      line-height: 1.6;
     }
 
   </style>
