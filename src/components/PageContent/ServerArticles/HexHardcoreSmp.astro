@@ -8,6 +8,10 @@ import '../WelcomePage/Welcome.styles.css'
 import './ServerArticle.styles.css'
 import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -167,20 +171,20 @@ import Section from '../../ContentContainer/Section.astro'
 
             <section class="faqSection">
                 <h2>FAQ - Hardcore SMP</h2>
-                <div class="faqList">
-                    <article class="faqItem">
-                        <h3>Jak naliczany jest ban po śmierci?</h3>
-                        <p>Ban rośnie wraz z czasem przeżycia i liczbą zabójstw. Szczegóły i limity opisane są w sekcji zasad.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Do czego służą Heart Fragmenty?</h3>
-                        <p>Fragmenty pozwalają skrócić czas bana i szybciej wrócić do rozgrywki po śmierci.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Gdzie dołączyć i śledzić ogłoszenia trybu?</h3>
-                        <p>Najważniejsze komunikaty, zapisy i aktualizacje znajdziesz na Discordzie HEX.</p>
-                    </article>
-                </div>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Jak naliczany jest ban po śmierci?</FAQQuestion>
+                        <FAQAnswer>Ban rośnie wraz z czasem przeżycia i liczbą zabójstw. Szczegóły i limity opisane są w sekcji zasad.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Do czego służą Heart Fragmenty?</FAQQuestion>
+                        <FAQAnswer>Fragmenty pozwalają skrócić czas bana i szybciej wrócić do rozgrywki po śmierci.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Gdzie dołączyć i śledzić ogłoszenia trybu?</FAQQuestion>
+                        <FAQAnswer>Najważniejsze komunikaty, zapisy i aktualizacje znajdziesz na Discordzie HEX.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
             </section>
 
             <div class="ctaRowBottom">

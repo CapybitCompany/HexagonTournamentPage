@@ -4,6 +4,10 @@ import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
+import FAQ from './FAQ/FAQ.astro'
+import FAQLine from './FAQ/FAQLine.astro'
+import FAQQuestion from './FAQ/FAQQuestion.astro'
+import FAQAnswer from './FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -38,18 +42,20 @@ import './PageContent/WelcomePage/Welcome.styles.css'
 
             <section class="faqSection">
               <h2>FAQ - Sklep HEX</h2>
-              <article>
-                <h3>Jak szybko realizowane sa zakupy w sklepie?</h3>
-                <p>W wiekszosci przypadkow uslugi cyfrowe sa realizowane automatycznie zaraz po zaksiogowaniu platnosci.</p>
-              </article>
-              <article>
-                <h3>Czy uslugi ze sklepu daja przewage pay-to-win?</h3>
-                <p>Nie, sklep jest projektowany pod wsparcie projektu i dodatki quality-of-life bez psucia balansu rozgrywki.</p>
-              </article>
-              <article>
-                <h3>Gdzie zglosic problem z platnoscia?</h3>
-                <p>W razie problemu napisz do nas na Discordzie lub mailowo, podajac nick gracza i szczegoly zamowienia.</p>
-              </article>
+              <FAQ>
+                <FAQLine>
+                  <FAQQuestion>Jak szybko realizowane sa zakupy w sklepie?</FAQQuestion>
+                  <FAQAnswer>W wiekszosci przypadkow uslugi cyfrowe sa realizowane automatycznie zaraz po zaksiogowaniu platnosci.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                  <FAQQuestion>Czy uslugi ze sklepu daja przewage pay-to-win?</FAQQuestion>
+                  <FAQAnswer>Nie, sklep jest projektowany pod wsparcie projektu i dodatki quality-of-life bez psucia balansu rozgrywki.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                  <FAQQuestion>Gdzie zglosic problem z platnoscia?</FAQQuestion>
+                  <FAQAnswer>W razie problemu napisz do nas na Discordzie lub mailowo, podajac nick gracza i szczegoly zamowienia.</FAQAnswer>
+                </FAQLine>
+              </FAQ>
             </section>
     </div>
     
@@ -131,31 +137,8 @@ import './PageContent/WelcomePage/Welcome.styles.css'
     .faqSection {
       display: flex;
       flex-direction: column;
-      gap: 10px;
       margin-top: 18px;
       text-align: left;
-    }
-
-    .faqSection h2 {
-      text-align: center;
-      margin: 0;
-    }
-
-    .faqSection article {
-      border: 1px solid #4b5563;
-      border-radius: 10px;
-      padding: 10px 12px;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .faqSection h3 {
-      margin: 0 0 6px 0;
-      color: #ffd88c;
-    }
-
-    .faqSection p {
-      margin: 0;
-      line-height: 1.6;
     }
 
   </style>

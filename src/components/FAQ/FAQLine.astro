@@ -2,15 +2,20 @@
 import "../../styles/global.css"
 ---
 
-<div class="faqLine">
+<div class="faqLine" data-faq-line data-expanded="false">
     <slot/>
 </div>
 
 <style>
     .faqLine{
         width: 100%;
-        max-width: 980px;
-        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.42);
         flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        box-sizing: border-box;
     }
 </style>

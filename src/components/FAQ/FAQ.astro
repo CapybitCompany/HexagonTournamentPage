@@ -2,27 +2,145 @@
 import "../../styles/global.css"
 ---
 
-<div class="faqContainer">
-    <slot></slot>
+<div class="faqContainer" data-faq-container data-expanded="false" aria-hidden="true">
+    <div class="faqContent" data-faq-content>
+        <slot></slot>
+    </div>
 </div>
+
+<script>
+    const faqContainers = document.querySelectorAll("[data-faq-container]");
+
+    faqContainers.forEach((container) => {
+        const heading = container.previousElementSibling;
+        const content = container.querySelector("[data-faq-content]");
+
+        if (!(heading instanceof HTMLElement) || !(content instanceof HTMLElement)) {
+            return;
+        }
+
+        heading.classList.add("faqToggleHeading");
+        heading.tabIndex = 0;
+        heading.setAttribute("role", "button");
+        heading.setAttribute("aria-expanded", "false");
+
+        let containerExpanded = false;
+
+        const applyContainerState = () => {
+            const expandedValue = containerExpanded ? "true" : "false";
+            const hiddenValue = containerExpanded ? "false" : "true";
+            container.setAttribute("data-expanded", expandedValue);
+            container.setAttribute("aria-hidden", hiddenValue);
+            heading.setAttribute("aria-expanded", expandedValue);
+            content.style.maxHeight = containerExpanded ? "9999px" : "0px";
+        };
+
+        const toggleContainer = () => {
+            containerExpanded = !containerExpanded;
+            applyContainerState();
+        };
+
+        applyContainerState();
+
+        heading.addEventListener("click", toggleContainer);
+        heading.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleContainer();
+            }
+        });
+
+        const faqLines = container.querySelectorAll("[data-faq-line]");
+
+        faqLines.forEach((line) => {
+            const question = line.querySelector(".faqQuestion");
+            const answer = line.querySelector(".faqAnswer");
+
+            if (!(question instanceof HTMLElement) || !(answer instanceof HTMLElement)) {
+                return;
+            }
+
+            let lineExpanded = false;
+
+            const applyLineState = () => {
+                const expandedValue = lineExpanded ? "true" : "false";
+                line.setAttribute("data-expanded", expandedValue);
+                question.setAttribute("aria-expanded", expandedValue);
+                answer.style.maxHeight = lineExpanded ? answer.scrollHeight + "px" : "0px";
+            };
+
+            const toggleLine = () => {
+                lineExpanded = !lineExpanded;
+                applyLineState();
+            };
+
+            applyLineState();
+            question.addEventListener("click", toggleLine);
+        });
+
+        window.addEventListener("resize", () => {
+            faqLines.forEach((line) => {
+                const answer = line.querySelector(".faqAnswer");
+
+                if (!(answer instanceof HTMLElement)) {
+                    return;
+                }
+
+                if (line.getAttribute("data-expanded") === "true") {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+    });
+</script>
 
 <style>
     .faqContainer{
         width: 100%;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 200px;
+        display: block;
     }
 
-    @media (max-width: 1200px) {
-        .faqContainer{
-            margin-bottom: 150px;
-        }
+    .faqContent {
+        width: 100%;
+        display: grid;
+        gap: 10px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 1s ease, opacity 1s ease;
     }
 
-    @media (max-width: 550px) {
-        .faqContainer{
-            margin-bottom: 100px;
-        }
+    .faqContainer[data-expanded="true"] .faqContent {
+        opacity: 1;
+    }
+
+    :global(.faqToggleHeading) {
+        margin: 0 auto 10px auto;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        display: block;
+        width: fit-content;
+        position: relative;
+        padding-right: 20px;
+    }
+
+    :global(.faqToggleHeading::after) {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 9px solid #ffe39f;
+        transform-origin: 35% 50%;
+        transform: translateY(-50%);
+        transition: transform 1s ease;
+    }
+
+    :global(.faqToggleHeading[aria-expanded="true"]::after) {
+        transform: translateY(-50%) rotate(90deg);
     }
 </style>

@@ -8,8 +8,18 @@ import "../../styles/global.css"
 
 <style>
     .faqAnswer{
-
         width: 100%;
+        margin: 0;
+        line-height: 1.6;
+        color: #f1eadb;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 1s ease, opacity 1s ease;
+    }
+
+    :global(.faqLine[data-expanded="true"] .faqAnswer) {
+        opacity: 1;
     }
 
     @media (max-width: 870px) {

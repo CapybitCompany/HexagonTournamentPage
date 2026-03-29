@@ -2,20 +2,52 @@
 import "../../styles/global.css"
 ---
 
-<div class="faqQuestion">
-    <b><slot/></b>
-</div>
+<button class="faqQuestion" type="button" aria-expanded="false">
+    <span class="faqQuestionText"><slot/></span>
+</button>
 
 <style>
     .faqQuestion{
-        margin-bottom: 15px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffd88c;
+        text-align: center;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        font-size: clamp(1.03rem, 1.4vw, 1.22rem);
+        font-weight: 700;
+        line-height: 1.3;
+        position: relative;
+        padding-right: 20px;
     }
 
-    @media (max-width: 870px) {
-        .faqQuestion{
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-        }
+    .faqQuestionText {
+        width: 100%;
+        text-align: center;
+    }
+
+    .faqQuestion::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 8px solid #ffd88c;
+        transform-origin: 35% 50%;
+        transform: translateY(-50%);
+        transition: transform 1s ease;
+    }
+
+    :global(.faqLine[data-expanded="true"] .faqQuestion::after) {
+        transform: translateY(-50%) rotate(90deg);
     }
 </style>
