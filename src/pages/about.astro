@@ -7,7 +7,7 @@ const structuredData = [
 		"@context": "https://schema.org",
 		"@type": "AboutPage",
 		name: "O nas - HEX Network",
-		description: "Informacje o spolecznosci HEX Network, eventach, turniejach i zasadach serwera Minecraft.",
+		description: 'Poznaj HEX Network - polska spolecznosc i serwer Minecraft tworzace turnieje, eventy, rankingi oraz autorskie tryby rozgrywki.',
 		url: "https://www.minecrafthex.pl/about/"
 	},
 	{
@@ -16,18 +16,26 @@ const structuredData = [
 		mainEntity: [
 			{
 				"@type": "Question",
-				name: "Czym jest HEX Network?",
+				name: 'Czym jest HEX Network?',
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "HEX Network to spolecznosc graczy Minecraft z turniejami, eventami i siecia serwerow."
+					text: 'HEX Network to polska spolecznosc i serwer Minecraft laczace turnieje, eventy, ranking graczy oraz autorskie tryby rozgrywki.',
 				}
 			},
 			{
 				"@type": "Question",
-				name: "Gdzie publikowane sa informacje o eventach?",
+				name: 'Gdzie publikowane sa informacje o eventach i turniejach?',
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Najwazniejsze aktualizacje i harmonogramy wydarzen publikujemy na stronie glownej i Discordzie HEX."
+					text: 'Najwazniejsze informacje publikujemy na stronie glownej, Discordzie HEX Network oraz w archiwum wydarzen.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Jak moge dolaczyc do spolecznosci HEX?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Najlatwiej zaczac od dolaczenia na Discord HEX Network, gdzie znajduja sie ogloszenia, informacje o serwerze i najblizszych wydarzeniach.',
 				}
 			}
 		]
@@ -52,13 +60,14 @@ const structuredData = [
 	}
 ];
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout 
-	customTitle="O nas - Minecraft Hex | Społeczność i wydarzenia" 
-	customDescription="Minecraft Hex to społeczność graczy organizująca turnieje, wydarzenia i serwery Minecraft. Tworzymy miejsce do wspólnej gry i rywalizacji."
+	customTitle="O nas | HEX Network - polska społeczność i serwer Minecraft"
+	customDescription="Poznaj HEX Network - polską społeczność i serwer Minecraft z turniejami, eventami, rankingiem graczy i autorskimi trybami. Sprawdź, jak działa projekt i gdzie dołączyć."
+	ogImage="/images/About/aboutBanner.webp"
+	ogType="article"
+	canonicalUrl="https://www.minecrafthex.pl/about"
 	structuredData={structuredData}
 >
 	<AboutPage />
