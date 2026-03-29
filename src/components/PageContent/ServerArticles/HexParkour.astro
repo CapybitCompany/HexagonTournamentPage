@@ -8,6 +8,10 @@ import '../WelcomePage/Welcome.styles.css'
 import './ServerArticle.styles.css'
 import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -48,20 +52,20 @@ import Section from '../../ContentContainer/Section.astro'
 
             <section class="faqSection">
                 <h2>FAQ - Parkour</h2>
-                <div class="faqList">
-                    <article class="faqItem">
-                        <h3>Jak dziala ranking czasu na Parkour?</h3>
-                        <p>Kazda trasa ma oddzielna tabele wynikow, a ranking aktualizuje sie po ukonczeniu biegu.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Czy beda trasy dla poczatkujacych?</h3>
-                        <p>Tak, planujemy poziomy trudnosci od podstawowych tras treningowych po wymagajace challenge.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Jak czesto pojawiaja sie nowe mapy Parkour?</h3>
-                        <p>Nowe mapy beda dodawane sezonowo wraz z resetem tabel i wydarzeniami specjalnymi.</p>
-                    </article>
-                </div>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Jak dziala ranking czasu na Parkour?</FAQQuestion>
+                        <FAQAnswer>Kazda trasa ma oddzielna tabele wynikow, a ranking aktualizuje sie po ukonczeniu biegu.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy beda trasy dla poczatkujacych?</FAQQuestion>
+                        <FAQAnswer>Tak, planujemy poziomy trudnosci od podstawowych tras treningowych po wymagajace challenge.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Jak czesto pojawiaja sie nowe mapy Parkour?</FAQQuestion>
+                        <FAQAnswer>Nowe mapy beda dodawane sezonowo wraz z resetem tabel i wydarzeniami specjalnymi.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
             </section>
 
             <p class="comingSoon">NIEBAWEM</p>

@@ -8,6 +8,10 @@ import '../WelcomePage/Welcome.styles.css'
 import './ServerArticle.styles.css'
 import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -48,20 +52,20 @@ import Section from '../../ContentContainer/Section.astro'
 
             <section class="faqSection">
                 <h2>FAQ - Event Zone</h2>
-                <div class="faqList">
-                    <article class="faqItem">
-                        <h3>Jak zapisac sie na turniej Event Zone?</h3>
-                        <p>Zapisy publikujemy na stronie i na Discordzie HEX. Link do zapisow pojawia sie przed kazda edycja wydarzenia.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Kiedy ruszaja pierwsze eventy?</h3>
-                        <p>Najblizszy turniej zaplanowany jest na 4.04.2026 o 19:00. Kolejne terminy beda oglaszane cyklicznie.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Gdzie sprawdzic wyniki poprzednich eventow?</h3>
-                        <p>Wyniki i relacje trafiaja do archiwum eventow oraz komunikatow na Discordzie.</p>
-                    </article>
-                </div>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Jak zapisac sie na turniej Event Zone?</FAQQuestion>
+                        <FAQAnswer>Zapisy publikujemy na stronie i na Discordzie HEX. Link do zapisow pojawia sie przed kazda edycja wydarzenia.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Kiedy ruszaja pierwsze eventy?</FAQQuestion>
+                        <FAQAnswer>Najblizszy turniej zaplanowany jest na 4.04.2026 o 19:00. Kolejne terminy beda oglaszane cyklicznie.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Gdzie sprawdzic wyniki poprzednich eventow?</FAQQuestion>
+                        <FAQAnswer>Wyniki i relacje trafiaja do archiwum eventow oraz komunikatow na Discordzie.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
             </section>
 
             <p class="comingSoon">NIEBAWEM</p>

@@ -8,6 +8,10 @@ import '../WelcomePage/Welcome.styles.css'
 import './ServerArticle.styles.css'
 import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -48,20 +52,20 @@ import Section from '../../ContentContainer/Section.astro'
 
             <section class="faqSection">
                 <h2>FAQ - Mini-Games</h2>
-                <div class="faqList">
-                    <article class="faqItem">
-                        <h3>Jakie mini-gry beda dostepne na starcie?</h3>
-                        <p>Na start planujemy rotacje najpopularniejszych mini-gier oraz mapy parkour z tabela rekordow.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Czy rankingi w Mini-Games beda sezonowe?</h3>
-                        <p>Tak, rankingi beda resetowane sezonowo, a najlepsze wyniki trafia do archiwum i podsumowan.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Gdzie sledzic aktualizacje map i trybow?</h3>
-                        <p>Aktualizacje publikujemy regularnie na stronie glownej oraz na Discordzie HEX.</p>
-                    </article>
-                </div>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Jakie mini-gry beda dostepne na starcie?</FAQQuestion>
+                        <FAQAnswer>Na start planujemy rotacje najpopularniejszych mini-gier oraz mapy parkour z tabela rekordow.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy rankingi w Mini-Games beda sezonowe?</FAQQuestion>
+                        <FAQAnswer>Tak, rankingi beda resetowane sezonowo, a najlepsze wyniki trafia do archiwum i podsumowan.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Gdzie sledzic aktualizacje map i trybow?</FAQQuestion>
+                        <FAQAnswer>Aktualizacje publikujemy regularnie na stronie glownej oraz na Discordzie HEX.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
             </section>
 
             <p class="comingSoon">NIEBAWEM</p>

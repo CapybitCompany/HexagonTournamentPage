@@ -8,6 +8,10 @@ import '../WelcomePage/Welcome.styles.css'
 import './ServerArticle.styles.css'
 import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -48,20 +52,12 @@ import Section from '../../ContentContainer/Section.astro'
 
             <section class="faqSection">
                 <h2>FAQ - PVP</h2>
-                <div class="faqList">
-                    <!-- <article class="faqItem">
-                        <h3>Czy na serwerze PVP beda tryby 1v1 i team?</h3>
-                        <p>Tak, planujemy areny 1v1 oraz formaty druzynowe z osobnymi tabelami wynikow.</p>
-                    </article>
-                    <article class="faqItem">
-                        <h3>Jak dziala ranking PVP?</h3>
-                        <p>Ranking bedzie oparty o zwyciestwa, serie wygranych i aktywnosc w sezonie.</p>
-                    </article> -->
-                    <article class="faqItem">
-                        <h3>Gdzie zglaszac uwagi do balansu?</h3>
-                        <p>Feedback i propozycje zmian balansu zbieramy na Discordzie HEX.</p>
-                    </article>
-                </div>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Gdzie zglaszac uwagi do balansu?</FAQQuestion>
+                        <FAQAnswer>Feedback i propozycje zmian balansu zbieramy na Discordzie HEX.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
             </section>
 
             <p class="comingSoon">NIEBAWEM</p>

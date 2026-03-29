@@ -11,6 +11,10 @@ import HexContainer from './DiscordContainer/HexContainer.astro'
 import TimeContainer from './DiscordContainer/TimeContainer.astro'
 import ServerContainerWrapper from './DiscordContainer/ServerContainerWrapper.astro'
 import Section from './ContentContainer/Section.astro'
+import FAQ from './FAQ/FAQ.astro'
+import FAQLine from './FAQ/FAQLine.astro'
+import FAQQuestion from './FAQ/FAQQuestion.astro'
+import FAQAnswer from './FAQ/FAQAnswer.astro'
 
 ---
 
@@ -18,9 +22,8 @@ import Section from './ContentContainer/Section.astro'
 <ContentContainer>
     <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy">
     <div class="bannerHero">
-        <h1 class="bannerTitle">Serwer Minecraft Polska - turnieje, PVP i Parkour w HEX Network</h1>
-        <p class="bannerSubtitle">IP serwera: <b>Minecrafthex.pl</b>. Najbliższy turniej: <b>4.04.2026, 19:00</b>. Regularne eventy, ranking graczy i nagrody dla najlepszych.</p>
-        <a class="bannerCta welcomeButton" href="https://minecrafthex.pl/discord">Dołącz</a>
+        <h1 class="bannerTitle">Turnieje Minecraft, serwery i wyzwania!</h1>
+        <a class="welcomeButton bannerCta" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer"><b>Dołącz</b></a>
     </div>
     </FullImageContainer>
 
@@ -44,101 +47,79 @@ import Section from './ContentContainer/Section.astro'
     </ServerContainerWrapper>
 
     <Section>
-        <h2>Nagrody w turniejach Minecraft i harmonogram eventów</h2>
+        <h2>Czym jest Minecraft Hex</h2>
         <div class="seoIntro">
-            <p>W HEX Network organizujemy turnieje Minecraft i wydarzenia sezonowe na serwerze Minecraft Polska. Z poprzednich edycji: pule nagród od <b>300 zł do 1000 zł</b> oraz bonusy eventowe.</p>
-            <p>Co znajdziesz na serwerze: <b>Event Zone</b>, <b>Mini Games</b>, <b>Parkour</b>, <b>PVP</b> i <b>Hardcore SMP</b>. Aktualne zapowiedzi i zapisy publikujemy na Discordzie.</p>
-            <p>Adres serwera: <b>Minecrafthex.pl</b>. Aktualizacje harmonogramu, ranking graczy Minecraft i archiwum turniejów są dostępne na stronie.</p>
+            <p><b>Minecraft Hex</b> to polska społeczność Minecraft oparta na <b>turniejach, sezonach rankingowych i eventach z nagrodami</b>. Rywalizuj, zdobywaj punkty i awansuj w klasyfikacji graczy. Dodatkowo 
+                graj na naszych serwerach z <b>tworzonymi przez nas pluginami, które wprowadzają unikalne tryby i mechaniki</b>.
+            </p>
         </div>
     </Section>
 
     <Section>
-        <h2>Aktualności i plany serwera Minecraft</h2>
-
-        <div class="hogwartShowcase" aria-label="Zapowiedz serwera Minecraft HexHogwart - wydarzenia i nagrody">
-            <div class="hogwartShowcaseMedia" role="img" aria-label="Grafika promocyjna serwera HexHogwart"></div>
-            <div class="hogwartShowcaseContent hogwartTile">
-                <h3 class="hogwartTitle">Serwer HexHogwart - magiczny RPG Minecraft</h3>
-                <p class="hogwartLead">Nowy projekt RPG inspirowany klimatem szkoły magii: fabuła sezonowa, rozwijanie postaci i eventy specjalne dla społeczności HEX.</p>
-                <div class="hogwartBadges" aria-label="Najważniejsze cechy serwera HexHogwart">
-                    <span>RPG i fabuła</span>
-                    <span>questy i rozwój postaci</span>
-                    <span>wydarzenia sezonowe</span>
-                </div>
-                <p class="hogwartRelease">Planowany start: <b>2027</b>. Zapowiedzi i informacje o testach pojawiają się na Discordzie.</p>
-                <a class="hogwartLink welcomeButton" href="https://minecrafthex.pl/discord" target="_blank" rel="noopener noreferrer"><b>Śledź zapowiedzi HexHogwart</b></a>
+        <h2>HEX w liczbach</h2>
+        <div class="showcasePanel socialProofPanel">
+            <div class="showcaseGrid socialProofGrid">
+                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Rozegranych turniejow</p><h3>6</h3></article>
+                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Graczy w rankingach</p><h3>44</h3></article>
+                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Członków Discord</p><h3>121</h3></article>
+                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Dni naszej działalności</p><h3 data-days-from="2025-03-15">0</h3></article>
             </div>
         </div>
     </Section>
 
-    <Section>
-        <h2>Jak dołączyć do serwera Minecraft krok po kroku</h2>
-        <div class="showcasePanel stepsPanel">
-            <p class="showcaseLead">Dołączenie zajmuje chwilę. Poniżej masz szybką instrukcję wejścia na serwer Minecraft Polska i dostęp do eventów HEX.</p>
-            <div class="showcaseGrid stepsGrid">
-                <article class="showcaseCard stepCard">
-                    <span class="stepIndex">01</span>
-                    <h3>Uruchom Minecraft Java Edition</h3>
-                    <p>Wejdź w tryb multiplayer i przygotuj listę serwerów.</p>
-                </article>
-                <article class="showcaseCard stepCard">
-                    <span class="stepIndex">02</span>
-                    <h3>Dodaj adres serwera</h3>
-                    <p>Wpisz adres <b>Minecrafthex.pl</b> i zapisz serwer na liście.</p>
-                </article>
-                <article class="showcaseCard stepCard">
-                    <span class="stepIndex">03</span>
-                    <h3>Dołącz na Discord</h3>
-                    <p>Wejdź na <b>minecrafthex.pl/discord</b>, aby dostawać terminy, zapisy i info o nagrodach oraz brać udział w turniejach.</p>
-                </article>
-            </div>
-        </div>
-    </Section>
 
     <Section>
-        <h2>Terminy turniejów Minecraft i zapisy</h2>
-        <div class="showcasePanel timelinePanel">
-            <p class="showcaseLead">Turnieje Minecraft w HEX mają jasny harmonogram. Sprawdź najbliższy termin i jak działają zapisy.</p>
-            <div class="showcaseGrid timelineGrid">
-                <article class="showcaseCard timelineCard">
-                    <p class="timelineLabel">Najbliższy turniej</p>
-                    <h3>4.04.2026, 19:00</h3>
-                    <p>Start głównego eventu sezonu z rankingiem i nagrodami.</p>
+        <h2>Aktualności i plany</h2>
+        <div class="showcasePanel updatesPanel">
+            <div class="updatesList">
+                <article class="showcaseCard updatesItem">
+                    <div class="updatesMedia" aria-hidden="true">
+                        <img src="images/Welcome/Activities/Term.jpg" alt="Najbliższy turniej 3.04.2026 o godzinie 19:00."/>
+                    </div>
+                    <div class="updatesContent">
+                        <h3>Hex VII — 3.04.2026, 19:00</h3>
+                        <p>Najbliższy turniej z pulą nagród i punktami do rankingu.</p>
+                    </div>
                 </article>
-                <article class="showcaseCard timelineCard">
-                    <p class="timelineLabel">Zapisy</p>
-                    <h3>Discord + strona</h3>
-                    <p>Instrukcje publikujemy przez ogłoszenia oraz kanał społeczności.</p>
+                <article class="showcaseCard updatesItem">
+                    <div class="updatesMedia" aria-hidden="true">
+                        <img src="images/Welcome/Activities/Minigames.jpg" alt="Start Minigames w okolicy końca kwietnia."/>
+                    </div>
+                    <div class="updatesContent">
+                        <h3>Start Minigames — koniec kwietnia</h3>
+                        <p>Ruszamy z nowym segmentem luźniejszych trybów i oryginalnymi mini-grami.</p>
+                    </div>
                 </article>
-                <article class="showcaseCard timelineCard">
-                    <p class="timelineLabel">Aktualizacje</p>
-                    <h3>Sezonowo i cyklicznie</h3>
-                    <p>Terminy i formaty są przedstawiane na naszym discordzie, a termin następnego wydarzenia widoczny jest na stronie.</p>
+                <article class="showcaseCard updatesItem">
+                    <div class="updatesMedia" aria-hidden="true">
+                        <img src="images/Welcome/Activities/Castle.jpg" alt="W 2027 startuje HexHogwart inspirowany światem magii w klimatach RPG."/>
+                    </div>
+                    <div class="updatesContent">
+                        <h3>HexHogwart — w budowie</h3>
+                        <p>Trwają prace nad nowym światem i mechanikami RPG.</p>
+                    </div>
+                </article>
+                <article class="showcaseCard updatesItem">
+                    <div class="updatesMedia" aria-hidden="true">
+                        <img src="images/Welcome/Activities/Rank.jpg" alt="Nasz serwer posiada rankingi najlepszych graczy sezonowo i rocznie."/>
+                    </div>
+                    <div class="updatesContent">
+                        <h3>Nowy sezon rankingowy — wkrótce</h3>
+                        <p>Przygotuj się na nową klasyfikację i walkę o topkę.</p>
+                    </div>
                 </article>
             </div>
         </div>
     </Section>
 
     <Section>
-        <h2>Top gracze sezonu i roku</h2>
-        <div class="showcasePanel leaderboardPanel">
-            <p class="showcaseLead">Top gracze sezonu i roku pojawiają się tutaj jako centralny ranking HEX. Sekcja jest przygotowana pod live update statystyk.</p>
-            <div class="showcaseGrid leaderboardGrid">
-                <article class="showcaseCard leaderboardCard">
-                    <p class="timelineLabel">Ranking sezonowy</p>
-                    <h3>Top gracze sezonu</h3>
-                    <p>Punkty, kille, zwycięstwa, streak oraz forma w bieżących eventach.</p>
-                </article>
-                <article class="showcaseCard leaderboardCard">
-                    <p class="timelineLabel">Ranking roczny</p>
-                    <h3>Top gracze roku</h3>
-                    <p>Klasyfikacja roczna oparta o wyniki sezonowe, MVP eventów i regularność gry.</p>
-                </article>
-            </div>
-            <div class="rulesInline">
-                <span>punkty rankingowe</span>
-                <span>kille i zwycięstwa</span>
-                <span>mvp sezonu i roku</span>
+        <h2>Dlaczego warto zagrać?</h2>
+        <div class="showcasePanel benefitsPanel">
+            <div class="showcaseGrid benefitsGrid">
+                <article class="showcaseCard"><h3>Turnieje z nagrodami</h3></article>
+                <article class="showcaseCard"><h3>Ranking sezonowy i roczny</h3></article>
+                <article class="showcaseCard"><h3>Aktywna społeczność i fajni admini</h3></article>
+                <article class="showcaseCard"><h3>Regularne eventy i nowe tryby</h3></article>
             </div>
         </div>
     </Section>
@@ -150,7 +131,6 @@ import Section from './ContentContainer/Section.astro'
             <div class="fullWidthTileContent spotlightTile" >
                 <h3 class="spotlightCardTitle">Sklep serwera Minecraft HEX</h3>
                 <p class="spotlightCardText">Sprawdź pakiety VIP i dodatki, które wspierają rozwój projektu oraz organizację turniejów Minecraft.</p>
-                <p class="spotlightCardText">W sklepie znajdziesz usługi cyfrowe związane z eventami, sezonami i codzienną rozgrywką na serwerze.</p>
                 <a class="spotlightLink welcomeButton" href="/shop"><b>Przejdź do sklepu</b></a>
             </div>
         </ImageBoxContent>
@@ -158,7 +138,6 @@ import Section from './ContentContainer/Section.astro'
             <div class="fullWidthTileContent spotlightTile" >
                 <h3 class="spotlightCardTitle">Archiwum eventów Minecraft</h3>
                 <p class="spotlightCardText">Zobacz poprzednie edycje turniejów HEX: zwycięzców, pule nagród, daty wydarzeń i kluczowe momenty sezonu.</p>
-                <p class="spotlightCardText">Archiwum pokazuje historię społeczności i pomaga przygotować się do kolejnych eventów.</p>
                 <a class="spotlightLink welcomeButton" href="/archive"><b>Zobacz archiwum eventów</b></a>
             </div>
         </ImageBoxContent>
@@ -167,51 +146,34 @@ import Section from './ContentContainer/Section.astro'
     </Section>
 
     <Section>
-        <h2>Nagrody i zasady punktacji</h2>
-        <div class="showcasePanel rewardsPanel">
-            <p class="showcaseLead">System nagród i punktacji promuje regularną grę, wyniki turniejowe i aktywność w eventach.</p>
-            <div class="showcaseGrid rewardsGrid">
-                <article class="showcaseCard rewardStat">
-                    <p>Pula nagród</p>
-                    <h3>300 zł - 1000 zł</h3>
-                </article>
-                <article class="showcaseCard rewardStat">
-                    <p>Punkty za</p>
-                    <h3>Wyniki, aktywność, daily questy, udział w livach i wydarzeniach.</h3>
-                </article>
-                <article class="showcaseCard rewardStat">
-                    <p>Publikacja zasad</p>
-                    <h3>Przed każdym eventem</h3>
-                </article>
-            </div>
-        </div>
-    </Section>
-
-    <Section>
         <div class="faqSection showcasePanel faqPanel">
             <h2>FAQ - serwer Minecraft HEX</h2>
-            <div class="faqList">
-                <article class="faqItem showcaseCard">
-                    <h3>Jak zapisać się na turniej Minecraft?</h3>
-                    <p>Zapisy uruchamiane są przez Discord oraz ogłoszenia na stronie przed każdą edycją turnieju.</p>
-                </article>
-                <article class="faqItem showcaseCard">
-                    <h3>Co dają punkty?</h3>
-                    <p>Punkty rankingowe pozwalają śledzić postępy graczy, zdobywać nagrody i awansować w rankingach sezonowych oraz rocznych.</p>
-                </article>
-                <article class="faqItem showcaseCard">
-                    <h3>Co to jest sezon?</h3>
-                    <p>Sezon to okres, w którym gracze rywalizują o punkty rankingowe. Na koniec sezonu przyznawane są nagrody i aktualizowane rankingi. Terminy sezonów są ustalane przez administrację serwera i będą wyświetlane na stronie oraz ogłaszane na naszym Discordzie.</p>
-                </article>
-                <article class="faqItem showcaseCard">
-                    <h3>Kiedy pojawią się kolejne serwery?</h3>
-                    <p>Informacje o nowych serwerach będą ogłaszane na naszym Discordzie oraz stronie internetowej. Śledź nasze kanały, aby być na bieżąco z nowościami. Planujemy wprowadzać je cyklicznie w kolejnych miesiącach.</p>
-                </article>
-                <article class="faqItem showcaseCard">
-                    <h3>Jak działają bany na Hardcore SMP?</h3>
-                    <p>Po śmierci gracz otrzymuje tymczasowego bana, który zależy od czasu życia i liczby zabójstw zgodnie z zasadami trybu. Dłuższe ryzyko bana będzie wynagradzane premiami oraz prestiżem.</p>
-                </article>
-            </div>
+            <FAQ>
+                <FAQLine>
+                    <FAQQuestion>Jak zapisać się na turniej Minecraft?</FAQQuestion>
+                    <FAQAnswer>Większość wydarzeń nie wymaga wcześniejszych zapisów. Dołącz na nasz discord, obserwuj nasz Tiktok, Insta lub YT i śledź ogłoszenia aby być na bierząco.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co dają punkty?</FAQQuestion>
+                    <FAQAnswer>Punkty rankingowe pozwalają śledzić postępy graczy, zdobywać nagrody i awansować w rankingach sezonowych oraz rocznych.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co to jest sezon?</FAQQuestion>
+                    <FAQAnswer>Sezon to okres, w którym gracze rywalizują o punkty rankingowe. Na koniec sezonu przyznawane są nagrody i aktualizowane rankingi. Terminy sezonów są ustalane przez administrację serwera i będą wyświetlane na stronie oraz ogłaszane na naszym Discordzie.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Kiedy pojawią się kolejne serwery?</FAQQuestion>
+                    <FAQAnswer>Informacje o nowych serwerach będą ogłaszane na naszym Discordzie oraz stronie internetowej. Śledź nasze kanały, aby być na bieżąco z nowościami. Planujemy wprowadzać je cyklicznie w kolejnych miesiącach.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Jak grać w różne tryby?</FAQQuestion>
+                    <FAQAnswer>Po wejściu na serwer Minecraft, trafiasz do lobby, skąd możesz wybrać interesujący Cię tryb gry przechodząc przez odpowiedni portal.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Co muszę zrobić aby dołączyć na serwer?</FAQQuestion>
+                    <FAQAnswer>Musisz posiadać Minecraft Java Edition. Zadziała Premium jak i Non-premium. Wymagana wersja gry to 1.21.1. Skopiuj adres serwera i wklej go w Minecraft, aby dołączyć.</FAQAnswer>
+                </FAQLine>
+            </FAQ>
         </div>
     </Section>
 
@@ -219,6 +181,86 @@ import Section from './ContentContainer/Section.astro'
 
 </ContentContainer>
 <Footer/>
+
+<script>
+    const socialProofGrid = document.querySelector(".socialProofGrid");
+
+    if (socialProofGrid instanceof HTMLElement) {
+        const numberElements = socialProofGrid.querySelectorAll("h3");
+        const animationDurationMs = 2500;
+        let hasAnimated = false;
+
+        const daysElement = socialProofGrid.querySelector("h3[data-days-from]");
+        if (daysElement instanceof HTMLElement) {
+            const daysFromValue = daysElement.getAttribute("data-days-from");
+
+            if (daysFromValue) {
+                const startDate = new Date(`${daysFromValue}T00:00:00`);
+                const now = new Date();
+                const msPerDay = 1000 * 60 * 60 * 24;
+                const daysDiff = Math.floor((now.getTime() - startDate.getTime()) / msPerDay);
+                const safeDays = Math.max(0, daysDiff);
+                daysElement.textContent = String(safeDays);
+            }
+        }
+
+        numberElements.forEach((element) => {
+            const rawValue = element.textContent ?? "0";
+            const parsedValue = Number.parseInt(rawValue.replace(/\D/g, ""), 10);
+            const targetValue = Number.isNaN(parsedValue) ? 0 : parsedValue;
+
+            element.setAttribute("data-target", String(targetValue));
+            element.textContent = "0";
+        });
+
+        const startCountAnimation = () => {
+            if (hasAnimated) {
+                return;
+            }
+
+            hasAnimated = true;
+            const animationStart = performance.now();
+
+            const tick = () => {
+                const now = performance.now();
+                const progress = Math.min((now - animationStart) / animationDurationMs, 1);
+
+                numberElements.forEach((element) => {
+                    const targetValue = Number.parseInt(element.getAttribute("data-target") ?? "0", 10);
+                    const nextValue = Math.round(targetValue * progress);
+                    element.textContent = String(nextValue);
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                }
+            };
+
+            requestAnimationFrame(tick);
+        };
+
+        if ("IntersectionObserver" in window) {
+            const counterObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        startCountAnimation();
+                        counterObserver.disconnect();
+                    });
+                },
+                { threshold: 0.35 }
+            );
+
+            counterObserver.observe(socialProofGrid);
+        } else {
+            startCountAnimation();
+        }
+    }
+
+</script>
 
 <style>
 
@@ -268,6 +310,10 @@ import Section from './ContentContainer/Section.astro'
         line-height: 1.45;
     }
 
+    .bannerCta {
+        margin-top: 4px;
+    }
+
     .welcomeButton {
         display: inline-flex;
         align-items: center;
@@ -311,10 +357,6 @@ import Section from './ContentContainer/Section.astro'
     }
 
     .seoIntro {
-        width: min(1100px, 96%);
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
         gap: 8px;
         text-align: center;
     }
@@ -325,10 +367,6 @@ import Section from './ContentContainer/Section.astro'
     }
 
     .showcasePanel {
-        display: flex;
-        flex-direction: column;
-        width: min(1120px, 96%);
-        margin: 0 auto;
         border-radius: 18px;
         padding: 18px;
         border: 1px solid rgba(255, 255, 255, 0.28);
@@ -349,8 +387,92 @@ import Section from './ContentContainer/Section.astro'
     .stepsPanel,
     .timelinePanel,
     .rewardsPanel,
-    .leaderboardPanel {
+    .leaderboardPanel,
+    .updatesPanel,
+    .benefitsPanel,
+    .socialProofPanel {
         background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+    }
+
+    .updatesList {
+        display: grid;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .showcaseCard.updatesItem {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 14px;
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+    }
+
+    .showcaseCard.updatesItem:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .updatesMedia {
+        flex: 0 0 34%;
+        max-width: 34%;
+        min-height: 120px;
+        border-radius: 10px;
+        border: 1px dashed rgba(255, 255, 255, 0.35);
+        background: rgba(0, 0, 0, 0.26);
+        color: #f5ddb2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .updatesContent {
+        flex: 1;
+        min-width: 0;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+
+    .updatesContent h3,
+    .updatesContent p {
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .benefitsGrid,
+    .socialProofGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .benefitsGrid .showcaseCard,
+    .socialProofItem {
+        min-height: 110px;
+    }
+
+    .socialProofItem h3 {
+        font-size: clamp(1.55rem, 2.1vw, 2rem);
     }
 
     .showcaseLead {
@@ -386,6 +508,7 @@ import Section from './ContentContainer/Section.astro'
         border-radius: 12px;
         background: rgba(0, 0, 0, 0.42);
         padding: 12px;
+        box-sizing: border-box;
     }
 
     .showcaseCard h3,
@@ -452,40 +575,12 @@ import Section from './ContentContainer/Section.astro'
     }
 
     .faqSection {
-        display: flex;
-        flex-direction: column;
-        width: min(1100px, 96%);
-        margin: 0 auto;
         padding: 14px 16px;
         color: white;
     }
 
     .faqPanel {
         background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
-    }
-
-    .faqSection h2 {
-        margin: 0 0 10px 0;
-        text-align: center;
-    }
-
-    .faqList {
-        display: grid;
-        gap: 10px;
-    }
-
-    .faqItem {
-        gap: 6px;
-    }
-
-    .faqItem h3 {
-        margin: 0;
-        color: #ffd88c;
-    }
-
-    .faqItem p {
-        margin: 0;
-        line-height: 1.6;
     }
 
     .spotlightSectionTitle {
@@ -527,8 +622,6 @@ import Section from './ContentContainer/Section.astro'
     }
 
     .hogwartShowcase {
-        width: min(1120px, 96%);
-        margin: 0 auto;
         border-radius: 18px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.28);
@@ -612,6 +705,19 @@ import Section from './ContentContainer/Section.astro'
         margin-top: 2px;
     }
 
+    .seoIntro,
+    .showcasePanel,
+    .faqSection,
+    .hogwartShowcase {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        width: 100%;
+        align-self: center;
+        box-sizing: border-box;
+    }
+
     @media (max-width: 1070px){
         .bannerHero{
             gap: 14px;
@@ -653,6 +759,28 @@ import Section from './ContentContainer/Section.astro'
         .welcomeButton {
             width: min(220px, 90%);
             padding: 11px 24px;
+        }
+
+        .benefitsGrid,
+        .socialProofGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .showcaseCard.updatesItem,
+        .showcaseCard.updatesItem:nth-child(even) {
+            flex-direction: column;
+        }
+
+        .updatesMedia {
+            flex: none;
+            width: 100%;
+            max-width: 100%;
+            min-height: 140px;
+        }
+
+        .updatesContent {
+            width: 100%;
+            max-width: 100%;
         }
     }
 

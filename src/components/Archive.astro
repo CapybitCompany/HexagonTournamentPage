@@ -9,6 +9,10 @@ import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
 import Grid21 from './Grid/Grid2_1/Grid2_1.astro'
 import TimeContainer from './DiscordContainer/TimeContainer.astro'
 import Section from './ContentContainer/Section.astro'
+import FAQ from './FAQ/FAQ.astro'
+import FAQLine from './FAQ/FAQLine.astro'
+import FAQQuestion from './FAQ/FAQQuestion.astro'
+import FAQAnswer from './FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -278,18 +282,20 @@ import Section from './ContentContainer/Section.astro'
 
         <section class="archiveFaq showcaseFaq">
             <h2>FAQ - Archiwum wydarzen</h2>
-            <article class="showcaseFaqCard">
-                <h3>Skad pochodza dane o turniejach?</h3>
-                <p>Dane o liczbie graczy, nagrodach i zwyciezcach pochodza z oficjalnych podsumowan kazdej edycji HEX.</p>
-            </article>
-            <article class="showcaseFaqCard">
-                <h3>Czy archiwum zawiera wszystkie poprzednie edycje?</h3>
-                <p>Tak, sukcesywnie uzupelniamy archiwum, aby kazdy sezon i event byly opisane w jednym miejscu.</p>
-            </article>
-            <article class="showcaseFaqCard">
-                <h3>Gdzie szukac informacji o nadchodzacych turniejach?</h3>
-                <p>Aktualne zapowiedzi i harmonogramy publikujemy na stronie glownej oraz na Discordzie HEX.</p>
-            </article>
+            <FAQ>
+                <FAQLine>
+                    <FAQQuestion>Skad pochodza dane o turniejach?</FAQQuestion>
+                    <FAQAnswer>Dane o liczbie graczy, nagrodach i zwyciezcach pochodza z oficjalnych podsumowan kazdej edycji HEX.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy archiwum zawiera wszystkie poprzednie edycje?</FAQQuestion>
+                    <FAQAnswer>Tak, sukcesywnie uzupelniamy archiwum, aby kazdy sezon i event byly opisane w jednym miejscu.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Gdzie szukac informacji o nadchodzacych turniejach?</FAQQuestion>
+                    <FAQAnswer>Aktualne zapowiedzi i harmonogramy publikujemy na stronie glownej oraz na Discordzie HEX.</FAQAnswer>
+                </FAQLine>
+            </FAQ>
         </section>
         
     </Section>
@@ -306,6 +312,7 @@ import Section from './ContentContainer/Section.astro'
         display: flex;
         text-align: center;
         flex-direction: column;
+        align-items: center;
         gap: 10px;
         width: 100%;
     }

@@ -7,6 +7,10 @@ import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
 import Section from './ContentContainer/Section.astro'
+import FAQ from './FAQ/FAQ.astro'
+import FAQLine from './FAQ/FAQLine.astro'
+import FAQQuestion from './FAQ/FAQQuestion.astro'
+import FAQAnswer from './FAQ/FAQAnswer.astro'
 ---
 
 <NavBar/>
@@ -37,18 +41,20 @@ import Section from './ContentContainer/Section.astro'
 
         <section class="contactFaq showcaseFaq">
             <h2>FAQ - Kontakt</h2>
-            <article class="showcaseFaqCard">
-                <h3>Gdzie najszybciej uzyskam odpowiedz?</h3>
-                <p>Najszybciej przez Discord HEX, gdzie aktywnie odpowiadamy na pytania graczy.</p>
-            </article>
-            <article class="showcaseFaqCard">
-                <h3>Jak zglosic wspolprace lub reklame?</h3>
-                <p>Napisz do nas mailowo na minecrafthexagon@gmail.com lub skontaktuj sie przez Discord.</p>
-            </article>
-            <article class="showcaseFaqCard">
-                <h3>Czy moge zglosic problem techniczny?</h3>
-                <p>Tak, zgloszenia techniczne przyjmujemy przez Discord i w kanalach wsparcia.</p>
-            </article>
+            <FAQ>
+                <FAQLine>
+                    <FAQQuestion>Gdzie najszybciej uzyskam odpowiedz?</FAQQuestion>
+                    <FAQAnswer>Najszybciej przez Discord HEX, gdzie aktywnie odpowiadamy na pytania graczy.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Jak zglosic wspolprace lub reklame?</FAQQuestion>
+                    <FAQAnswer>Napisz do nas mailowo na minecrafthexagon@gmail.com lub skontaktuj sie przez Discord.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy moge zglosic problem techniczny?</FAQQuestion>
+                    <FAQAnswer>Tak, zgloszenia techniczne przyjmujemy przez Discord i w kanalach wsparcia.</FAQAnswer>
+                </FAQLine>
+            </FAQ>
         </section>
     </Section>
 
@@ -69,6 +75,7 @@ import Section from './ContentContainer/Section.astro'
     .contactFaq {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 12px;
         width: min(1100px, 96%);
         margin: 0 auto;
