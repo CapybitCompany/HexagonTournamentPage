@@ -9,26 +9,26 @@ const structuredData = [
 		mainEntity: [
 			{
 				"@type": "Question",
-				name: "Jak dolaczyc do serwera Minecraft HEX?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Dodaj adres Minecrafthex.pl w launcherze Minecraft, wejdz na serwer i dolacz na Discord: https://discord.gg/e6SuCrQHak."
-				}
-			},
-			{
-				"@type": "Question",
-				name: "Jak dzialaja bany na serwerze Hardcore SMP?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Po smierci gracz dostaje tymczasowego bana, ktorego czas zalezy od czasu zycia i liczby zabojstw, zgodnie z zasadami trybu Hardcore SMP."
-				}
-			},
-			{
-				"@type": "Question",
 				name: "Jak zapisac sie na turniej Minecraft?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Zapisy i harmonogram turniejow publikujemy na stronie oraz na Discordzie HEX Network."
+					text: "Wiekszosc wydarzen nie wymaga wczesniejszych zapisow. Dolacz na Discord HEX oraz obserwuj nasze social media i ogloszenia, aby byc na biezaco."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak grac w rozne tryby na serwerze Minecraft HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Po wejsciu na serwer Minecraft trafiasz do lobby, z ktorego mozesz wybrac interesujacy Cie tryb gry przechodzac przez odpowiedni portal."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Co musze zrobic, aby dolaczyc na serwer Minecraft HEX?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Musisz posiadac Minecraft Java Edition. Zadziala Premium jak i Non-premium. Wymagana wersja gry to 1.21.1, a adres serwera to Minecrafthex.pl."
 				}
 			}
 		]
@@ -39,10 +39,10 @@ const structuredData = [
 		name: "Turniej Minecraft HEX",
 		eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
 		eventStatus: "https://schema.org/EventScheduled",
-		startDate: "2026-04-04T19:00:00+01:00",
+		startDate: "2026-04-03T19:00:00+01:00",
 		endDate: "2026-04-04T23:00:00+01:00",
-		
-		description: "Turniej Minecraft HEX z nagrodami, rankingiem graczy i zapisem przez Discord.",
+		image: ["https://www.minecrafthex.pl/images/Welcome/Activities/Term.jpg"],
+		description: "Turniej Minecraft HEX z nagrodami, rankingiem graczy i aktywna spolecznoscia Discord.",
 		location: {
 			"@type": "VirtualLocation",
 			url: "https://www.minecrafthex.pl"
@@ -72,8 +72,8 @@ const structuredData = [
 ---
 
 <Layout 
-	customTitle="Serwer Minecraft Polska - turnieje, PVP, Parkour | HEX" 
-	customDescription="HEX Network to serwer Minecraft Polska z trybami Event, Mini Games, PVP, Parkour i Hardcore SMP. Turnieje, nagrody, ranking graczy i aktywny Discord."
+	customTitle="Serwer Minecraft Polska - turnieje, eventy, PVP i Parkour | HEX Network" 
+	customDescription="HEX Network to serwer Minecraft Polska z turniejami, eventami, rankingiem graczy i autorskimi trybami: Event Zone, Mini Games, PVP, Parkour i Hardcore SMP."
 	structuredData={structuredData}
 >
 	<Welcome />

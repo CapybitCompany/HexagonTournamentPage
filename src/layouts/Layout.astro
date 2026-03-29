@@ -1,6 +1,15 @@
 ---
 import '../styles/global.css';
-const {customTitle, customDescription, structuredData = []} = Astro.props;
+const {
+	customTitle,
+	customDescription,
+	structuredData = [],
+	ogImage = 'https://www.minecrafthex.pl/images/Welcome/Banner.jpg',
+	ogType = 'website',
+	canonicalUrl
+} = Astro.props;
+
+const resolvedCanonicalUrl = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 
 const defaultStructuredData = [
 	{
@@ -22,18 +31,28 @@ const defaultStructuredData = [
 const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) ? structuredData : [structuredData])];
 ---
 <!doctype html>
-<html lang="en">
+
+<html lang="pl">
 	<head>
 		<title>{customTitle}</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/x-icon" href="/logo.ico" />
+		<link rel="canonical" href={resolvedCanonicalUrl} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content=`${customDescription}`>
-		<meta property="title" content=`${customTitle}`>
-		<meta property="og:title" content=`${customTitle}`>
-		<meta property="og:description" content=`${customDescription}`>
-		<meta property="og:image" content="https://www.minecrafthex.pl/images/Welcome/Banner.jpg">
+		<meta name="description" content={customDescription} />
+		<meta name="robots" content="index, follow" />
+		<meta property="og:locale" content="pl_PL" />
+		<meta property="og:title" content={customTitle} />
+		<meta property="og:description" content={customDescription} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:url" content={resolvedCanonicalUrl} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="HEX Network" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={customTitle} />
+		<meta name="twitter:description" content={customDescription} />
+		<meta name="twitter:image" content={ogImage} />
 		{schemaList.map((schema) => (
 			<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 		))}

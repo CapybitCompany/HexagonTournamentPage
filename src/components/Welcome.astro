@@ -22,7 +22,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 <ContentContainer>
     <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy">
     <div class="bannerHero">
-        <h1 class="bannerTitle">Turnieje Minecraft, serwery i wyzwania!</h1>
+        <h1 class="bannerTitle">Serwer Minecraft Polska - turnieje, eventy i autorskie tryby</h1>
         <a class="welcomeButton bannerCta" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer"><b>Dołącz</b></a>
     </div>
     </FullImageContainer>
@@ -71,6 +71,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     <Section>
         <h2>Aktualności i plany</h2>
         <div class="showcasePanel updatesPanel">
+            <p class="showcaseLead">Oficjalne aktualizacje projektu HEX Network: terminy turniejow, nowe tryby, sezony rankingowe i najwazniejsze premiery serwera.</p>
             <div class="updatesList">
                 <article class="showcaseCard updatesItem">
                     <div class="updatesMedia" aria-hidden="true">
@@ -298,7 +299,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .bannerTitle {
         margin: 0;
-        font-size: clamp(2rem, 3.2vw, 3.15rem);
+        font-size: clamp(2.3rem, 3.9vw, 3.8rem);
         line-height: 1.15;
         font-weight: 700;
     }
@@ -363,7 +364,8 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .seoIntro p {
         margin: 0;
-        line-height: 1.6;
+        font-size: clamp(1.08rem, 1.35vw, 1.3rem);
+        line-height: 1.7;
     }
 
     .showcasePanel {
@@ -472,14 +474,14 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .socialProofItem h3 {
-        font-size: clamp(1.55rem, 2.1vw, 2rem);
+        font-size: clamp(1.9rem, 2.6vw, 2.5rem);
     }
 
     .showcaseLead {
         margin: 0 0 14px 0;
         text-align: center;
-        line-height: 1.6;
-        font-size: clamp(1rem, 1.2vw, 1.12rem);
+        line-height: 1.7;
+        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
         position: relative;
         z-index: 1;
     }
@@ -518,13 +520,14 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .showcaseCard h3 {
         color: #ffe39f;
-        font-size: clamp(1.03rem, 1.4vw, 1.22rem);
-        line-height: 1.3;
+        font-size: clamp(1.22rem, 1.75vw, 1.5rem);
+        line-height: 1.35;
     }
 
     .showcaseCard p {
         color: #f1eadb;
-        line-height: 1.5;
+        font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+        line-height: 1.65;
     }
 
     .stepIndex {
@@ -542,7 +545,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         color: #ffd49c;
         text-transform: uppercase;
         letter-spacing: 0.04em;
-        font-size: 0.86rem;
+        font-size: 0.98rem;
         font-weight: 700;
     }
 
@@ -585,20 +588,20 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .spotlightSectionTitle {
         margin-bottom: 8px;
-        font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+        font-size: clamp(2.05rem, 3vw, 2.9rem);
         letter-spacing: 0.01em;
     }
 
     .spotlightCardTitle {
         margin: 0 0 8px 0;
-        font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+        font-size: clamp(1.75rem, 2.45vw, 2.3rem);
         line-height: 1.2;
     }
 
     .spotlightCardText {
         margin: 0;
-        font-size: clamp(1rem, 1.2vw, 1.15rem);
-        line-height: 1.55;
+        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
+        line-height: 1.65;
     }
 
     .spotlightLink {
@@ -718,10 +721,31 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         box-sizing: border-box;
     }
 
+    .sectionContainer h2,
+    .faqSection h2 {
+        font-size: clamp(2rem, 2.8vw, 2.75rem);
+        line-height: 1.2;
+    }
+
     @media (max-width: 1070px){
         .bannerHero{
             gap: 14px;
             width: min(760px, 94%);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .welcomeButton {
+            font-size: clamp(1.18rem, 1.42vw, 1.52rem);
+        }
+
+        :global(.faqQuestion) {
+            font-size: clamp(1.2rem, 1.7vw, 1.42rem);
+        }
+
+        :global(.faqAnswer) {
+            font-size: 1.08rem;
+            line-height: 1.7;
         }
     }
 
