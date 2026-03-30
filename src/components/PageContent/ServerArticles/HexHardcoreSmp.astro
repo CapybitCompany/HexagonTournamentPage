@@ -36,7 +36,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 
             <div class="ctaRowTop">
                 <a class="ctaButton" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
-                <a class="ctaButton ctaGhost copyIpButton" href="#" data-copy-ip="Minecrafthex.pl" aria-label="Skopiuj adres IP serwera">IP serwera: Minecrafthex.pl</a>
+                <a class="ctaButton ctaGhost copyIpButton" href="#" data-copy-ip="MinecraftHEX.pl" aria-label="Skopiuj adres IP serwera">IP serwera: MinecraftHEX.pl</a>
             </div>
 
             <section class="featureSection">
@@ -89,7 +89,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
                         <li>Nad graczem: liczba killi i czas życia.</li>
                         <li>Komenda podglądu: ile godzin bana grozi graczowi przy śmierci.</li>
                     </ul>
-                    <p class="smallNote">Cel: gracz ma stale świadomość ryzyka i może podejmować taktyczne decyzje.</p>
+                    <p class="smallNote">Cel: gracz ma stałą świadomość ryzyka i może podejmować taktyczne decyzje.</p>
                 </section>
 
                 <section>
@@ -102,18 +102,18 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
                         <div><span>Ranga 4</span><b>10 killi</b></div>
                         <div><span>Ranga 5</span><b>20 killi</b></div>
                     </div>
-                    <p class="smallNote">Im wyższa ranga, tym wiekszy mnożnik obrazen (latwiej umrzec), ale tez mocniejsze benefity.</p>
+                    <p class="smallNote">Im wyższa ranga, tym większy mnożnik obrażeń, przez co łatwiej umrzeć, ale też mocniejsze benefity.</p>
                 </section>
 
                 <section>
                     <h2>Benefity i balans ryzyka</h2>
                     <ul>
-                        <li>Lepsze kosmetyki na wyzszych rangach.</li>
-                        <li>Czestszy Heal i dodatkowe komendy QOL.</li>
-                        <li>AirDropy z lepszym lootem wraz z ranga.</li>
-                        <li>Dodatkowe bonusy wspierajace grupe/klan.</li>
+                        <li>Lepsze kosmetyki na wyższych rangach.</li>
+                        <li>Częstszy Heal i dodatkowe komendy QOL.</li>
+                        <li>AirDropy z lepszym lootem wraz z rangą.</li>
+                        <li>Dodatkowe bonusy wspierające grupę lub klan.</li>
                     </ul>
-                    <p class="smallNote">Zasada: im bardziej ryzykujesz i im dluzej utrzymujesz forme, tym wieksza nagroda.</p>
+                    <p class="smallNote">Zasada: im bardziej ryzykujesz i im dłużej utrzymujesz formę, tym większa nagroda.</p>
                 </section>
 
                 <section>
@@ -132,7 +132,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 
                 <section>
                     <h2>Dropy fragmentów</h2>
-                    <p>Heart Fragment może wypadac z kilku źródeł:</p>
+                    <p>Heart Fragment może wypadać z kilku źródeł:</p>
                     <ul>
                         <li>Ruda złota (plan: tylko pierwsze rozbicie konkretnego bloku).</li>
                         <li>AirDrop (niska szansa).</li>
@@ -189,7 +189,6 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 
             <div class="ctaRowBottom">
                 <a class="ctaButton" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
-                <a class="ctaButton ctaGhost" href="/contact">Zarejestruj się na event</a>
             </div>
 
             <p class="comingSoon">NIEBAWEM</p>
@@ -205,7 +204,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
         button.addEventListener('click', async (event) => {
             event.preventDefault();
 
-            const ip = button.dataset.copyIp || 'Minecrafthex.pl';
+            const ip = button.dataset.copyIp || 'MinecraftHEX.pl';
             const defaultLabel = `IP serwera: ${ip}`;
             let copied = false;
 
@@ -234,7 +233,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
                 document.body.removeChild(tempInput);
             }
 
-            button.textContent = copied ? `Skopiowano IP: ${ip}` : 'Nie udalo sie skopiowac';
+            button.textContent = copied ? `Skopiowano IP: ${ip}` : 'Nie udało się skopiować';
             button.classList.add(copied ? 'copied' : 'copyError');
 
             window.setTimeout(() => {
@@ -342,6 +341,15 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
         color: #ffdf97;
     }
 
+    .featureTile span,
+    .ruleLine span,
+    .formulaBox p,
+    .storyGrid p,
+    .mediaPlaceholder {
+        font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+        line-height: 1.65;
+    }
+
     .quickRules {
         display: grid;
         gap: 8px;
@@ -376,7 +384,8 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
     .smallNote {
         margin-top: 10px;
         color: #ffdca3;
-        font-size: 0.95rem;
+        font-size: clamp(1.02rem, 1.18vw, 1.12rem);
+        line-height: 1.65;
         text-align: center;
     }
 

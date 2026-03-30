@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX PVP",
+		description: "Strona trybu HEX PVP z informacjami o arenach, balansie i rankingach graczy na serwerze Minecraft.",
+		url: "https://www.minecrafthex.pl/hexPvp/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -55,8 +62,9 @@ const structuredData = [
 ---
 
 <Layout
-	customTitle="Hex PVP - serwer Minecraft w przygotowaniu"
-	customDescription="Hex PVP - nowy serwer Minecraft z arenami i rankingiem graczy. Wkrótce więcej informacji."
+	customTitle="HEX PVP - serwer Minecraft w przygotowaniu"
+	customDescription="HEX PVP - nowy serwer Minecraft z arenami i rankingiem graczy. Wkrótce więcej informacji."
+	canonicalUrl="https://www.minecrafthex.pl/hexPvp"
 	structuredData={structuredData}
 >
 	<HexPvpPage />

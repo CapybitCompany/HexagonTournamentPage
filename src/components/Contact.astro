@@ -64,6 +64,22 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 <style>
     li {
         text-align: left;
+        font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+        line-height: 1.7;
+    }
+
+    .fullWidthTileContent p {
+        margin: 0;
+        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
+        line-height: 1.7;
+    }
+
+    .fullWidthTileContent h1 {
+        margin-bottom: 10px;
+    }
+
+    .fullWidthTileContent a {
+        line-height: 1.35;
     }
 
     .archiveBannerText{
@@ -122,7 +138,17 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .contactFaq p {
         margin: 0;
-        line-height: 1.6;
+        line-height: 1.7;
+        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
+    }
+
+    .contactFaq :global(.faqQuestion) {
+        font-size: clamp(1.12rem, 1.45vw, 1.28rem);
+    }
+
+    .contactFaq :global(.faqAnswer) {
+        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
+        line-height: 1.7;
     }
 
     @media(max-width: 870px){

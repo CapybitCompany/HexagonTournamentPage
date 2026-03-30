@@ -1,14 +1,41 @@
 ---
-import Politics from '../components/Politics.astro';
+import PoliticsPage from '../components/Politics.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Polityka prywatności HEX Network",
+		description: "Polityka prywatności HEX Network opisująca zasady przetwarzania danych osobowych użytkowników strony, sklepu i serwera Minecraft.",
+		url: "https://www.minecrafthex.pl/politics/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona główna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Polityka prywatności",
+				item: "https://www.minecrafthex.pl/politics/"
+			}
+		]
+	}
+];
 ---
 
 <Layout 
-	customTitle="Polityka prywatności" 
-	customDescription="Turniej Minecraft Hex - turnieje z nagrodami, serwer SMP i aktywna społeczność. Polityka prywatności związana ze sklepem i działalnością."
+	customTitle="Polityka prywatności HEX Network | dane osobowe i cookies" 
+	customDescription="Sprawdź politykę prywatności HEX Network: zasady przetwarzania danych osobowych, płatności, cookies oraz prawa użytkowników strony i serwera Minecraft."
+	canonicalUrl="https://www.minecrafthex.pl/politics"
+	structuredData={structuredData}
 >
-	<Politics />
+	<PoliticsPage />
 </Layout>

@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX Hardcore SMP",
+		description: "Strona trybu HEX Hardcore SMP z zasadami śmierci, banów czasowych, rang i Heart Fragmentów.",
+		url: "https://www.minecrafthex.pl/hexHardcoreSmp/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -55,8 +62,9 @@ const structuredData = [
 ---
 
 <Layout
-	customTitle="Hex Hardcore SMP - serwer Minecraft w przygotowaniu"
-	customDescription="Hex Hardcore SMP - nowy serwer Minecraft z zasadami HEX i systemem tymczasowych banów zależnych od statystyk."
+	customTitle="HEX Hardcore SMP - serwer Minecraft w przygotowaniu"
+	customDescription="HEX Hardcore SMP - nowy serwer Minecraft z zasadami HEX i systemem tymczasowych banów zależnych od statystyk."
+	canonicalUrl="https://www.minecrafthex.pl/hexHardcoreSmp"
 	structuredData={structuredData}
 >
 	<HexHardcoreSmpPage />

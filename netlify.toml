@@ -1,0 +1,21 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "http://minecrafthex.pl/*"
+  to = "https://www.minecrafthex.pl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://minecrafthex.pl/*"
+  to = "https://www.minecrafthex.pl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.minecrafthex.pl/*"
+  to = "https://www.minecrafthex.pl/:splat"
+  status = 301
+  force = true

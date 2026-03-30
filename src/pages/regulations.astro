@@ -1,14 +1,41 @@
 ---
-import Regulations from '../components/Regulations.astro';
 import Layout from '../layouts/Layout.astro';
+const RegulationsPageComponent = (await import('../components/Regulations.astro')).default;
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Regulamin sklepu HEX Network",
+		description: "Regulamin sklepu HEX Network obejmujący zasady zakupu usług cyfrowych, płatności, reklamacji i realizacji zamówień.",
+		url: "https://www.minecrafthex.pl/regulations/"
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona główna",
+				item: "https://www.minecrafthex.pl/"
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Regulamin sklepu",
+				item: "https://www.minecrafthex.pl/regulations/"
+			}
+		]
+	}
+];
 ---
 
 <Layout 
-	customTitle="Turniej Minecraft Hex - Regulamin sklepu" 
-	customDescription="Turniej Minecraft Hex - turnieje z nagrodami, serwer SMP i aktywna społeczność. Sklep VIP wspiera organizację wydarzeń i daje benefity."
+	customTitle="Regulamin sklepu HEX Network | usługi cyfrowe i płatności" 
+	customDescription="Poznaj regulamin sklepu HEX Network: zasady zakupu usług cyfrowych, płatności, reklamacji, realizacji zamówień i odpowiedzialności administratora."
+	canonicalUrl="https://www.minecrafthex.pl/regulations"
+	structuredData={structuredData}
 >
-	<Regulations />
+	<RegulationsPageComponent />
 </Layout>

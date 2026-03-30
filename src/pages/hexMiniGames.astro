@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX MiniGames",
+		description: "Strona trybu HEX MiniGames z informacjami o mini-grach, rankingach sezonowych i mapach parkour.",
+		url: "https://www.minecrafthex.pl/hexMiniGames/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -58,8 +65,9 @@ const structuredData = [
 ---
 
 <Layout 
-	customTitle="Hex MiniGames - serwer Minecraft w przygotowaniu" 
-	customDescription="Hex MiniGames - serwer Minecraft z mini-grami i parkour jest w przygotowaniu. Wkrótce więcej informacji."
+	customTitle="HEX MiniGames - serwer Minecraft w przygotowaniu" 
+	customDescription="HEX MiniGames - serwer Minecraft z mini-grami jest w przygotowaniu. Nowe, oryginalne mapy i tryby wkrótce dostępne. Niebawem więcej informacji."
+	canonicalUrl="https://www.minecrafthex.pl/hexMiniGames"
 	structuredData={structuredData}
 >
 	<HexMiniGamesPage />

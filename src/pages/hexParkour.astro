@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX Parkour",
+		description: "Strona trybu HEX Parkour z informacjami o trasach, rekordach czasu i rankingach sezonowych.",
+		url: "https://www.minecrafthex.pl/hexParkour/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -55,8 +62,9 @@ const structuredData = [
 ---
 
 <Layout
-	customTitle="Hex Parkour - serwer Minecraft w przygotowaniu"
-	customDescription="Hex Parkour - nowy serwer Minecraft z trasami parkour i rankingami. Wkrótce więcej informacji."
+	customTitle="HEX Parkour - serwer Minecraft w przygotowaniu"
+	customDescription="HEX Parkour - nowy serwer Minecraft z trasami parkour i rankingami. Wkrótce więcej informacji."
+	canonicalUrl="https://www.minecrafthex.pl/hexParkour"
 	structuredData={structuredData}
 >
 	<HexParkourPage />

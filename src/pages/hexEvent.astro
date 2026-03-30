@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX Event Zone",
+		description: "Strona trybu HEX Event Zone z informacjami o turniejach, zapisach i harmonogramach wydarzeń Minecraft.",
+		url: "https://www.minecrafthex.pl/hexEvent/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -58,8 +65,9 @@ const structuredData = [
 ---
 
 <Layout 
-	customTitle="Hex Event Zone - serwer Minecraft w przygotowaniu" 
-	customDescription="Hex Event Zone - serwer turniejowy Minecraft jest w przygotowaniu. Wkrótce mapy, harmonogramy i kolejne wydarzenia."
+	customTitle="HEX Event Zone - serwer Minecraft w przygotowaniu" 
+	customDescription="HEX Event Zone - serwer turniejowy Minecraft jest w przygotowaniu. Wkrótce mapy, harmonogramy i kolejne wydarzenia."
+	canonicalUrl="https://www.minecrafthex.pl/hexEvent"
 	structuredData={structuredData}
 >
 	<HexEventPage />
