@@ -5,7 +5,7 @@ const {sourceIP} = Astro.props;
 
 <div class="wrapperClass">
     <div class="generalContainer">
-        <h1 class="copyHeader" data-copy={sourceIP}>MINECRAFT HEX</h1>
+        <h2 class="copyHeader" data-copy={sourceIP}>MINECRAFT HEX</h2>
         <span class="copyHint">(kliknij, aby skopiować)</span>
         <div class="contentWrapper">
             <slot/>
@@ -19,9 +19,11 @@ const {sourceIP} = Astro.props;
 </div>
 
 <style>    
-    h1{
+    .copyHeader{
         margin-bottom: 5px;
         margin-top: 15px;
+        font-family: "minecraft";
+        font-size: 41px;
     }
 
     .wrapperClass {
@@ -78,10 +80,6 @@ const {sourceIP} = Astro.props;
         flex: 0 0 calc(50% - 10px);
         max-width: calc(50% - 10px);
       }
-    }
-
-    h1{
-        font-family: "minecraft";
     }
 
     .copyHeader { cursor: pointer; user-select: none; }
