@@ -5,6 +5,13 @@ import Layout from '../layouts/Layout.astro';
 const structuredData = [
 	{
 		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Serwer Minecraft Polska - HEX Network",
+		description: "HEX Network to serwer Minecraft Polska z turniejami, eventami, rankingiem graczy i autorskimi trybami rozgrywki.",
+		url: "https://www.minecrafthex.pl/"
+	},
+	{
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
 			{
@@ -74,6 +81,8 @@ const structuredData = [
 <Layout 
 	customTitle="Serwer Minecraft Polska - turnieje, eventy, PVP i Parkour | HEX Network" 
 	customDescription="HEX Network to serwer Minecraft Polska z turniejami, eventami, rankingiem graczy i autorskimi trybami: Event Zone, Mini Games, PVP, Parkour i Hardcore SMP."
+	ogImage="https://www.minecrafthex.pl/logo.png"
+	canonicalUrl="https://www.minecrafthex.pl/"
 	structuredData={structuredData}
 >
 	<Welcome />
