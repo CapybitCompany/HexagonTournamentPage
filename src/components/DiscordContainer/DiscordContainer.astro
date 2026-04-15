@@ -1,5 +1,6 @@
 ---
 import DiscordIcon from "../../../public/icons/media/discord.svg?raw";
+const base = import.meta.env.BASE_URL;
 ---
 <div class="discordContainerWrapper">
     <div class="discordContainer">
@@ -11,7 +12,7 @@ import DiscordIcon from "../../../public/icons/media/discord.svg?raw";
             <h2 class="discordHeader">Serwer Discord</h2>
         </div>
         <div class="subHeaderWrapper">
-            <img class="discordIcon" src="/logo.ico"/>
+            <img class="discordIcon" src={`${base}logo.ico`}/>
             <h3 class="discordSubHeader"> Hex Tournament</h3>
         </div>
         

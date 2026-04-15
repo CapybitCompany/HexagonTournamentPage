@@ -21,6 +21,8 @@ import CheckboxFilledSvg from "../../../../public/icons/common/checkbox-filled.s
 import '../../NavBar/NavBar.css'
 import '../../FullImageContainer/FullImageContainer.css'
 import '../../PageContent/WelcomePage/Welcome.styles.css'
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -78,7 +80,7 @@ import '../../PageContent/WelcomePage/Welcome.styles.css'
                         <p>Wejdź do świata wizualnie przyciągających treści w internecie. Co więcej, stań się ich twórcą.</p>
                         <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1300 zł</b></div>
                         <div class="fullWidthTileContent" style="text-align: center; height: auto; ">
-                            <a href="/frontendSubject"><b>Sprawdź ofertę!</b></a>
+                            <a href={`${base}frontendSubject`}><b>Sprawdź ofertę!</b></a>
                         </div>
                     </CarouselElementLayout>
                 </CarouselElement>
@@ -88,7 +90,7 @@ import '../../PageContent/WelcomePage/Welcome.styles.css'
                         <p>Egzaminy zawodowe czy matura z informatyki nie muszą być trudne. Zmaksymalizuj wyniki, a zdobytą wiedzę i zaoszczędzony czas przekuj we własne projekty.</p>
                         <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1400 zł</b></div>
                         <div class="fullWidthTileContent" style="text-align: center; height: auto;">
-                            <a href="/E13Subject"><b>Sprawdź ofertę!</b></a>
+                            <a href={`${base}E13Subject`}><b>Sprawdź ofertę!</b></a>
                         </div>
                     </CarouselElementLayout>
                 </CarouselElement>
@@ -98,7 +100,7 @@ import '../../PageContent/WelcomePage/Welcome.styles.css'
                         <p>Zacznij tworzyć strony internetowe z całym zapleczem po stronie serwera. Twórz aplikacje webowe, których złożoność nie będzie Cię już ograniczać.</p>
                         <div style="width: 100%; justify-content: center;"><b style="font-size: 20px;">Cena: od 1600 zł</b></div>
                         <div class="fullWidthTileContent" style="text-align: center; height: auto;">
-                            <a href="/frontendAndBackendSubject"><b>Sprawdź ofertę!</b></a>
+                            <a href={`${base}frontendAndBackendSubject`}><b>Sprawdź ofertę!</b></a>
                         </div>
                     </CarouselElementLayout>
                 </CarouselElement>
@@ -226,8 +228,9 @@ import '../../PageContent/WelcomePage/Welcome.styles.css'
 <Footer/>
 
 <script>
+    const baseUrl = import.meta.env.BASE_URL;
     function goToForm() {
-      window.location.href = "/form?type=group";
+      window.location.href = baseUrl + "form?type=group";
     }
     window.goToForm = goToForm;
 </script>

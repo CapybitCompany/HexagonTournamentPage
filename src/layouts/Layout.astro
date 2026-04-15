@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+const base = import.meta.env.BASE_URL;
 const {
 	customTitle,
 	customDescription,
@@ -37,7 +38,7 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 		<title>{customTitle}</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/logo.ico" />
+		<link rel="icon" type="image/x-icon" href={`${base}logo.ico`} />
 		<link rel="canonical" href={resolvedCanonicalUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={customDescription} />
@@ -56,6 +57,13 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 		{schemaList.map((schema) => (
 			<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 		))}
+		<Fragment set:html={`<style>
+			@font-face { font-family: 'Montserrat'; src: url('${base}Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Roboto'; src: url('${base}Roboto/Roboto-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Roboto'; src: url('${base}Roboto/Roboto-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Minecraft'; src: url('${base}minecraft-font/MinecraftBold-nMK1.otf') format('truetype'); font-weight: bold; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Minecraft'; src: url('${base}minecraft-font/MinecraftRegular-Bmg3.otf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+		</style>`} />
 
 	</head>
 	<body>

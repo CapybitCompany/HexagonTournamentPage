@@ -14,7 +14,7 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
-
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -46,15 +46,15 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     <ServerContainerWrapper sourceIP="MinecraftHEX.pl">
 
-        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href="/hexEvent"/>
+        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
 
-        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="MINI GAMES" href="/hexMiniGames"/>
+        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="MINI GAMES" href={`${base}hexMiniGames`}/>
 
-        <HexContainer headerText="PARKOUR" href="/hexParkour" comingSoon={true} soonText="Niebawem"/>
+        <HexContainer headerText="PARKOUR" href={`${base}hexParkour`} comingSoon={true} soonText="Niebawem"/>
 
-        <HexContainer headerText="PVP" href="/hexPvp" comingSoon={true} soonText="Niebawem"/>
+        <HexContainer headerText="PVP" href={`${base}hexPvp`} comingSoon={true} soonText="Niebawem"/>
 
-        <HexContainer headerText="HARDCORE SMP" href="/hexHardcoreSmp" comingSoon={true} soonText="Niebawem"/>
+        <HexContainer headerText="HARDCORE SMP" href={`${base}hexHardcoreSmp`} comingSoon={true} soonText="Niebawem"/>
 
     </ServerContainerWrapper>
 
@@ -163,8 +163,8 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     <Section>
         <h2 class="spotlightSectionTitle">Sklep i Archiwum</h2>
         <div class="spotlightGrid">
-            <a href="/shop" class="spotlightCard">
-                <div class="spotlightCardBg" style="background-image: url('/images/Welcome/Shop.jpg');"></div>
+            <a href={`${base}shop`} class="spotlightCard">
+                <div class="spotlightCardBg" style={`background-image: url('${base}images/Welcome/Shop.jpg');`}></div>
                 <div class="spotlightCardOverlay"></div>
                 <div class="spotlightCardInner">
                     <span class="spotlightIcon">🛒</span>
@@ -173,8 +173,8 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                     <span class="spotlightCta">Przejdź do sklepu →</span>
                 </div>
             </a>
-            <a href="/archive" class="spotlightCard">
-                <div class="spotlightCardBg" style="background-image: url('/images/Welcome/Archive.png');"></div>
+            <a href={`${base}archive`} class="spotlightCard">
+                <div class="spotlightCardBg" style={`background-image: url('${base}images/Welcome/Archive.png');`}></div>
                 <div class="spotlightCardOverlay"></div>
                 <div class="spotlightCardInner">
                     <span class="spotlightIcon">🏆</span>

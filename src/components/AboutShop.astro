@@ -5,6 +5,7 @@ import ContentContainer from './ContentContainer/ContentContainer.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -84,8 +85,8 @@ import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
               <section class="shop-info__section">
                 <h2>Dokumenty</h2>
                 <ul>
-                  <li><a href="/regulations" target="_blank" rel="noopener">Regulamin sklepu</a></li>
-                  <li><a href="/politics" target="_blank" rel="noopener">Polityka prywatności</a></li>
+                  <li><a href={`${base}regulations`} target="_blank" rel="noopener">Regulamin sklepu</a></li>
+                  <li><a href={`${base}politics`} target="_blank" rel="noopener">Polityka prywatności</a></li>
                 </ul>
               </section>
 

@@ -1,10 +1,11 @@
 ---
 import ServerCounter from "../ServerCounter/ServerCounter.astro";
 const {sourceIP} = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <div class="wrapperClass">
-    <div class="generalContainer">
+    <div class="generalContainer" style={`background-image: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.92)), url('${base}images/Welcome/dirt.webp');`}>
         <div class="containerGlow" aria-hidden="true"></div>
         <h2 class="copyHeader" data-copy={sourceIP}>MINECRAFT HEX</h2>
         <span class="copyHint">📋 Kliknij nagłówek, aby skopiować IP</span>
@@ -53,10 +54,6 @@ const {sourceIP} = Astro.props;
     }
 
     .generalContainer{
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.92)
-        ), url("/images/Welcome/dirt.webp");
         background-repeat: repeat; 
         display: flex;
         flex-direction: column;

@@ -5,7 +5,7 @@
     padding: 28px;
     color: white;
     text-align: left;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.9)), url('/images/Welcome/dirt.webp');
+    /* background-image moved to inline style for base path support */
 }
 
 .articleHeader h1 {

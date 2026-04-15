@@ -13,6 +13,7 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -29,7 +30,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
     </div>
 
     <Section>
-        <article class="serverArticle">
+        <article class="serverArticle" style={`background-image: linear-gradient(rgba(0,0,0,0.32),rgba(0,0,0,0.9)), url('${base}images/Welcome/dirt.webp');`}>
             <header class="articleHeader">
                 <p class="statusKicker">Status projektu</p>
                 <h1>Serwer HEX Mask Ritual (PVP)</h1>

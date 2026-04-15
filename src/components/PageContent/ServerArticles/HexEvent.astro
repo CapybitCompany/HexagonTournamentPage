@@ -11,6 +11,8 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -26,7 +28,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
             <p class="evHeroSub">Turnieje, wyzwania i rywalizacja w Minecraft — co sezon nowe emocje.</p>
             <div class="evHeroCta">
                 <a class="evBtn evBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
-                <a class="evBtn evBtnGhost" href="/archive">Archiwum eventów</a>
+                <a class="evBtn evBtnGhost" href={`${base}archive`}>Archiwum eventów</a>
             </div>
         </div>
     </FullImageContainer>
@@ -78,13 +80,13 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
                         </div>
                     </div>
                     <div class="evGallerySlot">
-                        <img src="/images/Archive/Hex6/1.jpg" alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" />
                     </div>
                     <div class="evGallerySlot">
-                        <img src="/images/Archive/Hex6/2.jpg" alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" />
                     </div>
                     <div class="evGallerySlot">
-                        <img src="/images/Archive/Hex6/3.jpg" alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" />
                     </div>
                 </div>
             </section>
@@ -143,11 +145,11 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
             <!-- ===== PAST EVENTS TEASER ===== -->
             <section class="evPastTeaser reveal">
                 <div class="evPastGrid">
-                    <img src="/images/Archive/Hex5/1.jpg" alt="Poprzedni event HEX — zdjęcie" loading="lazy" decoding="async" class="evPastImg" />
+                    <img src={`${base}images/Archive/Hex5/1.jpg`} alt="Poprzedni event HEX — zdjęcie" loading="lazy" decoding="async" class="evPastImg" />
                     <div class="evPastText">
                         <h2>6 eventów za nami</h2>
                         <p>Sprawdź relacje, zdjęcia i wyniki z poprzednich edycji w naszym archiwum.</p>
-                        <a class="evBtn evBtnPrimary" href="/archive">Przejdź do archiwum →</a>
+                        <a class="evBtn evBtnPrimary" href={`${base}archive`}>Przejdź do archiwum →</a>
                     </div>
                 </div>
             </section>

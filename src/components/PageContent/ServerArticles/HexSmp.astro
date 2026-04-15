@@ -11,6 +11,8 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -240,7 +242,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
                         <p>Testy walki vanilla. Zero custom enchantów — czysty skill.</p>
                     </article>
                 </div>
-                <a class="smpDevlogLink" href="/devlog">Zobacz cały devlog →</a>
+                <a class="smpDevlogLink" href={`${base}devlog`}>Zobacz cały devlog →</a>
             </section>
 
             <!-- ===== DIVIDER ===== -->
@@ -258,13 +260,13 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
                         </div>
                     </div>
                     <div class="smpGallerySlot">
-                        <img src="/images/Archive/Hex6/1.jpg" alt="Budowa HEX SMP — zdjęcie 1" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa HEX SMP — zdjęcie 1" loading="lazy" decoding="async" />
                     </div>
                     <div class="smpGallerySlot">
-                        <img src="/images/Archive/Hex6/2.jpg" alt="Budowa HEX SMP — zdjęcie 2" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/2.jpg`} alt="Budowa HEX SMP — zdjęcie 2" loading="lazy" decoding="async" />
                     </div>
                     <div class="smpGallerySlot">
-                        <img src="/images/Archive/Hex6/3.jpg" alt="Budowa HEX SMP — zdjęcie 3" loading="lazy" decoding="async" />
+                        <img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa HEX SMP — zdjęcie 3" loading="lazy" decoding="async" />
                     </div>
                     <div class="smpGallerySlot smpGalleryPlaceholder">
                         <span>Więcej screenów wkrótce</span>
@@ -314,7 +316,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
                 <h2 class="smpSectionTitle">Nie czekaj na start. Bądź przy starcie.</h2>
                 <div class="smpFinalCtaRow">
                     <a class="smpBtn smpBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
-                    <a class="smpBtn smpBtnGhost" href="/devlog">Zobacz devlog</a>
+                    <a class="smpBtn smpBtnGhost" href={`${base}devlog`}>Zobacz devlog</a>
                 </div>
             </section>
 
@@ -397,7 +399,7 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
             `;
             result.classList.add('quizResultActive');
             document.getElementById('quizShare')?.addEventListener('click', async () => {
-                const url = window.location.origin + '/hexSmp#smpQuiz';
+                const url = window.location.origin + import.meta.env.BASE_URL + 'hexSmp#smpQuiz';
                 if (navigator.share) {
                     try { await navigator.share({ title: 'Jaki typ gracza jesteś?', text: `Mój typ to ${data.name}! Sprawdź swój:`, url }); } catch {}
                 } else {

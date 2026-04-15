@@ -1,5 +1,6 @@
 ---
 var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 <div class="discordContainerWrapper">
     <a href={comingSoon ? undefined : href} aria-disabled={comingSoon ? "true" : "false"} class={comingSoon ? "disabledLink" : ""}>
@@ -13,7 +14,7 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
                     src ? (
                         <img class="hexImage" src={src} alt={headerText}/>
                     ) : (
-                        <div class="hexPlaceholder" aria-label={`${headerText} - ${soonText}`}>
+                        <div class="hexPlaceholder" style={`background-image: url('${base}images/stonebrick.jpg');`} aria-label={`${headerText} - ${soonText}`}>
                             <span>{soonText}</span>
                         </div>
                     )
@@ -138,7 +139,6 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         align-items: center;
         justify-content: center;
         position: relative;
-        background-image: url("/images/stonebrick.jpg");
         background-repeat: repeat;
         background-size: 128px 128px;
         overflow: hidden;

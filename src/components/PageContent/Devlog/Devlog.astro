@@ -7,6 +7,8 @@ import '../WelcomePage/Welcome.styles.css'
 import Section from '../../ContentContainer/Section.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
 
+const base = import.meta.env.BASE_URL;
+
 const entries = [
     {
         date: "10 kwi 2026",
@@ -58,7 +60,7 @@ const entries = [
             </div>
 
             <div class="devlogBack">
-                <a href="/hexSmp" class="devlogBackLink">← Wróć do HEX SMP</a>
+                <a href={`${base}hexSmp`} class="devlogBackLink">← Wróć do HEX SMP</a>
             </div>
         </div>
     </Section>

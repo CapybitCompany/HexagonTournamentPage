@@ -6,12 +6,13 @@ import "../Grid/Grid.css";
 import "./Footer.styles.css"
 import YoutubeSvg from "../../../public/icons/media/youtube.svg?raw"
 import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
+const base = import.meta.env.BASE_URL;
 ---
 
 <!-- MC Parallax decorative strip -->
 <div class="footerMcStrip" aria-hidden="true">
     <div class="mcStripAccentLine"></div>
-    <div class="mcParallaxBg"></div>
+    <div class="mcParallaxBg" style={`background-image: url('${base}images/stonebrick.jpg');`}></div>
     <div class="mcParallaxMid">
         <span class="mcFloatingBlock fb1" data-block></span>
         <span class="mcFloatingBlock fb2" data-block></span>
@@ -38,16 +39,16 @@ import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
     
     <ContentPartContainer clazz="limitedWidth">
             <div class="footerRow">
-                <a href="/">Strona główna</a>
-                <a href="/archive">Archiwum eventów</a>
-                <a href="/shop">Sklep</a>
-                <a href="/contact">Kontakt</a>
-                <a href="/about">O nas</a>
+                <a href={base}>Strona główna</a>
+                <a href={`${base}archive`}>Archiwum eventów</a>
+                <a href={`${base}shop`}>Sklep</a>
+                <a href={`${base}contact`}>Kontakt</a>
+                <a href={`${base}about`}>O nas</a>
             </div>
             <div class="footerRow footerRowSecondary">
-                <a href="/politics">Polityka prywatności</a>
-                <a href="/regulations">Regulamin sklepu</a>
-                <a href="/documents/Regulamin_Hexagon_Tournament_v5.pdf" download>Regulamin turnieju</a>
+                <a href={`${base}politics`}>Polityka prywatności</a>
+                <a href={`${base}regulations`}>Regulamin sklepu</a>
+                <a href={`${base}documents/Regulamin_Hexagon_Tournament_v5.pdf`} download>Regulamin turnieju</a>
             </div>
         <Grid21 clazz="breakMobile">
             <div slot="left" style="margin-top: 30px; flex-direction: column; align-items: start;">
@@ -186,7 +187,6 @@ import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
     .mcParallaxBg {
         position: absolute;
         inset: -40px 0;
-        background-image: url('/images/stonebrick.jpg');
         background-size: 80px 80px;
         background-repeat: repeat;
         image-rendering: pixelated;

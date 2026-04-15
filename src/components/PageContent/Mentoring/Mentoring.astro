@@ -12,6 +12,8 @@ import Grid21 from '../../Grid/Grid2_1/Grid2_1.astro';
 import ImageBoxContent from '../../ImageBoxContent/ImageBoxContent.astro';
 import CheckboxFilledSvg from "../../../../public/icons/common/checkbox-filled.svg?raw"
 import MentoringTable from "./MentoringTable.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -111,7 +113,7 @@ import MentoringTable from "./MentoringTable.astro";
         <h2>Na czym może polegać współpraca?</h2>
         <p>Masz długoterminowy cel np. znalezienie pierwszej pracy w IT i zostanie juniorem?</p>
         <p>Masz krótkoterminowy cel jak zgłębienie konkretnego tematu podczas jednego lub dwóch spotkań?</p>
-        <a style="margin-top: 20px;" href="/mentoringExamples"><b>Sprawdź przykładowe programy mentorskie</b></a>
+        <a style="margin-top: 20px;" href={`${base}mentoringExamples`}><b>Sprawdź przykładowe programy mentorskie</b></a>
     </ImageBoxContent>
 
     <button class="cfa" onclick="goToForm()">Poproś o darmową konsultację</button>
@@ -122,8 +124,9 @@ import MentoringTable from "./MentoringTable.astro";
 <Footer/>
 
 <script>
+    const baseUrl = import.meta.env.BASE_URL;
     function goToForm() {
-      window.location.href = "/form?type=mentoring";
+      window.location.href = baseUrl + "form?type=mentoring";
     }
     window.goToForm = goToForm;
 </script>

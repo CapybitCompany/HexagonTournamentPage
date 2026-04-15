@@ -11,6 +11,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
 import Section from './ContentContainer/Section.astro'
 
+const base = import.meta.env.BASE_URL;
 const SHOP_URL = "https://vishop.pl/shop/24611/server/23302";
 
 const offers = [
@@ -101,7 +102,7 @@ const steps = [
                 </div>
                 <div class="legalItem">
                     <strong>📄 Regulamin</strong>
-                    <p>Więcej o zasadach korzystania ze sklepu oraz polityce prywatności znajdziesz <a href="/aboutShop">tutaj</a>.</p>
+                    <p>Więcej o zasadach korzystania ze sklepu oraz polityce prywatności znajdziesz <a href={`${base}aboutShop`}>tutaj</a>.</p>
                 </div>
             </div>
         </div>

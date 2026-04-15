@@ -11,6 +11,7 @@ import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
@@ -88,7 +89,7 @@ import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
                 <p>
                 Organizujemy turnieje i wyzwania sezonowe. Za udział i wyniki można zdobywać punkty do rankingów,
                 a najlepsze osoby zgarniają nagrody oraz wyróżnienia. Informacje o konkretnych zasadach, terminach i pulach nagród
-                zawsze publikujemy z wyprzedzeniem na Discordzie oraz w <a href="/archive"><b>archiwum eventów</b></a> i na stronie głównej.
+                zawsze publikujemy z wyprzedzeniem na Discordzie oraz w <a href={`${base}archive`}><b>archiwum eventów</b></a> i na stronie głównej.
                 </p>
             </section>
 
@@ -100,22 +101,22 @@ import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
                 <strong>nie psuło rozgrywki</strong> i było uczciwe wobec graczy.
                 </p>
                 <p>
-                Jeśli chcesz zobaczyć, jak wygląda wsparcie projektu w praktyce, sprawdź <a href="/shop"><b>sklep HEX Network</b></a>.
+                Jeśli chcesz zobaczyć, jak wygląda wsparcie projektu w praktyce, sprawdź <a href={`${base}shop`}><b>sklep HEX Network</b></a>.
                 </p>
             </section>
 
             <section class="about__section about__linksSection reveal">
                 <h2>Gdzie zacząć?</h2>
                 <div class="about__linkGrid">
-                    <a class="about__linkCard reveal-child" style="--reveal-i:0" href="/">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:0" href={base}>
                         <h3>Strona główna</h3>
                         <p>Poznaj aktualne turnieje, plany projektu i najważniejsze informacje o serwerze.</p>
                     </a>
-                    <a class="about__linkCard reveal-child" style="--reveal-i:1" href="/archive">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:1" href={`${base}archive`}>
                         <h3>Archiwum eventów</h3>
                         <p>Zobacz poprzednie edycje, zwycięzców, nagrody i historię wydarzeń HEX.</p>
                     </a>
-                    <a class="about__linkCard reveal-child" style="--reveal-i:2" href="/contact">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:2" href={`${base}contact`}>
                         <h3>Kontakt</h3>
                         <p>Masz pytanie, pomysł na współpracę albo chcesz odezwać się do administracji? Napisz do nas.</p>
                     </a>
@@ -124,7 +125,7 @@ import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
 
             <section class="about__community reveal">
                 <div class="about__communityImg">
-                    <img src="/images/contact/discord.png" alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" />
+                    <img src={`${base}images/contact/discord.png`} alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" />
                 </div>
                 <div class="about__communityText">
                     <h2>Dołącz do community</h2>
@@ -132,7 +133,7 @@ import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
                         Wbijaj — tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera.</p>
                     <div class="about__ctaRow">
                         <a class="about__ctaButton" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na Discord</b></a>
-                        <a class="about__ctaButton about__ctaGhost" href="/"><b>Zobacz stronę główną</b></a>
+                        <a class="about__ctaButton about__ctaGhost" href={base}><b>Zobacz stronę główną</b></a>
                     </div>
                 </div>
             </section>
