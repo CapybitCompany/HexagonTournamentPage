@@ -12,10 +12,12 @@ import FAQ from '../../FAQ/FAQ.astro'
 import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
 ---
 
 <NavBar/>
 <ContentContainer>
+    <Breadcrumbs items={[{ label: "PVP" }]} />
     <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer PVP Minecraft HEX - strona w przygotowaniu">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
             <h1 class="archiveBannerText"></h1>
@@ -30,8 +32,8 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
         <article class="serverArticle">
             <header class="articleHeader">
                 <p class="statusKicker">Status projektu</p>
-                <h1>Serwer PVP</h1>
-                <p class="articleLead">Serwer PVP jest w przygotowaniu. Dopracowujemy zestaw aren, balans i systemy rankingowe.</p>
+                <h1>Serwer HEX Mask Ritual (PVP)</h1>
+                <p class="articleLead">Serwer HEX Mask Ritual (PVP) jest w przygotowaniu. Dopracowujemy zestaw aren, balans i systemy rankingowe.</p>
             </header>
 
             <div class="articleColumns">

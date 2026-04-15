@@ -1,0 +1,1197 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import Footer from '../../Footer/Footer.astro'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro'
+import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro'
+import '../../NavBar/NavBar.css'
+import '../WelcomePage/Welcome.styles.css'
+import Section from '../../ContentContainer/Section.astro'
+import FAQ from '../../FAQ/FAQ.astro'
+import FAQLine from '../../FAQ/FAQLine.astro'
+import FAQQuestion from '../../FAQ/FAQQuestion.astro'
+import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #0a0d12; color: #e0d8cc;">
+    <Breadcrumbs items={[{ label: "HEX SMP" }]} />
+
+    <!-- ===== HERO ===== -->
+    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground smpHeroBanner" imageClass="otherAspect" wrapperStyle="height: 440px;" altText="HEX SMP - nowy tryb Minecraft w produkcji">
+        <div class="smpHeroOverlay"></div>
+        <div class="smpHeroContent">
+            <span class="smpHeroBadge">⚔️ HEX SMP</span>
+            <span class="smpStatusPill"><span class="smpPulse"></span> W PRODUKCJI</span>
+            <h1 class="smpHeroTitle">Twój świat. Twoje zasady. Twoi rywale.</h1>
+            <p class="smpHeroSub">Nowy tryb Minecraft SMP, w którym to co zbudujesz naprawdę ma znaczenie.<br/>Śledź produkcję — i bądź pierwszy, gdy serwer wystartuje.</p>
+            <div class="smpHeroCta">
+                <a class="smpBtn smpBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
+                <a class="smpBtn smpBtnGhost smpCopyIp" href="#" data-copy-ip="MinecraftHEX.pl" aria-label="Skopiuj adres IP serwera">Skopiuj IP: MinecraftHEX.pl</a>
+            </div>
+        </div>
+    </FullImageContainer>
+
+    <Section>
+        <div class="smp">
+
+            <!-- ===== HOOK: NIE KOLEJNY SMP ===== -->
+            <section class="smpHook reveal">
+                <span class="smpSectionLabel" aria-hidden="true">// INTRO</span>
+                <h2 class="smpSectionTitle">Nie kolejny SMP.</h2>
+                <div class="smpHookText">
+                    <p>Znasz to uczucie — wchodzisz na serwer, budujesz bazę, po tygodniu jest nudno.</p>
+                    <p><strong>HEX SMP to coś innego.</strong></p>
+                    <p>Tutaj Twoja baza to nie tylko bloki — to Twoja ekonomia, Twoja siła, Twój cel. Inni gracze nie są tłem — są zagrożeniem i szansą jednocześnie. A system gry sprawia, że <strong>codziennie masz powód, żeby wrócić</strong>.</p>
+                    <p>Nie ma tu przypadkowych mechanik. Każdy element jest zaprojektowany żebyś chciał grać — nie dlatego że musisz, ale dlatego że nie możesz się oderwać.</p>
+                </div>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== FEATURE CARDS ===== -->
+            <section class="smpFeatures reveal">
+                <span class="smpSectionLabel" aria-hidden="true">// FEATURES</span>
+                <h2 class="smpSectionTitle">Zaprojektowany, żebyś nie mógł przestać grać.</h2>
+                <div class="smpFeatureGrid">
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:0">
+                        <span class="smpFeatureIcon">🏗️</span>
+                        <h3>Twoja baza, Twoja twierdza</h3>
+                        <p>Budujesz nie dla ładnego wyglądu — budujesz, żeby przetrwać.</p>
+                    </article>
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:1">
+                        <span class="smpFeatureIcon">💰</span>
+                        <h3>Ekonomia, która działa</h3>
+                        <p>Twoje zasoby generują się automatycznie. Im lepiej zarządzasz, tym szybciej rośniesz.</p>
+                    </article>
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:2">
+                        <span class="smpFeatureIcon">⚔️</span>
+                        <h3>PvP z prawdziwą stawką</h3>
+                        <p>Vanilla combat, zero pay-to-win. Każda walka coś kosztuje — i coś daje.</p>
+                    </article>
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:3">
+                        <span class="smpFeatureIcon">🤝</span>
+                        <h3>Inni gracze to nie tło</h3>
+                        <p>Twoje decyzje wpływają na nich. Ich decyzje wpływają na Ciebie. Codziennie.</p>
+                    </article>
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:4">
+                        <span class="smpFeatureIcon">📅</span>
+                        <h3>Powód żeby wracać</h3>
+                        <p>System gry daje Ci coś do zrobienia każdego dnia. Zero pustych sesji.</p>
+                    </article>
+                    <article class="smpFeatureCard reveal-child" style="--reveal-i:5">
+                        <span class="smpFeatureIcon">🔮</span>
+                        <h3>To dopiero początek</h3>
+                        <p>Nowe mechaniki będą się pojawiać po starcie. Bądź od początku — zanim reszta się połapie.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== QUIZ ===== -->
+            <section class="smpQuiz reveal" id="smpQuiz">
+                <span class="smpSectionLabel" aria-hidden="true">// QUIZ</span>
+                <h2 class="smpSectionTitle">Twój styl gry. Twoja przewaga.</h2>
+                <div class="quizContainer" id="quizContainer">
+                    <!-- Q1 -->
+                    <div class="quizScreen quizScreenActive" data-q="0">
+                        <div class="quizQNum">Pytanie 1 z 5</div>
+                        <p class="quizQText">Wchodzisz na serwer. Co robisz najpierw?</p>
+                        <div class="quizOptions">
+                            <button class="quizOption" data-type="budowniczy">🏗️ Szukam idealnego miejsca na bazę</button>
+                            <button class="quizOption" data-type="wojownik">⚔️ Sprawdzam kto jest online</button>
+                            <button class="quizOption" data-type="strateg">💰 Idę farmić surowce</button>
+                            <button class="quizOption" data-type="dyplomata">🤝 Piszę na czacie "ktoś gra?"</button>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="quizScreen" data-q="1">
+                        <div class="quizQNum">Pytanie 2 z 5</div>
+                        <p class="quizQText">Ktoś atakuje Twojego znajomego. Co robisz?</p>
+                        <div class="quizOptions">
+                            <button class="quizOption" data-type="wojownik">⚔️ Lecę walczyć natychmiast</button>
+                            <button class="quizOption" data-type="strateg">🧠 Najpierw sprawdzam sytuację, potem działam</button>
+                            <button class="quizOption" data-type="budowniczy">🏗️ Buduję mu lepszą obronę na przyszłość</button>
+                            <button class="quizOption" data-type="dyplomata">🤝 Negocjuję z atakującym</button>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="quizScreen" data-q="2">
+                        <div class="quizQNum">Pytanie 3 z 5</div>
+                        <p class="quizQText">Dostajesz rzadki item. Co z nim robisz?</p>
+                        <div class="quizOptions">
+                            <button class="quizOption" data-type="strateg">💰 Sprzedaję za max cenę</button>
+                            <button class="quizOption" data-type="wojownik">⚔️ Używam w walce</button>
+                            <button class="quizOption" data-type="budowniczy">🏗️ Włączam do projektu bazy</button>
+                            <button class="quizOption" data-type="dyplomata">🤝 Daję komuś kto potrzebuje</button>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="quizScreen" data-q="3">
+                        <div class="quizQNum">Pytanie 4 z 5</div>
+                        <p class="quizQText">Co najbardziej Cię wkurza na serwerach?</p>
+                        <div class="quizOptions">
+                            <button class="quizOption" data-type="wojownik">💀 Że PvP jest niezbalansowane</button>
+                            <button class="quizOption" data-type="strateg">😴 Że po tygodniu nie ma co robić</button>
+                            <button class="quizOption" data-type="budowniczy">🏚️ Że bazy nic nie znaczą</button>
+                            <button class="quizOption" data-type="dyplomata">👻 Że serwer jest martwy i nikt nie gada</button>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="quizScreen" data-q="4">
+                        <div class="quizQNum">Pytanie 5 z 5</div>
+                        <p class="quizQText">Jak chcesz żeby inni Cię zapamiętali na serwerze?</p>
+                        <div class="quizOptions">
+                            <button class="quizOption" data-type="wojownik">🏆 Jako top gracza, którego każdy zna</button>
+                            <button class="quizOption" data-type="strateg">🧠 Jako tego, który kontrolował wszystko z cienia</button>
+                            <button class="quizOption" data-type="budowniczy">🏗️ Jako twórcę najlepszej bazy na serwerze</button>
+                            <button class="quizOption" data-type="dyplomata">🤝 Jako lidera największej grupy</button>
+                        </div>
+                    </div>
+                    <!-- Result screen -->
+                    <div class="quizResult" id="quizResult"></div>
+                    <!-- Progress -->
+                    <div class="quizProgressBar"><div class="quizProgressFill" id="quizProgressFill"></div></div>
+                    <div class="quizProgressText" id="quizProgressText">0 / 5</div>
+                </div>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== PILLARS: KAŻDY ELEMENT MA SENS ===== -->
+            <section class="smpPillars reveal">
+                <h2 class="smpSectionTitle">Każdy element ma sens.</h2>
+                <div class="smpPillarList">
+                    <div class="smpPillar reveal-child" style="--reveal-i:0">
+                        <span class="smpPillarIcon">💰</span>
+                        <div class="smpPillarBody">
+                            <h3>Ekonomia, która działa sama</h3>
+                            <p>Nie musisz siedzieć godzinami w kopalni. Twoje zasoby rosną nawet gdy jesteś offline. Ale… inni o tym wiedzą.</p>
+                        </div>
+                    </div>
+                    <div class="smpPillar reveal-child" style="--reveal-i:1">
+                        <span class="smpPillarIcon">⚔️</span>
+                        <div class="smpPillarBody">
+                            <h3>PvP z prawdziwą stawką</h3>
+                            <p>Zero artefaktów za kasę, zero OP broni. Czysty skill. A każda walka ma konsekwencje — dla obydwu stron.</p>
+                        </div>
+                    </div>
+                    <div class="smpPillar reveal-child" style="--reveal-i:2">
+                        <span class="smpPillarIcon">📅</span>
+                        <div class="smpPillarBody">
+                            <h3>Codziennie coś nowego</h3>
+                            <p>System gry nie pozwala Ci się nudzić. Każdego dnia masz nowy powód żeby wejść — i nowy powód żeby zostać dłużej.</p>
+                        </div>
+                    </div>
+                    <div class="smpPillar reveal-child" style="--reveal-i:3">
+                        <span class="smpPillarIcon">🔮</span>
+                        <div class="smpPillarBody">
+                            <h3>Tryb, który rośnie</h3>
+                            <p>Na starcie dostaniesz bazę. Z czasem pojawią się mechaniki, które zmienią wszystko. Bądź od początku.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== FOMO CTA ===== -->
+            <section class="smpFomo reveal">
+                <h2 class="smpSectionTitle">Bądź pierwszy.</h2>
+                <p class="smpFomoText">Serwer jest w produkcji. To znaczy, że ci co dołączą teraz — będą mieli przewagę.</p>
+                <p class="smpFomoText">Śledź devlog. Bądź na Discordzie. Kiedy serwer ruszy — będziesz gotowy.</p>
+                <a class="smpBtn smpBtnPrimary smpBtnWide" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== DEVLOG PREVIEW ===== -->
+            <section class="smpDevlogPreview reveal">
+                <h2 class="smpSectionTitle">Co słychać w produkcji?</h2>
+                <div class="smpDevlogList">
+                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:0">
+                        <div class="smpDevlogMeta">
+                            <time>10 kwi 2026</time>
+                            <span class="smpDevlogTag" data-tag="mechanika">mechanika</span>
+                        </div>
+                        <h3>System ekonomii — pierwsze testy</h3>
+                        <p>Automatyczne generowanie zasobów działa. Balansujemy tempo wzrostu.</p>
+                    </article>
+                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:1">
+                        <div class="smpDevlogMeta">
+                            <time>28 mar 2026</time>
+                            <span class="smpDevlogTag" data-tag="mapa">mapa</span>
+                        </div>
+                        <h3>Spawn i strefy startowe</h3>
+                        <p>Nowy spawn w budowie. Strefy startowe zaprojektowane pod 4 kierunki.</p>
+                    </article>
+                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:2">
+                        <div class="smpDevlogMeta">
+                            <time>15 mar 2026</time>
+                            <span class="smpDevlogTag" data-tag="balans">balans</span>
+                        </div>
+                        <h3>PvP — vanilla combat testy</h3>
+                        <p>Testy walki vanilla. Zero custom enchantów — czysty skill.</p>
+                    </article>
+                </div>
+                <a class="smpDevlogLink" href="/devlog">Zobacz cały devlog →</a>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== GALLERY ===== -->
+            <section class="smpGallery reveal">
+                <h2 class="smpSectionTitle">Zaglądasz za kurtynę.</h2>
+                <p class="smpGallerySub">Widzisz to, czego inni jeszcze nie widzieli.</p>
+                <div class="smpGalleryGrid">
+                    <div class="smpGallerySlot smpGalleryMain">
+                        <div class="smpVideoPlaceholder">
+                            <span class="smpVideoIcon">▶</span>
+                            <span>Film z procesu tworzenia — wkrótce</span>
+                        </div>
+                    </div>
+                    <div class="smpGallerySlot">
+                        <img src="/images/Archive/Hex6/1.jpg" alt="Budowa HEX SMP — zdjęcie 1" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="smpGallerySlot">
+                        <img src="/images/Archive/Hex6/2.jpg" alt="Budowa HEX SMP — zdjęcie 2" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="smpGallerySlot">
+                        <img src="/images/Archive/Hex6/3.jpg" alt="Budowa HEX SMP — zdjęcie 3" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
+                    </div>
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
+
+            <!-- ===== FAQ ===== -->
+            <section class="smpFaq reveal">
+                <h2 class="smpSectionTitle">FAQ — HEX SMP</h2>
+                <FAQ>
+                    <FAQLine>
+                        <FAQQuestion>Czym jest HEX SMP?</FAQQuestion>
+                        <FAQAnswer>Nowy tryb Minecraft SMP łączący survival, ekonomię i PvP. Twoja baza, Twoje zasoby i Twoi rywale — wszystko połączone w jedną rozgrywkę.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Kiedy start serwera?</FAQQuestion>
+                        <FAQAnswer>Tryb jest w produkcji. Datę ogłosimy na Discordzie — dołącz żeby być na bieżąco.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Co wyróżnia HEX SMP od innych serwerów?</FAQQuestion>
+                        <FAQAnswer>System, w którym codziennie masz co robić. Ekonomia działa sama, PvP ma stawkę, a decyzje mają konsekwencje. Nie jest nudno.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy to pay-to-win?</FAQQuestion>
+                        <FAQAnswer>Nie. PvP jest vanilla. Kasa nie kupuje przewagi.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Jak dołączyć?</FAQQuestion>
+                        <FAQAnswer>Wejdź na Discorda HEX — tam zapisy, ogłoszenia i społeczność.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Gdzie śledzić postępy?</FAQQuestion>
+                        <FAQAnswer>Devlog na stronie + Discord. Tam pierwszy dowiesz się co nowego.</FAQAnswer>
+                    </FAQLine>
+                </FAQ>
+            </section>
+
+            <!-- ===== FINAL CTA ===== -->
+            <section class="smpFinalCta reveal">
+                <h2 class="smpSectionTitle">Nie czekaj na start. Bądź przy starcie.</h2>
+                <div class="smpFinalCtaRow">
+                    <a class="smpBtn smpBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
+                    <a class="smpBtn smpBtnGhost" href="/devlog">Zobacz devlog</a>
+                </div>
+            </section>
+
+        </div>
+    </Section>
+</ContentContainer>
+<Footer/>
+
+<!-- ===== COPY IP ===== -->
+<script>
+    document.querySelectorAll<HTMLAnchorElement>('.smpCopyIp').forEach((button) => {
+        button.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const ip = button.dataset.copyIp || 'MinecraftHEX.pl';
+            const defaultLabel = `Skopiuj IP: ${ip}`;
+            let copied = false;
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(ip);
+                    copied = true;
+                }
+            } catch { copied = false; }
+            if (!copied) {
+                const t = document.createElement('textarea');
+                t.value = ip; t.setAttribute('readonly', '');
+                t.style.position = 'fixed'; t.style.opacity = '0';
+                document.body.appendChild(t); t.select();
+                try { copied = document.execCommand('copy'); } catch { copied = false; }
+                document.body.removeChild(t);
+            }
+            button.textContent = copied ? `Skopiowano IP: ${ip}` : 'Nie udało się skopiować';
+            button.classList.add(copied ? 'copied' : 'copyError');
+            setTimeout(() => { button.textContent = defaultLabel; button.classList.remove('copied', 'copyError'); }, 1800);
+        });
+    });
+</script>
+
+<!-- ===== QUIZ LOGIC ===== -->
+<script>
+    const scores: Record<string, number> = { strateg: 0, wojownik: 0, budowniczy: 0, dyplomata: 0 };
+    const totalQ = 5;
+    let currentQ = 0;
+
+    const typeData: Record<string, { icon: string; name: string; desc: string }> = {
+        strateg: { icon: '🧠', name: 'STRATEG', desc: 'Nie wchodzisz do walki nieprzygotowany. Twoja baza jest fortecą, a ekonomia — maszyną. Na HEX SMP będziesz niebezpieczny.' },
+        wojownik: { icon: '⚔️', name: 'WOJOWNIK', desc: 'PvP to Twój żywioł. Szukasz walki, ryzykujesz i zgarniasz nagrody. Na HEX SMP staniesz przed prawdziwym wyzwaniem.' },
+        budowniczy: { icon: '🏗️', name: 'BUDOWNICZY', desc: 'Twoja baza to dzieło sztuki i twierdza w jednym. Na HEX SMP to co zbudujesz będzie miało realne znaczenie.' },
+        dyplomata: { icon: '🤝', name: 'DYPLOMATA', desc: 'Wiesz, że siła to ludzie. Sojusze, handel, kontakty. Na HEX SMP Twoja sieć znajomości będzie Twoją bronią.' },
+    };
+
+    function updateProgress() {
+        const fill = document.getElementById('quizProgressFill');
+        const text = document.getElementById('quizProgressText');
+        if (fill) fill.style.width = `${(currentQ / totalQ) * 100}%`;
+        if (text) text.textContent = `${currentQ} / ${totalQ}`;
+    }
+
+    function showResult() {
+        const priority = ['wojownik', 'strateg', 'budowniczy', 'dyplomata'] as const;
+        let maxType = priority[0];
+        let maxScore = scores[priority[0]];
+        for (const t of priority) {
+            if (scores[t] > maxScore) { maxScore = scores[t]; maxType = t; }
+        }
+
+        const data = typeData[maxType];
+        const result = document.getElementById('quizResult');
+        const progressBar = document.querySelector('.quizProgressBar') as HTMLElement;
+        const progressText = document.getElementById('quizProgressText');
+        if (progressBar) progressBar.style.display = 'none';
+        if (progressText) progressText.style.display = 'none';
+
+        if (result) {
+            result.innerHTML = `
+                <div class="quizResultIcon">${data.icon}</div>
+                <div class="quizResultType">Twój typ: ${data.name}</div>
+                <p class="quizResultDesc">${data.desc}</p>
+                <a class="smpBtn smpBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">🔥 Dołącz na Discord — bądź pierwszy</a>
+                <button class="quizShareBtn" id="quizShare">Twoi znajomi mogą być innym typem → Wyślij quiz</button>
+            `;
+            result.classList.add('quizResultActive');
+            document.getElementById('quizShare')?.addEventListener('click', async () => {
+                const url = window.location.origin + '/hexSmp#smpQuiz';
+                if (navigator.share) {
+                    try { await navigator.share({ title: 'Jaki typ gracza jesteś?', text: `Mój typ to ${data.name}! Sprawdź swój:`, url }); } catch {}
+                } else {
+                    try { await navigator.clipboard.writeText(url); } catch {}
+                    const btn = document.getElementById('quizShare');
+                    if (btn) { btn.textContent = 'Link skopiowany!'; setTimeout(() => { btn.textContent = 'Twoi znajomi mogą być innym typem → Wyślij quiz'; }, 2000); }
+                }
+            });
+        }
+    }
+
+    document.querySelectorAll('.quizOption').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const type = (btn as HTMLElement).dataset.type;
+            if (type && type in scores) scores[type]++;
+
+            const currentScreen = document.querySelector(`.quizScreen[data-q="${currentQ}"]`);
+            currentQ++;
+            updateProgress();
+
+            if (currentScreen) {
+                currentScreen.classList.add('quizScreenExit');
+                currentScreen.classList.remove('quizScreenActive');
+            }
+
+            setTimeout(() => {
+                if (currentScreen) (currentScreen as HTMLElement).style.display = 'none';
+
+                if (currentQ >= totalQ) {
+                    showResult();
+                } else {
+                    const next = document.querySelector(`.quizScreen[data-q="${currentQ}"]`) as HTMLElement;
+                    if (next) { next.style.display = 'flex'; next.classList.add('quizScreenActive'); }
+                }
+            }, 300);
+        });
+    });
+
+    updateProgress();
+</script>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+</script>
+
+<style>
+    /* ===== MAIN WRAPPER — BLUEPRINT DOT GRID ===== */
+    .smp {
+        display: flex;
+        flex-direction: column;
+        width: min(980px, 96%);
+        margin: 0 auto;
+        padding: 32px 0;
+        background-image: radial-gradient(circle, rgba(100, 180, 255, 0.045) 1px, transparent 1px);
+        background-size: 24px 24px;
+        position: relative;
+    }
+
+    /* ===== HERO ===== */
+    .smpHeroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(10,13,18,0.4) 0%, rgba(10,13,18,0.85) 100%);
+        z-index: 1;
+    }
+
+    .smpHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        gap: 10px;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .smpHeroBadge {
+        display: inline-block;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent-color);
+        background: rgba(255, 166, 0, 0.1);
+        border: 1px solid rgba(255, 166, 0, 0.25);
+        border-radius: 999px;
+        padding: 4px 16px;
+    }
+
+    .smpStatusPill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(100, 180, 255, 0.9);
+        background: rgba(100, 180, 255, 0.08);
+        border: 1px solid rgba(100, 180, 255, 0.2);
+        border-radius: 999px;
+        padding: 4px 14px;
+    }
+
+    .smpPulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(100, 180, 255, 0.9);
+        animation: smpPulseAnim 2s ease-in-out infinite;
+    }
+
+    @keyframes smpPulseAnim {
+        0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(100,180,255,0.6); }
+        50% { opacity: 0.4; box-shadow: 0 0 12px rgba(100,180,255,0.8); }
+    }
+
+    .smpHeroTitle {
+        margin: 4px 0 0 0;
+        font-size: clamp(1.7rem, 4.5vw, 2.8rem);
+        line-height: 1.15;
+        color: #fff;
+        text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    }
+
+    .smpHeroSub {
+        margin: 0;
+        max-width: 560px;
+        font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+        line-height: 1.6;
+        color: rgba(255,255,255,0.7);
+    }
+
+    .smpHeroCta {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* ===== BUTTONS ===== */
+    .smpBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border-radius: 999px;
+        padding: 11px 22px;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .smpBtnPrimary {
+        color: #181818;
+        background: #ffcf5a;
+        border: 1px solid #ffcf5a;
+    }
+    .smpBtnPrimary:hover {
+        background: #ffd97a;
+        transform: translateY(-1px);
+    }
+
+    .smpBtnGhost {
+        color: #ffe8b7;
+        background: transparent;
+        border: 1px solid rgba(255, 232, 183, 0.4);
+    }
+    .smpBtnGhost:hover {
+        border-color: rgba(255, 232, 183, 0.7);
+        transform: translateY(-1px);
+    }
+
+    .smpBtnWide {
+        width: 100%;
+        max-width: 400px;
+        padding: 14px 24px;
+        font-size: 1.05rem;
+    }
+
+    .smpCopyIp { cursor: pointer; user-select: none; }
+    :global(.smpCopyIp.copied) { color: #dff7d8 !important; border-color: rgba(120,222,132,0.7) !important; background: rgba(82,166,96,0.2) !important; }
+    :global(.smpCopyIp.copyError) { color: #ffd0d0 !important; border-color: rgba(255,132,132,0.7) !important; background: rgba(156,63,63,0.24) !important; }
+
+    /* ===== SECTION TITLES ===== */
+    .smpSectionTitle {
+        margin: 0 0 20px 0;
+        text-align: center;
+        color: #fff;
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    }
+
+    /* ===== SECTION LABELS (Blueprint annotations) ===== */
+    .smpSectionLabel {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: rgba(100, 180, 255, 0.3);
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: monospace;
+    }
+
+    /* ===== DIVIDERS ===== */
+    .smpDivider {
+        width: 100%;
+        height: 1px;
+        background: rgba(100, 180, 255, 0.12);
+        margin: 48px 0;
+        position: relative;
+    }
+    .smpDivider::before, .smpDivider::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(100, 180, 255, 0.25);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .smpDivider::before { left: 0; }
+    .smpDivider::after { right: 0; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .revealed { opacity: 1; transform: translateY(0); }
+    .reveal-child {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition-delay: calc(var(--reveal-i, 0) * 0.08s);
+    }
+    .revealed .reveal-child { opacity: 1; transform: translateY(0); }
+
+    /* ===== HOOK SECTION ===== */
+    .smpHook {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        background: rgba(100, 180, 255, 0.025);
+    }
+
+    .smpHookText {
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .smpHookText p {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+        line-height: 1.7;
+        color: rgba(255,255,255,0.8);
+    }
+
+    .smpHookText strong {
+        color: #fff;
+    }
+
+    /* ===== FEATURE CARDS ===== */
+    .smpFeatures {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .smpFeatureGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        width: 100%;
+    }
+
+    .smpFeatureCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding: 20px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(100, 180, 255, 0.12);
+        background: rgba(100, 180, 255, 0.03);
+        transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .smpFeatureCard:hover {
+        border-color: rgba(100, 180, 255, 0.25);
+        background: rgba(100, 180, 255, 0.06);
+    }
+
+    .smpFeatureIcon { font-size: 1.8rem; }
+
+    .smpFeatureCard h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #fff;
+    }
+
+    .smpFeatureCard p {
+        margin: 0;
+        font-size: clamp(0.9rem, 1.1vw, 1rem);
+        line-height: 1.6;
+        color: rgba(255,255,255,0.6);
+    }
+
+    /* ===== QUIZ ===== */
+    .smpQuiz {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quizContainer {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgba(100, 180, 255, 0.15);
+        border-radius: 18px;
+        background: rgba(100, 180, 255, 0.03);
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .quizScreen {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 16px;
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .quizScreenActive {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .quizScreenExit {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    .quizQNum {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(100, 180, 255, 0.6);
+    }
+
+    .quizQText {
+        margin: 0;
+        font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    .quizOptions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .quizOption {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(100, 180, 255, 0.15);
+        background: rgba(100, 180, 255, 0.04);
+        color: rgba(255,255,255,0.85);
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+        font-family: inherit;
+    }
+
+    .quizOption:hover {
+        border-color: var(--accent-color);
+        background: rgba(255, 166, 0, 0.08);
+        transform: translateX(4px);
+    }
+
+    .quizOption:active {
+        transform: scale(0.98);
+    }
+
+    .quizProgressBar {
+        width: 100%;
+        height: 4px;
+        background: rgba(100, 180, 255, 0.1);
+        border-radius: 4px;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .quizProgressFill {
+        height: 100%;
+        width: 0%;
+        background: var(--accent-color);
+        border-radius: 4px;
+        transition: width 0.4s ease;
+    }
+
+    .quizProgressText {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.4);
+        margin-top: 6px;
+    }
+
+    /* Quiz result */
+    .quizResult {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+        width: 100%;
+    }
+
+    :global(.quizResultActive) {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        animation: quizResultIn 0.5s ease forwards;
+    }
+
+    @keyframes quizResultIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    :global(.quizResultIcon) { font-size: 3rem; }
+    :global(.quizResultType) {
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+        font-weight: 800;
+        color: var(--accent-color);
+    }
+    :global(.quizResultDesc) {
+        margin: 0;
+        font-size: clamp(1rem, 1.2vw, 1.1rem);
+        line-height: 1.7;
+        color: rgba(255,255,255,0.8);
+        max-width: 480px;
+    }
+
+    :global(.quizShareBtn) {
+        margin-top: 6px;
+        background: none;
+        border: none;
+        color: rgba(100,180,255,0.7);
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: underline;
+        font-family: inherit;
+        transition: color 0.2s ease;
+    }
+    :global(.quizShareBtn:hover) { color: rgba(100,180,255,1); }
+
+    /* ===== PILLARS ===== */
+    .smpPillars {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .smpPillarList {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+    }
+
+    .smpPillar {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 18px 20px;
+        border-radius: 14px;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        background: rgba(100, 180, 255, 0.025);
+        transition: border-color 0.3s ease;
+    }
+
+    .smpPillar:hover {
+        border-color: rgba(100, 180, 255, 0.22);
+    }
+
+    .smpPillarIcon {
+        font-size: 1.6rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .smpPillarBody {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .smpPillarBody h3 {
+        margin: 0;
+        font-size: 1.08rem;
+        color: #fff;
+    }
+
+    .smpPillarBody p {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+        line-height: 1.7;
+        color: rgba(255,255,255,0.65);
+    }
+
+    /* ===== FOMO / CTA ===== */
+    .smpFomo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 166, 0, 0.2);
+        background: rgba(255, 166, 0, 0.03);
+        animation: fomoGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes fomoGlow {
+        0%, 100% { border-color: rgba(255, 166, 0, 0.15); }
+        50% { border-color: rgba(255, 166, 0, 0.4); }
+    }
+
+    .smpFomoText {
+        margin: 0 0 8px 0;
+        font-size: clamp(1.02rem, 1.25vw, 1.14rem);
+        line-height: 1.7;
+        color: rgba(255,255,255,0.75);
+        max-width: 560px;
+    }
+
+    .smpFomo .smpBtnWide { margin-top: 12px; }
+
+    /* ===== DEVLOG PREVIEW ===== */
+    .smpDevlogPreview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .smpDevlogList {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .smpDevlogEntry {
+        padding: 18px 20px;
+        border-radius: 14px;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        background: rgba(100, 180, 255, 0.025);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        transition: border-color 0.3s ease;
+    }
+
+    .smpDevlogEntry:hover {
+        border-color: rgba(100, 180, 255, 0.22);
+    }
+
+    .smpDevlogMeta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .smpDevlogMeta time {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.4);
+    }
+
+    .smpDevlogTag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .smpDevlogTag[data-tag="mechanika"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
+    .smpDevlogTag[data-tag="mapa"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
+    .smpDevlogTag[data-tag="balans"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
+
+    .smpDevlogEntry h3 {
+        margin: 0;
+        font-size: 1.08rem;
+        color: #fff;
+    }
+
+    .smpDevlogEntry p {
+        margin: 0;
+        font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+        line-height: 1.6;
+        color: rgba(255,255,255,0.6);
+    }
+
+    .smpDevlogLink {
+        margin-top: 16px;
+        color: rgba(100, 180, 255, 0.8);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .smpDevlogLink:hover { color: rgba(100, 180, 255, 1); }
+
+    /* ===== GALLERY ===== */
+    .smpGallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .smpGallerySub {
+        margin: -12px 0 20px 0;
+        text-align: center;
+        font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+        color: rgba(255,255,255,0.5);
+    }
+
+    .smpGalleryGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .smpGallerySlot {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        aspect-ratio: 16/10;
+    }
+
+    .smpGallerySlot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .smpGallerySlot:hover img {
+        transform: scale(1.05);
+    }
+
+    .smpGalleryMain {
+        grid-column: 1 / -1;
+        aspect-ratio: 21/9;
+    }
+
+    .smpGalleryPlaceholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-style: dashed;
+        color: rgba(255,255,255,0.3);
+        font-size: 0.9rem;
+    }
+
+    .smpVideoPlaceholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(0,0,0,0.4);
+        color: rgba(255,255,255,0.45);
+        font-size: 0.95rem;
+    }
+
+    .smpVideoIcon {
+        font-size: 2.2rem;
+        opacity: 0.6;
+    }
+
+    /* ===== FAQ ===== */
+    .smpFaq {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        padding: 24px 20px;
+        box-sizing: border-box;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(100, 180, 255, 0.025);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .smpFaq::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(100,180,255,0.08), transparent 42%);
+    }
+
+    .smpFaq h2 { margin: 0 0 8px 0; position: relative; z-index: 1; }
+    .smpFaq :global(.faqQuestion) { font-size: clamp(1.12rem, 1.45vw, 1.28rem); }
+    .smpFaq :global(.faqAnswer) { font-size: clamp(1.05rem, 1.28vw, 1.16rem); line-height: 1.7; }
+
+    /* ===== FINAL CTA ===== */
+    .smpFinalCta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 16px 0;
+        gap: 16px;
+    }
+
+    .smpFinalCtaRow {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+        .smpFeatureGrid { grid-template-columns: repeat(2, 1fr); }
+        .smpGalleryGrid { grid-template-columns: repeat(2, 1fr); }
+        .smpGalleryMain { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 700px) {
+        .smpHeroTitle { font-size: clamp(1.4rem, 6vw, 2rem); }
+        .smpGalleryGrid { grid-template-columns: 1fr; }
+        .smpGalleryMain { aspect-ratio: 16/9; }
+        .smpPillar { flex-direction: column; gap: 10px; }
+        .quizContainer { padding: 20px 16px; }
+        .smpDivider { margin: 32px 0; }
+    }
+
+    @media (max-width: 500px) {
+        .smpFeatureGrid { grid-template-columns: 1fr; }
+        .smpHeroCta { flex-direction: column; align-items: center; }
+        .smpFinalCtaRow { flex-direction: column; align-items: center; }
+    }
+</style>

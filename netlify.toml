@@ -18,4 +18,10 @@
   from = "http://www.minecrafthex.pl/*"
   to = "https://www.minecrafthex.pl/:splat"
   status = 301
+
+[[redirects]]
+  from = "/hexHardcoreSsmp"
+  to = "/hexHardcoreSmp"
+  status = 301
+  force = true
   force = true

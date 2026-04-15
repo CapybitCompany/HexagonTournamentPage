@@ -1,0 +1,208 @@
+---
+import NavBar from '../../NavBar/NavBar.astro'
+import Footer from '../../Footer/Footer.astro'
+import ContentContainer from '../../ContentContainer/ContentContainer.astro'
+import '../../NavBar/NavBar.css'
+import '../WelcomePage/Welcome.styles.css'
+import Section from '../../ContentContainer/Section.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+
+const entries = [
+    {
+        date: "10 kwi 2026",
+        tag: "mechanika",
+        title: "System ekonomii — pierwsze testy",
+        content: "Automatyczne generowanie zasobów działa i jest gotowe do testów balansowych. Pierwsza wersja systemu pozwala graczom zarabiać offline — teraz dopracowujemy tempo wzrostu, żeby nie było zbyt łatwo ani zbyt wolno. Wstępne wyniki są obiecujące.",
+        image: null,
+    },
+    {
+        date: "28 mar 2026",
+        tag: "mapa",
+        title: "Spawn i strefy startowe",
+        content: "Nowy spawn jest w budowie. Zaprojektowaliśmy strefy startowe pod 4 kierunki świata — każda z unikalnym klimatem i dostępem do innych zasobów. Celem jest żeby wybór miejsca na bazę miał realne znaczenie od pierwszej minuty.",
+        image: null,
+    },
+    {
+        date: "15 mar 2026",
+        tag: "balans",
+        title: "PvP — vanilla combat testy",
+        content: "Przeprowadziliśmy pierwsze testy walki. Potwierdzamy: zero custom enchantów, zero OP broni. Czysty vanilla combat z drobnymi modyfikacjami pod nasze systemy. Każda walka ma mieć realne konsekwencje dla obu stron.",
+        image: null,
+    },
+];
+---
+
+<NavBar/>
+<ContentContainer style="background-color: #0a0d12; color: #e0d8cc;">
+    <Breadcrumbs items={[{ label: "Devlog" }]} />
+
+    <Section>
+        <div class="devlog">
+            <header class="devlogHeader">
+                <span class="devlogBadge">📋 DEVLOG</span>
+                <h1 class="devlogTitle">Dziennik produkcji</h1>
+                <p class="devlogSub">Śledź postępy budowy HEX SMP. Tutaj na bieżąco publikujemy co robimy i nad czym pracujemy.</p>
+            </header>
+
+            <div class="devlogEntries">
+                {entries.map((entry) => (
+                    <article class="devlogEntry reveal">
+                        <div class="devlogEntryMeta">
+                            <time>{entry.date}</time>
+                            <span class="devlogTag" data-tag={entry.tag}>{entry.tag}</span>
+                        </div>
+                        <h2>{entry.title}</h2>
+                        <p>{entry.content}</p>
+                    </article>
+                ))}
+            </div>
+
+            <div class="devlogBack">
+                <a href="/hexSmp" class="devlogBackLink">← Wróć do HEX SMP</a>
+            </div>
+        </div>
+    </Section>
+</ContentContainer>
+<Footer/>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>
+
+<style>
+    .devlog {
+        display: flex;
+        flex-direction: column;
+        width: min(780px, 96%);
+        margin: 0 auto;
+        padding: 32px 0;
+        background-image: radial-gradient(circle, rgba(100, 180, 255, 0.045) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    .devlogHeader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    .devlogBadge {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(100, 180, 255, 0.9);
+        background: rgba(100, 180, 255, 0.08);
+        border: 1px solid rgba(100, 180, 255, 0.2);
+        border-radius: 999px;
+        padding: 4px 16px;
+    }
+
+    .devlogTitle {
+        margin: 0;
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        color: #fff;
+    }
+
+    .devlogSub {
+        margin: 0;
+        max-width: 520px;
+        font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+        line-height: 1.6;
+        color: rgba(255,255,255,0.55);
+    }
+
+    .devlogEntries {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .devlogEntry {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 22px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(100, 180, 255, 0.1);
+        background: rgba(100, 180, 255, 0.025);
+        transition: border-color 0.3s ease;
+    }
+
+    .devlogEntry:hover {
+        border-color: rgba(100, 180, 255, 0.22);
+    }
+
+    .devlogEntryMeta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .devlogEntryMeta time {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.4);
+    }
+
+    .devlogTag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .devlogTag[data-tag="mechanika"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
+    .devlogTag[data-tag="mapa"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
+    .devlogTag[data-tag="balans"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
+
+    .devlogEntry h2 {
+        margin: 0;
+        font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+        color: #fff;
+    }
+
+    .devlogEntry p {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+        line-height: 1.75;
+        color: rgba(255,255,255,0.65);
+    }
+
+    .devlogBack {
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+    }
+
+    .devlogBackLink {
+        color: rgba(100, 180, 255, 0.8);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .devlogBackLink:hover { color: rgba(100, 180, 255, 1); }
+
+    /* Scroll reveal */
+    .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .revealed { opacity: 1; transform: translateY(0); }
+</style>

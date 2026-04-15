@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://capybitcompany.github.io',
+  site: 'https://www.minecrafthex.pl',
   base: '/',
   integrations: [sitemap()],
 });

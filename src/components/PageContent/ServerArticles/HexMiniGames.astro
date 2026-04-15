@@ -12,10 +12,12 @@ import FAQ from '../../FAQ/FAQ.astro'
 import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
 ---
 
 <NavBar/>
 <ContentContainer>
+    <Breadcrumbs items={[{ label: "Mini Games" }]} />
     <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer Mini-Games Minecraft HEX - strona w przygotowaniu">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
             <h1 class="archiveBannerText"></h1>

@@ -59,6 +59,7 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 
 	</head>
 	<body>
+		<a class="skip-to-content" href="#main-content">Przejdź do treści</a>
 		<slot />
 	</body>
 </html>
@@ -70,6 +71,23 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 		width: 100%;
 		background-color: var(--background-color);
 		overflow-x: hidden;
+	}
+
+	.skip-to-content {
+		position: absolute;
+		left: -9999px;
+		top: 0;
+		z-index: 9999;
+		padding: 12px 24px;
+		background: var(--accent-color, #ffa600);
+		color: #000;
+		font-weight: bold;
+		text-decoration: none;
+		border-radius: 0 0 8px 0;
+	}
+
+	.skip-to-content:focus {
+		left: 0;
 	}
 </style>
 

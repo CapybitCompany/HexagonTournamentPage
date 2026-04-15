@@ -2,7 +2,6 @@
 import NavBar from './NavBar/NavBar.astro'
 import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
-import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
@@ -11,46 +10,50 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;" altText="Zespol HEX Network i spolecznosc Minecraft podczas wydarzenia">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+    <Breadcrumbs items={[{ label: "O nas" }]} />
+    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground aboutHeroBanner" imageClass="otherAspect" wrapperStyle="height: 420px;" altText="Zespol HEX Network i spolecznosc Minecraft podczas wydarzenia">
+        <div class="aboutHeroOverlay"></div>
+        <div class="aboutHeroContent">
+            <span class="aboutHeroBadge">👥 O NAS</span>
+            <h1 class="aboutBannerText">HEX Network</h1>
+            <p class="aboutHeroSub">Polska społeczność i serwer Minecraft — turnieje, eventy, ranking graczy.</p>
         </div>
-        
     </FullImageContainer>
 
     <Section>
         <section class="about">
-            <header class="about__header">
-                <h1>O nas</h1>
+            <header class="about__header reveal">
                 <p>
                 <b>HEX Network</b> to polska społeczność i serwer Minecraft, który łączy <b>turnieje, eventy, ranking graczy oraz autorskie tryby rozgrywki</b>.
                 Zaczęliśmy od turniejów dla znajomych, a dziś budujemy miejsce, gdzie można rywalizować, współpracować i po prostu dobrze się bawić na co dzień.
                 </p>
             </header>
 
-            <section class="about__stats" aria-label="Najwazniejsze informacje o HEX Network">
-                <article class="about__statCard">
+            <section class="about__stats reveal" aria-label="Najwazniejsze informacje o HEX Network">
+                <article class="about__statCard reveal-child" style="--reveal-i:0">
                     <span>Start projektu</span>
                     <strong>15.03.2025</strong>
                 </article>
-                <article class="about__statCard">
+                <article class="about__statCard reveal-child" style="--reveal-i:1">
                     <span>Rozegrane turnieje</span>
-                    <strong>6</strong>
+                    <strong data-count-to="6">0</strong>
                 </article>
-                <article class="about__statCard">
+                <article class="about__statCard reveal-child" style="--reveal-i:2">
                     <span>Gracze w rankingach</span>
-                    <strong>44</strong>
+                    <strong data-count-to="44">0</strong>
                 </article>
-                <article class="about__statCard">
+                <article class="about__statCard reveal-child" style="--reveal-i:3">
                     <span>Aktywna społeczność</span>
                     <strong>Discord + serwer</strong>
                 </article>
             </section>
 
-            <section class="about__section">
+            <section class="about__section reveal">
                 <h2>Co robimy</h2>
                 <ul>
                 <li>Organizujemy turnieje i eventy Minecraft z rankingiem punktowym.</li>
@@ -61,7 +64,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </ul>
             </section>
 
-            <section class="about__section">
+            <section class="about__section reveal">
                 <h2>Dla kogo jest HEX Network</h2>
                 <p>
                 Dla graczy, którzy lubią Minecrafta i chcą mieć:
@@ -70,7 +73,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </p>
             </section>
 
-            <section class="about__section">
+            <section class="about__section reveal">
                 <h2>Nasze zasady</h2>
                 <ul>
                 <li><strong>Fair-play</strong> - stawiamy na uczciwą rywalizację i przejrzyste reguły.</li>
@@ -80,7 +83,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </ul>
             </section>
 
-            <section class="about__section">
+            <section class="about__section reveal">
                 <h2>Jak działają eventy i nagrody</h2>
                 <p>
                 Organizujemy turnieje i wyzwania sezonowe. Za udział i wyniki można zdobywać punkty do rankingów,
@@ -89,7 +92,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </p>
             </section>
 
-            <section class="about__section">
+            <section class="about__section reveal">
                 <h2>Skąd to wszystko się bierze</h2>
                 <p>
                 Utrzymanie serwera i organizacja eventów kosztują (hosting, zabezpieczenia, narzędzia, czas). Dlatego mamy sklep z
@@ -101,40 +104,40 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </p>
             </section>
 
-            <section class="about__section about__linksSection">
+            <section class="about__section about__linksSection reveal">
                 <h2>Gdzie zacząć?</h2>
                 <div class="about__linkGrid">
-                    <a class="about__linkCard" href="/">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:0" href="/">
                         <h3>Strona główna</h3>
                         <p>Poznaj aktualne turnieje, plany projektu i najważniejsze informacje o serwerze.</p>
                     </a>
-                    <a class="about__linkCard" href="/archive">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:1" href="/archive">
                         <h3>Archiwum eventów</h3>
                         <p>Zobacz poprzednie edycje, zwycięzców, nagrody i historię wydarzeń HEX.</p>
                     </a>
-                    <a class="about__linkCard" href="/contact">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:2" href="/contact">
                         <h3>Kontakt</h3>
                         <p>Masz pytanie, pomysł na współpracę albo chcesz odezwać się do administracji? Napisz do nas.</p>
                     </a>
                 </div>
             </section>
 
-            <section >
-                
-                <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd" altText="Discord HEX Network - dolacz do spolecznosci Minecraft">
-                    <div class="fullWidthTileContent" >
-                        <h1>Dołącz do community</h1>
-                        <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
-                            Wbijaj - tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera. </p>
-                        <div class="fullWidthTileContent about__ctaRow" >
-                            <a class="about__ctaButton" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na Discord</b></a>
-                            <a class="about__ctaButton about__ctaGhost" href="/"><b>Zobacz stronę główną</b></a>
-                        </div>
+            <section class="about__community reveal">
+                <div class="about__communityImg">
+                    <img src="/images/contact/discord.png" alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" />
+                </div>
+                <div class="about__communityText">
+                    <h2>Dołącz do community</h2>
+                    <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
+                        Wbijaj — tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera.</p>
+                    <div class="about__ctaRow">
+                        <a class="about__ctaButton" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na Discord</b></a>
+                        <a class="about__ctaButton about__ctaGhost" href="/"><b>Zobacz stronę główną</b></a>
                     </div>
-                </ImageBoxContent>
+                </div>
             </section>
 
-            <section class="about__section about__faqSection faqSection showcasePanel faqPanel">
+            <section class="about__section about__faqSection faqSection showcasePanel faqPanel reveal">
                 <h2 class="about__faqHeading">FAQ - O nas</h2>
                 <FAQ>
                     <FAQLine>
@@ -158,8 +161,128 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 </ContentContainer>
 <Footer/>
 
+<script>
+/* === Scroll Reveal === */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+/* === Counting Numbers === */
+const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.countTo, 10);
+        if (isNaN(target)) return;
+        countObserver.unobserve(el);
+        const duration = 1200;
+        const start = performance.now();
+        const animate = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = String(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.observe(el));
+</script>
+
 <style>
-    section{
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-child {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.5s cubic-bezier(.22,1,.36,1), transform 0.5s cubic-bezier(.22,1,.36,1);
+        transition-delay: calc(var(--reveal-i, 0) * 120ms);
+    }
+    .revealed .reveal-child {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
+    }
+
+    /* ===== HERO ===== */
+    :global(.aboutHeroBanner) {
+        position: relative;
+    }
+
+    .aboutHeroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(10, 13, 18, 0.7) 70%,
+            #0a0d12 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .aboutHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        gap: 12px;
+    }
+
+    .aboutHeroBadge {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.1);
+        color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .aboutBannerText {
+        color: white;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-family: "minecraft";
+        margin: 0;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.25), 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .aboutHeroSub {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 560px;
+    }
+
+    section {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -167,11 +290,11 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .about {
         gap: 28px;
-        --about-panel-gradient: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
-        --about-card-bg: rgba(0, 0, 0, 0.42);
-        --about-card-bg-hover: rgba(0, 0, 0, 0.5);
-        --about-border: rgba(255, 255, 255, 0.24);
-        --about-panel-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+        --about-panel-gradient: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        --about-card-bg: rgba(0, 0, 0, 0.32);
+        --about-card-bg-hover: rgba(0, 0, 0, 0.45);
+        --about-border: rgba(255, 255, 255, 0.08);
+        --about-panel-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
     }
 
     .about__header {
@@ -187,16 +310,18 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         margin: 0;
         line-height: 1.7;
         font-size: clamp(1.08rem, 1.35vw, 1.24rem);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .about__header h1 {
-
+        color: #fff;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
     }
 
     .about__stats {
         border-radius: 18px;
         padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         background: var(--about-panel-gradient);
         box-shadow: var(--about-panel-shadow);
         display: grid;
@@ -214,7 +339,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.12), transparent 42%);
     }
 
     .about__statCard {
@@ -235,29 +360,35 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .about__statCard span {
-        color: #ffd49c;
-        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.72rem;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.12em;
         font-weight: 700;
     }
 
     .about__statCard strong {
-        color: #ffe39f;
-        font-size: clamp(1.25rem, 2vw, 1.8rem);
+        color: #fff;
+        font-size: clamp(1.15rem, 1.8vw, 1.5rem);
         line-height: 1.2;
     }
 
     .about__section {
         border-radius: 18px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         background: var(--about-panel-gradient);
         box-shadow: var(--about-panel-shadow);
         position: relative;
         overflow: hidden;
         box-sizing: border-box;
         gap: 10px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about__section:hover {
+        border-color: rgba(255, 166, 0, 0.15);
+        box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 166, 0, 0.04);
     }
 
     .about__section p {
@@ -270,9 +401,21 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .about__section h2 {
-        color: #ffe39f;
+        color: #fff;
         position: relative;
         z-index: 1;
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+    }
+
+    .about__section h2::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin-top: 8px;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
     }
 
     .about__section strong {
@@ -324,7 +467,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .about__linkCard h3 {
         margin: 0;
-        color: #ffe39f;
+        color: var(--accent-color);
     }
 
     .about__linkCard p {
@@ -334,41 +477,127 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         line-height: 1.65;
     }
 
+    /* ===== COMMUNITY CTA ===== */
+    .about__community {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--about-panel-gradient);
+        box-shadow: var(--about-panel-shadow);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+    }
+
+    .about__community:hover {
+        border-color: rgba(255, 166, 0, 0.15);
+    }
+
+    .about__communityImg {
+        display: flex;
+        overflow: hidden;
+        max-height: 320px;
+    }
+
+    .about__communityImg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        transition: transform 0.5s ease;
+    }
+
+    .about__community:hover .about__communityImg img {
+        transform: scale(1.05);
+    }
+
+    .about__communityText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 32px 28px;
+        gap: 14px;
+    }
+
+    .about__communityText h2 {
+        color: #fff;
+        margin: 0;
+        font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    }
+
+    .about__communityText h2::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin-top: 8px;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+    }
+
+    .about__communityText p {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+    }
+
     .about__ctaRow {
         display: flex;
-        justify-content: center;
         gap: 12px;
         flex-wrap: wrap;
-        margin-top: 8px;
+        margin-top: 4px;
     }
 
     .about__ctaButton {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 24px;
-        border-radius: 999px;
+        padding: 12px 28px;
+        border-radius: 12px;
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: 1rem;
         background: var(--accent-color);
-        color: #181818;
+        color: #0a0d12 !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 20px rgba(255, 166, 0, 0.3);
+    }
+
+    .about__ctaButton:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 166, 0, 0.45);
     }
 
     .about__ctaGhost {
         background: transparent;
-        color: var(--accent-color);
-        border: 1px solid var(--accent-color);
+        color: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: none;
+    }
+
+    .about__ctaGhost:hover {
+        border-color: var(--accent-color);
+        color: #fff !important;
+        box-shadow: none;
     }
 
     .about__faqSection {
         gap: 12px;
-        padding: 14px 16px;
+        padding: 20px 16px;
+        text-align: center;
+        align-items: center;
     }
 
     .about__faqHeading {
-        color: #ffe39f;
+        color: #fff;
         position: relative;
         z-index: 1;
+        margin: 0 0 4px 0;
+    }
+
+    .about__faqSection .about__faqHeading::after {
+        display: none;
     }
 
     .about__faqSection :global(.faqContainer) {
@@ -399,10 +628,10 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         z-index: 1;
     }
 
-    .archiveBannerText{
-        color: white;
-        font-size: 6rem;
-        font-family: "minecraft";
+    @media (max-width: 500px) {
+        .aboutBannerText {
+            font-size: clamp(2rem, 8vw, 3rem);
+        }
     }
 
     @media(max-width: 980px){
@@ -412,9 +641,19 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         }
     }
 
+
+
     @media(max-width: 870px){
-        .archiveBannerText{
-            font-size: 4rem;
+        .about__community {
+            grid-template-columns: 1fr;
+        }
+
+        .about__communityImg {
+            max-height: 260px;
+        }
+
+        .about__communityText {
+            padding: 24px 20px;
         }
     }
 

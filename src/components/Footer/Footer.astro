@@ -8,15 +8,46 @@ import YoutubeSvg from "../../../public/icons/media/youtube.svg?raw"
 import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
 ---
 
+<!-- MC Parallax decorative strip -->
+<div class="footerMcStrip" aria-hidden="true">
+    <div class="mcStripAccentLine"></div>
+    <div class="mcParallaxBg"></div>
+    <div class="mcParallaxMid">
+        <span class="mcFloatingBlock fb1" data-block></span>
+        <span class="mcFloatingBlock fb2" data-block></span>
+        <span class="mcFloatingBlock fb3" data-block></span>
+        <span class="mcFloatingBlock fb4" data-block></span>
+        <span class="mcFloatingBlock fb5" data-block></span>
+    </div>
+    <div class="mcParallaxFade"></div>
+</div>
+
+<!-- Easter egg overlay -->
+<div class="easterEggOverlay" id="easterEgg" aria-hidden="true">
+    <div class="easterEggContent">
+        <pre class="creeperFace">&#32;████ ████
+&#32;████ ████
+&#32;   ████
+&#32; ████████
+&#32; ██    ██</pre>
+        <span class="easterEggText">Ssssss... Znalazłeś Creepera! 💥</span>
+    </div>
+</div>
+
 <footer class="footerContainer">
     
     <ContentPartContainer clazz="limitedWidth">
             <div class="footerRow">
                 <a href="/">Strona główna</a>
-                <a href="/archive">Archiwum projektów</a>
+                <a href="/archive">Archiwum eventów</a>
                 <a href="/shop">Sklep</a>
-                <a href="/documents/Regulamin_Hexagon_Tournament_v5.pdf" download>Regulamin</a>
-                
+                <a href="/contact">Kontakt</a>
+                <a href="/about">O nas</a>
+            </div>
+            <div class="footerRow footerRowSecondary">
+                <a href="/politics">Polityka prywatności</a>
+                <a href="/regulations">Regulamin sklepu</a>
+                <a href="/documents/Regulamin_Hexagon_Tournament_v5.pdf" download>Regulamin turnieju</a>
             </div>
         <Grid21 clazz="breakMobile">
             <div slot="left" style="margin-top: 30px; flex-direction: column; align-items: start;">
@@ -24,12 +55,12 @@ import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
             </div>
             
             <div style="align-items: center;" slot="right">
-                <div class="footerIcon" set:html={YoutubeSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.youtube.com/@hex_minecraft/shorts"/></div>
-                <div class="footerIcon" set:html={TikTokSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.tiktok.com/@minecraft.hex?_r=1&_d=secCgYIASAHKAESPgo8DmdUBOGKJPm7%2B8z1k1uzIbeQ9aSk6u8ObUGX4qTdGRo45%2FQClT6qBzI4ESuxenQXlp3mZygA7WEUHROpGgA%3D&_svg=2&checksum=5c48e2330e3834620da3b292e523bb8b760413486394d37be6610563726eec79&item_author_type=1&sec_uid=MS4wLjABAAAAXpESgrEXyAm4rA95s6VHYYUIMKQ5B0eE9styidllSSjA2KCG3DMrsZCprG9UEins&sec_user_id=MS4wLjABAAAAXpESgrEXyAm4rA95s6VHYYUIMKQ5B0eE9styidllSSjA2KCG3DMrsZCprG9UEins&share_app_id=1233&share_author_id=7464204638373135393&share_link_id=6BB0B75D-C73C-4F74-8C29-12842401BB95&share_region=PL&share_scene=1&sharer_language=pl&social_share_type=4&source=h5_m&timestamp=1764980015&tt_from=copy&u_code=eidk9ddbfgd7ef&ug_btm=b8727%2Cb0&user_id=7464204638373135393&utm_campaign=client_share&utm_medium=ios&utm_source=copy"/></div>
+                <div class="footerIcon" set:html={YoutubeSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.youtube.com/@hex_minecraft/shorts" aria-label="YouTube HEX Network"/></div>
+                <div class="footerIcon" set:html={TikTokSvg}> <a style="position: absolute; width: 100%; height: 100%; z-index: 1;" href="https://www.tiktok.com/@minecraft.hex" aria-label="TikTok HEX Network"/></div>
             </div>
         </Grid21>
         <div style="width: 100%; justify-content: center; color: #999999; margin-top: 20px;">
-            Copyright @ 2025 Radosław Rybarczyk "Capybit". Wszelkie prawa zastrzeżone. 
+            Copyright &copy; 2025–2026 Radosław Rybarczyk "Capybit". Wszelkie prawa zastrzeżone. 
         </div>
        
     </ContentPartContainer>
@@ -38,7 +69,270 @@ import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
 
 </footer>
 
+<script>
+    const strip = document.querySelector('.footerMcStrip');
+    if (strip && window.innerWidth >= 768) {
+        const bg = strip.querySelector('.mcParallaxBg') as HTMLElement;
+        const blocks = strip.querySelectorAll('.mcFloatingBlock') as NodeListOf<HTMLElement>;
+        
+        const layers = [
+            { el: blocks[0], speed: 0.7,  floatAmp: 14, floatPeriod: 8,  rotAmp: 5,  phase: 0,    destroyed: false },
+            { el: blocks[1], speed: 0.5,  floatAmp: 10, floatPeriod: 10, rotAmp: 4,  phase: 2.1,  destroyed: false },
+            { el: blocks[2], speed: 0.6,  floatAmp: 12, floatPeriod: 12, rotAmp: 3,  phase: 4.2,  destroyed: false },
+            { el: blocks[3], speed: 0.3,  floatAmp: 8,  floatPeriod: 9,  rotAmp: 3,  phase: 1.0,  destroyed: false },
+            { el: blocks[4], speed: 0.55, floatAmp: 11, floatPeriod: 11, rotAmp: 4,  phase: 3.5,  destroyed: false },
+        ];
+
+        let scrollOffset = 0;
+        let inView = false;
+        let destroyedCount = 0;
+        const totalBlocks = layers.length;
+        const overlay = document.getElementById('easterEgg');
+
+        /* --- Shatter particles --- */
+        function spawnParticles(block: HTMLElement) {
+            const rect = block.getBoundingClientRect();
+            const stripRect = strip!.getBoundingClientRect();
+            const color = getComputedStyle(block).backgroundColor;
+            const cx = rect.left - stripRect.left + rect.width / 2;
+            const cy = rect.top - stripRect.top + rect.height / 2;
+            const count = 8;
+
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('span');
+                p.className = 'mcShatterParticle';
+                const size = 6 + Math.random() * 8;
+                const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.6;
+                const dist = 30 + Math.random() * 60;
+                const tx = Math.cos(angle) * dist;
+                const ty = Math.sin(angle) * dist - 20;
+                p.style.cssText = `
+                    left:${cx}px;top:${cy}px;
+                    width:${size}px;height:${size}px;
+                    background:${color};
+                    --tx:${tx}px;--ty:${ty}px;
+                `;
+                strip!.appendChild(p);
+                p.addEventListener('animationend', () => p.remove());
+            }
+        }
+
+        /* --- Block click handler --- */
+        blocks.forEach((block, idx) => {
+            block.style.cursor = 'pointer';
+            block.style.zIndex = '3';
+            block.addEventListener('click', () => {
+                if (layers[idx].destroyed) return;
+                layers[idx].destroyed = true;
+                spawnParticles(block);
+                block.classList.add('mcBlockShatter');
+                destroyedCount++;
+                if (destroyedCount >= totalBlocks && overlay) {
+                    setTimeout(() => {
+                        overlay.classList.add('show');
+                        setTimeout(() => overlay.classList.remove('show'), 3200);
+                    }, 500);
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const rect = strip.getBoundingClientRect();
+            const viewH = window.innerHeight;
+            if (rect.bottom > 0 && rect.top < viewH) {
+                inView = true;
+                scrollOffset = ((viewH - rect.top) / (viewH + rect.height)) - 0.5;
+            } else {
+                inView = false;
+            }
+        }, { passive: true });
+
+        function animate(time: number) {
+            const t = time / 1000;
+            if (bg) bg.style.transform = `translateY(${scrollOffset * 30}px)`;
+            for (const l of layers) {
+                if (!l.el || l.destroyed) continue;
+                const parallaxY = scrollOffset * l.speed * 120;
+                const floatY = Math.sin((t + l.phase) * (2 * Math.PI / l.floatPeriod)) * l.floatAmp;
+                const rot = Math.sin((t + l.phase + 1) * (2 * Math.PI / l.floatPeriod)) * l.rotAmp;
+                l.el.style.transform = `translateY(${parallaxY + floatY}px) rotate(${rot}deg)`;
+            }
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    }
+</script>
+
 <style>
+    /* ===== MC PARALLAX STRIP ===== */
+    .footerMcStrip {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: #0a0d12;
+    }
+
+    .mcStripAccentLine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        opacity: 0.5;
+        z-index: 3;
+    }
+
+    .mcParallaxBg {
+        position: absolute;
+        inset: -40px 0;
+        background-image: url('/images/stonebrick.jpg');
+        background-size: 80px 80px;
+        background-repeat: repeat;
+        image-rendering: pixelated;
+        opacity: 0.3;
+        will-change: transform;
+    }
+
+    .mcParallaxMid {
+        position: absolute;
+        inset: 0;
+        will-change: transform;
+    }
+
+    .mcFloatingBlock {
+        position: absolute;
+        border-radius: 4px;
+        image-rendering: pixelated;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .mcFloatingBlock.fb1 {
+        width: 52px; height: 52px;
+        background: #6b8c3e;
+        top: 18%; left: 8%;
+        opacity: 0.45;
+    }
+
+    .mcFloatingBlock.fb2 {
+        width: 40px; height: 40px;
+        background: #8b7355;
+        top: 45%; left: 78%;
+        opacity: 0.4;
+    }
+
+    .mcFloatingBlock.fb3 {
+        width: 46px; height: 46px;
+        background: var(--accent-color);
+        top: 25%; left: 42%;
+        opacity: 0.35;
+    }
+
+    .mcFloatingBlock.fb4 {
+        width: 36px; height: 36px;
+        background: #4a6fa5;
+        top: 55%; left: 25%;
+        opacity: 0.3;
+    }
+
+    .mcFloatingBlock.fb5 {
+        width: 44px; height: 44px;
+        background: #8b4513;
+        top: 15%; left: 65%;
+        opacity: 0.35;
+    }
+
+    .mcParallaxFade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            #0a0d12 0%,
+            transparent 20%,
+            transparent 80%,
+            var(--secondary-color) 100%);
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    @media (max-width: 767px) {
+        .footerMcStrip {
+            height: 100px;
+        }
+        .mcFloatingBlock {
+            transform: scale(0.7);
+        }
+    }
+
+    /* ===== BLOCK SHATTER ===== */
+    .mcFloatingBlock:hover:not(.mcBlockShatter) {
+        filter: brightness(1.4) drop-shadow(0 0 8px rgba(255,166,0,0.4));
+    }
+
+    .mcBlockShatter {
+        animation: blockShatter 0.45s cubic-bezier(.32,0,.67,0) forwards;
+        pointer-events: none;
+    }
+
+    @keyframes blockShatter {
+        0%   { opacity: 1; transform: scale(1); }
+        40%  { opacity: 0.8; transform: scale(1.2); }
+        100% { opacity: 0; transform: scale(0); }
+    }
+
+    :global(.mcShatterParticle) {
+        position: absolute;
+        border-radius: 2px;
+        image-rendering: pixelated;
+        pointer-events: none;
+        z-index: 4;
+        animation: particleFly 0.6s cubic-bezier(.22,1,.36,1) forwards;
+    }
+
+    @keyframes particleFly {
+        0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+        100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.3); }
+    }
+
+    /* ===== EASTER EGG OVERLAY ===== */
+    .easterEggOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.88);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .easterEggOverlay.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .easterEggContent {
+        text-align: center;
+        animation: eggPop 0.5s cubic-bezier(.22,1,.36,1);
+    }
+    .creeperFace {
+        color: #4caf50;
+        font-size: 1.6rem;
+        line-height: 1.2;
+        letter-spacing: 0.1em;
+        font-family: monospace;
+        margin-bottom: 1rem;
+    }
+    .easterEggText {
+        color: #ffa600;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    @keyframes eggPop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ===== FOOTER ===== */
     footer{
         display: flex;
         justify-content: center;
@@ -62,6 +356,12 @@ import TikTokSvg from "../../../public/icons/media/tiktok.svg?raw"
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
+    }
+
+    .footerRowSecondary{
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #333;
     }
 
     .footerColumn{
