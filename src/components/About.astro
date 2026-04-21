@@ -125,7 +125,7 @@ const base = import.meta.env.BASE_URL;
 
             <section class="about__community reveal">
                 <div class="about__communityImg">
-                    <img src={`${base}images/contact/discord.png`} alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" />
+                    <picture><source srcset={`${base}images/contact/discord.webp`} type="image/webp" /><img src={`${base}images/contact/discord.png`} alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" /></picture>
                 </div>
                 <div class="about__communityText">
                     <h2>Dołącz do community</h2>
@@ -415,7 +415,7 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
         height: 3px;
         background: var(--accent-color);
         border-radius: 3px;
-        margin-top: 8px;
+        margin: 8px auto 0;
         box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
     }
 
@@ -533,7 +533,7 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
         height: 3px;
         background: var(--accent-color);
         border-radius: 3px;
-        margin-top: 8px;
+        margin: 8px auto 0;
         box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
     }
 
@@ -598,26 +598,30 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
     }
 
     .about__faqSection .about__faqHeading::after {
-        display: none;
+        width: 8px;
+        height: 8px;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        border-right: 2px solid #ffe39f;
+        border-bottom: 2px solid #ffe39f;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform-origin: center;
+        transform: translateY(-50%) rotate(-45deg);
+        transition: transform 0.4s ease;
+    }
+
+    .about__faqSection :global(.about__faqHeading[aria-expanded="true"])::after {
+        transform: translateY(-50%) rotate(45deg);
     }
 
     .about__faqSection :global(.faqContainer) {
         margin-top: 10px;
         position: relative;
         z-index: 1;
-    }
-
-    .about__faqSection :global(.faqContent) {
-        gap: 12px;
-    }
-
-    .about__faqSection :global(.faqQuestion) {
-        font-size: clamp(1.12rem, 1.45vw, 1.28rem);
-    }
-
-    .about__faqSection :global(.faqAnswer) {
-        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-        line-height: 1.7;
     }
 
     li {

@@ -14,14 +14,17 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import { homepageHeroStats, homepageStatsGrid, homepageTimeline, serverRoadmap } from '../data/hex-network';
 const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner heroBanner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy">
+    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner heroBanner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy" priority={true}>
     <div class="heroOverlay"></div>
     <div class="heroParticles" aria-hidden="true">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
         <span class="particle"></span><span class="particle"></span><span class="particle"></span>
         <span class="particle"></span><span class="particle"></span><span class="particle"></span>
         <span class="particle"></span><span class="particle"></span><span class="particle"></span>
@@ -39,6 +42,15 @@ const base = import.meta.env.BASE_URL;
     <div class="scrollIndicator" aria-hidden="true"><span></span></div>
     </FullImageContainer>
 
+    <aside class="heroSocialProof" aria-label="Kluczowe liczby HEX Network">
+        {homepageHeroStats.map((item, index) => (
+            <>
+                <span class="heroSocialProofItem"><span class="heroSocialProofIcon" aria-hidden="true">{item.icon}</span><strong>{item.value}</strong> {item.label}</span>
+                {index < homepageHeroStats.length - 1 && <span class="heroSocialProofSep" aria-hidden="true"></span>}
+            </>
+        ))}
+    </aside>
+
     <div id="servers" style="display: flex; width: 100%; justify-content: center;">    
         <TimeContainer />
     </div>
@@ -48,13 +60,11 @@ const base = import.meta.env.BASE_URL;
 
         <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
 
-        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="MINI GAMES" href={`${base}hexMiniGames`}/>
+        <HexContainer src="images/Welcome/ServerBanner4.png" headerText="SMP Economy" href={`${base}hexSMP`}/>
 
-        <HexContainer headerText="PARKOUR" href={`${base}hexParkour`} comingSoon={true} soonText="Niebawem"/>
-
-        <HexContainer headerText="PVP" href={`${base}hexPvp`} comingSoon={true} soonText="Niebawem"/>
-
-        <HexContainer headerText="HARDCORE SMP" href={`${base}hexHardcoreSmp`} comingSoon={true} soonText="Niebawem"/>
+        {serverRoadmap.map((item) => (
+            <HexContainer headerText={item.headerText} href={`${base}${item.href}`} comingSoon={true} soonText="Niebawem" progress={item.progress} eta={item.eta}/>
+        ))}
 
     </ServerContainerWrapper>
 
@@ -71,10 +81,9 @@ const base = import.meta.env.BASE_URL;
         <h2>HEX w liczbach</h2>
         <div class="showcasePanel socialProofPanel">
             <div class="showcaseGrid socialProofGrid">
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Rozegranych turniejów</p><h3>7</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Graczy w rankingach</p><h3>52</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Członków Discord</p><h3>140</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Dni naszej działalności</p><h3 data-days-from="2025-03-15">0</h3></article>
+                {homepageStatsGrid.map((item) => (
+                    <article class="showcaseCard socialProofItem"><p class="timelineLabel">{item.label}</p><h3 data-days-from={item.daysFrom}>{item.value}</h3></article>
+                ))}
             </div>
         </div>
     </Section>
@@ -84,43 +93,24 @@ const base = import.meta.env.BASE_URL;
         <h2>Aktualności i plany</h2>
         <div class="showcasePanel updatesPanel">
             <p class="showcaseLead">Oficjalne aktualizacje projektu HEX Network: terminy turniejów, nowe tryby, sezony rankingowe i najważniejsze premiery serwera.</p>
-            <div class="updatesList">
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Term.jpg" alt="Najbliższy turniej 3.04.2026 o godzinie 19:00."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>HEX VII — 3.04.2026, 19:00</h3>
-                        <p>Najbliższy turniej z pulą nagród i punktami do rankingu.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Minigames.jpg" alt="Start Minigames w okolicy końca kwietnia."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>Start Minigames — koniec kwietnia</h3>
-                        <p>Ruszamy z nowym segmentem luźniejszych trybów i oryginalnymi mini-grami.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Castle.jpg" alt="W 2027 startuje HEXHogwart inspirowany światem magii w klimatach RPG."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>HEXHogwart — w budowie</h3>
-                        <p>Trwają prace nad nowym światem i mechanikami RPG.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Rank.jpg" alt="Nasz serwer posiada rankingi najlepszych graczy sezonowo i rocznie."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>Nowy sezon rankingowy — wkrótce</h3>
-                        <p>Przygotuj się na nową klasyfikację i walkę o topkę.</p>
-                    </div>
-                </article>
+            <ol class="updatesTimeline">
+                {homepageTimeline.map((item) => (
+                    <li class="updatesTimelineItem">
+                        <div class="updatesTimelineDot" aria-hidden="true"></div>
+                        <div class="updatesTimelineContent">
+                            <div class="updatesTimelineMeta">
+                                <time class="updatesTimelineDate" datetime={item.dateTime}>{item.date}</time>
+                                <span class={`updatesTimelineTag ${item.tagClass}`}>{item.tag}</span>
+                            </div>
+                            <h3>{item.title}</h3>
+                            <p>{item.description}</p>
+                            {item.href && item.cta && <a class="updatesTimelineLink" href={`${base}${item.href}`}>{item.cta}</a>}
+                        </div>
+                    </li>
+                ))}
+            </ol>
+            <div class="updatesTimelineFooter">
+                <a class="updatesTimelineAllLink" href={`${base}devlog`}>Zobacz pełen devlog →</a>
             </div>
         </div>
     </Section>
@@ -143,8 +133,8 @@ const base = import.meta.env.BASE_URL;
             <div class="showcaseGrid joinGrid">
                 <article class="showcaseCard joinStep">
                     <span class="joinStepNumber">1</span>
-                    <h3>Pobierz Minecraft Java Edition</h3>
-                    <p>Zadziała zarówno wersja premium, jak i non-premium. Wymagana wersja gry: 1.21 – 1.21.1.</p>
+                    <h3>Minecraft Java Edition</h3>
+                    <p>Zadziała zarówno wersja premium, jak i non-premium. Wymagana wersja gry: 1.21 – 1.21.11.</p>
                 </article>
                 <article class="showcaseCard joinStep">
                     <span class="joinStepNumber">2</span>
@@ -169,7 +159,7 @@ const base = import.meta.env.BASE_URL;
                 <div class="spotlightCardInner">
                     <span class="spotlightIcon">🛒</span>
                     <h3 class="spotlightCardTitle">Sklep HEX</h3>
-                    <p class="spotlightCardText">Pakiety VIP i dodatki wspierające rozwój projektu i organizację turniejów.</p>
+                    <p class="spotlightCardText">Pakiety VIP i HexCoins, które pozwalają na dodatki kosmetyczne i elementy QoL.</p>
                     <span class="spotlightCta">Przejdź do sklepu →</span>
                 </div>
             </a>
@@ -231,6 +221,9 @@ const base = import.meta.env.BASE_URL;
         const animationDurationMs = 2500;
         let hasAnimated = false;
 
+        const prefersReducedMotion = typeof window.matchMedia === "function"
+            && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         const daysElement = socialProofGrid.querySelector("h3[data-days-from]");
         if (daysElement instanceof HTMLElement) {
             const daysFromValue = daysElement.getAttribute("data-days-from");
@@ -251,53 +244,75 @@ const base = import.meta.env.BASE_URL;
             const targetValue = Number.isNaN(parsedValue) ? 0 : parsedValue;
 
             element.setAttribute("data-target", String(targetValue));
-            element.textContent = "0";
         });
 
-        const startCountAnimation = () => {
-            if (hasAnimated) {
-                return;
-            }
-
-            hasAnimated = true;
-            const animationStart = performance.now();
-
-            const tick = () => {
-                const now = performance.now();
-                const progress = Math.min((now - animationStart) / animationDurationMs, 1);
-
-                numberElements.forEach((element) => {
-                    const targetValue = Number.parseInt(element.getAttribute("data-target") ?? "0", 10);
-                    const nextValue = Math.round(targetValue * progress);
-                    element.textContent = String(nextValue);
-                });
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
+        if (prefersReducedMotion) {
+            // Respect user preference: show final values immediately, no animation.
+            numberElements.forEach((element) => {
+                const targetValue = element.getAttribute("data-target") ?? "0";
+                element.textContent = targetValue;
+            });
+        } else {
+            const startCountAnimation = () => {
+                if (hasAnimated) {
+                    return;
                 }
+
+                hasAnimated = true;
+                numberElements.forEach((element) => {
+                    element.textContent = "0";
+                });
+                const animationStart = performance.now();
+
+                const tick = () => {
+                    const now = performance.now();
+                    const progress = Math.min((now - animationStart) / animationDurationMs, 1);
+
+                    numberElements.forEach((element) => {
+                        const targetValue = Number.parseInt(element.getAttribute("data-target") ?? "0", 10);
+                        const nextValue = Math.round(targetValue * progress);
+                        element.textContent = String(nextValue);
+                    });
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    }
+                };
+
+                requestAnimationFrame(tick);
             };
 
-            requestAnimationFrame(tick);
-        };
+            const isInViewport = () => {
+                const rect = socialProofGrid.getBoundingClientRect();
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                return rect.top < viewportHeight && rect.bottom > 0;
+            };
 
-        if ("IntersectionObserver" in window) {
-            const counterObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
+            if ("IntersectionObserver" in window) {
+                const counterObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
 
-                        startCountAnimation();
-                        counterObserver.disconnect();
-                    });
-                },
-                { threshold: 0.35 }
-            );
+                            startCountAnimation();
+                            counterObserver.disconnect();
+                        });
+                    },
+                    { threshold: 0.35 }
+                );
 
-            counterObserver.observe(socialProofGrid);
-        } else {
-            startCountAnimation();
+                counterObserver.observe(socialProofGrid);
+
+                // If the grid is already in viewport at load time, kick off immediately.
+                if (isInViewport()) {
+                    startCountAnimation();
+                    counterObserver.disconnect();
+                }
+            } else {
+                startCountAnimation();
+            }
         }
     }
 
@@ -348,7 +363,7 @@ const base = import.meta.env.BASE_URL;
 
     /* ===== SECTION HEADING ACCENT ===== */
     h2 { color: #fff; }
-    h2::after {
+    h2:not(.faqToggleHeading)::after {
         content: "";
         width: 60px;
         height: 3px;
@@ -369,10 +384,12 @@ const base = import.meta.env.BASE_URL;
     .heroOverlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg,
-            rgba(0,0,0,0.3) 0%,
-            rgba(10,13,18,0.65) 60%,
-            #0a0d12 100%);
+        background:
+            radial-gradient(circle at 50% 18%, rgba(255, 166, 0, 0.16), transparent 34%),
+            linear-gradient(180deg,
+                rgba(0,0,0,0.28) 0%,
+                rgba(8,9,10,0.68) 58%,
+                #090a0d 100%);
         z-index: 1;
         pointer-events: none;
     }
@@ -389,8 +406,9 @@ const base = import.meta.env.BASE_URL;
         position: absolute;
         display: block;
         width: 6px; height: 6px;
-        background: rgba(255, 180, 50, 0.35);
+        background: rgba(255, 158, 54, 0.78);
         border-radius: 1px;
+        box-shadow: 0 0 12px rgba(255, 150, 46, 0.35);
         animation: floatUp linear infinite;
         opacity: 0;
     }
@@ -406,12 +424,18 @@ const base = import.meta.env.BASE_URL;
     .particle:nth-child(10) { left: 50%; width: 8px; height: 8px; animation-duration: 11s; animation-delay: 1.5s; }
     .particle:nth-child(11) { left: 72%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: 4.5s; }
     .particle:nth-child(12) { left: 92%; width: 4px; height: 4px; animation-duration: 14s; animation-delay: 3.5s; }
+    .particle:nth-child(13) { left: 12%; width: 6px; height: 6px; animation-duration: 15s; animation-delay: 1.8s; }
+    .particle:nth-child(14) { left: 38%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: 3.2s; }
+    .particle:nth-child(15) { left: 60%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: 0.8s; }
+    .particle:nth-child(16) { left: 80%; width: 7px; height: 7px; animation-duration: 16s; animation-delay: 5.5s; }
+    .particle:nth-child(17) { left: 48%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: 2.8s; }
+    .particle:nth-child(18) { left: 28%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 4.2s; }
 
     @keyframes floatUp {
-        0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-        10%  { opacity: 0.6; }
-        90%  { opacity: 0.4; }
-        100% { transform: translateY(-10vh) rotate(180deg); opacity: 0; }
+        0%   { transform: translate3d(0, 105vh, 0) rotate(0deg); opacity: 0; }
+        10%  { opacity: 0.85; }
+        90%  { opacity: 0.6; }
+        100% { transform: translate3d(0, -12vh, 0) rotate(180deg); opacity: 0; }
     }
 
     @keyframes fadeInHero {
@@ -470,6 +494,16 @@ const base = import.meta.env.BASE_URL;
 
     .glowBtn {
         box-shadow: 0 0 20px rgba(255,166,0,0.4), 0 0 60px rgba(255,166,0,0.15);
+        background: linear-gradient(90deg, var(--brand-accent, #ffa600), #ff7a00, var(--brand-accent, #ffa600)) !important;
+        background-size: 200% 100% !important;
+        animation: heroCtaShimmer 4s linear infinite;
+    }
+    @keyframes heroCtaShimmer {
+        0%   { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .glowBtn { animation: none; }
     }
 
     .bannerCtaOutline {
@@ -1020,15 +1054,6 @@ const base = import.meta.env.BASE_URL;
         .welcomeButton {
             font-size: clamp(1.18rem, 1.42vw, 1.52rem);
         }
-
-        :global(.faqQuestion) {
-            font-size: clamp(1.2rem, 1.7vw, 1.42rem);
-        }
-
-        :global(.faqAnswer) {
-            font-size: 1.08rem;
-            line-height: 1.7;
-        }
     }
 
     @media (max-width: 900px){
@@ -1271,6 +1296,7 @@ const base = import.meta.env.BASE_URL;
 
     .benefitCard {
         padding: 24px 18px;
+        text-align: center;
     }
 
     /* ===== SECTION DIVIDERS ===== */
@@ -1279,9 +1305,180 @@ const base = import.meta.env.BASE_URL;
     }
 
     @media (max-width: 600px) {
-        .particle { display: none; }
+        .heroParticles { opacity: 0.9; }
+        .particle { box-shadow: 0 0 8px rgba(255, 150, 46, 0.28); }
         .heroBadge { font-size: 0.7rem; padding: 5px 12px; }
         .scrollIndicator { bottom: 16px; }
+    }
+
+    /* ===== HERO SOCIAL PROOF STRIP ===== */
+    .heroSocialProof {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        width: min(1100px, 92%);
+        margin: -24px auto 20px auto;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(24, 29, 40, 0.92), rgba(17, 22, 32, 0.92));
+        border: 1px solid rgba(255, 166, 0, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 166, 0, 0.08);
+        position: relative;
+        z-index: 2;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .heroSocialProofItem {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+    .heroSocialProofItem strong {
+        color: var(--brand-accent, #ffa600);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .heroSocialProofIcon {
+        font-size: 1.05rem;
+        line-height: 1;
+    }
+    .heroSocialProofSep {
+        width: 1px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    @media (max-width: 600px) {
+        .heroSocialProof {
+            font-size: 0.82rem;
+            padding: 10px 16px;
+            border-radius: 18px;
+        }
+        .heroSocialProofSep { display: none; }
+    }
+
+    /* ===== UPDATES TIMELINE ===== */
+    .updatesTimeline {
+        list-style: none;
+        padding: 12px 0 12px 12px;
+        margin: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+    .updatesTimeline::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 166, 0, 0.6), rgba(255, 166, 0, 0.1));
+        border-radius: 2px;
+    }
+    .updatesTimelineItem {
+        position: relative;
+        padding-left: 52px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .updatesTimelineDot {
+        position: absolute;
+        left: 14px;
+        top: 6px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffcf5a 0%, #ffa600 60%, rgba(255, 166, 0, 0.1) 100%);
+        box-shadow: 0 0 12px rgba(255, 166, 0, 0.55), 0 0 0 3px rgba(10, 13, 18, 0.9);
+    }
+    .updatesTimelineContent {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .updatesTimelineMeta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+    }
+    .updatesTimelineDate {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 207, 90, 0.9);
+    }
+    .updatesTimelineTag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.82);
+    }
+    .updatesTimelineTag.tagEvent   { color: #ffb366; border-color: rgba(255, 166, 0, 0.35); }
+    .updatesTimelineTag.tagSmp     { color: #7fd3ff; border-color: rgba(127, 211, 255, 0.35); }
+    .updatesTimelineTag.tagRanking { color: #b6ff9e; border-color: rgba(182, 255, 158, 0.3); }
+    .updatesTimelineTag.tagFuture  { color: #d6b6ff; border-color: rgba(214, 182, 255, 0.3); }
+    .updatesTimelineContent h3 {
+        margin: 0 0 4px 0;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+    .updatesTimelineContent p {
+        margin: 0 0 6px 0;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .updatesTimelineLink {
+        display: inline-block;
+        margin-top: 4px;
+        color: var(--brand-accent, #ffa600);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .updatesTimelineLink:hover {
+        color: #ffcf5a;
+        transform: translateX(3px);
+    }
+    .updatesTimelineFooter {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        text-align: center;
+    }
+    .updatesTimelineAllLink {
+        color: var(--brand-accent, #ffa600);
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+    .updatesTimelineAllLink:hover { color: #ffcf5a; }
+    @media (max-width: 600px) {
+        .updatesTimeline { padding-left: 4px; }
+        .updatesTimeline::before { left: 14px; }
+        .updatesTimelineDot { left: 6px; width: 16px; height: 16px; }
+        .updatesTimelineItem { padding-left: 40px; }
+        .updatesTimelineContent h3 { font-size: 1rem; }
     }
 </style>
 

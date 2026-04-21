@@ -4,10 +4,11 @@ interface BreadcrumbItem {
     href?: string;
 }
 
+const base = import.meta.env.BASE_URL;
 const { items = [] } = Astro.props as { items: BreadcrumbItem[] };
 
 const allItems: BreadcrumbItem[] = [
-    { label: "Strona główna", href: "/" },
+    { label: "Strona główna", href: base },
     ...items
 ];
 ---

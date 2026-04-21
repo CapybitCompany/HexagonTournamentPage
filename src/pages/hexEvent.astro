@@ -1,6 +1,8 @@
 ---
 import HexEventPage from '../components/PageContent/ServerArticles/HexEvent.astro';
 import Layout from '../layouts/Layout.astro';
+import { nextHexEvent } from '../data/hex-network';
+import { absoluteUrl } from '../utils/urls';
 
 const structuredData = [
 	{
@@ -8,7 +10,7 @@ const structuredData = [
 		"@type": "WebPage",
 		name: "HEX Event Zone",
 		description: "Strona trybu HEX Event Zone z informacjami o turniejach, zapisach i harmonogramach wydarzeń Minecraft.",
-		url: "https://www.minecrafthex.pl/hexEvent/"
+		url: absoluteUrl('hexEvent')
 	},
 	{
 		"@context": "https://schema.org",
@@ -27,7 +29,7 @@ const structuredData = [
 				name: "Kiedy ruszają pierwsze eventy?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Najbliższy turniej zaplanowany jest na 4.04.2026 o 19:00, a kolejne terminy będą ogłaszane cyklicznie."
+					text: `Najbliższy turniej zaplanowany jest na ${nextHexEvent.displayDateTime}, a kolejne terminy będą ogłaszane cyklicznie.`
 				}
 			},
 			{
@@ -40,10 +42,10 @@ const structuredData = [
 			},
 			{
 				"@type": "Question",
-				name: "Czym jest Tytanic?",
+				name: "Czym jest Titanic?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Tytanic to nadchodzący event HEX. Szczegóły i zasady zostaną ogłoszone wkrótce na Discordzie i stronie."
+					text: "Titanic to nadchodzący event HEX. Szczegóły i zasady zostaną ogłoszone wkrótce na Discordzie i stronie."
 				}
 			}
 		]
@@ -56,13 +58,13 @@ const structuredData = [
 				"@type": "ListItem",
 				position: 1,
 				name: "Strona główna",
-				item: "https://www.minecrafthex.pl/"
+				item: absoluteUrl()
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Event Zone",
-				item: "https://www.minecrafthex.pl/hexEvent/"
+				item: absoluteUrl('hexEvent')
 			}
 		]
 	}
@@ -74,8 +76,9 @@ const structuredData = [
 
 <Layout 
 	customTitle="HEX Event Zone - turnieje i eventy Minecraft" 
-	customDescription="HEX Event Zone - turnieje, wyzwania i rywalizacja w Minecraft. Nadchodzący event: Tytanic. Sprawdź szczegóły, zapisy i archiwum."
-	canonicalUrl="https://www.minecrafthex.pl/hexEvent"
+	customDescription={`HEX Event Zone - turnieje, wyzwania i rywalizacja w Minecraft. Nadchodzący event: ${nextHexEvent.theme}. Sprawdź szczegóły, zapisy i archiwum.`}
+	keywords="event zone minecraft, turniej minecraft, HEX event, zapisy turniej, minecraft rywalizacja"
+	canonicalUrl={absoluteUrl('hexEvent')}
 	structuredData={structuredData}
 >
 	<HexEventPage />

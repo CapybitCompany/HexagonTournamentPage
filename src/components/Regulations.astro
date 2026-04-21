@@ -5,168 +5,348 @@ import ContentContainer from './ContentContainer/ContentContainer.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+import Section from './ContentContainer/Section.astro'
+const base = import.meta.env.BASE_URL
 ---
 
 <NavBar/>
 <ContentContainer>
-    <Breadcrumbs items={[{ label: "Regulamin" }]} />
-    <div style="width: 100%; display: flex; justify-content: center; margin: 80px 0; min-height: calc(100vh - 300px); text-align: center; flex-direction: column; align-items: center;">
+  <Breadcrumbs items={[{ label: "Sklep", href: `${base}shop` }, { label: "Regulamin" }]} />
 
-            <h1>Regulamin sklepu HEX Network</h1>
-
-              <p>
-              Niniejszy regulamin określa zasady korzystania ze sklepu internetowego HEX Network,
-              prowadzonego przez <p>
-                  <strong>Dane sprzedawcy:</strong><br>
-                    Radosław Rybarczyk<br>
-                    NIP: 7831843408<br>
-                    Adres prowadzenia działalności: ul. Robocza 17c lok.145, 61-517 Poznań<br>
-                    Kontakt: minecrafthexagon@gmail.com
-              </p>
-
-              <h2>1. Postanowienia ogólne</h2>
-              <ol>
-                <li>Sklep internetowy HEX Network prowadzi sprzedaż usług cyfrowych związanych z funkcjonowaniem serwera Minecraft.</li>
-                <li>Regulamin jest dostępny nieodpłatnie na stronie internetowej sklepu.</li>
-                <li>Każdy użytkownik dokonujący zakupu zobowiązany jest do zapoznania się z regulaminem.</li>
-              </ol>
-
-              <h2>2. Zakres oferty</h2>
-              <ol>
-                <li>Sklep oferuje wyłącznie usługi cyfrowe, w szczególności:</li>
-                <ul>
-                  <li>dostęp VIP (czasowy lub stały),</li>
-                  <li>dodatki typu quality-of-life,</li>
-                  <li>pakiety i dodatki eventowe,</li>
-                  <li>wirtualne punkty lub waluty wykorzystywane wyłącznie w ramach serwera.</li>
-                </ul>
-                <li>Sklep nie oferuje produktów fizycznych.</li>
-                <li>Wirtualne punkty i waluty nie podlegają wymianie na środki pieniężne ani inne ekwiwalenty.</li>
-              </ol>
-
-              <h2>3. Składanie zamówień</h2>
-              <ol>
-                <li>Zamówienia składane są poprzez sklep internetowy.</li>
-                <li>Warunkiem realizacji zamówienia jest podanie prawidłowego nicku gracza.</li>
-                <li>Usługi realizowane są automatycznie po zaksięgowaniu płatności.</li>
-              </ol>
-
-              <h2>4. Płatności</h2>
-              <ol>
-                <li>Płatności realizowane są za pośrednictwem zewnętrznych operatorów płatności.</li>
-                <li>Dostępne metody płatności mogą obejmować:</li>
-                <ul>
-                  <li>BLIK,</li>
-                  <li>szybkie przelewy online,</li>
-                  <li>karty płatnicze,</li>
-                  <li>Paysafecard.</li>
-                </ul>
-                <li>Administrator nie przetwarza danych kart płatniczych.</li>
-              </ol>
-
-              <h2>5. Realizacja zamówień</h2>
-              <ol>
-                <li>Realizacja usług cyfrowych następuje automatycznie po potwierdzeniu płatności.</li>
-                <li>W wyjątkowych przypadkach realizacja może ulec opóźnieniu z przyczyn technicznych.</li>
-                <li>W przypadku problemów z realizacją użytkownik powinien skontaktować się z administratorem.</li>
-                <li>
-                  Sklep internetowy funkcjonuje w oparciu o zewnętrzną platformę techniczną (VIShop),
-                  która odpowiada za obsługę procesu zamówień i automatyczną realizację usług.
-                  Administrator pozostaje stroną umowy i ponosi odpowiedzialność za świadczone usługi.
-                </li>
-              </ol>
-
-              <h2>6. Prawo odstąpienia od umowy</h2>
-              <ol>
-                <li>Zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta, użytkownikowi nie przysługuje prawo odstąpienia od umowy po rozpoczęciu realizacji usługi cyfrowej.</li>
-                <li>Dokonując zakupu, użytkownik wyraża zgodę na natychmiastowe rozpoczęcie realizacji usługi.</li>
-              </ol>
-
-              <h2>7. Reklamacje</h2>
-              <ol>
-                <li>Reklamacje dotyczące funkcjonowania sklepu lub realizacji usług można składać drogą mailową.</li>
-                <li>Reklamacja powinna zawierać nick gracza oraz opis problemu.</li>
-                <li>Administrator rozpatruje reklamacje w terminie do 14 dni.</li>
-              </ol>
-
-              <h2>8. Odpowiedzialność</h2>
-              <ol>
-                <li>Administrator nie ponosi odpowiedzialności za przerwy w działaniu serwera wynikające z przyczyn technicznych lub niezależnych.</li>
-                <li>Administrator zastrzega sobie prawo do modyfikacji usług, jeżeli jest to konieczne dla prawidłowego funkcjonowania serwera.</li>
-                <li>Zabronione jest wykorzystywanie usług sklepu w sposób sprzeczny z regulaminem serwera.</li>
-              </ol>
-
-              <h2>9. Dane osobowe</h2>
-              <p>
-              Zasady przetwarzania danych osobowych określa odrębny dokument – Polityka prywatności,
-              dostępna na stronie internetowej.
-              </p>
-
-              <h2>10. Postanowienia końcowe</h2>
-              <ol>
-                <li>Administrator zastrzega sobie prawo do zmiany regulaminu.</li>
-                <li>Zmiany regulaminu nie wpływają na zamówienia złożone przed ich wprowadzeniem.</li>
-                <li>W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</li>
-              </ol>
-
-
-                  
+  <div class="docHero">
+    <div class="docHeroContent">
+      <span class="docBadge">📜 REGULAMIN</span>
+      <h1 class="docHeroTitle">Regulamin sklepu HEX Network</h1>
+      <p class="docHeroSub">Zasady korzystania ze sklepu internetowego HEX Network</p>
+    </div>
   </div>
+
+  <Section>
+    <div class="docBody">
+
+    <div class="docSection">
+      <div class="docSectionTitle">Dane sprzedawcy</div>
+      <div class="docFooterBox">
+        <p><strong>Radosław Rybarczyk</strong></p>
+        <p>NIP: 7831843408</p>
+        <p>ul. Robocza 17c lok.145, 61-517 Poznań</p>
+        <p>Kontakt: <a href="mailto:minecrafthexagon@gmail.com">minecrafthexagon@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">1. Postanowienia ogólne</div>
+      <ol class="docList">
+        <li>Sklep internetowy HEX Network prowadzi sprzedaż usług cyfrowych związanych z funkcjonowaniem serwera Minecraft.</li>
+        <li>Regulamin jest dostępny nieodpłatnie na stronie internetowej sklepu.</li>
+        <li>Każdy użytkownik dokonujący zakupu zobowiązany jest do zapoznania się z regulaminem.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">2. Zakres oferty</div>
+      <ol class="docList">
+        <li>Sklep oferuje wyłącznie usługi cyfrowe, w szczególności:
+          <ul class="docList">
+            <li>dostęp VIP (czasowy lub stały),</li>
+            <li>dodatki typu quality-of-life,</li>
+            <li>pakiety i dodatki eventowe,</li>
+            <li>wirtualne punkty lub waluty wykorzystywane wyłącznie w ramach serwera.</li>
+          </ul>
+        </li>
+        <li>Sklep nie oferuje produktów fizycznych.</li>
+        <li>Wirtualne punkty i waluty nie podlegają wymianie na środki pieniężne ani inne ekwiwalenty.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">3. Składanie zamówień</div>
+      <ol class="docList">
+        <li>Zamówienia składane są poprzez sklep internetowy.</li>
+        <li>Warunkiem realizacji zamówienia jest podanie prawidłowego nicku gracza.</li>
+        <li>Usługi realizowane są automatycznie po zaksięgowaniu płatności.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">4. Płatności</div>
+      <ol class="docList">
+        <li>Płatności realizowane są za pośrednictwem zewnętrznych operatorów płatności.</li>
+        <li>Dostępne metody płatności mogą obejmować:
+          <ul class="docList">
+            <li>BLIK,</li>
+            <li>szybkie przelewy online,</li>
+            <li>karty płatnicze,</li>
+            <li>Paysafecard.</li>
+          </ul>
+        </li>
+        <li>Administrator nie przetwarza danych kart płatniczych.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">5. Realizacja zamówień</div>
+      <ol class="docList">
+        <li>Realizacja usług cyfrowych następuje automatycznie po potwierdzeniu płatności.</li>
+        <li>W wyjątkowych przypadkach realizacja może ulec opóźnieniu z przyczyn technicznych.</li>
+        <li>W przypadku problemów z realizacją użytkownik powinien skontaktować się z administratorem.</li>
+        <li>Sklep internetowy funkcjonuje w oparciu o zewnętrzną platformę techniczną (VIShop), która odpowiada za obsługę procesu zamówień i automatyczną realizację usług. Administrator pozostaje stroną umowy i ponosi odpowiedzialność za świadczone usługi.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">6. Prawo odstąpienia od umowy</div>
+      <ol class="docList">
+        <li>Zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta, użytkownikowi nie przysługuje prawo odstąpienia od umowy po rozpoczęciu realizacji usługi cyfrowej.</li>
+        <li>Dokonując zakupu, użytkownik wyraża zgodę na natychmiastowe rozpoczęcie realizacji usługi.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">7. Reklamacje</div>
+      <ol class="docList">
+        <li>Reklamacje dotyczące funkcjonowania sklepu lub realizacji usług można składać drogą mailową.</li>
+        <li>Reklamacja powinna zawierać nick gracza oraz opis problemu.</li>
+        <li>Administrator rozpatruje reklamacje w terminie do 14 dni.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">8. Odpowiedzialność</div>
+      <ol class="docList">
+        <li>Administrator nie ponosi odpowiedzialności za przerwy w działaniu serwera wynikające z przyczyn technicznych lub niezależnych.</li>
+        <li>Administrator zastrzega sobie prawo do modyfikacji usług, jeżeli jest to konieczne dla prawidłowego funkcjonowania serwera.</li>
+        <li>Zabronione jest wykorzystywanie usług sklepu w sposób sprzeczny z regulaminem serwera.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">9. Dane osobowe</div>
+      <p class="docText">Zasady przetwarzania danych osobowych określa odrębny dokument – Polityka prywatności, dostępna na stronie internetowej.</p>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">10. Postanowienia końcowe</div>
+      <ol class="docList">
+        <li>Administrator zastrzega sobie prawo do zmiany regulaminu.</li>
+        <li>Zmiany regulaminu nie wpływają na zamówienia złożone przed ich wprowadzeniem.</li>
+        <li>W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</li>
+      </ol>
+    </div>
+
+    <div class="docSection">
+      <div class="docSectionTitle">Dokumenty powiązane</div>
+      <div class="docLinks">
+        <a class="docLinkCard" href={`${base}politics`}>
+          <span class="docLinkIcon">🔒</span>
+          <span>Polityka prywatności</span>
+        </a>
+        <a class="docLinkCard" href={`${base}aboutShop`}>
+          <span class="docLinkIcon">📦</span>
+          <span>O sklepie</span>
+        </a>
+        <a class="docLinkCard" href={`${base}shop`}>
+          <span class="docLinkIcon">🛒</span>
+          <span>Sklep</span>
+        </a>
+      </div>
+    </div>
+
+    </div>
+  </Section>
 </ContentContainer>
 <Footer/>
 
 <style>
-    .box {
-      display: flex;
-      margin-top: 60px;
-      flex-direction: column;
-      border: 1px solid #4b5563;
-      background: #111827;
-      padding: 20px 24px;
-      max-width: 600px;
-      text-align: center;
-      color: white;
-      max-height: 350px;
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
-    
-    a {
+
+    /* HERO */
+    .docHero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        overflow: hidden;
+        background:
+            radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 166, 0, 0.06), transparent 70%),
+            linear-gradient(180deg, #0e1219 0%, #0a0d12 100%);
+    }
+
+    .docHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        padding: 60px 20px;
+    }
+
+    .docBadge {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.08);
         color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
     }
 
-    .box h1 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      align-items: center;
+    .docHeroTitle {
+        font-family: "minecraft";
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        color: #fff;
+        margin: 0;
+        line-height: 1.15;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.2);
     }
 
-    .box p {
-      margin: 6px 0;
+    .docHeroSub {
+        font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 560px;
+        margin: 0;
     }
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-top: 8px;
-      color: var(--accent-color);
+    .docHeroSub strong {
+        color: rgba(255, 255, 255, 0.85);
     }
 
-    .legal {
-      display: flex;
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: #9ca3af;
-      text-align: left;
-      flex-direction: column;
+    /* BODY */
+    .docBody {
+        width: min(760px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 0 60px;
     }
 
-    .legal strong {
-      color: #e5e7eb;
+    .docSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 
-    section {
-      flex-direction: column;
+    .docSectionTitle {
+        font-size: clamp(1.2rem, 2vw, 1.45rem);
+        color: #fff;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 166, 0, 0.2);
     }
 
-  </style>
+    .docSection p,
+    .docText {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+    }
+
+    .docSection strong {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .docList {
+        margin: 0;
+        padding-left: 1.4em;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .docList strong {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .docList a {
+        color: var(--accent-color) !important;
+        text-decoration: none;
+    }
+
+    .docList a:hover {
+        text-decoration: underline;
+    }
+
+    .docList ul {
+        margin-top: 6px;
+        padding-left: 1.2rem;
+        list-style: disc;
+    }
+
+    /* LINKS CARDS */
+    .docLinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .docLinkCard {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.75) !important;
+        font-size: 0.93rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .docLinkCard:hover {
+        border-color: rgba(255, 166, 0, 0.4);
+        color: #fff !important;
+        background: rgba(255, 166, 0, 0.06);
+    }
+
+    .docLinkIcon {
+        font-size: 1.1rem;
+    }
+
+    /* FOOTER BOX */
+    .docFooterBox {
+        padding: 20px 24px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.02);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.88rem;
+    }
+
+    .docFooterBox strong {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9rem;
+    }
+
+    .docFooterBox p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+    }
+
+    .docFooterBox a {
+        color: var(--accent-color) !important;
+        text-decoration: none;
+    }
+
+    .docFooterBox a:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -130,17 +130,22 @@ import "../../styles/global.css"
         position: absolute;
         top: 50%;
         right: 0;
-        width: 0;
-        height: 0;
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        border-left: 9px solid #ffe39f;
-        transform-origin: 35% 50%;
-        transform: translateY(-50%);
-        transition: transform 1s ease;
+        width: 8px;
+        height: 8px;
+        display: block;
+        margin-top: 0;
+        align-self: auto;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        border-right: 2px solid #ffe39f;
+        border-bottom: 2px solid #ffe39f;
+        transform-origin: center;
+        transform: translateY(-50%) rotate(-45deg);
+        transition: transform 0.4s ease;
     }
 
     :global(.faqToggleHeading[aria-expanded="true"]::after) {
-        transform: translateY(-50%) rotate(90deg);
+        transform: translateY(-50%) rotate(45deg);
     }
 </style>

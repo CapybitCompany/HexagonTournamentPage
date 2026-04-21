@@ -117,15 +117,6 @@
     text-align: center;
 }
 
-.faqSection :global(.faqQuestion) {
-    font-size: clamp(1.12rem, 1.45vw, 1.28rem);
-}
-
-.faqSection :global(.faqAnswer) {
-    font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-    line-height: 1.7;
-}
-
 .faqList {
     display: grid;
     gap: 10px;

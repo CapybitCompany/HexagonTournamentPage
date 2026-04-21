@@ -67,46 +67,52 @@ a .imageBoxImage{
 
 
 @media (max-width: 870px) {
-    /* Twoje style tutaj */
     .imageBoxWrapper{
         flex-direction: column-reverse;
-        height: 800px;
+        height: auto;
+        min-height: 720px;
     }
 
     .imageBoxContent{
         flex-direction: column;
-        padding: 20px;
+        padding: 24px 20px;
         width: 100%;
         background-color: #f3f3f3;
-        height: 50%;   
+        height: auto;
+        min-height: 320px;
     }
     .imageBoxImageContainer{
         width: 100%;
-        height: 50%;  
+        height: auto;
+        min-height: 300px;
     }
 
     .imageBoxImageContainer a{
         width: 100%;
+        height: 100%;
+        display: block;
     }
 }
 
 @media (max-width: 500px) {
-    /* Twoje style tutaj */
     .imageBoxWrapper{
         flex-direction: column-reverse;
-        height: 1000px;
+        height: auto;
+        min-height: 0;
     }
 
     .imageBoxContent{
         flex-direction: column;
-        padding: 20px;
+        padding: 22px 16px;
         width: 100%;
         background-color: #f3f3f3;
-        height: 60%;   
+        height: auto;
+        min-height: 260px;
     }
     .imageBoxImageContainer{
         width: 100%;
-        height: 40%;  
+        height: auto;
+        min-height: 220px;
     }
 }
 .imageBoxWrapper.lowwer_H{

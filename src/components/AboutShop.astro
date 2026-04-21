@@ -5,165 +5,305 @@ import ContentContainer from './ContentContainer/ContentContainer.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+import Section from './ContentContainer/Section.astro'
 const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
 <ContentContainer>
     <Breadcrumbs items={[{ label: "O sklepie" }]} />
-    <div style="text-align: center; width: 100%; display: flex; justify-content: center; margin: 80px 0; min-height: calc(100vh - 300px); flex-direction: column; align-items: center;">
 
-            <h1>O sklepie</h1>
-            <p>Możesz przejść do sklepu teraz klikając <a href="https://vishop.pl/shop/24611/server/23302">Tutaj</a> </p>
-            
-            <section class="shop-info">
-              <header class="shop-info__header">
-                <h1>Sklep HEX Network</h1>
-                <p>
-                  Sklep HEX Network oferuje <strong>usługi cyfrowe</strong> powiązane z serwerem Minecraft HEX Network.
-                  Nie sprzedajemy produktów fizycznych — zakupy dotyczą wyłącznie funkcji i dodatków dostępnych w ramach serwera.
-                </p>
-              </header>
+    <div class="docHero">
+        <div class="docHeroContent">
+            <span class="docBadge">📦 O SKLEPIE</span>
+            <h1 class="docHeroTitle">O sklepie HEX Network</h1>
+            <p class="docHeroSub">Sklep HEX Network oferuje <strong>usługi cyfrowe</strong> powiązane z serwerem Minecraft HEX Network. Nie sprzedajemy produktów fizycznych.</p>
+            <a href="https://vishop.pl/shop/24611/server/23302" class="docCtaBtn" target="_blank" rel="noopener">
+                Przejdź do sklepu <span>→</span>
+            </a>
+        </div>
+    </div>
 
-              <section class="shop-info__section">
-                <h2>Co znajdziesz w sklepie</h2>
-                <ul>
-                  <li>
-                    <strong>VIP</strong> (czasowy lub stały) – dodatkowe funkcje quality-of-life oraz wyróżnienia na serwerze.
-                  </li>
-                  <li>
-                    <strong>Dodatki quality-of-life</strong> – ułatwienia rozgrywki, które nie wpływają na uczciwą rywalizację (brak pay-to-win).
-                  </li>
-                  <li>
-                    <strong>Pakiety i dodatki eventowe</strong> – elementy związane z eventami/turniejami (np. dostęp, kosmetyki, drobne bonusy).
-                  </li>
-                  <li>
-                    <strong>Punkty / wirtualna waluta</strong> wykorzystywana wyłącznie w ramach serwera (bez możliwości wymiany na środki pieniężne).
-                  </li>
+    <Section>
+        <div class="docBody">
+
+            <div class="docSection">
+                <h2 class="docSectionTitle">Co znajdziesz w sklepie</h2>
+                <ul class="docList">
+                    <li><strong>VIP</strong> (czasowy lub stały) – dodatkowe funkcje quality-of-life oraz wyróżnienia na serwerze.</li>
+                    <li><strong>Dodatki quality-of-life</strong> – ułatwienia rozgrywki, które nie wpływają na uczciwą rywalizację (brak pay-to-win).</li>
+                    <li><strong>Pakiety i dodatki eventowe</strong> – elementy związane z eventami/turniejami (np. dostęp, kosmetyki, drobne bonusy).</li>
+                    <li><strong>Punkty / wirtualna waluta</strong> – wykorzystywana wyłącznie w ramach serwera (bez możliwości wymiany na środki pieniężne).</li>
                 </ul>
-              </section>
+            </div>
 
-              <section class="shop-info__section">
-                <h2>Jak działa realizacja zamówienia</h2>
-                <ol>
-                  <li>Wybierasz usługę w sklepie i przechodzisz do płatności.</li>
-                  <li>Po zaksięgowaniu płatności zamówienie jest realizowane <strong>automatycznie</strong> na Twoim koncie w grze.</li>
-                  <li>W większości przypadków realizacja trwa chwilę. Jeśli wystąpi problem, skontaktuj się z nami.</li>
+            <div class="docSection">
+                <h2 class="docSectionTitle">Jak działa realizacja zamówienia</h2>
+                <ol class="docList">
+                    <li>Wybierasz usługę w sklepie i przechodzisz do płatności.</li>
+                    <li>Po zaksięgowaniu płatności zamówienie jest realizowane <strong>automatycznie</strong> na Twoim koncie w grze.</li>
+                    <li>W większości przypadków realizacja trwa chwilę. Jeśli wystąpi problem, skontaktuj się z nami.</li>
                 </ol>
-                <p>
-                  Uwaga: zakupione usługi są usługami cyfrowymi. Po ich zrealizowaniu (np. nadaniu VIP lub dodatku) nie ma możliwości
-                  „zwrotu produktu” w sensie fizycznym.
-                </p>
-              </section>
+                <p class="docNote">Uwaga: zakupione usługi są usługami cyfrowymi. Po ich zrealizowaniu (np. nadaniu VIP lub dodatku) nie ma możliwości „zwrotu produktu" w sensie fizycznym.</p>
+            </div>
 
-              <section class="shop-info__section">
-                <h2>Płatności</h2>
-                <p>
-                  Płatności w sklepie realizowane są przez zewnętrznego operatora płatności. Dostępne metody to m.in.:
-                  <strong>BLIK</strong>, <strong>szybkie przelewy online</strong> oraz <strong>karta płatnicza</strong>.
-                </p>
-                <p>
-                  Jeżeli w danym momencie któraś metoda płatności jest niedostępna, może to wynikać z prac integracyjnych lub przerwy
-                  technicznej po stronie operatora.
-                </p>
-              </section>
+            <div class="docSection">
+                <h2 class="docSectionTitle">Płatności</h2>
+                <p>Płatności w sklepie realizowane są przez zewnętrznego operatora płatności. Dostępne metody to m.in.: <strong>BLIK</strong>, <strong>szybkie przelewy online</strong> oraz <strong>karta płatnicza</strong>.</p>
+                <p>Jeżeli w danym momencie któraś metoda płatności jest niedostępna, może to wynikać z prac integracyjnych lub przerwy technicznej po stronie operatora.</p>
+            </div>
 
-              <section class="shop-info__section">
-                <h2>Kontakt i wsparcie</h2>
-                <p>
-                  Najszybciej złapiesz nas na Discordzie. W sprawach formalnych (np. płatności, współprace) możesz napisać maila.
-                </p>
-                <ul>
-                  <li>
-                    <strong>Discord:</strong>
-                    <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz do serwera</a>
-                  </li>
-                  <li><strong>E-mail:</strong> <a href="mailto:minecrafthexagon@gmail.com">minecrafthexagon@gmail.com.</a></li>
+            <div class="docSection">
+                <h2 class="docSectionTitle">Kontakt i wsparcie</h2>
+                <p>Najszybciej złapiesz nas na Discordzie. W sprawach formalnych (np. płatności, współprace) możesz napisać maila.</p>
+                <ul class="docList">
+                    <li><strong>Discord:</strong> <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz do serwera</a></li>
+                    <li><strong>E-mail:</strong> <a href="mailto:minecrafthexagon@gmail.com">minecrafthexagon@gmail.com</a></li>
                 </ul>
-              </section>
+            </div>
 
-              <section class="shop-info__section">
-                <h2>Dokumenty</h2>
-                <ul>
-                  <li><a href={`${base}regulations`} target="_blank" rel="noopener">Regulamin sklepu</a></li>
-                  <li><a href={`${base}politics`} target="_blank" rel="noopener">Polityka prywatności</a></li>
-                </ul>
-              </section>
+            <div class="docSection">
+                <h2 class="docSectionTitle">Dokumenty prawne</h2>
+                <div class="docLinks">
+                    <a href={`${base}regulations`} class="docLinkCard">
+                        <span class="docLinkIcon">📄</span>
+                        <span>Regulamin sklepu</span>
+                    </a>
+                    <a href={`${base}politics`} class="docLinkCard">
+                        <span class="docLinkIcon">🔒</span>
+                        <span>Polityka prywatności</span>
+                    </a>
+                    <a href="https://vishop.pl/shop/24611/server/23302" class="docLinkCard" target="_blank" rel="noopener">
+                        <span class="docLinkIcon">🛒</span>
+                        <span>Sklep ViShop</span>
+                    </a>
+                </div>
+            </div>
 
-              <section class="shop-info__section">
-                <h2>Sklep</h2>
-                <a href="https://vishop.pl/shop/24611/server/23302" target="_blank" rel="noopener">Link do sklepu</a>
-              </section>
+            <div class="docFooterBox">
+                <strong>Dane sprzedawcy</strong>
+                <p>Radosław Rybarczyk<br>NIP: 7831843408<br>Adres: ul. Robocza 17c lok.145, 61-517 Poznań<br>Kontakt: <a href="mailto:minecrafthexagon@gmail.com">minecrafthexagon@gmail.com</a></p>
+            </div>
 
-              <footer class="shop-info__footer">
-                <p>
-                  <strong>Dane sprzedawcy:</strong><br>
-                    Radosław Rybarczyk<br>
-                    NIP: 7831843408<br>
-                    Adres prowadzenia działalności: ul. Robocza 17c lok.145, 61-517 Poznań<br>
-                    Kontakt: minecrafthexagon@gmail.com
-                </p>
-              </footer>
-            </section>
-
-
-    
-  </div>
+        </div>
+    </Section>
 </ContentContainer>
 <Footer/>
 
 <style>
-    .box {
-      display: flex;
-      margin-top: 60px;
-      flex-direction: column;
-      border: 1px solid #4b5563;
-      background: #111827;
-      padding: 20px 24px;
-      max-width: 600px;
-      text-align: center;
-      color: white;
-      max-height: 350px;
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
-    
-    a {
+
+    /* HERO */
+    .docHero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        overflow: hidden;
+        background:
+            radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 166, 0, 0.06), transparent 70%),
+            linear-gradient(180deg, #0e1219 0%, #0a0d12 100%);
+    }
+
+    .docHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        padding: 60px 20px;
+    }
+
+    .docBadge {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.08);
         color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
     }
 
-    .box h1 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      align-items: center;
+    .docHeroTitle {
+        font-family: "minecraft";
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        color: #fff;
+        margin: 0;
+        line-height: 1.15;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.2);
     }
 
-    .box p {
-      margin: 6px 0;
+    .docHeroSub {
+        font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 560px;
+        margin: 0;
     }
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-top: 8px;
-      color: var(--accent-color);
+    .docHeroSub strong {
+        color: rgba(255, 255, 255, 0.85);
     }
 
-    .legal {
-      display: flex;
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: #9ca3af;
-      text-align: left;
-      flex-direction: column;
+    .docCtaBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        color: #0a0d12 !important;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 24px rgba(255, 166, 0, 0.3);
     }
 
-    .legal strong {
-      color: #e5e7eb;
+    .docCtaBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(255, 166, 0, 0.45);
     }
 
-    section {
-      flex-direction: column;
+    /* BODY */
+    .docBody {
+        width: min(760px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 0 60px;
     }
 
-  </style>
+    .docSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .docSectionTitle {
+        font-size: clamp(1.2rem, 2vw, 1.45rem);
+        color: #fff;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 166, 0, 0.2);
+    }
+
+    .docSection p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+    }
+
+    .docSection strong {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .docList {
+        margin: 0;
+        padding-left: 1.4em;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .docList strong {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .docList a {
+        color: var(--accent-color) !important;
+        text-decoration: none;
+    }
+
+    .docList a:hover {
+        text-decoration: underline;
+    }
+
+    .docNote {
+        margin: 0;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border-left: 3px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.06);
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.65;
+    }
+
+    /* LINKS CARDS */
+    .docLinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .docLinkCard {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.75) !important;
+        font-size: 0.93rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .docLinkCard:hover {
+        border-color: rgba(255, 166, 0, 0.4);
+        color: #fff !important;
+        background: rgba(255, 166, 0, 0.06);
+    }
+
+    .docLinkIcon {
+        font-size: 1.1rem;
+    }
+
+    /* FOOTER BOX */
+    .docFooterBox {
+        padding: 20px 24px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.02);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.88rem;
+    }
+
+    .docFooterBox strong {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9rem;
+    }
+
+    .docFooterBox p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+    }
+
+    .docFooterBox a {
+        color: var(--accent-color) !important;
+        text-decoration: none;
+    }
+
+    .docFooterBox a:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -11,6 +11,8 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+import CountdownTimer from '../../DiscordContainer/CountdownTimer.astro'
+import { nextHexEvent, nextHexEventSchedule } from '../../../data/hex-network';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -41,26 +43,67 @@ const base = import.meta.env.BASE_URL;
                 <div class="evUpcomingAccent"></div>
                 <div class="evUpcomingInner">
                     <div class="evUpcomingBadge">NADCHODZĄCY EVENT</div>
-                    <h2 class="evUpcomingTitle">Tytanic</h2>
+                    <h2 class="evUpcomingTitle">{nextHexEvent.theme}</h2>
                     <p class="evUpcomingDesc">
-                        Nowy event w przygotowaniu. Statek tonie — Twoim zadaniem jest przetrwać.
-                        Szczegóły, zasady i data startu pojawią się wkrótce na Discordzie i stronie.
+                        Nowy event w przygotowaniu. Titanic, góra lodowa, pewne wyzwania.
+                        Szczegóły, zasady i data startu pojawią się wkrótce na naszym Discordzie.
                     </p>
+
+                    <div class="evCountdownWrap">
+                        <p class="evCountdownLabel">Do startu pozostało:</p>
+                        <CountdownTimer
+                            targetStart={nextHexEvent.startIso}
+                            targetEnd={nextHexEvent.endIso}
+                            size="compact"
+                            ongoingText={`${nextHexEvent.edition} — ${nextHexEvent.theme} właśnie trwa. Powodzenia!`}
+                            finishedText={`${nextHexEvent.edition} — ${nextHexEvent.theme} już za nami. Zobacz relację na Discordzie.`}
+                        />
+                    </div>
+
                     <div class="evUpcomingMeta">
                         <div class="evMetaItem">
                             <span class="evMetaIcon">📅</span>
-                            <div><strong>Data</strong><p>Wkrótce</p></div>
+                            <div><strong>Data</strong><p>{nextHexEvent.displayDateTime}</p></div>
                         </div>
                         <div class="evMetaItem">
                             <span class="evMetaIcon">👥</span>
-                            <div><strong>Gracze</strong><p>Do ogłoszenia</p></div>
+                            <div><strong>Limit graczy</strong><p>{nextHexEvent.playerLimit}</p></div>
                         </div>
                         <div class="evMetaItem">
                             <span class="evMetaIcon">🎁</span>
-                            <div><strong>Nagrody</strong><p>Do ogłoszenia</p></div>
+                            <div><strong>Nagrody</strong><p>{nextHexEvent.rewardsLabel}</p></div>
                         </div>
                     </div>
+
+                    <div class="evUpcomingCta">
+                        <a
+                            class="evBtn evBtnPrimary"
+                            href={nextHexEvent.registerUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            🎯 Zapisz się na {nextHexEvent.edition} →
+                        </a>
+                    </div>
                 </div>
+            </section>
+
+            <!-- ===== SCHEDULE / HARMONOGRAM ===== -->
+            <section class="evSchedule reveal" aria-labelledby="evScheduleTitle">
+                <h2 id="evScheduleTitle" class="evSectionTitle">Harmonogram eventu</h2>
+                <p class="evSectionSub">
+                    Orientacyjny plan dnia {nextHexEvent.edition}. Szczegóły każdego punktu ogłaszamy na Discordzie.
+                </p>
+
+                <ol class="evScheduleList">
+                    {nextHexEventSchedule.map((item, index) => (
+                        <li class="evScheduleItem reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="evScheduleTime">{item.time}</span>
+                            <span class="evScheduleDot" aria-hidden="true"></span>
+                            <span class="evScheduleLabel">{item.label}</span>
+                        </li>
+                    ))}
+                </ol>
             </section>
 
             <!-- ===== ANGLED DIVIDER ===== -->
@@ -68,7 +111,7 @@ const base = import.meta.env.BASE_URL;
 
             <!-- ===== BEHIND THE SCENES ===== -->
             <section class="evBehind reveal">
-                <h2 class="evSectionTitle">Za kulisami Tytanic</h2>
+                <h2 class="evSectionTitle">Za kulisami Titanic</h2>
                 <p class="evSectionSub">Proces tworzenia eventu — od pierwszych pomysłów po testy na serwerze.</p>
 
                 <div class="evGallery">
@@ -80,13 +123,13 @@ const base = import.meta.env.BASE_URL;
                         </div>
                     </div>
                     <div class="evGallerySlot">
-                        <img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" />
+                        <picture><source srcset={`${base}images/Archive/Hex6/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" /></picture>
                     </div>
                     <div class="evGallerySlot">
-                        <img src={`${base}images/Archive/Hex6/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" />
+                        <picture><source srcset={`${base}images/Archive/Hex6/2.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" /></picture>
                     </div>
                     <div class="evGallerySlot">
-                        <img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" />
+                        <picture><source srcset={`${base}images/Archive/Hex6/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" /></picture>
                     </div>
                 </div>
             </section>
@@ -125,19 +168,19 @@ const base = import.meta.env.BASE_URL;
                     <div class="evStep reveal-child" style="--reveal-i:0">
                         <div class="evStepNum">1</div>
                         <h3>Zapisy</h3>
-                        <p>Ogłaszamy event na Discordzie i stronie. Zapisujesz się jednym kliknięciem.</p>
+                        <p>Ogłaszamy event na Discordzie i stronie. Pojaw się na serwerze w odpowiednim terminie. Część wydarzeń ma limit miejsc - zapisz się na discordzie na wskazanym kanale.</p>
                     </div>
                     <div class="evStepLine" aria-hidden="true"></div>
                     <div class="evStep reveal-child" style="--reveal-i:1">
                         <div class="evStepNum">2</div>
                         <h3>Rozgrywka</h3>
-                        <p>Grasz w turnieju na dedykowanej mapie. Zasady są jasne, rywalizacja uczciwa.</p>
+                        <p>Grasz w turnieju na dedykowanej mapie. Zasady są przedstawiane przed każdym wyzwaniem. Słuchaj uważnie instrukcji i wskazówek prowadzącego.</p>
                     </div>
                     <div class="evStepLine" aria-hidden="true"></div>
                     <div class="evStep reveal-child" style="--reveal-i:2">
                         <div class="evStepNum">3</div>
                         <h3>Wyniki i nagrody</h3>
-                        <p>Po evencie publikujemy rankingi, przyznajemy nagrody i archiwizujemy edycję.</p>
+                        <p>Weryfikujemy wyniki a po kilku dniach ogłaszamy na naszym Discordzie wygranych. Instrukcje dotyczące odbioru nagród również będą dostępne na Discordzie.</p>
                     </div>
                 </div>
             </section>
@@ -145,9 +188,9 @@ const base = import.meta.env.BASE_URL;
             <!-- ===== PAST EVENTS TEASER ===== -->
             <section class="evPastTeaser reveal">
                 <div class="evPastGrid">
-                    <img src={`${base}images/Archive/Hex5/1.jpg`} alt="Poprzedni event HEX — zdjęcie" loading="lazy" decoding="async" class="evPastImg" />
+                    <picture><source srcset={`${base}images/Archive/Hex5/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex5/1.jpg`} alt="Poprzedni event HEX — zdjęcie" loading="lazy" decoding="async" class="evPastImg" /></picture>
                     <div class="evPastText">
-                        <h2>6 eventów za nami</h2>
+                        <h2>7 eventów za nami</h2>
                         <p>Sprawdź relacje, zdjęcia i wyniki z poprzednich edycji w naszym archiwum.</p>
                         <a class="evBtn evBtnPrimary" href={`${base}archive`}>Przejdź do archiwum →</a>
                     </div>
@@ -160,19 +203,39 @@ const base = import.meta.env.BASE_URL;
                 <FAQ>
                     <FAQLine>
                         <FAQQuestion>Jak zapisać się na turniej Event Zone?</FAQQuestion>
-                        <FAQAnswer>Zapisy publikujemy na stronie i na Discordzie HEX. Link do zapisów pojawia się przed każdą edycją wydarzenia.</FAQAnswer>
+                        <FAQAnswer>Większość wydarzeń nie wymaga zapisów. Wystarczy wejść na serwer we wskazanym terminie oraz nasz Discord i wykonywać polecenia administracji. Jeżeli jakieś wydarzenie wymaga wcześniejszych zapisów, jest to jasno wskazane i opisane na naszym Discordzie.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
-                        <FAQQuestion>Kiedy ruszają pierwsze eventy?</FAQQuestion>
-                        <FAQAnswer>Najbliższy turniej zaplanowany jest na 4.04.2026 o 19:00. Kolejne terminy będą ogłaszane cyklicznie.</FAQAnswer>
+                        <FAQQuestion>Kiedy ruszają kolejne eventy?</FAQQuestion>
+                        <FAQAnswer>Najbliższe wydarzenie publikowane jest na naszym discordzie oraz na stronie. Strona główna posiada licznik, który odlicza do najbliższego wydarzenia.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Gdzie sprawdzić wyniki poprzednich eventów?</FAQQuestion>
                         <FAQAnswer>Wyniki i relacje trafiają do archiwum eventów oraz komunikatów na Discordzie.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
-                        <FAQQuestion>Czym jest Tytanic?</FAQQuestion>
-                        <FAQAnswer>Tytanic to nadchodzący event HEX. Szczegóły i zasady zostaną ogłoszone wkrótce na Discordzie i stronie.</FAQAnswer>
+                        <FAQQuestion>Jaką formę mają wydarzenia?</FAQQuestion>
+                        <FAQAnswer>Każde wydarzenie może mieć zupełnie inną formę i wyzwania. Wydarzenie może być podzielone na kilka paneli. Udział można wziąć tylko w części, które nas interesują. Każdy panel wydarzenia to osobna punktacja i osobne nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Skąd mam wiedzieć czy dostanę nagrodę?</FAQQuestion>
+                        <FAQAnswer>Jeśli brałes udział w wydarzeniu, śledz następne dni nasz serwer Discord. W kanale "Ważne informacje" pojawi się lista wygranych oraz instrukcje jak otrzymać nagrodę. Zazwyczaj oznacza to napisanie do wskazanego administratora.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy jeśli mam mniej niż 18 lat mogę wziąć udział?</FAQQuestion>
+                        <FAQAnswer>Osoby poniżej 18 roku życia mogą wziąć udział w wydarzeniach, jednak wymagane jest posiadanie zgody rodzica lub opiekuna prawnego. Szczegóły dotyczące udziału nieletnich są dostępne na naszym Discordzie. Weryfikacja wieku jest wymagana po wygraniu nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy jeśli mam mniej niż 18 lat mogę odebrać nagrodę jeśli wygram?</FAQQuestion>
+                        <FAQAnswer>Tak. Po wygraniu nagrody następuje weryfikacja wieku. Osoba poniżej 18 roku życia musi podać dane kontaktowe do opiekuna prawnego. Potwierdza on, że udzielił zgodę na udział dziecka oraz wskazuje dane do przekazania nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Jaka jest forma przekazania nagrody?</FAQQuestion>
+                        <FAQAnswer>Nagroda przekazywana jest przelewem lub blikiem zgodnie z wolą zwycięscy.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Ile osób wygrywa wydarzenie?</FAQQuestion>
+                        <FAQAnswer>Liczba zwycięzców zależy od konkretnego wydarzenia i jest podana w jego opisie. Zazwyczaj informacje te są dostępne na naszym Discordzie oraz na stronie wydarzenia.</FAQAnswer>
                     </FAQLine>
                 </FAQ>
             </section>
@@ -297,6 +360,8 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
     }
 
     .evUpcomingTitle {
+        display: flex;
+        align-items: center;
         margin: 0 0 12px 0; font-size: clamp(2rem, 4vw, 3rem); font-family: "minecraft";
         color: #fff; text-shadow: 0 0 30px rgba(255,166,0,0.2);
     }
@@ -323,6 +388,120 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
     .evMetaItem strong { color: #fff; font-size: 0.85rem; }
     .evMetaItem p { margin: 2px 0 0; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
     .evMetaItem div { display: flex; flex-direction: column; }
+
+    /* Countdown wewnątrz karty eventu */
+    .evCountdownWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 20px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 166, 0, 0.18);
+        background: rgba(255, 166, 0, 0.04);
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .evCountdownLabel {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 213, 140, 0.85);
+    }
+
+    .evCountdownWrap :global(.countdown) {
+        align-items: flex-start;
+    }
+
+    .evUpcomingCta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    /* ===== SCHEDULE / HARMONOGRAM ===== */
+    .evSchedule {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 28px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .evScheduleList {
+        position: relative;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+        max-width: 720px;
+    }
+
+    .evScheduleList::before {
+        content: "";
+        position: absolute;
+        left: 92px;
+        top: 10px;
+        bottom: 10px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 166, 0, 0.35), rgba(255, 166, 0, 0.08));
+        border-radius: 2px;
+    }
+
+    .evScheduleItem {
+        display: grid;
+        grid-template-columns: 80px 24px 1fr;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .evScheduleTime {
+        color: var(--accent-color);
+        font-family: "minecraft";
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-align: right;
+        text-shadow: 0 0 12px rgba(255, 166, 0, 0.3);
+    }
+
+    .evScheduleDot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        border: 3px solid #0c0f16;
+        box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.35), 0 0 12px rgba(255, 166, 0, 0.45);
+        justify-self: center;
+    }
+
+    .evScheduleLabel {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.98rem;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+        .evScheduleList::before { left: 72px; }
+        .evScheduleItem { grid-template-columns: 64px 18px 1fr; padding: 8px 10px; }
+        .evScheduleTime { font-size: 0.95rem; }
+        .evScheduleDot { width: 12px; height: 12px; }
+    }
 
     /* ===== ANGLED DIVIDER ===== */
     .evAngleDivider {
@@ -461,7 +640,7 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
     }
     .evPastText h2::after {
         content: ""; display: block; width: 50px; height: 3px;
-        background: var(--accent-color); border-radius: 3px; margin-top: 8px;
+        background: var(--accent-color); border-radius: 3px; margin: 8px auto 0;
         box-shadow: 0 0 14px rgba(255,166,0,0.4);
     }
     .evPastText p {
@@ -483,8 +662,6 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
         background: radial-gradient(circle at 10% 0%, rgba(255,195,87,0.12), transparent 42%);
     }
     .evFaq h2 { margin: 0 0 4px 0; color: #fff; position: relative; z-index: 1; }
-    .evFaq :global(.faqQuestion) { font-size: clamp(1.12rem,1.45vw,1.28rem); }
-    .evFaq :global(.faqAnswer) { font-size: clamp(1.05rem,1.28vw,1.16rem); line-height: 1.7; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {

@@ -1,0 +1,150 @@
+---
+const { sourceIP = "MinecraftHEX.pl", label = "online" } = Astro.props;
+---
+
+<a
+  class="livePlayerBadge"
+  href="/"
+  data-source-ip={sourceIP}
+  data-label={label}
+  aria-live="polite"
+  title="Kliknij aby skopiować IP serwera"
+>
+  <span class="livePlayerBadge__dot" aria-hidden="true"></span>
+  <span class="livePlayerBadge__count">…</span>
+  <span class="livePlayerBadge__label">{label}</span>
+</a>
+
+<style>
+  .livePlayerBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.88);
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    line-height: 1;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .livePlayerBadge:hover {
+    border-color: rgba(255, 166, 0, 0.45);
+    background: rgba(255, 166, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .livePlayerBadge:focus-visible {
+    outline: 2px solid rgba(255, 166, 0, 0.8);
+    outline-offset: 3px;
+  }
+
+  .livePlayerBadge__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7a7a7a;
+    box-shadow: 0 0 0 0 rgba(122, 122, 122, 0.4);
+    flex-shrink: 0;
+  }
+
+  .livePlayerBadge.is-online .livePlayerBadge__dot {
+    background: #4ade80;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.65);
+    animation: livePulse 2.4s ease-in-out infinite;
+  }
+
+  .livePlayerBadge.is-offline {
+    opacity: 0.7;
+  }
+
+  .livePlayerBadge.is-offline .livePlayerBadge__dot {
+    background: #7a7a7a;
+    box-shadow: none;
+  }
+
+  .livePlayerBadge__count {
+    color: var(--accent-color, #ffa600);
+    min-width: 0.75ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .livePlayerBadge.is-offline .livePlayerBadge__count {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .livePlayerBadge__label {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  @keyframes livePulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+    }
+  }
+
+  @media (max-width: 950px) {
+    .livePlayerBadge {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .livePlayerBadge.is-online .livePlayerBadge__dot {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const badges = document.querySelectorAll<HTMLAnchorElement>(".livePlayerBadge");
+  if (badges.length) {
+    const loadPlayers = async () => {
+      for (const badge of badges) {
+        const ip = badge.dataset.sourceIp || "MinecraftHEX.pl";
+        const countEl = badge.querySelector<HTMLElement>(".livePlayerBadge__count");
+        const labelEl = badge.querySelector<HTMLElement>(".livePlayerBadge__label");
+        const defaultLabel = badge.dataset.label || "online";
+        try {
+          const res = await fetch(`https://api.mcsrvstat.us/2/${ip}`);
+          const data = await res.json();
+          if (data && data.online && data.players && typeof data.players.online === "number") {
+            if (countEl) countEl.textContent = String(data.players.online);
+            if (labelEl) labelEl.textContent = defaultLabel;
+            badge.classList.add("is-online");
+            badge.classList.remove("is-offline");
+            badge.title = `${data.players.online}/${data.players.max} graczy online — kliknij aby otworzyć stronę główną`;
+          } else {
+            if (countEl) countEl.textContent = "●";
+            if (labelEl) labelEl.textContent = "offline";
+            badge.classList.add("is-offline");
+            badge.classList.remove("is-online");
+          }
+        } catch (_err) {
+          if (countEl) countEl.textContent = "●";
+          if (labelEl) labelEl.textContent = "offline";
+          badge.classList.add("is-offline");
+          badge.classList.remove("is-online");
+        }
+      }
+    };
+
+    loadPlayers();
+    // Refresh every 60s while tab is visible.
+    setInterval(() => {
+      if (document.visibilityState === "visible") loadPlayers();
+    }, 60_000);
+  }
+</script>

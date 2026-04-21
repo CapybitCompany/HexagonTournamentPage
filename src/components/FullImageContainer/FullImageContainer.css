@@ -18,6 +18,22 @@
     margin-top: 60px;
     height: 600px;
 }
+.fullImageWrapper.banner{
+    min-height: 600px;
+    background-color: #050607;
+}
+.banner .imageWrapper{
+    height: 100%;
+}
+.banner .fullImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+.imageToRight.banner .fullImage{
+    object-position: right center;
+}
 .fullImage{
     height: 100%;
     object-fit: contain;
@@ -58,18 +74,18 @@
 
 .fade-image {
     opacity: 0;
-    transform: scale(10.05) translateX(-80%);
-    filter: blur(10px);
+    transform: scale(1.12) translate3d(-4%, 0, 0);
+    filter: blur(14px);
     z-index: 2;
     width: 100%;
 }
 
 .banner .fade-image{
     opacity: 0;
-    transform: scale(10.05) translateX(-80%);
-    filter: blur(10px);
+    transform: scale(1.12) translate3d(-4%, 0, 0);
+    filter: blur(14px);
     z-index: 2;
-    width: auto;
+    width: 100%;
 
     transition: opacity 2s ease, transform 2s ease, filter 2s ease, z-index 2s ease;
 }
@@ -83,15 +99,15 @@
 
 .fade-image.loaded {
     opacity: 1;
-    transform: scale(1) translateX(0);
+    transform: scale(1.02) translate3d(0, 0, 0);
     filter: blur(0);
     z-index: 0;
 }
 
 .fade-image2 {
     opacity: 0;
-    transform: scale(10.05) translateX(80%);
-    filter: blur(10px);
+    transform: scale(1.12) translate3d(4%, 0, 0);
+    filter: blur(14px);
     z-index: 0;
 
     transition: opacity 2s ease, transform 2s ease, filter 2s ease, z-index 2s ease;
@@ -106,7 +122,7 @@
 
 .fade-image2.loaded {
     opacity: 1;
-    transform: scale(1) translateX(0);
+    transform: scale(1.02) translate3d(0, 0, 0);
     filter: blur(0);
     z-index: 0;
 }
@@ -181,8 +197,9 @@ h1{
 }
 
 @media(max-width:1070px){
-    .fullImageWrapper{
-        height: 750px;
+    .fullImageWrapper.banner{
+        height: auto;
+        min-height: 680px;
     }
 
     .fullImageWrapper .bannerContentContainer{
@@ -224,12 +241,12 @@ h1{
     }
 
     .fade-image{
-        transform: scale(30.05) translateX(30%) translateY(50%);
+        transform: scale(1.08) translate3d(-2%, 0, 0);
         z-index: 0;
     }
 
     .fade-image2{
-        transform: scale(30.05) translateX(-50%) translateY(50%);
+        transform: scale(1.08) translate3d(2%, 0, 0);
         z-index: 0;
     }
 }
@@ -276,8 +293,9 @@ h1{
 
 @media (max-width: 550px){
 
-    .fullImageWrapper{
-        height: 380px;
+    .fullImageWrapper.banner{
+        height: auto;
+        min-height: 560px;
     }
     .fullImageWrapper .bannerContentContainer {
         padding: 10px 40px;
@@ -287,23 +305,25 @@ h1{
     }
 
     .banner{
-        height: 300px;
+        height: auto;
+        min-height: 460px;
     }
 
     .fade-image{
-        transform: scale(30.05) translateX(30%) translateY(50%);
+        transform: scale(1.06) translate3d(0, 0, 0);
         z-index: 0;
     }
 
     .fade-image2{
-        transform: scale(30.05) translateX(30%) translateY(50%);
+        transform: scale(1.06) translate3d(0, 0, 0);
         z-index: 0;
     }
 }
 
 @media (max-width: 400px){
-    .fullImageWrapper{
-        height: 250px;
+    .fullImageWrapper.banner{
+        height: auto;
+        min-height: 500px;
     }
 
     .fullImageWrapper .bannerContentContainer {
@@ -315,16 +335,17 @@ h1{
     }
 
     .fade-image{
-        transform: scale(30.05) translateX(30%) translateY(50%);
+        transform: scale(1.04) translate3d(0, 0, 0);
         z-index: 0;
     }
     .fade-image2{
-        transform: scale(30.05) translateX(30%) translateY(50%);
+        transform: scale(1.04) translate3d(0, 0, 0);
         z-index: 0;
     }
 
     .banner{
-        height: 600px;
+        height: auto;
+        min-height: 420px;
     }
 }
 
@@ -345,10 +366,6 @@ h1{
     cursor: grab;
     user-select: none;       /* brak zaznaczania tekstu przy drag */
     /* scrollbar-width: none; */
-}
-
-.horizontalScroll .imageWrapper::-webkit-scrollbar {
-  /* display: none; */
 }
 
 .horizontalScroll .imageWrapper.dragging {

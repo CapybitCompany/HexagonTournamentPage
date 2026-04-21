@@ -1,12 +1,16 @@
 ---
 import CountdownTimer from "./CountdownTimer.astro";
+import { nextHexEvent } from "../../data/hex-network";
 ---
 <div class="discordContainerWrapper">
     <div class="discordContainer">
         <div class="headerWrapper">
             <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Start turnieju Minecraft za:</h2>
         </div>
-        <CountdownTimer />
+        <CountdownTimer
+            targetStart={nextHexEvent.startIso}
+            targetEnd={nextHexEvent.endIso}
+        />
     
     </div>
 </div>

@@ -1,6 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl } from '../utils/urls';
 
 const structuredData = [
 	{
@@ -8,7 +9,7 @@ const structuredData = [
 		"@type": "WebPage",
 		name: "Serwer Minecraft Polska - HEX Network",
 		description: "HEX Network to serwer Minecraft Polska z turniejami, eventami, rankingiem graczy i autorskimi trybami rozgrywki.",
-		url: "https://www.minecrafthex.pl/"
+		url: absoluteUrl()
 	},
 	{
 		"@context": "https://schema.org",
@@ -48,16 +49,16 @@ const structuredData = [
 		eventStatus: "https://schema.org/EventScheduled",
 		startDate: "2026-04-03T19:00:00+01:00",
 		endDate: "2026-04-04T23:00:00+01:00",
-		image: ["https://www.minecrafthex.pl/logo.png"],
+		image: [absoluteUrl('logo.png')],
 		description: "Turniej Minecraft HEX z nagrodami, rankingiem graczy i aktywną społecznością Discord.",
 		location: {
 			"@type": "VirtualLocation",
-			url: "https://www.minecrafthex.pl"
+			url: absoluteUrl()
 		},
 		organizer: {
 			"@type": "Organization",
 			name: "HEX Network",
-			url: "https://www.minecrafthex.pl"
+			url: absoluteUrl()
 		}
 	},
 	{
@@ -68,7 +69,7 @@ const structuredData = [
 				"@type": "ListItem",
 				position: 1,
 				name: "Strona główna",
-				item: "https://www.minecrafthex.pl/"
+				item: absoluteUrl()
 			}
 		]
 	}
@@ -81,8 +82,9 @@ const structuredData = [
 <Layout 
 	customTitle="Serwer Minecraft Polska - turnieje, eventy, PVP i Parkour | HEX Network" 
 	customDescription="HEX Network to serwer Minecraft Polska z turniejami, eventami, rankingiem graczy i autorskimi trybami: Event Zone, Mini Games, PVP, Parkour i Hardcore SMP."
-	ogImage="https://www.minecrafthex.pl/logo.png"
-	canonicalUrl="https://www.minecrafthex.pl/"
+	keywords="serwer minecraft polska, turnieje minecraft, HEX Network, eventy minecraft, ranking graczy, hardcore SMP, event zone, darmowy serwer minecraft"
+	ogImage={absoluteUrl('logo.png')}
+	canonicalUrl={absoluteUrl()}
 	structuredData={structuredData}
 >
 	<Welcome />

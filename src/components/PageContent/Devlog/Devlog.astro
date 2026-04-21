@@ -9,29 +9,93 @@ import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
 
 const base = import.meta.env.BASE_URL;
 
-const entries = [
+const resolveMediaPath: (path: string | null) => string | null = (path) => {
+    if (!path) {
+        return null;
+    }
+
+    if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('/')) {
+        return path;
+    }
+
+    return `${base}${path}`;
+};
+
+const getVideoMimeType = (mimeType?: string) => mimeType ?? 'video/mp4';
+
+const getDefaultVideoPoster = (path: string) => {
+    if (path.match(/\.[^./?#]+([?#].*)?$/)) {
+        return path.replace(/\.[^./?#]+(?=([?#].*)?$)/, '.jpg');
+    }
+
+    return `${path}.jpg`;
+};
+
+const getVideoPosterPath = (path: string, poster?: string | null) => poster ?? getDefaultVideoPoster(path);
+
+type DevlogMedia = {
+    type: 'image' | 'video';
+    src: string;
+    alt?: string;
+    mimeType?: string;
+    poster?: string | null;
+};
+
+type DevlogEntry = {
+    date: string;
+    tag: string;
+    title: string;
+    content: string;
+    media: DevlogMedia[];
+};
+
+const entries: DevlogEntry[] = [
     {
-        date: "10 kwi 2026",
-        tag: "mechanika",
-        title: "System ekonomii — pierwsze testy",
-        content: "Automatyczne generowanie zasobów działa i jest gotowe do testów balansowych. Pierwsza wersja systemu pozwala graczom zarabiać offline — teraz dopracowujemy tempo wzrostu, żeby nie było zbyt łatwo ani zbyt wolno. Wstępne wyniki są obiecujące.",
-        image: null,
+        date: "19 kwi 2026",
+        tag: "SMP",
+        title: "Pierwsze prace nad serwerem SMP za nami!",
+        content: "Podstawy naszego serwera SMP są już gotowe. Gdyby miał to być zwykły survival, prawdopodobnie zamknęlibyśmy ten etap w kilka godzin. Od początku wiedzieliśmy jednak, że chcemy stworzyć coś znacznie ambitniejszego. Pracujemy nad rozwiązaniami, których w Polsce praktycznie się nie spotyka, a i za granicą nadal należą do rzadkości. Nie chcemy jeszcze zdradzać zbyt wiele, ale możemy uchylić rąbka tajemnicy: mocno inspirujemy się jednym z trybów z Hypixela, a ważną rolę odegra u nas także system miast. W ostatnich tygodniach dużo czasu poświęciliśmy również na rozwój naszej strony internetowej. Chcieliśmy dodać jej więcej charakteru i wizualnego dopracowania. Mamy nadzieję, że efekt jest widoczny.",
+        media: [],
     },
     {
-        date: "28 mar 2026",
-        tag: "mapa",
-        title: "Spawn i strefy startowe",
-        content: "Nowy spawn jest w budowie. Zaprojektowaliśmy strefy startowe pod 4 kierunki świata — każda z unikalnym klimatem i dostępem do innych zasobów. Celem jest żeby wybór miejsca na bazę miał realne znaczenie od pierwszej minuty.",
-        image: null,
+        date: "17 kwi 2026",
+        tag: "Event",
+        title: "Intensywny start prac nad eventem HEX VIII",
+        content: "Po długiej naradzie przygotowaliśmy szczegółowy podział zadań i plan prac nad kolejnym wydarzeniem. HEX VIII będzie składał się z dwóch paneli, a jednym z nich na pewno będzie Titanic. Prace nad pluginami odpowiadającymi za tonięcie, uderzenie w górę lodową, efekty oraz współpracę wszystkich systemów idą bardzo sprawnie. Scenariusz zadań jest już niemal gotowy, a mapa cały czas powstaje. Jesteśmy zaskoczeni, jak wiele udało się zrobić w zaledwie kilka dni, i daje nam to dużą nadzieję, że już niedługo będziemy mogli mocniej skupić się na otwarciu serwera SMP. Do tego momentu zdążyliśmy już przygotować koncepcję ekonomii, dokładny opis planowanych mechanik oraz podział prac nad pluginami, konfiguracją i mapą.",
+        media: [{
+            type: 'video',
+            src: 'videos/devlog/IceBergBoom.mp4'
+        },{
+            type: 'video',
+            src: 'videos/devlog/WaterEffect.mp4'
+        }],
     },
     {
-        date: "15 mar 2026",
-        tag: "balans",
-        title: "PvP — vanilla combat testy",
-        content: "Przeprowadziliśmy pierwsze testy walki. Potwierdzamy: zero custom enchantów, zero OP broni. Czysty vanilla combat z drobnymi modyfikacjami pod nasze systemy. Każda walka ma mieć realne konsekwencje dla obu stron.",
-        image: null,
+        date: "4 kwi 2026",
+        tag: "Event",
+        title: "Start wydarzenia HEX VII",
+        content: "Prace nad kolejnym eventem ruszyły pełną parą. Mieliśmy już spore opóźnienie, a do przygotowania pozostawało naprawdę dużo: dziesięć mini-gier, ich mapy, pluginy i skrypty. Pomogło nam jednak to, że już wcześniej planowaliśmy następne wydarzenia z dużym wyprzedzeniem. Dzięki temu mogliśmy szybciej przejść od pomysłów do realizacji.",
+        media: [],
+    },
+    {
+        date: "7 mar 2026",
+        tag: "Event",
+        title: "Koniec prac nad systemem serwerów",
+        content: "Gdyby ktoś zapytał nas dwa miesiące wcześniej, ile zajmie przebudowa całego systemu serwerów, pewnie odpowiedzielibyśmy, że to kwestia kilku dni. Rzeczywistość szybko to zweryfikowała. Taki termin byłby możliwy tylko wtedy, gdyby ktoś z nas mógł pracować nad tym na pełen etat. Do samego końca liczyliśmy, że uda się wystartować z kolejnym eventem już w połowie marca, ale skala prac była po prostu ogromna. Baza danych, uprawnienia, pluginy, podział pracy, budowa mapy, konfiguracja sieciowa i duże ambicje połączone z bardzo ograniczonym czasem — to było wymagające połączenie. Mimo wszystko efekt końcowy wynagrodził cały włożony wysiłek. Przy prowadzeniu serwera bardziej z pasji niż dla zysku szybko okazuje się, że nawet utrzymanie niewielkiej infrastruktury kosztuje zauważalne pieniądze. Dotychczasowe rozwiązania były wystarczające dla kilkudziesięciu graczy, ale w perspektywie kilku serwerów i większej skali zaczynało to mocno obciążać budżet. Wprowadzone przez nas zmiany pozwalają dziś myśleć o znacznie większej skali działania przy dużo rozsądniejszych kosztach, a samo uruchamianie kolejnych serwerów zapowiada się teraz znacznie wygodniej.",
+        media: [],
+    },
+    {
+        date: "15 lut 2026",
+        tag: "Ogólne",
+        title: "Prace nad systemem serwerów",
+        content: "Rozpoczęliśmy prace nad przeniesieniem naszej infrastruktury na nowy serwer. Cały system stawiamy od podstaw — od zaplecza technicznego i serwera pluginowego po konfigurację sieciową. Celem tej zmiany jest stworzenie solidnej bazy pod dalszy rozwój projektu, tak aby w przyszłości można było utrzymywać nie tylko serwer eventowy, ale także kolejne tryby bez gwałtownego wzrostu kosztów.",
+        media: [],
     },
 ];
+
+// Deduplikowana lista tagów zachowująca kolejność pierwszego wystąpienia.
+const availableTags = Array.from(new Set(entries.map((entry) => entry.tag)));
+const filterOptions = [{ id: "all", label: "Wszystkie" }, ...availableTags.map((tag) => ({ id: tag, label: tag }))];
 ---
 
 <NavBar/>
@@ -43,23 +107,73 @@ const entries = [
             <header class="devlogHeader">
                 <span class="devlogBadge">📋 DEVLOG</span>
                 <h1 class="devlogTitle">Dziennik produkcji</h1>
-                <p class="devlogSub">Śledź postępy budowy HEX SMP. Tutaj na bieżąco publikujemy co robimy i nad czym pracujemy.</p>
+                <p class="devlogSub">Śledź postępy budowy naszej sieci serwerów HEX Network.</p>
             </header>
+
+            <div class="devlogFilters" role="tablist" aria-label="Filtruj wpisy devlog">
+                {filterOptions.map((option) => (
+                    <button
+                        type="button"
+                        class="devlogFilterPill"
+                        data-filter={option.id}
+                        aria-pressed={option.id === "all" ? "true" : "false"}
+                    >
+                        {option.label}
+                    </button>
+                ))}
+            </div>
+            <p class="devlogFilterEmpty" hidden>Brak wpisów w tej kategorii.</p>
 
             <div class="devlogEntries">
                 {entries.map((entry) => (
-                    <article class="devlogEntry reveal">
+                    <article class="devlogEntry reveal" data-tag={entry.tag}>
                         <div class="devlogEntryMeta">
                             <time>{entry.date}</time>
                             <span class="devlogTag" data-tag={entry.tag}>{entry.tag}</span>
                         </div>
                         <h2>{entry.title}</h2>
                         <p>{entry.content}</p>
+                        {entry.media.length > 0 ? (
+                            <div class="devlogMediaList">
+                                {entry.media.map((mediaItem) => (
+                                    <div class="devlogMedia">
+                                        {mediaItem.type === 'video' ? (
+                                            <video
+                                                controls
+                                                muted
+                                                loop
+                                                preload="metadata"
+                                                playsinline
+                                                poster={resolveMediaPath(getVideoPosterPath(mediaItem.src, mediaItem.poster)) ?? undefined}
+                                            >
+                                                <source src={resolveMediaPath(mediaItem.src)} type={getVideoMimeType(mediaItem.mimeType)} />
+                                                Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                                            </video>
+                                        ) : (
+                                            <img
+                                                src={resolveMediaPath(mediaItem.src)}
+                                                alt={mediaItem.alt ?? entry.title}
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : null}
                     </article>
                 ))}
             </div>
 
             <div class="devlogBack">
+                <a
+                    href="https://discord.gg/e6SuCrQHak"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="devlogSubscribe"
+                >
+                    📬 Subskrybuj devlog na Discordzie
+                </a>
                 <a href={`${base}hexSmp`} class="devlogBackLink">← Wróć do HEX SMP</a>
             </div>
         </div>
@@ -69,6 +183,32 @@ const entries = [
 
 <script>
     const observer = new IntersectionObserver((entries) => {
+
+    // ===== Filtry devlog =====
+    const devlogFilterButtons = document.querySelectorAll<HTMLButtonElement>(".devlogFilterPill");
+    const devlogCards = document.querySelectorAll<HTMLElement>(".devlogEntry");
+    const devlogEmpty = document.querySelector<HTMLElement>(".devlogFilterEmpty");
+
+    function applyDevlogFilter(filter: string) {
+        let visible = 0;
+        devlogCards.forEach((card) => {
+            const tag = card.dataset.tag ?? "";
+            const matches = filter === "all" || tag === filter;
+            card.hidden = !matches;
+            if (matches) visible += 1;
+        });
+        if (devlogEmpty) devlogEmpty.hidden = visible > 0;
+    }
+
+    devlogFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter ?? "all";
+            devlogFilterButtons.forEach((btn) =>
+                btn.setAttribute("aria-pressed", btn === button ? "true" : "false")
+            );
+            applyDevlogFilter(filter);
+        });
+    });
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
@@ -167,9 +307,9 @@ const entries = [
         letter-spacing: 0.06em;
     }
 
-    .devlogTag[data-tag="mechanika"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
-    .devlogTag[data-tag="mapa"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
-    .devlogTag[data-tag="balans"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
+    .devlogTag[data-tag="Event"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
+    .devlogTag[data-tag="SMP"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
+    .devlogTag[data-tag="Ogólne"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
 
     .devlogEntry h2 {
         margin: 0;
@@ -184,10 +324,57 @@ const entries = [
         color: rgba(255,255,255,0.65);
     }
 
+    .devlogMediaList {
+        display: grid;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .devlogMedia {
+        width: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(100, 180, 255, 0.14);
+        background: rgba(7, 13, 24, 0.8);
+    }
+
+    .devlogMedia img,
+    .devlogMedia video {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 520px;
+        object-fit: cover;
+    }
+
     .devlogBack {
         display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
         justify-content: center;
         margin-top: 32px;
+    }
+
+    .devlogSubscribe {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(100, 180, 255, 0.12);
+        border: 1px solid rgba(100, 180, 255, 0.3);
+        color: rgba(180, 220, 255, 0.95);
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .devlogSubscribe:hover {
+        background: rgba(100, 180, 255, 0.2);
+        border-color: rgba(100, 180, 255, 0.55);
+        transform: translateY(-1px);
     }
 
     .devlogBackLink {
@@ -199,6 +386,47 @@ const entries = [
     }
 
     .devlogBackLink:hover { color: rgba(100, 180, 255, 1); }
+
+    /* Filtry */
+    .devlogFilters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin: 0 0 18px 0;
+    }
+
+    .devlogFilterPill {
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(100, 180, 255, 0.2);
+        background: rgba(100, 180, 255, 0.04);
+        color: rgba(200, 220, 240, 0.75);
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .devlogFilterPill:hover {
+        color: #fff;
+        border-color: rgba(100, 180, 255, 0.45);
+    }
+
+    .devlogFilterPill[aria-pressed="true"] {
+        color: #0a0d12;
+        background: rgba(100, 180, 255, 0.9);
+        border-color: rgba(100, 180, 255, 0.9);
+        box-shadow: 0 4px 14px rgba(100, 180, 255, 0.3);
+    }
+
+    .devlogFilterEmpty {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        margin: 8px 0 16px 0;
+    }
 
     /* Scroll reveal */
     .reveal {

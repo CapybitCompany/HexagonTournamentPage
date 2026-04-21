@@ -1,6 +1,7 @@
 ---
-var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.props;
+var {src, headerText, href, comingSoon = false, soonText = "Niebawem", progress, eta } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const progressNum = typeof progress === "number" ? Math.max(0, Math.min(100, progress)) : null;
 ---
 <div class="discordContainerWrapper">
     <a href={comingSoon ? undefined : href} aria-disabled={comingSoon ? "true" : "false"} class={comingSoon ? "disabledLink" : ""}>
@@ -12,10 +13,21 @@ const base = import.meta.env.BASE_URL;
             <div class="imageContainer">
                 {
                     src ? (
-                        <img class="hexImage" src={src} alt={headerText}/>
+                        <img class="hexImage" src={src} alt={headerText} loading="lazy" decoding="async"/>
                     ) : (
                         <div class="hexPlaceholder" style={`background-image: url('${base}images/stonebrick.jpg');`} aria-label={`${headerText} - ${soonText}`}>
                             <span>{soonText}</span>
+                            {(progressNum !== null || eta) && (
+                                <div class="hexPlaceholderMeta">
+                                    {progressNum !== null && (
+                                        <div class="hexProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={progressNum} aria-label={`Postęp prac: ${progressNum}%`}>
+                                            <div class="hexProgressBar" style={`width: ${progressNum}%;`}></div>
+                                            <span class="hexProgressLabel">{progressNum}%</span>
+                                        </div>
+                                    )}
+                                    {eta && <span class="hexEta">ETA: {eta}</span>}
+                                </div>
+                            )}
                         </div>
                     )
                 }
@@ -136,8 +148,10 @@ const base = import.meta.env.BASE_URL;
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 14px;
         position: relative;
         background-repeat: repeat;
         background-size: 128px 128px;
@@ -166,6 +180,58 @@ const base = import.meta.env.BASE_URL;
         border: 1px solid rgba(255, 207, 90, 0.25);
         border-radius: 8px;
         background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hexPlaceholderMeta {
+        position: relative;
+        z-index: 1;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: min(260px, 80%);
+    }
+
+    .hexProgress {
+        position: relative;
+        width: 100%;
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 207, 90, 0.25);
+        overflow: hidden;
+    }
+
+    .hexProgressBar {
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255, 166, 0, 0.85), rgba(255, 207, 90, 0.95));
+        box-shadow: 0 0 10px rgba(255, 166, 0, 0.4);
+        transition: width 0.6s ease;
+    }
+
+    .hexProgressLabel {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.05em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .hexEta {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 207, 90, 0.85);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
 
     @media (max-width: 980px){

@@ -3,14 +3,24 @@
 import "../../styles/global.css";
 import "./FullImageContainer.css"
 
-const {imagePath, imageLink, wrapperClass, imageClass, lazyMeanColor, wrapperStyle, isBlur, altText = ""} = Astro.props;
+const {imagePath, imageLink, wrapperClass, imageClass, lazyMeanColor, wrapperStyle, isBlur, altText = "", priority = false} = Astro.props;
 const base = import.meta.env.BASE_URL;
 var {id} = Astro.props;
+
+const webpPath = imagePath.replace(/\.(jpe?g|png)$/i, '.webp');
+const hasWebp = webpPath !== imagePath;
 ---
 
 <div id={id} class=`fullImageWrapper ${wrapperClass}` style=`${wrapperStyle}`>
     <div class="imageWrapper">
-      <img class=`fullImage ${imageClass}` src={`${base}${imagePath}`} loading="lazy" decoding="async" style=`background-color: ${lazyMeanColor}` alt={altText}/>
+      {hasWebp ? (
+        <picture>
+          <source srcset={`${base}${webpPath}`} type="image/webp" />
+          <img class={`fullImage ${imageClass}`} src={`${base}${imagePath}`} loading={priority ? "eager" : "lazy"} decoding={priority ? "sync" : "async"} fetchpriority={priority ? "high" : "auto"} style={`background-color: ${lazyMeanColor}`} alt={altText}/>
+        </picture>
+      ) : (
+        <img class={`fullImage ${imageClass}`} src={`${base}${imagePath}`} loading={priority ? "eager" : "lazy"} decoding={priority ? "sync" : "async"} fetchpriority={priority ? "high" : "auto"} style={`background-color: ${lazyMeanColor}`} alt={altText}/>
+      )}
       <a class="linkContainer" href=`${imageLink}`/>
     </div>
     

@@ -312,6 +312,10 @@ const steps = [
 
     /* ===== SECTIONS ===== */
     .shopSection {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
         width: 100%;
         margin-bottom: 48px;
     }
@@ -617,6 +621,10 @@ const steps = [
             grid-template-columns: 1fr;
         }
 
+        .offersGrid {
+            grid-template-columns: 1fr;
+        }
+
         .shopHero {
             min-height: 400px;
         }
@@ -625,10 +633,6 @@ const steps = [
     @media (max-width: 500px) {
         .shopHeroTitle {
             font-size: clamp(1.8rem, 7vw, 2.4rem);
-        }
-
-        .offersGrid {
-            grid-template-columns: 1fr 1fr;
         }
     }
 </style>

@@ -1,0 +1,206 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar/NavBar.astro";
+import Footer from "../components/Footer/Footer.astro";
+
+const customTitle = "404 — Strona nie znaleziona | HEX Network";
+const customDescription = "Ups! Ta strona nie istnieje lub została przeniesiona. Wróć na stronę główną lub sprawdź popularne sekcje HEX Network.";
+---
+
+<Layout customTitle={customTitle} customDescription={customDescription}>
+	<NavBar />
+	<main id="main-content" class="notFoundMain">
+		<section class="notFoundHero">
+			<div class="notFoundGlow" aria-hidden="true"></div>
+			<pre class="notFoundCreeper" aria-hidden="true">
+&#32;████  ████
+&#32;████  ████
+&#32;   ████
+&#32; ████████
+&#32; ██    ██
+</pre>
+			<p class="notFoundLabel">BŁĄD 404</p>
+			<h1 class="notFoundTitle">Ta strona została wysadzona przez Creepera</h1>
+			<p class="notFoundText">
+				Link, który otworzyłeś, nie prowadzi do żadnej istniejącej strony. Może po prostu przeniosła się w inne miejsce, albo tu właśnie stał Enderman.
+			</p>
+			<div class="notFoundActions">
+				<a class="notFoundBtn notFoundBtnPrimary" href="/">Wróć na stronę główną</a>
+				<a class="notFoundBtn notFoundBtnOutline" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Zapytaj na Discordzie</a>
+			</div>
+
+			<section class="notFoundLinks" aria-label="Popularne sekcje">
+				<h2>Popularne sekcje</h2>
+				<ul>
+					<li><a href="/hexEvent">🎯 Event Zone</a></li>
+					<li><a href="/hexSmp">🏝️ HEX SMP</a></li>
+					<li><a href="/archive">🏆 Archiwum turniejów</a></li>
+					<li><a href="/devlog">📋 Devlog</a></li>
+					<li><a href="/shop">🛒 Sklep</a></li>
+					<li><a href="/contact">💬 Kontakt</a></li>
+				</ul>
+			</section>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.notFoundMain {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		padding-top: 60px;
+		background: radial-gradient(ellipse at 50% -10%, rgba(255, 166, 0, 0.18), transparent 55%), #0a0b0e;
+		color: #fff;
+	}
+
+	.notFoundHero {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 80px 24px 60px;
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
+		gap: 16px;
+	}
+
+	.notFoundGlow {
+		position: absolute;
+		top: 40px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 380px;
+		height: 380px;
+		background: radial-gradient(circle, rgba(255, 166, 0, 0.22), transparent 65%);
+		filter: blur(40px);
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.notFoundCreeper {
+		margin: 0;
+		font-family: "minecraft", monospace;
+		font-size: clamp(0.8rem, 1.5vw, 1.05rem);
+		line-height: 1;
+		color: #4ade80;
+		text-shadow: 0 0 18px rgba(74, 222, 128, 0.55);
+		letter-spacing: 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.notFoundLabel {
+		font-family: "minecraft", monospace;
+		letter-spacing: 0.2em;
+		color: var(--brand-accent, #ffa600);
+		font-size: 0.9rem;
+		margin: 4px 0 0 0;
+		text-transform: uppercase;
+		position: relative;
+		z-index: 1;
+	}
+
+	.notFoundTitle {
+		font-family: "minecraft", system-ui, sans-serif;
+		font-size: clamp(1.8rem, 4vw, 2.6rem);
+		color: #fff;
+		margin: 0;
+		text-shadow: 0 0 20px rgba(255, 166, 0, 0.25);
+		position: relative;
+		z-index: 1;
+	}
+
+	.notFoundText {
+		font-family: "Montserrat", system-ui, sans-serif;
+		font-size: clamp(1rem, 1.2vw, 1.1rem);
+		line-height: 1.6;
+		color: rgba(255, 255, 255, 0.78);
+		max-width: 640px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.notFoundActions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		justify-content: center;
+		margin: 12px 0 24px 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.notFoundBtn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 24px;
+		border-radius: 999px;
+		font-family: "Montserrat", system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 1rem;
+		text-decoration: none;
+		letter-spacing: 0.02em;
+		transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+	}
+	.notFoundBtnPrimary {
+		background: var(--brand-accent, #ffa600);
+		color: #181818;
+		box-shadow: 0 0 24px rgba(255, 166, 0, 0.35);
+	}
+	.notFoundBtnPrimary:hover { background: #ffb52a; transform: translateY(-2px); }
+	.notFoundBtnOutline {
+		background: transparent;
+		border: 2px solid rgba(255, 255, 255, 0.4);
+		color: #fff;
+	}
+	.notFoundBtnOutline:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+
+	.notFoundLinks {
+		width: 100%;
+		max-width: 640px;
+		margin-top: 24px;
+		padding: 24px;
+		background: linear-gradient(155deg, rgba(24, 29, 40, 0.9) 0%, rgba(17, 22, 32, 0.9) 100%);
+		border: 1px solid rgba(255, 166, 0, 0.2);
+		border-radius: 16px;
+		text-align: left;
+		position: relative;
+		z-index: 1;
+	}
+	.notFoundLinks h2 {
+		margin: 0 0 14px 0;
+		font-size: 1.1rem;
+		color: var(--brand-accent, #ffa600);
+		font-family: "Montserrat", system-ui, sans-serif;
+	}
+	.notFoundLinks ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 10px;
+	}
+	.notFoundLinks a {
+		display: block;
+		padding: 10px 14px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 10px;
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		font-family: "Montserrat", system-ui, sans-serif;
+		font-size: 0.95rem;
+		transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+	}
+	.notFoundLinks a:hover {
+		background: rgba(255, 166, 0, 0.12);
+		border-color: rgba(255, 166, 0, 0.5);
+		transform: translateX(3px);
+	}
+</style>

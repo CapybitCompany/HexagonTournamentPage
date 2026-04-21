@@ -1,0 +1,69 @@
+---
+const { ip = "MinecraftHEX.pl" } = Astro.props;
+---
+
+<button class="ipCopyPill" type="button" data-ip={ip} aria-label={`Skopiuj adres serwera ${ip}`} title={`Kliknij aby skopiować adres serwera ${ip}`}>
+  <span class="ipCopyPill__icon" aria-hidden="true">📋</span>
+  <span class="ipCopyPill__label">IP:</span>
+  <span class="ipCopyPill__value">{ip}</span>
+</button>
+
+<style>
+  .ipCopyPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 166, 0, 0.1);
+    border: 1px solid rgba(255, 166, 0, 0.3);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+  .ipCopyPill:hover {
+    background: rgba(255, 166, 0, 0.2);
+    border-color: rgba(255, 166, 0, 0.6);
+    transform: translateY(-1px);
+  }
+  .ipCopyPill:focus-visible {
+    outline: 2px solid rgba(255, 166, 0, 0.9);
+    outline-offset: 3px;
+  }
+  .ipCopyPill.is-copied {
+    background: rgba(74, 222, 128, 0.18);
+    border-color: rgba(74, 222, 128, 0.55);
+  }
+  .ipCopyPill__icon { font-size: 0.9rem; line-height: 1; }
+  .ipCopyPill__label { color: rgba(255, 255, 255, 0.7); }
+  .ipCopyPill__value { color: var(--brand-accent, #ffa600); font-variant-numeric: tabular-nums; }
+  @media (max-width: 950px) { .ipCopyPill { display: none; } }
+</style>
+
+<script>
+  const pills = document.querySelectorAll<HTMLButtonElement>(".ipCopyPill");
+  pills.forEach((pill) => {
+    pill.addEventListener("click", async () => {
+      const ip = pill.dataset.ip || "MinecraftHEX.pl";
+      try {
+        await navigator.clipboard.writeText(ip);
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = ip;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+      }
+      pill.classList.add("is-copied");
+      (window as any).hexToast?.(`Skopiowano adres serwera: ${ip}`);
+      setTimeout(() => pill.classList.remove("is-copied"), 1500);
+    });
+  });
+</script>
