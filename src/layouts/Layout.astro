@@ -1,30 +1,36 @@
 ---
 import '../styles/global.css';
+import { absoluteUrl, resolveAbsoluteUrl } from '../utils/urls';
+const base = import.meta.env.BASE_URL;
 const {
 	customTitle,
 	customDescription,
 	structuredData = [],
-	ogImage = 'https://www.minecrafthex.pl/images/Welcome/Banner.jpg',
+	ogImage = absoluteUrl('images/Welcome/Banner.jpg'),
 	ogType = 'website',
-	canonicalUrl
+	canonicalUrl,
+	keywords
 } = Astro.props;
 
-const resolvedCanonicalUrl = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const resolvedCanonicalUrl = canonicalUrl
+	? resolveAbsoluteUrl(canonicalUrl)
+	: new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const resolvedOgImage = resolveAbsoluteUrl(ogImage);
 
 const defaultStructuredData = [
 	{
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		name: "HEX Network",
-		url: "https://www.minecrafthex.pl",
-		logo: "https://www.minecrafthex.pl/logo.ico",
+		url: absoluteUrl(),
+		logo: absoluteUrl('logo.ico'),
 		sameAs: ["https://discord.gg/e6SuCrQHak"]
 	},
 	{
 		"@context": "https://schema.org",
 		"@type": "WebSite",
 		name: "HEX Network",
-		url: "https://www.minecrafthex.pl"
+		url: absoluteUrl()
 	}
 ];
 
@@ -37,28 +43,72 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 		<title>{customTitle}</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/logo.ico" />
+		<link rel="icon" type="image/x-icon" href={`${base}logo.ico`} />
 		<link rel="canonical" href={resolvedCanonicalUrl} />
+		<link rel="alternate" hreflang="pl-PL" href={resolvedCanonicalUrl} />
+		<link rel="alternate" hreflang="x-default" href={resolvedCanonicalUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={customDescription} />
 		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Radosław Rybarczyk (Capybit)" />
+		{keywords && <meta name="keywords" content={keywords} />}
 		<meta property="og:locale" content="pl_PL" />
 		<meta property="og:title" content={customTitle} />
 		<meta property="og:description" content={customDescription} />
-		<meta property="og:image" content={ogImage} />
+		<meta property="og:image" content={resolvedOgImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 		<meta property="og:url" content={resolvedCanonicalUrl} />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content="HEX Network" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={customTitle} />
 		<meta name="twitter:description" content={customDescription} />
-		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image" content={resolvedOgImage} />
+
+		<!-- DNS prefetch / preconnect -->
+		<link rel="preconnect" href="https://api.mcsrvstat.us" crossorigin />
+		<link rel="preconnect" href="https://mc-heads.net" crossorigin />
+
+		<!-- Preload kluczowych fontów (FCP/LCP) - woff2 ~31-45% rozmiaru TTF -->
+		<link rel="preload" as="font" type="font/woff2" href={`${base}Montserrat/Montserrat-VariableFont_wght.woff2`} crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href={`${base}Roboto/static/Roboto-Regular.woff2`} crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href={`${base}minecraft-font/MinecraftRegular-Bmg3.woff2`} crossorigin />
+
 		{schemaList.map((schema) => (
 			<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 		))}
+		<Fragment set:html={`<style>
+			@font-face { font-family: 'Montserrat'; src: url('${base}Montserrat/Montserrat-VariableFont_wght.woff2') format('woff2'), url('${base}Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype'); font-weight: 100 900; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Montserrat'; src: url('${base}Montserrat/Montserrat-Italic-VariableFont_wght.woff2') format('woff2'), url('${base}Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype'); font-weight: 100 900; font-style: italic; font-display: swap; }
+			@font-face { font-family: 'Roboto'; src: url('${base}Roboto/static/Roboto-Regular.woff2') format('woff2'), url('${base}Roboto/static/Roboto-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Roboto'; src: url('${base}Roboto/static/Roboto-Bold.woff2') format('woff2'), url('${base}Roboto/static/Roboto-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Minecraft'; src: url('${base}minecraft-font/MinecraftBold-nMK1.woff2') format('woff2'), url('${base}minecraft-font/MinecraftBold-nMK1.otf') format('opentype'); font-weight: bold; font-style: normal; font-display: swap; }
+			@font-face { font-family: 'Minecraft'; src: url('${base}minecraft-font/MinecraftRegular-Bmg3.woff2') format('woff2'), url('${base}minecraft-font/MinecraftRegular-Bmg3.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
+		</style>`} />
 
 	</head>
 	<body>
+		<a class="skip-to-content" href="#main-content">Przejdź do treści</a>
+		<div id="scrollProgress" class="scrollProgress" aria-hidden="true"></div>
+		<div id="cursorGlow" class="cursorGlow" aria-hidden="true"></div>
+		<div id="hexToast" class="hexToast" role="status" aria-live="polite" aria-atomic="true"></div>
+		<div id="kbdShortcutsOverlay" class="kbdShortcutsOverlay" role="dialog" aria-modal="true" aria-labelledby="kbdShortcutsTitle" hidden>
+			<div class="kbdShortcutsPanel">
+				<button class="kbdShortcutsClose" type="button" aria-label="Zamknij skróty klawiszowe">✕</button>
+				<h2 id="kbdShortcutsTitle">Skróty klawiszowe</h2>
+				<ul class="kbdShortcutsList">
+					<li><kbd>g</kbd> <kbd>h</kbd> <span>Strona główna</span></li>
+					<li><kbd>g</kbd> <kbd>a</kbd> <span>Archiwum</span></li>
+					<li><kbd>g</kbd> <kbd>s</kbd> <span>Sklep</span></li>
+					<li><kbd>g</kbd> <kbd>c</kbd> <span>Kontakt</span></li>
+					<li><kbd>g</kbd> <kbd>d</kbd> <span>Devlog</span></li>
+					<li><kbd>?</kbd> <span>Pokaż / ukryj ten panel</span></li>
+					<li><kbd>Esc</kbd> <span>Zamknij</span></li>
+				</ul>
+				<p class="kbdShortcutsHint">Naciśnij <kbd>?</kbd> aby ponownie otworzyć.</p>
+			</div>
+		</div>
 		<slot />
 	</body>
 </html>
@@ -70,6 +120,192 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 		width: 100%;
 		background-color: var(--background-color);
 		overflow-x: hidden;
+	}
+
+	.skip-to-content {
+		position: absolute;
+		left: -9999px;
+		top: 0;
+		z-index: 9999;
+		padding: 12px 24px;
+		background: var(--accent-color, #ffa600);
+		color: #000;
+		font-weight: bold;
+		text-decoration: none;
+		border-radius: 0 0 8px 0;
+	}
+
+	.skip-to-content:focus {
+		left: 0;
+	}
+
+	/* ===== Scroll progress bar ===== */
+	.scrollProgress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 3px;
+		width: 0%;
+		background: linear-gradient(90deg, var(--brand-accent, #ffa600), #ff7a00);
+		box-shadow: 0 0 10px rgba(255, 166, 0, 0.5);
+		z-index: 9998;
+		transition: width 0.12s linear;
+		pointer-events: none;
+	}
+
+	/* ===== Cursor glow (desktop only) ===== */
+	.cursorGlow {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 320px;
+		height: 320px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(255, 166, 0, 0.14) 0%, rgba(255, 166, 0, 0.06) 35%, transparent 70%);
+		pointer-events: none;
+		z-index: 1;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		mix-blend-mode: screen;
+		will-change: transform;
+	}
+	.cursorGlow.is-active { opacity: 1; }
+
+	@media (max-width: 950px), (prefers-reduced-motion: reduce) {
+		.cursorGlow { display: none; }
+	}
+
+	/* ===== Global toast ===== */
+	.hexToast {
+		position: fixed;
+		left: 50%;
+		bottom: 32px;
+		transform: translate(-50%, 24px);
+		padding: 12px 20px;
+		border-radius: 999px;
+		background: rgba(10, 13, 18, 0.95);
+		border: 1px solid rgba(255, 166, 0, 0.35);
+		color: #fff;
+		font-family: "Montserrat", system-ui, sans-serif;
+		font-size: 0.95rem;
+		font-weight: 600;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 166, 0, 0.15);
+		opacity: 0;
+		pointer-events: none;
+		z-index: 10000;
+		transition: opacity 0.25s ease, transform 0.25s ease;
+		max-width: min(92vw, 440px);
+		text-align: center;
+	}
+	.hexToast.is-visible {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+
+	/* ===== Keyboard shortcuts overlay ===== */
+	.kbdShortcutsOverlay {
+		position: fixed;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.7);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		z-index: 9999;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+	.kbdShortcutsOverlay[hidden] { display: none; }
+	.kbdShortcutsOverlay.is-visible { opacity: 1; }
+
+	.kbdShortcutsPanel {
+		position: relative;
+		background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+		border: 1px solid rgba(255, 166, 0, 0.35);
+		border-radius: 16px;
+		padding: 28px 32px;
+		max-width: min(92vw, 480px);
+		color: #fff;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 166, 0, 0.15);
+		font-family: "Montserrat", system-ui, sans-serif;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+	.kbdShortcutsPanel h2 {
+		margin: 0;
+		font-size: 1.4rem;
+		color: var(--brand-accent, #ffa600);
+		letter-spacing: 0.02em;
+	}
+	.kbdShortcutsClose {
+		position: absolute;
+		top: 12px;
+		right: 14px;
+		background: transparent;
+		border: none;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 1.1rem;
+		cursor: pointer;
+		line-height: 1;
+		padding: 4px 8px;
+		border-radius: 6px;
+		transition: background 0.2s ease, color 0.2s ease;
+	}
+	.kbdShortcutsClose:hover { background: rgba(255, 166, 0, 0.15); color: #fff; }
+	.kbdShortcutsList {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.kbdShortcutsList li {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: rgba(255, 255, 255, 0.85);
+	}
+	.kbdShortcutsList li span { margin-left: 8px; color: rgba(255, 255, 255, 0.72); }
+	.kbdShortcutsList kbd,
+	.kbdShortcutsPanel p kbd {
+		display: inline-block;
+		padding: 2px 8px;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-bottom-width: 2px;
+		border-radius: 6px;
+		font-family: "Montserrat", monospace;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #ffcf5a;
+	}
+	.kbdShortcutsHint {
+		margin: 6px 0 0 0;
+		font-size: 0.85rem;
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	/* ===== Reveal on scroll (global utility) ===== */
+	:global(.revealOnScroll) {
+		opacity: 0;
+		transform: translateY(16px);
+		transition: opacity 0.6s ease, transform 0.6s ease;
+		will-change: opacity, transform;
+	}
+	:global(.revealOnScroll.is-revealed) {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:global(.revealOnScroll) {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
 	}
 </style>
 
@@ -83,4 +319,121 @@ const schemaList = [...defaultStructuredData, ...(Array.isArray(structuredData) 
 	}
 
 	initCarouselsOnPage();
+</script>
+
+<script>
+	// ===== Scroll progress bar =====
+	const progressEl = document.getElementById("scrollProgress");
+	if (progressEl) {
+		let ticking = false;
+		const update = () => {
+			const h = document.documentElement;
+			const scrolled = h.scrollTop;
+			const max = h.scrollHeight - h.clientHeight;
+			const pct = max > 0 ? Math.min(100, (scrolled / max) * 100) : 0;
+			progressEl.style.width = pct + "%";
+			ticking = false;
+		};
+		window.addEventListener("scroll", () => {
+			if (!ticking) {
+				window.requestAnimationFrame(update);
+				ticking = true;
+			}
+		}, { passive: true });
+		update();
+	}
+
+	// ===== Global toast API =====
+	const toastEl = document.getElementById("hexToast");
+	let toastTimer: ReturnType<typeof setTimeout> | null = null;
+	(window as any).hexToast = (text: string, duration = 3000) => {
+		if (!toastEl) return;
+		toastEl.textContent = text;
+		toastEl.classList.add("is-visible");
+		if (toastTimer) clearTimeout(toastTimer);
+		toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), duration);
+	};
+
+	// ===== Cursor glow (desktop, respect reduced motion) =====
+	const glowEl = document.getElementById("cursorGlow");
+	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	const isDesktop = window.matchMedia("(min-width: 951px) and (hover: hover) and (pointer: fine)").matches;
+	if (glowEl && isDesktop && !prefersReducedMotion) {
+		let glowX = 0, glowY = 0, targetX = 0, targetY = 0, animating = false;
+		const animate = () => {
+			glowX += (targetX - glowX) * 0.18;
+			glowY += (targetY - glowY) * 0.18;
+			glowEl.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+			if (Math.abs(targetX - glowX) > 0.5 || Math.abs(targetY - glowY) > 0.5) {
+				window.requestAnimationFrame(animate);
+			} else {
+				animating = false;
+			}
+		};
+		window.addEventListener("mousemove", (e) => {
+			targetX = e.clientX;
+			targetY = e.clientY;
+			glowEl.classList.add("is-active");
+			if (!animating) { animating = true; window.requestAnimationFrame(animate); }
+		}, { passive: true });
+		window.addEventListener("mouseleave", () => glowEl.classList.remove("is-active"));
+	}
+
+	// ===== Keyboard shortcuts (? to open, g+key to navigate) =====
+	const kbdOverlay = document.getElementById("kbdShortcutsOverlay");
+	const kbdClose = kbdOverlay?.querySelector<HTMLButtonElement>(".kbdShortcutsClose");
+	const showKbd = () => {
+		if (!kbdOverlay) return;
+		kbdOverlay.hidden = false;
+		window.requestAnimationFrame(() => kbdOverlay.classList.add("is-visible"));
+	};
+	const hideKbd = () => {
+		if (!kbdOverlay) return;
+		kbdOverlay.classList.remove("is-visible");
+		setTimeout(() => { kbdOverlay.hidden = true; }, 200);
+	};
+	kbdClose?.addEventListener("click", hideKbd);
+	kbdOverlay?.addEventListener("click", (e) => {
+		if (e.target === kbdOverlay) hideKbd();
+	});
+
+	let gPressed = false;
+	let gTimer: ReturnType<typeof setTimeout> | null = null;
+	const isTypingInField = (t: EventTarget | null) => {
+		if (!(t instanceof HTMLElement)) return false;
+		const tag = t.tagName;
+		return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || t.isContentEditable;
+	};
+	window.addEventListener("keydown", (e) => {
+		if (isTypingInField(e.target)) return;
+		if (e.key === "Escape" && kbdOverlay && !kbdOverlay.hidden) { hideKbd(); return; }
+		if (e.key === "?" || (e.shiftKey && e.key === "/")) { e.preventDefault(); if (kbdOverlay?.hidden) showKbd(); else hideKbd(); return; }
+		if (e.key === "g" && !gPressed) {
+			gPressed = true;
+			if (gTimer) clearTimeout(gTimer);
+			gTimer = setTimeout(() => { gPressed = false; }, 1200);
+			return;
+		}
+		if (gPressed) {
+			const map: Record<string, string> = { h: "/", a: "/archive", s: "/shop", c: "/contact", d: "/devlog" };
+			const target = map[e.key.toLowerCase()];
+			if (target) { gPressed = false; window.location.href = target; }
+		}
+	});
+
+	// ===== Reveal on scroll (global) =====
+	const revealEls = document.querySelectorAll<HTMLElement>(".revealOnScroll");
+	if (revealEls.length && "IntersectionObserver" in window && !prefersReducedMotion) {
+		const obs = new IntersectionObserver((entries) => {
+			entries.forEach((en) => {
+				if (en.isIntersecting) {
+					en.target.classList.add("is-revealed");
+					obs.unobserve(en.target);
+				}
+			});
+		}, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+		revealEls.forEach((el) => obs.observe(el));
+	} else {
+		revealEls.forEach((el) => el.classList.add("is-revealed"));
+	}
 </script>

@@ -5,96 +5,682 @@ import ContentContainer from '../../ContentContainer/ContentContainer.astro'
 import FullImageContainer from '../../FullImageContainer/FullImageContainer.astro'
 import '../../NavBar/NavBar.css'
 import '../WelcomePage/Welcome.styles.css'
-import './ServerArticle.styles.css'
-import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
 import Section from '../../ContentContainer/Section.astro'
 import FAQ from '../../FAQ/FAQ.astro'
 import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+import CountdownTimer from '../../DiscordContainer/CountdownTimer.astro'
+import { nextHexEvent, nextHexEventSchedule } from '../../../data/hex-network';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer Event Zone Minecraft HEX - strona w przygotowaniu">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-            <h1 class="archiveBannerText"></h1>
+    <Breadcrumbs items={[{ label: "Event Zone" }]} />
+
+    <!-- ===== HERO ===== -->
+    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground evHeroBanner" imageClass="otherAspect" wrapperStyle="height: 440px;" altText="HEX Event Zone - turnieje Minecraft">
+        <div class="evHeroOverlay"></div>
+        <div class="evHeroContent">
+            <span class="evHeroBadge">🏆 EVENT ZONE</span>
+            <h1 class="evHeroTitle">HEX Event Zone</h1>
+            <p class="evHeroSub">Turnieje, wyzwania i rywalizacja w Minecraft — co sezon nowe emocje.</p>
+            <div class="evHeroCta">
+                <a class="evBtn evBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
+                <a class="evBtn evBtnGhost" href={`${base}archive`}>Archiwum eventów</a>
+            </div>
         </div>
     </FullImageContainer>
 
-    <div style="display: flex; width: 100%; justify-content: center;">
-        <TimeContainer />
-    </div>
-
     <Section>
-        <article class="serverArticle">
-            <header class="articleHeader">
-                <p class="statusKicker">Status projektu</p>
-                <h1>Serwer Event Zone</h1>
-                <p class="articleLead">Serwer Event Zone jest w przygotowaniu. Dopracowujemy mapy turniejowe, harmonogramy i systemy nagród.</p>
-            </header>
+        <div class="ev">
 
-            <div class="articleColumns">
-                <section>
-                    <h2>Nad czym pracujemy</h2>
-                    <p>Przygotowujemy sezonowy format wydarzeń oparty o czytelny terminarz i jasne zasady rozgrywki.</p>
-                </section>
+            <!-- ===== UPCOMING EVENT — TYTANIC ===== -->
+            <section class="evUpcoming reveal">
+                <div class="evUpcomingAccent"></div>
+                <div class="evUpcomingInner">
+                    <div class="evUpcomingBadge">NADCHODZĄCY EVENT</div>
+                    <h2 class="evUpcomingTitle">{nextHexEvent.theme}</h2>
+                    <p class="evUpcomingDesc">
+                        Nowy event w przygotowaniu. Titanic, góra lodowa, pewne wyzwania.
+                        Szczegóły, zasady i data startu pojawią się wkrótce na naszym Discordzie.
+                    </p>
 
-                <section>
-                    <h2>Co pojawi się na starcie</h2>
-                    <ul>
-                        <li>Mapy eventowe pod turnieje i krótsze formaty.</li>
-                        <li>System punktacji i nagród za aktywność.</li>
-                        <li>Regularne ogłoszenia i zapisy przez Discord.</li>
-                    </ul>
-                </section>
-            </div>
+                    <div class="evCountdownWrap">
+                        <p class="evCountdownLabel">Do startu pozostało:</p>
+                        <CountdownTimer
+                            targetStart={nextHexEvent.startIso}
+                            targetEnd={nextHexEvent.endIso}
+                            size="compact"
+                            ongoingText={`${nextHexEvent.edition} — ${nextHexEvent.theme} właśnie trwa. Powodzenia!`}
+                            finishedText={`${nextHexEvent.edition} — ${nextHexEvent.theme} już za nami. Zobacz relację na Discordzie.`}
+                        />
+                    </div>
 
-            <section class="faqSection">
-                <h2>FAQ - Event Zone</h2>
+                    <div class="evUpcomingMeta">
+                        <div class="evMetaItem">
+                            <span class="evMetaIcon">📅</span>
+                            <div><strong>Data</strong><p>{nextHexEvent.displayDateTime}</p></div>
+                        </div>
+                        <div class="evMetaItem">
+                            <span class="evMetaIcon">👥</span>
+                            <div><strong>Limit graczy</strong><p>{nextHexEvent.playerLimit}</p></div>
+                        </div>
+                        <div class="evMetaItem">
+                            <span class="evMetaIcon">🎁</span>
+                            <div><strong>Nagrody</strong><p>{nextHexEvent.rewardsLabel}</p></div>
+                        </div>
+                    </div>
+
+                    <div class="evUpcomingCta">
+                        <a
+                            class="evBtn evBtnPrimary"
+                            href={nextHexEvent.registerUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            🎯 Dołącz do {nextHexEvent.edition} →
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SCHEDULE / HARMONOGRAM ===== -->
+            <section class="evSchedule reveal" aria-labelledby="evScheduleTitle">
+                <h2 id="evScheduleTitle" class="evSectionTitle">Harmonogram eventu</h2>
+                <p class="evSectionSub">
+                    Orientacyjny plan dnia {nextHexEvent.edition}. Szczegóły każdego punktu ogłaszamy na Discordzie.
+                </p>
+
+                <ol class="evScheduleList">
+                    {nextHexEventSchedule.map((item, index) => (
+                        <li class="evScheduleItem reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="evScheduleTime">{item.time}</span>
+                            <span class="evScheduleDot" aria-hidden="true"></span>
+                            <span class="evScheduleLabel">{item.label}</span>
+                        </li>
+                    ))}
+                </ol>
+            </section>
+
+            <!-- ===== ANGLED DIVIDER ===== -->
+            <div class="evAngleDivider" aria-hidden="true"></div>
+
+            <!-- ===== BEHIND THE SCENES ===== -->
+            <section class="evBehind reveal">
+                <h2 class="evSectionTitle">Za kulisami Titanic</h2>
+                <p class="evSectionSub">Proces tworzenia eventu — od pierwszych pomysłów po testy na serwerze.</p>
+
+                <div class="evGallery">
+                    <div class="evGallerySlot evGalleryMain">
+                        <!-- Placeholder for main behind-the-scenes video -->
+                        <div class="evVideoPlaceholder">
+                            <span class="evVideoIcon">▶</span>
+                            <span>Film z procesu tworzenia — wkrótce</span>
+                        </div>
+                    </div>
+                    <div class="evGallerySlot">
+                        <picture><source srcset={`${base}images/Archive/Hex8/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" /></picture>
+                    </div>
+                    <div class="evGallerySlot">
+                        <picture><source srcset={`${base}images/Archive/Hex8/2.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" /></picture>
+                    </div>
+                    <div class="evGallerySlot">
+                        <picture><source srcset={`${base}images/Archive/Hex8/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" /></picture>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== WHAT IS EVENT ZONE ===== -->
+            <section class="evFeatures reveal">
+                <h2 class="evSectionTitle">Co oferuje Event Zone</h2>
+                <div class="evFeatureGrid">
+                    <article class="evFeatureCard reveal-child" style="--reveal-i:0">
+                        <span class="evFeatureIcon">⚔️</span>
+                        <h3>Turnieje</h3>
+                        <p>Regularne turnieje z jasnymi zasadami, harmonogramem i pulą nagród.</p>
+                    </article>
+                    <article class="evFeatureCard reveal-child" style="--reveal-i:1">
+                        <span class="evFeatureIcon">📊</span>
+                        <h3>Rankingi</h3>
+                        <p>System punktacji, który śledzi Twoje wyniki i pozycję na tle reszty graczy.</p>
+                    </article>
+                    <article class="evFeatureCard reveal-child" style="--reveal-i:2">
+                        <span class="evFeatureIcon">🎁</span>
+                        <h3>Nagrody</h3>
+                        <p>Najlepsi gracze zgarniają nagrody i wyróżnienia po każdym sezonie eventowym.</p>
+                    </article>
+                    <article class="evFeatureCard reveal-child" style="--reveal-i:3">
+                        <span class="evFeatureIcon">🗺️</span>
+                        <h3>Autorskie mapy</h3>
+                        <p>Każdy event to unikalna mapa przygotowana specjalnie pod daną rozgrywkę.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ===== HOW IT WORKS — STEPS ===== -->
+            <section class="evSteps reveal">
+                <h2 class="evSectionTitle">Jak to działa</h2>
+                <div class="evStepsTrack">
+                    <div class="evStep reveal-child" style="--reveal-i:0">
+                        <div class="evStepNum">1</div>
+                        <h3>Zapisy</h3>
+                        <p>Ogłaszamy event na Discordzie i stronie. Pojaw się na serwerze w odpowiednim terminie. Część wydarzeń ma limit miejsc - zapisz się na discordzie na wskazanym kanale.</p>
+                    </div>
+                    <div class="evStepLine" aria-hidden="true"></div>
+                    <div class="evStep reveal-child" style="--reveal-i:1">
+                        <div class="evStepNum">2</div>
+                        <h3>Rozgrywka</h3>
+                        <p>Grasz w turnieju na dedykowanej mapie. Zasady są przedstawiane przed każdym wyzwaniem. Słuchaj uważnie instrukcji i wskazówek prowadzącego.</p>
+                    </div>
+                    <div class="evStepLine" aria-hidden="true"></div>
+                    <div class="evStep reveal-child" style="--reveal-i:2">
+                        <div class="evStepNum">3</div>
+                        <h3>Wyniki i nagrody</h3>
+                        <p>Weryfikujemy wyniki a po kilku dniach ogłaszamy na naszym Discordzie wygranych. Instrukcje dotyczące odbioru nagród również będą dostępne na Discordzie.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAST EVENTS TEASER ===== -->
+            <section class="evPastTeaser reveal">
+                <div class="evPastGrid">
+                    <picture><source srcset={`${base}images/Archive/Hex5/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex5/1.jpg`} alt="Poprzedni event HEX — zdjęcie" loading="lazy" decoding="async" class="evPastImg" /></picture>
+                    <div class="evPastText">
+                        <h2>7 eventów za nami</h2>
+                        <p>Sprawdź relacje, zdjęcia i wyniki z poprzednich edycji w naszym archiwum.</p>
+                        <a class="evBtn evBtnPrimary" href={`${base}archive`}>Przejdź do archiwum →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== FAQ ===== -->
+            <section class="evFaq reveal">
+                <h2>FAQ — Event Zone</h2>
                 <FAQ>
                     <FAQLine>
                         <FAQQuestion>Jak zapisać się na turniej Event Zone?</FAQQuestion>
-                        <FAQAnswer>Zapisy publikujemy na stronie i na Discordzie HEX. Link do zapisów pojawia się przed każdą edycją wydarzenia.</FAQAnswer>
+                        <FAQAnswer>Większość wydarzeń nie wymaga zapisów. Wystarczy wejść na serwer we wskazanym terminie oraz nasz Discord i wykonywać polecenia administracji. Jeżeli jakieś wydarzenie wymaga wcześniejszych zapisów, jest to jasno wskazane i opisane na naszym Discordzie.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
-                        <FAQQuestion>Kiedy ruszają pierwsze eventy?</FAQQuestion>
-                        <FAQAnswer>Najbliższy turniej zaplanowany jest na 4.04.2026 o 19:00. Kolejne terminy będą ogłaszane cyklicznie.</FAQAnswer>
+                        <FAQQuestion>Kiedy ruszają kolejne eventy?</FAQQuestion>
+                        <FAQAnswer>Najbliższe wydarzenie publikowane jest na naszym discordzie oraz na stronie. Strona główna posiada licznik, który odlicza do najbliższego wydarzenia.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Gdzie sprawdzić wyniki poprzednich eventów?</FAQQuestion>
                         <FAQAnswer>Wyniki i relacje trafiają do archiwum eventów oraz komunikatów na Discordzie.</FAQAnswer>
                     </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Jaką formę mają wydarzenia?</FAQQuestion>
+                        <FAQAnswer>Każde wydarzenie może mieć zupełnie inną formę i wyzwania. Wydarzenie może być podzielone na kilka paneli. Udział można wziąć tylko w części, które nas interesują. Każdy panel wydarzenia to osobna punktacja i osobne nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Skąd mam wiedzieć czy dostanę nagrodę?</FAQQuestion>
+                        <FAQAnswer>Jeśli brałes udział w wydarzeniu, śledz następne dni nasz serwer Discord. W kanale "Ważne informacje" pojawi się lista wygranych oraz instrukcje jak otrzymać nagrodę. Zazwyczaj oznacza to napisanie do wskazanego administratora.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy jeśli mam mniej niż 18 lat mogę wziąć udział?</FAQQuestion>
+                        <FAQAnswer>Osoby poniżej 18 roku życia mogą wziąć udział w wydarzeniach, jednak wymagane jest posiadanie zgody rodzica lub opiekuna prawnego. Szczegóły dotyczące udziału nieletnich są dostępne na naszym Discordzie. Weryfikacja wieku jest wymagana po wygraniu nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Czy jeśli mam mniej niż 18 lat mogę odebrać nagrodę jeśli wygram?</FAQQuestion>
+                        <FAQAnswer>Tak. Po wygraniu nagrody następuje weryfikacja wieku. Osoba poniżej 18 roku życia musi podać dane kontaktowe do opiekuna prawnego. Potwierdza on, że udzielił zgodę na udział dziecka oraz wskazuje dane do przekazania nagrody.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Jaka jest forma przekazania nagrody?</FAQQuestion>
+                        <FAQAnswer>Nagroda przekazywana jest przelewem lub blikiem zgodnie z wolą zwycięscy.</FAQAnswer>
+                    </FAQLine>
+                    <FAQLine>
+                        <FAQQuestion>Ile osób wygrywa wydarzenie?</FAQQuestion>
+                        <FAQAnswer>Liczba zwycięzców zależy od konkretnego wydarzenia i jest podana w jego opisie. Zazwyczaj informacje te są dostępne na naszym Discordzie oraz na stronie wydarzenia.</FAQAnswer>
+                    </FAQLine>
                 </FAQ>
             </section>
 
-            <p class="comingSoon">NIEBAWEM</p>
-            <div style="display: flex; justify-content: center; width: 100%"><a href="/archive"><button class="cfa">Archiwum eventów</button></a></div>
-        </article>
+        </div>
     </Section>
 
 </ContentContainer>
 <Footer/>
 
+<script>
+/* === Scroll Reveal === */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+</script>
+
 <style>
-    button.cfa {
-        margin-top: 8px;
-        font-size: 24px;
-        padding: 10px 18px;
-        border-radius: 30px;
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-        color: var(--text-secondary-color);
-        cursor: pointer;
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
 
-    button.cfa:hover {
-        background-color: #ffb52a;
-        color: #181818;
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-child {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.5s cubic-bezier(.22,1,.36,1), transform 0.5s cubic-bezier(.22,1,.36,1);
+        transition-delay: calc(var(--reveal-i, 0) * 120ms);
+    }
+    .revealed .reveal-child { opacity: 1; transform: translateY(0); }
+
+    /* ===== HERO ===== */
+    :global(.evHeroBanner) { position: relative; }
+
+    .evHeroOverlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(10,13,18,0.7) 70%, #0a0d12 100%);
+        z-index: 1; pointer-events: none;
     }
 
-    button.cfa:active {
-        background-color: #c07d00;
-        color: #f0f0f0;
+    .evHeroContent {
+        position: relative; z-index: 2;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; width: 100%; height: 100%; gap: 12px;
+    }
+
+    .evHeroBadge {
+        display: inline-block; padding: 6px 16px; border-radius: 999px;
+        border: 1px solid rgba(255,166,0,0.4); background: rgba(255,166,0,0.1);
+        color: var(--accent-color); font-size: 0.78rem; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    .evHeroTitle {
+        color: white; font-size: clamp(2.5rem,6vw,4.5rem); font-family: "minecraft";
+        margin: 0; text-shadow: 0 0 40px rgba(255,166,0,0.25), 0 4px 20px rgba(0,0,0,0.7);
+    }
+
+    .evHeroSub {
+        margin: 0; font-size: clamp(0.95rem,1.4vw,1.15rem);
+        color: rgba(255,255,255,0.7); max-width: 560px;
+    }
+
+    .evHeroCta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+
+    /* ===== SHARED BUTTON STYLES ===== */
+    .evBtn {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 12px 28px; border-radius: 12px; font-weight: 700; font-size: 1rem;
+        text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .evBtnPrimary {
+        background: var(--accent-color); color: #0a0d12 !important;
+        box-shadow: 0 4px 20px rgba(255,166,0,0.3);
+    }
+    .evBtnPrimary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,166,0,0.45); }
+
+    .evBtnGhost {
+        background: transparent; color: rgba(255,255,255,0.8) !important;
+        border: 1px solid rgba(255,255,255,0.15); box-shadow: none;
+    }
+    .evBtnGhost:hover { border-color: var(--accent-color); color: #fff !important; }
+
+    /* ===== MAIN WRAPPER ===== */
+    .ev { display: flex; flex-direction: column; gap: 28px; width: 100%; }
+
+    /* ===== UPCOMING EVENT — TYTANIC ===== */
+    .evUpcoming {
+        position: relative; border-radius: 18px; overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+    }
+
+    .evUpcomingAccent {
+        position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), #ff6a00, transparent);
+    }
+
+    .evUpcomingInner { padding: 32px 28px; position: relative; z-index: 1; display: flex; flex-direction: column; }
+
+    .evUpcomingBadge {
+        display: inline-block; padding: 4px 14px; border-radius: 999px;
+        background: rgba(255,106,0,0.12); border: 1px solid rgba(255,106,0,0.3);
+        color: #ff8c3a; font-size: 0.72rem; font-weight: 700;
+        letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;
+    }
+
+    .evUpcomingTitle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0 12px 0; font-size: clamp(2rem, 4vw, 3rem); font-family: "minecraft";
+        color: #fff; text-shadow: 0 0 30px rgba(255,166,0,0.2);
+    }
+
+    .evUpcomingTitle::after {
+        content: ""; display: block; width: 60px; height: 3px;
+        background: var(--accent-color); border-radius: 3px; margin-top: 10px;
+        box-shadow: 0 0 14px rgba(255,166,0,0.4);
+    }
+
+    .evUpcomingDesc {
+        margin: 0 0 20px 0; font-size: clamp(1.05rem,1.3vw,1.18rem);
+        line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 700px;
+    }
+
+    .evUpcomingMeta { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    .evMetaItem {
+        display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+        border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255,255,255,0.03); min-width: 160px;
+    }
+    .evMetaIcon { font-size: 1.6rem; flex-shrink: 0; }
+    .evMetaItem strong { color: #fff; font-size: 0.85rem; }
+    .evMetaItem p { margin: 2px 0 0; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .evMetaItem div { display: flex; flex-direction: column; }
+
+    /* Countdown wewnątrz karty eventu */
+    .evCountdownWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 20px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 166, 0, 0.18);
+        background: rgba(255, 166, 0, 0.04);
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .evCountdownLabel {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 213, 140, 0.85);
+    }
+
+    .evCountdownWrap :global(.countdown) {
+        align-items: flex-start;
+    }
+
+    .evUpcomingCta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    /* ===== SCHEDULE / HARMONOGRAM ===== */
+    .evSchedule {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 28px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .evScheduleList {
+        position: relative;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+        max-width: 720px;
+    }
+
+    .evScheduleList::before {
+        content: "";
+        position: absolute;
+        left: 92px;
+        top: 10px;
+        bottom: 10px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 166, 0, 0.35), rgba(255, 166, 0, 0.08));
+        border-radius: 2px;
+    }
+
+    .evScheduleItem {
+        display: grid;
+        grid-template-columns: 80px 24px 1fr;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .evScheduleTime {
+        color: var(--accent-color);
+        font-family: "minecraft";
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-align: right;
+        text-shadow: 0 0 12px rgba(255, 166, 0, 0.3);
+    }
+
+    .evScheduleDot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        border: 3px solid #0c0f16;
+        box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.35), 0 0 12px rgba(255, 166, 0, 0.45);
+        justify-self: center;
+    }
+
+    .evScheduleLabel {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.98rem;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+        .evScheduleList::before { left: 72px; }
+        .evScheduleItem { grid-template-columns: 64px 18px 1fr; padding: 8px 10px; }
+        .evScheduleTime { font-size: 0.95rem; }
+        .evScheduleDot { width: 12px; height: 12px; }
+    }
+
+    /* ===== ANGLED DIVIDER ===== */
+    .evAngleDivider {
+        width: 100%; height: 48px; margin: -14px 0;
+        background: linear-gradient(170deg, transparent 46%, rgba(255,166,0,0.08) 46%, rgba(255,166,0,0.08) 54%, transparent 54%);
+    }
+
+    /* ===== BEHIND THE SCENES ===== */
+    .evBehind { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+    .evSectionTitle {
+        color: #fff; font-size: clamp(1.5rem,2.5vw,2rem); margin: 0; text-align: center;
+    }
+    .evSectionTitle::after {
+        content: ""; display: block; width: 60px; height: 3px;
+        background: var(--accent-color); border-radius: 3px; margin: 10px auto 0;
+        box-shadow: 0 0 14px rgba(255,166,0,0.4);
+    }
+
+    .evSectionSub {
+        margin: 0; text-align: center; font-size: clamp(0.95rem,1.2vw,1.1rem);
+        color: rgba(255,255,255,0.55); max-width: 560px;
+    }
+
+    .evGallery {
+        display: grid; width: 100%;
+        grid-template-columns: 1.6fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 12px;
+    }
+
+    .evGalleryMain { grid-row: 1 / 3; }
+
+    .evGallerySlot {
+        border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(0,0,0,0.3); min-height: 140px;
+    }
+    .evGallerySlot img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .evGallerySlot:hover img { transform: scale(1.05); }
+
+    .evVideoPlaceholder {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        width: 100%; height: 100%; min-height: 280px; gap: 12px;
+        color: rgba(255,255,255,0.35); font-size: 0.95rem;
+    }
+    .evVideoIcon {
+        width: 56px; height: 56px; border-radius: 50%;
+        background: rgba(255,166,0,0.12); border: 2px solid rgba(255,166,0,0.3);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem; color: var(--accent-color);
+    }
+
+    /* ===== FEATURES ===== */
+    .evFeatures { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+    .evFeatureGrid {
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        gap: 14px; width: 100%;
+    }
+
+    .evFeatureCard {
+        display: flex; flex-direction: column; align-items: center; text-align: center;
+        gap: 10px; padding: 24px 16px; border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.06);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .evFeatureCard:hover {
+        border-color: rgba(255,166,0,0.18);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 16px rgba(255,166,0,0.04);
+        transform: translateY(-3px);
+    }
+
+    .evFeatureIcon { font-size: 2rem; }
+    .evFeatureCard h3 { margin: 0; color: #fff; font-size: 1.1rem; }
+    .evFeatureCard h3::after { display: none; }
+    .evFeatureCard p { margin: 0; font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ===== HOW IT WORKS — STEPS ===== */
+    .evSteps { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+    .evStepsTrack {
+        display: flex; align-items: flex-start; justify-content: center;
+        gap: 0; width: 100%;
+    }
+
+    .evStep {
+        display: flex; flex-direction: column; align-items: center; text-align: center;
+        gap: 10px; flex: 1; max-width: 280px; padding: 0 12px;
+    }
+
+    .evStepNum {
+        width: 48px; height: 48px; border-radius: 50%;
+        background: rgba(255,166,0,0.12); border: 2px solid rgba(255,166,0,0.35);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--accent-color); font-size: 1.3rem; font-weight: 800;
+        flex-shrink: 0;
+    }
+
+    .evStep h3 { margin: 0; color: #fff; font-size: 1.05rem; }
+    .evStep h3::after { display: none; }
+    .evStep p { margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    .evStepLine {
+        width: 60px; height: 2px; margin-top: 24px; flex-shrink: 0;
+        background: linear-gradient(90deg, rgba(255,166,0,0.3), rgba(255,166,0,0.08));
+        border-radius: 2px;
+    }
+
+    /* ===== PAST EVENTS TEASER ===== */
+    .evPastTeaser {
+        border-radius: 18px; overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+    }
+
+    .evPastGrid { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .evPastImg {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .evPastTeaser:hover .evPastImg { transform: scale(1.05); }
+
+    .evPastText {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 32px 28px; gap: 14px;
+    }
+    .evPastText h2 {
+        color: #fff; margin: 0; font-size: clamp(1.4rem,2.2vw,1.8rem);
+    }
+    .evPastText h2::after {
+        content: ""; display: block; width: 50px; height: 3px;
+        background: var(--accent-color); border-radius: 3px; margin: 8px auto 0;
+        box-shadow: 0 0 14px rgba(255,166,0,0.4);
+    }
+    .evPastText p {
+        margin: 0; font-size: clamp(0.95rem,1.2vw,1.1rem);
+        color: rgba(255,255,255,0.6); line-height: 1.7;
+    }
+
+    /* ===== FAQ ===== */
+    .evFaq {
+        display: flex; flex-direction: column; align-items: center; text-align: center;
+        gap: 10px; width: 100%; padding: 20px 16px; box-sizing: border-box;
+        border: 1px solid rgba(255,255,255,0.08); border-radius: 18px;
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+        position: relative; overflow: hidden;
+    }
+    .evFaq::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(255,195,87,0.12), transparent 42%);
+    }
+    .evFaq h2 { margin: 0 0 4px 0; color: #fff; position: relative; z-index: 1; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+        .evFeatureGrid { grid-template-columns: repeat(2, 1fr); }
+        .evPastGrid { grid-template-columns: 1fr; }
+        .evPastImg { max-height: 260px; }
+    }
+
+    @media (max-width: 700px) {
+        .evGallery { grid-template-columns: 1fr; }
+        .evGalleryMain { grid-row: auto; }
+        .evStepsTrack { flex-direction: column; align-items: center; gap: 16px; }
+        .evStepLine { width: 2px; height: 32px; margin: 0; }
+        .evUpcomingMeta { flex-direction: column; }
+    }
+
+    @media (max-width: 500px) {
+        .evHeroTitle { font-size: clamp(2rem,8vw,3rem); }
+        .evFeatureGrid { grid-template-columns: 1fr; }
     }
 </style>

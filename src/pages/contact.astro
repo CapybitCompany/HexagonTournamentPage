@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl } from '../utils/urls';
 const ContactComponent = (await import('../components/Contact.astro')).default;
 
 const structuredData = [
@@ -7,8 +8,8 @@ const structuredData = [
 		"@context": "https://schema.org",
 		"@type": "ContactPage",
 		name: "Kontakt HEX Network",
-		description: "Kontakt do zespolu HEX Network: Discord i e-mail do spraw wspolpracy i wsparcia.",
-		url: "https://www.minecrafthex.pl/contact/"
+		description: "Kontakt do zespołu HEX Network: Discord i e-mail do spraw współpracy i wsparcia.",
+		url: absoluteUrl('contact')
 	},
 	{
 		"@context": "https://schema.org",
@@ -16,18 +17,18 @@ const structuredData = [
 		mainEntity: [
 			{
 				"@type": "Question",
-				name: "Jak skontaktowac sie z administracja HEX?",
+				name: "Jak skontaktować się z administracją HEX?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Najlatwiej przez Discord HEX lub mailowo na minecrafthexagon@gmail.com."
+					text: "Najłatwiej przez Discord HEX lub mailowo na minecrafthexagon@gmail.com."
 				}
 			},
 			{
 				"@type": "Question",
-				name: "Gdzie zglosic wspolprace lub reklame?",
+				name: "Gdzie zgłosić współpracę lub reklamę?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Zapytania o wspolprace i reklame przyjmujemy mailowo oraz przez Discord."
+					text: "Zapytania o współpracę i reklamę przyjmujemy mailowo oraz przez Discord."
 				}
 			}
 		]
@@ -39,14 +40,14 @@ const structuredData = [
 			{
 				"@type": "ListItem",
 				position: 1,
-				name: "Strona glowna",
-				item: "https://www.minecrafthex.pl/"
+				name: "Strona główna",
+				item: absoluteUrl()
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Kontakt",
-				item: "https://www.minecrafthex.pl/contact/"
+				item: absoluteUrl('contact')
 			}
 		]
 	}
@@ -59,7 +60,7 @@ const structuredData = [
 <Layout 
 	customTitle="Kontakt | HEX Network - Discord, e-mail i współpraca" 
 	customDescription="Skontaktuj się z zespołem HEX Network przez Discord lub e-mail. Znajdziesz tu kontakt w sprawie współpracy, wsparcia technicznego i wydarzeń Minecraft."
-	canonicalUrl="https://www.minecrafthex.pl/contact"
+	canonicalUrl={absoluteUrl('contact')}
 	structuredData={structuredData}
 >
 	<ContactComponent />

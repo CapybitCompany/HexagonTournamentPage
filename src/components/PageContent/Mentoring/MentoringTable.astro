@@ -2,6 +2,7 @@
 // Importowanie komponentu Table
 import Table from '../../SimpleTable/SimpleTable.astro';
 
+const base = import.meta.env.BASE_URL;
 
 const headers = [
   'Szkolenie indywidualne', 
@@ -10,20 +11,20 @@ const headers = [
 
 const rows = [
   [
-    { text: 'Określony czas szkoleń', icon: '/icons/MentoringTableIcons/timeSingle.svg' },
-    { text: 'Liczba spotkań: od jednego do tylu ile potrzebujesz.', icon: '/icons/MentoringTableIcons/timeMentoring.svg' },
+    { text: 'Określony czas szkoleń', icon: `${base}icons/MentoringTableIcons/timeSingle.svg` },
+    { text: 'Liczba spotkań: od jednego do tylu ile potrzebujesz.', icon: `${base}icons/MentoringTableIcons/timeMentoring.svg` },
   ],
   [
-    { text: 'Ogólne omówienie konkretnych dziedzin IT.', icon: '/icons/MentoringTableIcons/desiresSingle.svg' },
-    { text: 'Możemy podejść specjalistycznie do danego wąskiego zagadnienia.', icon: '/icons/MentoringTableIcons/desiresMentoring.svg' },
+    { text: 'Ogólne omówienie konkretnych dziedzin IT.', icon: `${base}icons/MentoringTableIcons/desiresSingle.svg` },
+    { text: 'Możemy podejść specjalistycznie do danego wąskiego zagadnienia.', icon: `${base}icons/MentoringTableIcons/desiresMentoring.svg` },
   ],
   [
-    { text: '5 tematów szkoleń.', icon: '/icons/MentoringTableIcons/subjectsSingle.svg' },
-    { text: 'Liczba możliwych tematów jest nieograniczona.', icon: '/icons/MentoringTableIcons/subjectsMentoring.svg' },
+    { text: '5 tematów szkoleń.', icon: `${base}icons/MentoringTableIcons/subjectsSingle.svg` },
+    { text: 'Liczba możliwych tematów jest nieograniczona.', icon: `${base}icons/MentoringTableIcons/subjectsMentoring.svg` },
   ],
   [
-    { text: 'Pewne ustalone proporcje form nauki z mentorem - konkretna ilość webinarów, godzin indywidualnei z mentorem i pracy własnej.', icon: '/icons/MentoringTableIcons/proportionsSingle.svg' },
-    { text: 'Dostosowane proporcje form nauki z mentorem - razem ustalamy ile czasu poświęcamy na przekazanie teorii, wspólną pracę, code review i pracę własną.', icon: '/icons/MentoringTableIcons/proportionsMentoring.svg' },
+    { text: 'Pewne ustalone proporcje form nauki z mentorem - konkretna ilość webinarów, godzin indywidualnei z mentorem i pracy własnej.', icon: `${base}icons/MentoringTableIcons/proportionsSingle.svg` },
+    { text: 'Dostosowane proporcje form nauki z mentorem - razem ustalamy ile czasu poświęcamy na przekazanie teorii, wspólną pracę, code review i pracę własną.', icon: `${base}icons/MentoringTableIcons/proportionsMentoring.svg` },
   ]
 ];
 

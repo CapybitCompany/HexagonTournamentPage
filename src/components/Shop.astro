@@ -8,137 +8,631 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+import Section from './ContentContainer/Section.astro'
+
+const base = import.meta.env.BASE_URL;
+const SHOP_URL = "https://vishop.pl/shop/24611/server/23302";
+
+const offers = [
+    { icon: "⚔️", name: "VIP", desc: "Dodatkowe funkcje quality-of-life i wyróżnienia na serwerze.", tag: "Popularne" },
+    { icon: "🛡️", name: "Dodatki QoL", desc: "Ułatwienia rozgrywki bez wpływu na balans — zero pay-to-win.", tag: "" },
+    { icon: "🏆", name: "Pakiety eventowe", desc: "Dostęp, kosmetyki i bonusy związane z turniejami HEX.", tag: "" },
+    { icon: "💎", name: "Punkty HEX", desc: "Wirtualna waluta do wykorzystania wyłącznie na serwerze.", tag: "Nowość" },
+];
+
+const steps = [
+    { num: "1", title: "Wybierz usługę", desc: "Przeglądaj ofertę w sklepie ViShop i dodaj do koszyka." },
+    { num: "2", title: "Opłać zamówienie", desc: "BLIK, szybki przelew lub karta — płatność trwa chwilę." },
+    { num: "3", title: "Odbierz w grze", desc: "Usługa aktywuje się automatycznie po zaksięgowaniu." },
+];
 ---
 
 <NavBar/>
 <ContentContainer>
-    <div style="width: 100%; display: flex; justify-content: center; margin: 20px 0; min-height: calc(100vh - 300px);">
-        <div class="box">
-            <h1>Za chwilę nastąpi przekierowanie do sklepu</h1>
-            <p>Możesz przejść do sklepu teraz klikając <a href="https://vishop.pl/shop/24611/server/23302">Tutaj</a> </p>
-            <p>Pozostały czas:</p>
-            <div class="countdown" id="countdown">10</div>
+    <Breadcrumbs items={[{ label: "Sklep" }]} />
 
-            <div class="legal">
-            <p>
-                <strong>Informacja prawna:</strong><br />
-                Zakup i rozliczenie realizowane są w całości za pośrednictwem platformy
-                <strong>ViShop</strong>. Administrator tej strony nie ponosi
-                odpowiedzialności za kwestie prawne, regulamin, płatności ani proces
-                realizacji transakcji w sklepie.
-            </p>
-            <p>
-                <strong>Produkt cyfrowy:</strong><br />
-                Zakup dotyczy <strong>produktu cyfrowego</strong>. Po dokonaniu płatności
-                nie ma możliwości odstąpienia od umowy ani zwrotu, zgodnie z
-                obowiązującymi przepisami dla treści cyfrowych udostępnianych
-                natychmiast po zakupie.
-            </p>
-            <p>
-                <strong>Informacje o sklepie i regulamin</strong><br />
-              Wiecej o zasadach korzystania ze sklepu oraz polityce prywatnosci znajdziesz <a href="/aboutShop">tutaj</a>.
-            </p>
+    <!-- HERO -->
+    <div class="shopHero">
+        <div class="shopHeroParticles" aria-hidden="true">
+            <span class="mcBlock b1"></span>
+            <span class="mcBlock b2"></span>
+            <span class="mcBlock b3"></span>
+            <span class="mcBlock b4"></span>
+            <span class="mcBlock b5"></span>
+        </div>
+        <div class="shopHeroContent">
+            <span class="shopBadge">🛒 SKLEP HEX NETWORK</span>
+            <h1 class="shopHeroTitle">Wesprzyj serwer,<br/>zgarnij wiecej</h1>
+            <p class="shopHeroSub">Usługi cyfrowe, VIP, dodatki i pakiety eventowe — bez pay-to-win.</p>
+            <div class="shopHeroCtas">
+                <a href={SHOP_URL} class="shopCtaPrimary" target="_blank" rel="noopener">
+                    Przejdź do sklepu
+                    <span class="ctaArrow">→</span>
+                </a>
+                <a href="#shop-info" class="shopCtaSecondary">Dowiedz się więcej</a>
             </div>
-
-            <section class="faqSection">
-              <h2>FAQ - Sklep HEX</h2>
-              <FAQ>
-                <FAQLine>
-                  <FAQQuestion>Jak szybko realizowane sa zakupy w sklepie?</FAQQuestion>
-                  <FAQAnswer>W wiekszosci przypadkow uslugi cyfrowe sa realizowane automatycznie zaraz po zaksiogowaniu platnosci.</FAQAnswer>
-                </FAQLine>
-                <FAQLine>
-                  <FAQQuestion>Czy uslugi ze sklepu daja przewage pay-to-win?</FAQQuestion>
-                  <FAQAnswer>Nie, sklep jest projektowany pod wsparcie projektu i dodatki quality-of-life bez psucia balansu rozgrywki.</FAQAnswer>
-                </FAQLine>
-                <FAQLine>
-                  <FAQQuestion>Gdzie zglosic problem z platnoscia?</FAQQuestion>
-                  <FAQAnswer>W razie problemu napisz do nas na Discordzie lub mailowo, podajac nick gracza i szczegoly zamowienia.</FAQAnswer>
-                </FAQLine>
-              </FAQ>
-            </section>
+        </div>
+        <div class="shopHeroGlow" aria-hidden="true"></div>
     </div>
-    
-  </div>
+
+    <Section>
+        <!-- OFFERS -->
+        <div class="shopSection" id="shop-info">
+            <h2 class="shopSectionTitle">Co znajdziesz w sklepie</h2>
+            <div class="offersGrid">
+                {offers.map((o) => (
+                    <div class="offerCard">
+                        {o.tag && <span class="offerTag">{o.tag}</span>}
+                        <span class="offerIcon">{o.icon}</span>
+                        <h3 class="offerName">{o.name}</h3>
+                        <p class="offerDesc">{o.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="shopSection">
+            <h2 class="shopSectionTitle">Jak to działa</h2>
+            <div class="stepsRow">
+                {steps.map((s, i) => (
+                    <div class="stepCard">
+                        <span class="stepNum">{s.num}</span>
+                        <h3 class="stepTitle">{s.title}</h3>
+                        <p class="stepDesc">{s.desc}</p>
+                        {i < steps.length - 1 && <span class="stepConnector" aria-hidden="true">›</span>}
+                    </div>
+                ))}
+            </div>
+        </div>
+
+
+
+        <!-- LEGAL -->
+        <div class="shopSection">
+            <div class="legalBox">
+                <div class="legalItem">
+                    <strong>⚖️ Informacja prawna</strong>
+                    <p>Zakup i rozliczenie realizowane są za pośrednictwem platformy <strong>ViShop</strong>. Administrator tej strony nie ponosi odpowiedzialności za kwestie prawne, regulamin, płatności ani proces realizacji transakcji.</p>
+                </div>
+                <div class="legalItem">
+                    <strong>📦 Produkt cyfrowy</strong>
+                    <p>Zakup dotyczy <strong>produktu cyfrowego</strong>. Po dokonaniu płatności nie ma możliwości odstąpienia od umowy ani zwrotu, zgodnie z przepisami dla treści cyfrowych.</p>
+                </div>
+                <div class="legalItem">
+                    <strong>📄 Regulamin</strong>
+                    <p>Więcej o zasadach korzystania ze sklepu oraz polityce prywatności znajdziesz <a href={`${base}aboutShop`}>tutaj</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <section class="shopFaq">
+            <h2>FAQ — Sklep HEX</h2>
+            <FAQ>
+                <FAQLine>
+                    <FAQQuestion>Jak szybko realizowane są zakupy w sklepie?</FAQQuestion>
+                    <FAQAnswer>W większości przypadków usługi cyfrowe są realizowane automatycznie zaraz po zaksięgowaniu płatności.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Czy usługi ze sklepu dają przewagę pay-to-win?</FAQQuestion>
+                    <FAQAnswer>Nie, sklep jest projektowany pod wsparcie projektu i dodatki quality-of-life bez psucia balansu rozgrywki.</FAQAnswer>
+                </FAQLine>
+                <FAQLine>
+                    <FAQQuestion>Gdzie zgłosić problem z płatnością?</FAQQuestion>
+                    <FAQAnswer>W razie problemu napisz do nas na Discordzie lub mailowo, podając nick gracza i szczegóły zamówienia.</FAQAnswer>
+                </FAQLine>
+            </FAQ>
+        </section>
+    </Section>
 </ContentContainer>
 <Footer/>
 
+<!-- STICKY CTA BAR -->
+<div class="stickyCtaBar" id="stickyCtaBar">
+    <div class="stickyCtaInner">
+        <span class="stickyCtaText">Sklep HEX działa na platformie <strong>ViShop</strong></span>
+        <a href={SHOP_URL} class="stickyCtaBtn" target="_blank" rel="noopener">
+            Przejdź do sklepu <span class="ctaArrow">→</span>
+        </a>
+    </div>
+</div>
+
 <script>
-    // <<< PODMIEŃ TĘ ZMIENNĄ NA SWÓJ LINK DO SKLEPU >>>
-    const SHOP_URL = "https://vishop.pl/shop/24611/server/23302";
-
-    const countdownEl = document.getElementById("countdown");
-    let timeLeft = 10;
-
-    if (countdownEl) {
-      const interval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          countdownEl.textContent = "0";
-          clearInterval(interval);
-          window.location.href = SHOP_URL;
-        } else {
-          countdownEl.textContent = String(timeLeft);
-        }
-      }, 1000);
+    const bar = document.getElementById("stickyCtaBar");
+    const hero = document.querySelector(".shopHero");
+    if (bar && hero) {
+        const show = () => {
+            const heroBottom = hero.getBoundingClientRect().bottom;
+            bar.classList.toggle("visible", heroBottom < 0);
+        };
+        window.addEventListener("scroll", show, { passive: true });
+        show();
     }
-  </script>
+</script>
 
 <style>
-    .box {
-      display: flex;
-      margin-top: 60px;
-      flex-direction: column;
-      border: 1px solid #4b5563;
-      background: #111827;
-      padding: 20px 24px;
-      max-width: 600px;
-      text-align: center;
-      color: white;
-      max-height: none;
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
-    
-    a {
+
+    /* ===== HERO ===== */
+    .shopHero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 480px;
+        overflow: hidden;
+        background:
+            radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 166, 0, 0.06), transparent 70%),
+            linear-gradient(180deg, #0e1219 0%, #0a0d12 100%);
+    }
+
+    .shopHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        padding: 60px 20px;
+    }
+
+    .shopBadge {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.08);
         color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
     }
 
-    .box h1 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      align-items: center;
+    .shopHeroTitle {
+        font-family: "minecraft";
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        color: #fff;
+        margin: 0;
+        line-height: 1.15;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.2);
     }
 
-    .box p {
-      margin: 6px 0;
+    .shopHeroSub {
+        font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 520px;
+        margin: 0;
     }
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-top: 8px;
-      color: var(--accent-color);
+    .shopHeroCtas {
+        display: flex;
+        gap: 14px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .legal {
-      display: flex;
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: #9ca3af;
-      text-align: left;
-      flex-direction: column;
+    .shopCtaPrimary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        color: #0a0d12 !important;
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 24px rgba(255, 166, 0, 0.3);
     }
 
-    .legal strong {
-      color: #e5e7eb;
+    .shopCtaPrimary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(255, 166, 0, 0.45);
     }
 
-    .faqSection {
-      display: flex;
-      flex-direction: column;
-      margin-top: 18px;
-      text-align: left;
+    .ctaArrow {
+        transition: transform 0.2s ease;
     }
 
-  </style>
+    .shopCtaPrimary:hover .ctaArrow {
+        transform: translateX(4px);
+    }
+
+    .shopCtaSecondary {
+        display: inline-flex;
+        align-items: center;
+        padding: 14px 28px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .shopCtaSecondary:hover {
+        border-color: var(--accent-color);
+        color: #fff !important;
+    }
+
+    /* Floating MC blocks */
+    .shopHeroParticles {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .mcBlock {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        opacity: 0.12;
+        animation: floatBlock 12s ease-in-out infinite;
+        image-rendering: pixelated;
+    }
+
+    .mcBlock.b1 { background: #6b8c3e; top: 15%; left: 8%; animation-delay: 0s; width: 28px; height: 28px; }
+    .mcBlock.b2 { background: #8b7355; top: 60%; left: 85%; animation-delay: -3s; width: 36px; height: 36px; }
+    .mcBlock.b3 { background: #4a6fa5; top: 30%; left: 75%; animation-delay: -6s; width: 24px; height: 24px; }
+    .mcBlock.b4 { background: var(--accent-color); top: 70%; left: 15%; animation-delay: -2s; width: 20px; height: 20px; }
+    .mcBlock.b5 { background: #8b4513; top: 45%; left: 50%; animation-delay: -8s; width: 30px; height: 30px; }
+
+    @keyframes floatBlock {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        25% { transform: translateY(-20px) rotate(5deg); }
+        50% { transform: translateY(-8px) rotate(-3deg); }
+        75% { transform: translateY(-25px) rotate(4deg); }
+    }
+
+    .shopHeroGlow {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 120px;
+        background: radial-gradient(ellipse, rgba(255, 166, 0, 0.08), transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* ===== SECTIONS ===== */
+    .shopSection {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        margin-bottom: 48px;
+    }
+
+    .shopSectionTitle {
+        text-align: center;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        color: #fff;
+        margin: 0 0 32px 0;
+    }
+
+    .shopSectionTitle::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin: 12px auto 0;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+    }
+
+    /* ===== OFFER CARDS ===== */
+    .offersGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        width: 100%;
+    }
+
+    .offerCard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 28px 20px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .offerCard:hover {
+        border-color: rgba(255, 166, 0, 0.25);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 166, 0, 0.06);
+    }
+
+    .offerTag {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(255, 166, 0, 0.15);
+        border: 1px solid rgba(255, 166, 0, 0.35);
+        color: var(--accent-color);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .offerIcon {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+        filter: drop-shadow(0 0 8px rgba(255, 166, 0, 0.2));
+    }
+
+    .offerName {
+        margin: 0 0 6px 0;
+        font-size: 1.15rem;
+        color: #fff;
+    }
+
+    .offerDesc {
+        margin: 0;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.5;
+    }
+
+    /* ===== STEPS ===== */
+    .stepsRow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        width: 100%;
+    }
+
+    .stepCard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .stepNum {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 166, 0, 0.12);
+        border: 1px solid rgba(255, 166, 0, 0.3);
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .stepTitle {
+        margin: 0 0 6px 0;
+        font-size: 1.05rem;
+        color: #fff;
+    }
+
+    .stepDesc {
+        margin: 0;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+    }
+
+    .stepConnector {
+        display: none;
+    }
+
+    @media (min-width: 769px) {
+        .stepConnector {
+            display: block;
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: rgba(255, 166, 0, 0.3);
+            font-weight: 300;
+        }
+    }
+
+    /* ===== STICKY CTA BAR ===== */
+    .stickyCtaBar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+        pointer-events: none;
+    }
+
+    .stickyCtaBar.visible {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .stickyCtaInner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 14px 24px;
+        background: rgba(10, 13, 18, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(255, 166, 0, 0.2);
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .stickyCtaText {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .stickyCtaText strong {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .stickyCtaBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        border-radius: 10px;
+        background: var(--accent-color);
+        color: #0a0d12 !important;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 20px rgba(255, 166, 0, 0.3);
+    }
+
+    .stickyCtaBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 166, 0, 0.45);
+    }
+
+    .stickyCtaBtn .ctaArrow {
+        transition: transform 0.2s ease;
+    }
+
+    .stickyCtaBtn:hover .ctaArrow {
+        transform: translateX(4px);
+    }
+
+    /* ===== LEGAL ===== */
+    .legalBox {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        width: 100%;
+    }
+
+    .legalItem {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .legalItem strong {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.92rem;
+    }
+
+    .legalItem p {
+        margin: 0;
+        font-size: 0.84rem;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.6;
+    }
+
+    .legalItem a {
+        color: var(--accent-color) !important;
+        text-decoration: none;
+    }
+
+    .legalItem a:hover {
+        text-decoration: underline;
+    }
+
+    /* ===== FAQ ===== */
+    .shopFaq {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: min(1100px, 100%);
+        margin: 10px auto 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 20px 16px;
+        color: #f6f0dd;
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .shopFaq::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.12), transparent 42%);
+    }
+
+    .shopFaq h2 {
+        margin: 0 0 4px 0;
+        position: relative;
+        z-index: 1;
+        color: #fff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .stickyCtaText {
+            display: none;
+        }
+
+        .stickyCtaInner {
+            justify-content: center;
+        }
+
+        .stepsRow {
+            grid-template-columns: 1fr;
+        }
+
+        .offersGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .shopHero {
+            min-height: 400px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .shopHeroTitle {
+            font-size: clamp(1.8rem, 7vw, 2.4rem);
+        }
+    }
+</style>

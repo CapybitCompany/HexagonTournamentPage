@@ -1,25 +1,27 @@
 ---
 import "../../styles/global.css";
-import LogoIcon from "../../../public/logo.ico";
 import NavBarItem from './NavBarItem.astro';
 import MobileMenu from "./Mobile/MobileMenu.astro";
 import MobileMenuHamburder from "./Mobile/MobileMenuHamburder.astro";
 import SubMenuContainer from "./Submenu/Submenu.astro";
+import IpCopyPill from "./IpCopyPill.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
-<nav id="navBar" class="navBarWrapper">
+<nav id="navBar" class="navBarWrapper" aria-label="Nawigacja główna">
     <div class="logoContainer">
-        <LogoIcon/>
-        <img src="/logo.ico" style="width: 60px;"/>
-        <a href="/" style="position: absolute; width: 100%; height: 100%; z-index:1"></a>
+        <img src={`${base}logo.ico`} alt="HEX Network logo" style="width: 60px;"/>
+        <a href={base} style="position: absolute; width: 100%; height: 100%; z-index:1" aria-label="Strona główna"></a>
 
     </div>
     <div class="navBarContainer">
         <!-- <NavBarItem dataId="Future"><div class="fullWidthTileContent"><a href="/future">Przyszłe projekty</a></div></NavBarItem> -->
-        <NavBarItem dataId="Server"><div class="fullWidthTileContent"><a href="/">Serwer</a></div></NavBarItem>
-        <NavBarItem dataId="Archive"><div class="fullWidthTileContent"><a href="/archive">Archiwum eventów</a></div></NavBarItem>
-        <NavBarItem dataId="Shop"><div class="fullWidthTileContent"><a href="/shop">Sklep</a></div></NavBarItem>
-        <NavBarItem dataId="Contact"><div class="fullWidthTileContent"><a href="/contact">Kontakt</a></div></NavBarItem>
+        <NavBarItem dataId="Server"><div class="fullWidthTileContent"><a href={base}>Serwer</a></div></NavBarItem>
+        <NavBarItem dataId="Shop"><div class="fullWidthTileContent"><a href={`${base}shop`}>Sklep</a></div></NavBarItem>
+        <NavBarItem dataId="Contact"><div class="fullWidthTileContent"><a href={`${base}contact`}>Kontakt</a></div></NavBarItem>
+    </div>
+    <div class="navBarRight">
+        <IpCopyPill ip="MinecraftHEX.pl"/>
     </div>
     <MobileMenuHamburder/>
     <MobileMenu/>
@@ -39,6 +41,8 @@ import SubMenuContainer from "./Submenu/Submenu.astro";
                     return `<h2>${item.label}</h2>`;
                 }else if(item?.type === "subheader"){
                     return `<h3>${item.label}</h3>`;
+                }else if(item?.disabled){
+                    return `<div class="fullWidthTileContent submenuDisabled" style="width:fit-content;"><span>${item.label}</span></div>`;
                 }else{
                     return `<div class="fullWidthTileContent" style="width:fit-content;"><a href="${item.href}">${item.label}</a></div>`;
                 }
@@ -46,24 +50,39 @@ import SubMenuContainer from "./Submenu/Submenu.astro";
         </div>`;
     };
 
+    function generateMultiColumnSubmenu(columns) {
+        return columns.map(col => generateSubmenuHTML(col)).join('');
+    }
+
+    const baseUrl = import.meta.env.BASE_URL;
     const serverSubmenus = [
-      {label: "Tryby Minecraft HEX", type: "subheader"},
-      {label: "HEX Event", href: "/hexEvent"},
-      {label: "HEX Mini-Games", href: "/hexMiniGames"},
-      {label: "HEX Mask Ritual (PVP)", href: "/hexPvp"},
-      {label: "HEX Hardcore SMP", href: "/hexHardcoreSmp"},
-      {label: "HEX Parkour", href: "/hexParkour"},
-    ]
+      [
+        {label: "Tryby Minecraft HEX", type: "subheader"},
+        {label: "HEX Event", href: baseUrl + "hexEvent"},
+        {label: "HEX SMP", href: baseUrl + "hexSmp"},
+      ],
+      [
+        {label: "Więcej", type: "subheader"},
+        {label: "Archiwum eventów", href: baseUrl + "archive"},
+        {label: "Devlog", href: baseUrl + "devlog"},
+      ],
+      [
+        {label: "W niedalekiej przyszłości", type: "subheader"},
+        {label: "HEX Mini-Games", disabled: true},
+        {label: "HEX Mask Ritual (PVP)", disabled: true},
+        {label: "HEX Parkour", disabled: true},
+      ]
+    ];
 
     const contactSubmenus = [
         {label: "Kim jesteśmy", type: "subheader"},
-        {label: "O nas", href: "/about"},
+        {label: "O nas", href: baseUrl + "about"},
         {label: "Informacje", type: "subheader"},
-        {label: "Kontakt", href: "/contact"},
+        {label: "Kontakt", href: baseUrl + "contact"},
     ];
 
     const contentMap = {
-        Server: generateSubmenuHTML(serverSubmenus),
+        Server: generateMultiColumnSubmenu(serverSubmenus),
         Contact: generateSubmenuHTML(contactSubmenus)
     };
 
@@ -233,12 +252,36 @@ import SubMenuContainer from "./Submenu/Submenu.astro";
 
 
 <style>
+  .navBarWrapper .fullWidthTileContent a,
+  .navBarWrapper .navBarItemContainer a,
+  #submenuContainer .fullWidthTileContent a {
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  .navBarWrapper .fullWidthTileContent a:hover,
+  .navBarWrapper .navBarItemContainer a:hover,
+  #submenuContainer .fullWidthTileContent a:hover {
+    color: var(--accent-color) !important;
+  }
+
+  #mobileMenu .mobileMenuLinks a {
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  #mobileMenu .mobileMenuLinks a:hover,
+  #mobileMenu .mobileMenuLinks a:active {
+    color: #ffffff !important;
+  }
+
     nav{
         display: flex;
-        background-color: white;
+        background: rgba(10, 13, 18, 0.88);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
         z-index: 10;
         transition: transform 0.3s ease;
         transform: translateY(0);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     nav.hidden {
@@ -258,14 +301,27 @@ import SubMenuContainer from "./Submenu/Submenu.astro";
         height: 60px;
         justify-content: center;
         gap: 30px;
+        align-items: center;
     }
     .navBarContainer{
         display: flex;
         align-items: center;
         position: relative;
         height: 100%;
-        background-color: var(--background-color);
         gap: 35px;
+    }
+    .navBarRight{
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 3;
+    }
+    @media (max-width: 950px){
+        .navBarRight{ display: none; }
     }
 
     @media (max-width: 950px) {

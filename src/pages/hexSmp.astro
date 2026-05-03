@@ -1,0 +1,97 @@
+---
+import HexSmpPage from '../components/PageContent/ServerArticles/HexSmp.astro';
+import Layout from '../layouts/Layout.astro';
+import { absoluteUrl } from '../utils/urls';
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "HEX SMP",
+		description: "HEX SMP - nowy tryb Minecraft SMP łączący survival, ekonomię i PvP. Buduj bazę, zarządzaj zasobami i rywalizuj z innymi graczami.",
+		url: absoluteUrl('hexSmp')
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Czym jest HEX SMP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Nowy tryb Minecraft SMP łączący survival, ekonomię i PvP. Twoja baza, Twoje zasoby i Twoi rywale — wszystko połączone w jedną rozgrywkę."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Kiedy start serwera HEX SMP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Tryb jest w produkcji. Datę ogłosimy na Discordzie — dołącz żeby być na bieżąco."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Co wyróżnia HEX SMP od innych serwerów?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "System, w którym codziennie masz co robić. Ekonomia działa sama, PvP ma stawkę, a decyzje mają konsekwencje."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Czy HEX SMP to pay-to-win?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Nie. PvP jest vanilla. Kasa nie kupuje przewagi."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Jak dołączyć do HEX SMP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Wejdź na Discorda HEX — tam zapisy, ogłoszenia i społeczność."
+				}
+			},
+			{
+				"@type": "Question",
+				name: "Gdzie śledzić postępy produkcji HEX SMP?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Devlog na stronie + Discord. Tam pierwszy dowiesz się co nowego."
+				}
+			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Strona główna",
+				item: absoluteUrl()
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "HEX SMP",
+				item: absoluteUrl('hexSmp')
+			}
+		]
+	}
+];
+---
+
+<Layout
+	customTitle="HEX SMP - nowy tryb Minecraft survival, ekonomia i PvP"
+	customDescription="HEX SMP - nowy tryb serwera Minecraft HEX. Buduj bazę, rozwijaj ekonomię, rywalizuj z innymi. Śledź produkcję i bądź pierwszy na serwerze."
+	keywords="hex smp, serwer smp minecraft, nowy serwer smp, ekonomia minecraft, survival multiplayer"
+	canonicalUrl={absoluteUrl('hexSmp')}
+	structuredData={structuredData}
+>
+	<HexSmpPage />
+</Layout>

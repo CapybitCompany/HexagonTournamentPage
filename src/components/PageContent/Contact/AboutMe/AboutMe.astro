@@ -105,8 +105,9 @@ import Section from '../../../ContentContainer/Section.astro';
 <Footer/>
 
 <script>
+    const baseUrl = import.meta.env.BASE_URL;
     function goToForm() {
-      window.location.href = "/form";
+      window.location.href = baseUrl + "form";
     }
     window.goToForm = goToForm;
 </script>

@@ -1,14 +1,15 @@
 ---
 import AboutPage from '../components/About.astro';
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl } from '../utils/urls';
 
 const structuredData = [
 	{
 		"@context": "https://schema.org",
 		"@type": "AboutPage",
 		name: "O nas - HEX Network",
-		description: 'Poznaj HEX Network - polska spolecznosc i serwer Minecraft tworzace turnieje, eventy, rankingi oraz autorskie tryby rozgrywki.',
-		url: "https://www.minecrafthex.pl/about/"
+		description: 'Poznaj HEX Network - polską społeczność i serwer Minecraft tworzącą turnieje, eventy, rankingi oraz autorskie tryby rozgrywki.',
+		url: absoluteUrl('about')
 	},
 	{
 		"@context": "https://schema.org",
@@ -19,23 +20,23 @@ const structuredData = [
 				name: 'Czym jest HEX Network?',
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: 'HEX Network to polska spolecznosc i serwer Minecraft laczace turnieje, eventy, ranking graczy oraz autorskie tryby rozgrywki.',
+					text: 'HEX Network to polska społeczność i serwer Minecraft łączące turnieje, eventy, ranking graczy oraz autorskie tryby rozgrywki.',
 				}
 			},
 			{
 				"@type": "Question",
-				name: 'Gdzie publikowane sa informacje o eventach i turniejach?',
+				name: 'Gdzie publikowane są informacje o eventach i turniejach?',
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: 'Najwazniejsze informacje publikujemy na stronie glownej, Discordzie HEX Network oraz w archiwum wydarzen.',
+					text: 'Najważniejsze informacje publikujemy na stronie głównej, Discordzie HEX Network oraz w archiwum wydarzeń.',
 				},
 			},
 			{
 				'@type': 'Question',
-				name: 'Jak moge dolaczyc do spolecznosci HEX?',
+				name: 'Jak mogę dołączyć do społeczności HEX?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Najlatwiej zaczac od dolaczenia na Discord HEX Network, gdzie znajduja sie ogloszenia, informacje o serwerze i najblizszych wydarzeniach.',
+					text: 'Najłatwiej zacząć od dołączenia na Discord HEX Network, gdzie znajdują się ogłoszenia, informacje o serwerze i najbliższych wydarzeniach.',
 				}
 			}
 		]
@@ -47,14 +48,14 @@ const structuredData = [
 			{
 				"@type": "ListItem",
 				position: 1,
-				name: "Strona glowna",
-				item: "https://www.minecrafthex.pl/"
+				name: "Strona główna",
+				item: absoluteUrl()
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "O nas",
-				item: "https://www.minecrafthex.pl/about/"
+				item: absoluteUrl('about')
 			}
 		]
 	}
@@ -67,7 +68,7 @@ const structuredData = [
 	customDescription="Poznaj HEX Network - polską społeczność i serwer Minecraft z turniejami, eventami, rankingiem graczy i autorskimi trybami. Sprawdź, jak działa projekt i gdzie dołączyć."
 	ogImage="/images/About/aboutBanner.webp"
 	ogType="article"
-	canonicalUrl="https://www.minecrafthex.pl/about"
+	canonicalUrl={absoluteUrl('about')}
 	structuredData={structuredData}
 >
 	<AboutPage />

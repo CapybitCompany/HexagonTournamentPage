@@ -1,37 +1,63 @@
 ---
 /**
- * Prosty komponent odliczający do 4 kwietnia 2026, godz. 19:00
- * Na froncie używa czasu lokalnego przeglądarki.
+ * Komponent odliczający do zadanej daty. Obsługuje wiele instancji na stronie.
+ *
+ * Props:
+ *   targetStart   — ISO string startu (np. "2026-05-16T19:00:00").
+ *   targetEnd     — ISO string końca okna "trwa" (domyślnie +4h od startu).
+ *   ongoingText   — tekst gdy event trwa.
+ *   finishedText  — tekst po zakończeniu.
+ *   size          — "default" | "compact" (mniejsze liczby, inline layout).
  */
+export interface Props {
+  targetStart?: string;
+  targetEnd?: string;
+  ongoingText?: string;
+  finishedText?: string;
+  size?: "default" | "compact";
+}
+
+const {
+  targetStart = "2026-05-16T19:00:00",
+  targetEnd,
+  ongoingText = "Turniej Minecraft już trwa. Powodzenia!",
+  finishedText = "Turniej wystartował. Śledź Discord po kolejne terminy.",
+  size = "default",
+} = Astro.props as Props;
+
+const resolvedEnd =
+  targetEnd ??
+  new Date(new Date(targetStart).getTime() + 4 * 60 * 60 * 1000).toISOString();
 ---
 
-<div class="countdown" data-state="before" style="font-family: minecraft;">
+<div
+  class={`countdown countdown--${size}`}
+  data-state="before"
+  data-target-start={targetStart}
+  data-target-end={resolvedEnd}
+  style="font-family: minecraft;"
+>
   <div class="countdown__time">
     <span class="countdown__item">
       <span class="countdown__label">Dni:</span>
-      <span id="countdown-days">00</span>
+      <span class="countdown__days">00</span>
     </span>
     <span class="countdown__item">
       <span class="countdown__label">Godziny:</span>
-      <span id="countdown-hours">00</span>
+      <span class="countdown__hours">00</span>
     </span>
     <span class="countdown__item">
       <span class="countdown__label">Minuty:</span>
-      <span id="countdown-minutes">00</span>
+      <span class="countdown__minutes">00</span>
     </span>
     <span class="countdown__item">
       <span class="countdown__label">Sekundy:</span>
-      <span id="countdown-seconds">00</span>
+      <span class="countdown__seconds">00</span>
     </span>
   </div>
 
-  <div class="countdown__message countdown__message--ongoing">
-    Turniej Minecraft już trwa. Powodzenia!
-  </div>
-
-  <div class="countdown__message countdown__message--finished">
-    Turniej wystartował. Śledź Discord po kolejne terminy.
-  </div>
+  <div class="countdown__message countdown__message--ongoing">{ongoingText}</div>
+  <div class="countdown__message countdown__message--finished">{finishedText}</div>
 </div>
 
 <style>
@@ -43,7 +69,6 @@
     font-size: 48px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       sans-serif;
-
   }
 
   .countdown__time {
@@ -55,8 +80,18 @@
     font-weight: 500;
   }
 
-  #countdown-minutes, #countdown-days, #countdown-seconds, #countdown-hours{
-    color: #fff1ab;
+  .countdown--compact .countdown__time {
+    font-size: 1.25rem;
+    gap: 10px;
+  }
+
+  .countdown__days,
+  .countdown__hours,
+  .countdown__minutes,
+  .countdown__seconds {
+    color: var(--accent-color, #ffa600);
+    text-shadow: 0 0 18px rgba(255, 166, 0, 0.45);
+    font-weight: 700;
   }
 
   .countdown__item {
@@ -72,109 +107,80 @@
     font-size: 1.3rem;
     font-weight: 600;
     text-align: center;
-    display: none; /* domyślnie ukryte, sterowane przez data-state */
-  }
-
-  .countdown__message--ongoing {
-    color: #777; /* szary */
-  }
-
-  .countdown__message--finished {
-    color: #c0392b; /* czerwony */
-  }
-
-  /* Sterowanie stanem przez data-state */
-  .countdown[data-state="before"] .countdown__time {
-    display: flex;
-  }
-
-  .countdown[data-state="before"] .countdown__message {
     display: none;
   }
 
-  .countdown[data-state="ongoing"] .countdown__time {
-    display: none;
-  }
+  .countdown__message--ongoing { color: #777; }
+  .countdown__message--finished { color: #c0392b; }
 
-  .countdown[data-state="ongoing"] .countdown__message--ongoing {
-    display: block;
-  }
-
-  .countdown[data-state="finished"] .countdown__time {
-    display: none;
-  }
-
-  .countdown[data-state="finished"] .countdown__message--finished {
-    display: block;
-  }
+  .countdown[data-state="before"] .countdown__time { display: flex; }
+  .countdown[data-state="before"] .countdown__message { display: none; }
+  .countdown[data-state="ongoing"] .countdown__time { display: none; }
+  .countdown[data-state="ongoing"] .countdown__message--ongoing { display: block; }
+  .countdown[data-state="finished"] .countdown__time { display: none; }
+  .countdown[data-state="finished"] .countdown__message--finished { display: block; }
 </style>
 
 <script>
-  // Docelowe daty (miesiące w JS: 0 = styczeń, 11 = grudzień)
-  const targetStart = new Date(2026, 3, 3, 19, 0, 0); // 03.04.2026 19:00
-  const targetEnd = new Date(2026, 3, 3, 23, 0, 0);   // 03.04.2026 23:00
-
-  const root = document.querySelector(".countdown") as HTMLElement | null;
-  if (!root) console.error("Countdown root not found");
-
-  const daysEl = document.getElementById("countdown-days");
-  const hoursEl = document.getElementById("countdown-hours");
-  const minutesEl = document.getElementById("countdown-minutes");
-  const secondsEl = document.getElementById("countdown-seconds");
-
   function pad(value: number, length = 2) {
     return String(value).padStart(length, "0");
   }
 
-  function updateCountdown() {
-    if (!root) return;
+  function initCountdown(root: HTMLElement) {
+    const startAttr = root.dataset.targetStart;
+    const endAttr = root.dataset.targetEnd;
+    if (!startAttr) return;
 
-    const now = new Date();
+    const targetStart = new Date(startAttr);
+    const targetEnd = endAttr
+      ? new Date(endAttr)
+      : new Date(targetStart.getTime() + 4 * 60 * 60 * 1000);
 
-    // Przed startem turnieju – odliczamy
-    if (now < targetStart) {
-      root.dataset.state = "before";
+    const daysEl = root.querySelector<HTMLElement>(".countdown__days");
+    const hoursEl = root.querySelector<HTMLElement>(".countdown__hours");
+    const minutesEl = root.querySelector<HTMLElement>(".countdown__minutes");
+    const secondsEl = root.querySelector<HTMLElement>(".countdown__seconds");
 
-      const diff = targetStart.getTime() - now.getTime();
-      // zabezpieczenie: nieujemne
-      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+    const update = () => {
+      const now = new Date();
 
-      const days = Math.floor(totalSeconds / (60 * 60 * 24));
-      const hours = Math.floor(
-        (totalSeconds % (60 * 60 * 24)) / (60 * 60)
-      );
-      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-      const seconds = totalSeconds % 60;
+      if (now < targetStart) {
+        root.dataset.state = "before";
+        const totalSeconds = Math.max(
+          0,
+          Math.floor((targetStart.getTime() - now.getTime()) / 1000)
+        );
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
 
-      if (daysEl) daysEl.textContent = pad(days);
-      if (hoursEl) hoursEl.textContent = pad(hours);
-      if (minutesEl) minutesEl.textContent = pad(minutes);
-      if (secondsEl) secondsEl.textContent = pad(seconds);
+        if (daysEl) daysEl.textContent = pad(days);
+        if (hoursEl) hoursEl.textContent = pad(hours);
+        if (minutesEl) minutesEl.textContent = pad(minutes);
+        if (secondsEl) secondsEl.textContent = pad(seconds);
+        return;
+      }
 
-      return;
-    }
+      if (now >= targetStart && now < targetEnd) {
+        root.dataset.state = "ongoing";
+        return;
+      }
 
-    // Turniej trwa (04.04.2026 19:00-23:00)
-    if (now >= targetStart && now < targetEnd) {
-      root.dataset.state = "ongoing";
-      return;
-    }
+      root.dataset.state = "finished";
+    };
 
-    // Po turnieju (po 23:00)
-    root.dataset.state = "finished";
+    update();
+
+    const intervalId = setInterval(() => {
+      update();
+      if (new Date() >= targetEnd) {
+        clearInterval(intervalId);
+      }
+    }, 1000);
   }
 
-  // Pierwsze wywołanie od razu
-  updateCountdown();
-
-  // Aktualizacja co sekundę
-  const intervalId = setInterval(() => {
-    updateCountdown();
-
-    // jeśli już trwale po turnieju, można zatrzymać interval
-    const now = new Date();
-    if (now >= targetEnd) {
-      clearInterval(intervalId);
-    }
-  }, 1000);
+  document
+    .querySelectorAll<HTMLElement>(".countdown[data-target-start]")
+    .forEach(initCountdown);
 </script>

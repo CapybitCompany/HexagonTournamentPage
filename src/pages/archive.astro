@@ -1,14 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl } from '../utils/urls';
 const ArchiveComponent = (await import('../components/Archive.astro')).default;
 
 const structuredData = [
 	{
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
-		name: "Archiwum wydarzen HEX",
-		description: "Archiwum turniejow i eventow Minecraft HEX z nagrodami, datami i relacjami.",
-		url: "https://www.minecrafthex.pl/archive/"
+		name: "Archiwum wydarzeń HEX",
+		description: "Archiwum turniejów i eventów Minecraft HEX z nagrodami, datami i relacjami.",
+		url: absoluteUrl('archive')
 	},
 	{
 		"@context": "https://schema.org",
@@ -16,18 +17,18 @@ const structuredData = [
 		mainEntity: [
 			{
 				"@type": "Question",
-				name: "Gdzie sprawdzic wyniki poprzednich turniejow HEX?",
+				name: "Gdzie sprawdzić wyniki poprzednich turniejów HEX?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Wyniki, daty i informacje o nagrodach znajdziesz w archiwum wydarzen na stronie HEX."
+					text: "Wyniki, daty i informacje o nagrodach znajdziesz w archiwum wydarzeń na stronie HEX."
 				}
 			},
 			{
 				"@type": "Question",
-				name: "Jak czesto aktualizowane jest archiwum eventow?",
+				name: "Jak często aktualizowane jest archiwum eventów?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Archiwum aktualizujemy po zakonczeniu kazdej edycji turnieju i wiekszych wydarzen."
+					text: "Archiwum aktualizujemy po zakończeniu każdej edycji turnieju i większych wydarzeń."
 				}
 			}
 		]
@@ -39,15 +40,30 @@ const structuredData = [
 			{
 				"@type": "ListItem",
 				position: 1,
-				name: "Strona glowna",
-				item: "https://www.minecrafthex.pl/"
+				name: "Strona główna",
+				item: absoluteUrl()
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Archiwum",
-				item: "https://www.minecrafthex.pl/archive/"
+				item: absoluteUrl('archive')
 			}
+		]
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		name: "Archiwum edycji HEX",
+		itemListOrder: "https://schema.org/ItemListOrderDescending",
+		numberOfItems: 6,
+		itemListElement: [
+			{ "@type": "ListItem", position: 1, name: "HEX I", url: absoluteUrl('archive#hex1') },
+			{ "@type": "ListItem", position: 2, name: "HEX II", url: absoluteUrl('archive#hex2') },
+			{ "@type": "ListItem", position: 3, name: "HEX III", url: absoluteUrl('archive#hex3') },
+			{ "@type": "ListItem", position: 4, name: "HEX IV", url: absoluteUrl('archive#hex4') },
+			{ "@type": "ListItem", position: 5, name: "HEX V", url: absoluteUrl('archive#hex5') },
+			{ "@type": "ListItem", position: 6, name: "HEX VI", url: absoluteUrl('archive#hex6') }
 		]
 	}
 ];
@@ -59,7 +75,8 @@ const structuredData = [
 <Layout 
 	customTitle="Archiwum wydarzeń - turnieje i eventy Minecraft HEX" 
 	customDescription="Archiwum wydarzeń Minecraft HEX - opisy turniejów i eventów, liczba uczestników, nagrody oraz galerie zdjęć z dotychczasowych edycji."
-	canonicalUrl="https://www.minecrafthex.pl/archive"
+	canonicalUrl={absoluteUrl('archive')}
+	keywords="archiwum minecraft, historia turniejów minecraft, HEX I, HEX II, HEX III, HEX IV, HEX V, HEX VI, eventy minecraft, wyniki turniejów"
 	structuredData={structuredData}
 >
 	<ArchiveComponent />

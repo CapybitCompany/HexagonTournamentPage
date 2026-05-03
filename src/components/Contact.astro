@@ -2,7 +2,6 @@
 import NavBar from './NavBar/NavBar.astro'
 import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
-import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
@@ -11,48 +10,91 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/contact/contact.png" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;" altText="Kontakt do zespolu HEX Network Minecraft">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+    <Breadcrumbs items={[{ label: "Kontakt" }]} />
+    <FullImageContainer imagePath="images/contact/contact.png" imageLink="#" wrapperClass="blackBackground contactHeroBanner" imageClass="otherAspect" wrapperStyle="height: 420px;" altText="Kontakt do zespolu HEX Network Minecraft">
+        <div class="contactHeroOverlay"></div>
+        <div class="contactHeroContent">
+            <span class="contactHeroBadge">✉️ KONTAKT</span>
+            <h1 class="contactBannerText">Skontaktuj się z nami</h1>
+            <p class="contactHeroSub">Współpraca, pytania, zgłoszenia — napisz do nas lub dołącz na Discorda.</p>
         </div>
-        
     </FullImageContainer>
 
     <Section>
-        <h1>Kontakt</h1>
+        <h2 class="contactSectionTitle">Napisz do nas</h2>
+        <div class="contactCards reveal">
+            <article class="contactCard reveal-child" style="--reveal-i:0" data-tilt>
+                <div class="contactCardIcon">📧</div>
+                <h2 class="contactCardTitle">E-mail</h2>
+                <p class="contactCardDesc">Chciałbyś skontaktować się w sprawie współpracy? Szukasz miejsca reklamowego? Masz jakieś pytania?</p>
+                <button type="button" class="contactCardLink" id="copyEmailBtn" data-email="minecrafthexagon@gmail.com">
+                    minecrafthexagon@gmail.com
+                </button>
+            </article>
 
-        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap" lazyMeanColor="#596872" altText="Kontakt e-mail do zespolu HEX Network">
-            <div class="fullWidthTileContent" >
-                <h1>E-mail</h1>
-                <p> Chciałbyś skontaktować się w sprawie współpracy? Szukasz miejsca reklamowego? Masz jakieś pytania? </p>
-                <p> minecrafthexagon@gmail.com</p>
-            </div>
-        </ImageBoxContent>
-        <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd" altText="Discord HEX Network - wsparcie i komunikacja z administracja">
-            <div class="fullWidthTileContent" >
-                <h1>Discord</h1>
-                <p>Chciałbyś dołączyć do społeczności i brać udział w przyszłych wydarzeniach? </p>
-                <a style="font-size: 2rem; text-align:center;" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na serwer discord!</b></a>
-            </div>
-        </ImageBoxContent>
+            <article class="contactCard contactCardDiscord reveal-child" style="--reveal-i:1" data-tilt>
+                <div class="contactCardIcon">💬</div>
+                <h2 class="contactCardTitle">Discord</h2>
+                <p class="contactCardDesc">Chciałbyś dołączyć do społeczności i brać udział w przyszłych wydarzeniach? Discord to najszybszy kanał kontaktu.</p>
+                <a href="https://discord.gg/e6SuCrQHak" class="contactDiscordBtn" target="_blank" rel="noopener">
+                    Dołącz na Discord →
+                </a>
+            </article>
+        </div>
 
-        <section class="contactFaq showcaseFaq">
-            <h2>FAQ - Kontakt</h2>
+        <div class="contactChannels reveal">
+            <h2 class="contactSectionTitle">Najlepsze kanały kontaktu</h2>
+            <div class="channelsGrid">
+                <div class="channelItem reveal-child" style="--reveal-i:0">
+                    <span class="channelIcon">⚡</span>
+                    <div>
+                        <strong>Szybkie pytania</strong>
+                        <p>Discord — kanały wsparcia</p>
+                    </div>
+                </div>
+                <div class="channelItem reveal-child" style="--reveal-i:1">
+                    <span class="channelIcon">🤝</span>
+                    <div>
+                        <strong>Współpraca / reklama</strong>
+                        <p>E-mail</p>
+                    </div>
+                </div>
+                <div class="channelItem reveal-child" style="--reveal-i:2">
+                    <span class="channelIcon">🐛</span>
+                    <div>
+                        <strong>Zgłoszenia techniczne</strong>
+                        <p>Discord — tickety</p>
+                    </div>
+                </div>
+                <div class="channelItem reveal-child" style="--reveal-i:3">
+                    <span class="channelIcon">📢</span>
+                    <div>
+                        <strong>Aktualności i zapowiedzi</strong>
+                        <p>Discord + strona główna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="contactFaq reveal">
+            <h2>FAQ — Kontakt</h2>
             <FAQ>
                 <FAQLine>
-                    <FAQQuestion>Gdzie najszybciej uzyskam odpowiedz?</FAQQuestion>
+                    <FAQQuestion>Gdzie najszybciej uzyskam odpowiedź?</FAQQuestion>
                     <FAQAnswer>Najszybciej przez Discord HEX, gdzie aktywnie odpowiadamy na pytania graczy.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
-                    <FAQQuestion>Jak zglosic wspolprace lub reklame?</FAQQuestion>
-                    <FAQAnswer>Napisz do nas mailowo na minecrafthexagon@gmail.com lub skontaktuj sie przez Discord.</FAQAnswer>
+                    <FAQQuestion>Jak zgłosić współpracę lub reklamę?</FAQQuestion>
+                    <FAQAnswer>Napisz do nas mailowo na minecrafthexagon@gmail.com lub skontaktuj się przez Discord.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
-                    <FAQQuestion>Czy moge zglosic problem techniczny?</FAQQuestion>
-                    <FAQAnswer>Tak, zgloszenia techniczne przyjmujemy przez Discord i w kanalach wsparcia.</FAQAnswer>
+                    <FAQQuestion>Czy mogę zgłosić problem techniczny?</FAQQuestion>
+                    <FAQAnswer>Tak, zgłoszenia techniczne przyjmujemy przez Discord i w kanałach wsparcia.</FAQAnswer>
                 </FAQLine>
             </FAQ>
         </section>
@@ -61,48 +103,362 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 </ContentContainer>
 <Footer/>
 
+<!-- Copy toast -->
+<div class="copyToast" id="copyToast" aria-live="polite">📋 Skopiowano adres e-mail!</div>
+
+<script>
+/* === Scroll Reveal === */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+/* === 3D Tilt === */
+document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    });
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+    });
+});
+
+/* === Copy Email === */
+const copyBtn = document.getElementById("copyEmailBtn") as HTMLButtonElement | null;
+const toast = document.getElementById("copyToast");
+copyBtn?.addEventListener("click", async () => {
+    const email = copyBtn.dataset.email;
+    if (!email) return;
+    try {
+        await navigator.clipboard.writeText(email);
+    } catch {
+        /* fallback */
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+    }
+    toast?.classList.add("show");
+    setTimeout(() => toast?.classList.remove("show"), 2200);
+});
+</script>
+
 <style>
-    li {
-        text-align: left;
-        font-size: clamp(1.05rem, 1.25vw, 1.18rem);
-        line-height: 1.7;
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-child {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.5s cubic-bezier(.22,1,.36,1), transform 0.5s cubic-bezier(.22,1,.36,1);
+        transition-delay: calc(var(--reveal-i, 0) * 120ms);
+    }
+    .revealed .reveal-child {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    .fullWidthTileContent p {
-        margin: 0;
-        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
-        line-height: 1.7;
+    /* ===== COPY TOAST ===== */
+    .copyToast {
+        position: fixed;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: rgba(255, 166, 0, 0.95);
+        color: #0a0d12;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 14px 28px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .copyToast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 
-    .fullWidthTileContent h1 {
-        margin-bottom: 10px;
+    /* ===== TILT CARDS ===== */
+    [data-tilt] {
+        transition: transform 0.18s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform;
     }
 
-    .fullWidthTileContent a {
-        line-height: 1.35;
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
 
-    .archiveBannerText{
-        color: white;
-        font-size: 6rem;
-        font-family: "minecraft";
+    /* ===== HERO ===== */
+    :global(.contactHeroBanner) {
+        position: relative;
     }
 
-    .contactFaq {
+    .contactHeroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(10, 13, 18, 0.7) 70%,
+            #0a0d12 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .contactHeroContent {
+        position: relative;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
         gap: 12px;
-        width: min(1100px, 96%);
-        margin: 0 auto;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contactHeroBadge {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.1);
+        color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .contactBannerText {
+        color: white;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-family: "minecraft";
+        margin: 0;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.25), 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .contactHeroSub {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 560px;
+    }
+
+    /* ===== CONTACT CARDS ===== */
+    .contactCards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        width: 100%;
+        margin-bottom: 48px;
+    }
+
+    .contactCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 36px 28px 32px;
         border-radius: 18px;
-        padding: 16px;
-        color: #f6f0dd;
-        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+        gap: 12px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .contactCard::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        opacity: 0.45;
+    }
+
+    .contactCard:hover {
+        border-color: rgba(255, 166, 0, 0.2);
+        box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 166, 0, 0.05);
+    }
+
+    .contactCardIcon {
+        font-size: 2.8rem;
+        filter: drop-shadow(0 0 12px rgba(255, 166, 0, 0.2));
+    }
+
+    .contactCardTitle {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .contactCardTitle::after {
+        display: none;
+    }
+
+    .contactCardDesc {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.6;
+        max-width: 360px;
+    }
+
+    .contactCardLink {
+        display: inline-flex;
+        padding: 12px 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 166, 0, 0.3);
+        background: rgba(255, 166, 0, 0.08);
+        color: var(--accent-color) !important;
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        transition: background 0.2s, border-color 0.2s;
+        margin-top: 4px;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    .contactCardLink:hover {
+        background: rgba(255, 166, 0, 0.15);
+        border-color: rgba(255, 166, 0, 0.5);
+    }
+
+    .contactDiscordBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        border-radius: 12px;
+        background: #5865F2;
+        color: #fff !important;
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
+        margin-top: 4px;
+    }
+
+    .contactDiscordBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(88, 101, 242, 0.45);
+    }
+
+    /* ===== CHANNELS SECTION ===== */
+    .contactChannels {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 48px;
+    }
+
+    .contactSectionTitle {
+        text-align: center;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        color: #fff;
+        margin: 0 0 28px 0;
+    }
+
+    .contactSectionTitle::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin: 12px auto 0;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+    }
+
+    .channelsGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        width: 100%;
+    }
+
+    .channelItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 18px 20px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        transition: border-color 0.2s, background 0.2s;
+    }
+
+    .channelItem:hover {
+        border-color: rgba(255, 166, 0, 0.15);
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .channelIcon {
+        font-size: 1.6rem;
+        flex-shrink: 0;
+    }
+
+    .channelItem strong {
+        color: #fff;
+        font-size: 0.95rem;
+    }
+
+    .channelItem p {
+        margin: 2px 0 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* ===== FAQ ===== */
+    .contactFaq {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: min(1100px, 100%);
+        margin: 10px auto 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 20px 16px;
+        color: #f6f0dd;
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     }
 
     .contactFaq::before {
@@ -110,51 +466,30 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.12), transparent 42%);
     }
 
     .contactFaq h2 {
         margin: 0 0 4px 0;
         position: relative;
         z-index: 1;
+        color: #fff;
     }
 
-    .contactFaq article {
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 12px;
-        padding: 10px 12px;
-        background: rgba(0, 0, 0, 0.24);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .contactFaq h3 {
-        margin: 0 0 6px 0;
-        color: #ffd88c;
-    }
-
-    .contactFaq p {
-        margin: 0;
-        line-height: 1.7;
-        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-    }
-
-    .contactFaq :global(.faqQuestion) {
-        font-size: clamp(1.12rem, 1.45vw, 1.28rem);
-    }
-
-    .contactFaq :global(.faqAnswer) {
-        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-        line-height: 1.7;
-    }
-
-    @media(max-width: 870px){
-        .archiveBannerText{
-            font-size: 4rem;
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .contactCards {
+            grid-template-columns: 1fr;
         }
-        
+
+        .channelsGrid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .contactBannerText {
+            font-size: clamp(2rem, 8vw, 3rem);
+        }
     }
 </style>

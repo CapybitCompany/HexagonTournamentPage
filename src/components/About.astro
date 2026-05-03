@@ -2,7 +2,6 @@
 import NavBar from './NavBar/NavBar.astro'
 import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
-import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
@@ -11,130 +10,265 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+import { hexProjectStats } from '../data/hex-network'
+const base = import.meta.env.BASE_URL;
+
+const aboutFocusAreas = [
+    {
+        icon: '🏆',
+        title: 'Turnieje i eventy',
+        desc: 'Budujemy wydarzenia z jasnym celem, własnymi zasadami i rankingiem punktowym.'
+    },
+    {
+        icon: '🌍',
+        title: 'Staly serwer do grania',
+        desc: 'Poza eventami rozwijamy swiat, do ktorego mozna wracac codziennie i budowac cos swojego.'
+    },
+    {
+        icon: '🧩',
+        title: 'Autorskie mechaniki',
+        desc: 'Testujemy pluginy, mapy i formaty gry, ktore daja nam wiecej niz kolejny zwykly serwer.'
+    },
+    {
+        icon: '💬',
+        title: 'Discord jako centrum projektu',
+        desc: 'To tam sa zapowiedzi, komunikacja z graczami, zapisy i feedback po kazdej edycji.'
+    },
+];
+
+const aboutAudienceCards = [
+    {
+        label: '01',
+        title: 'Dla graczy codziennych',
+        desc: 'Jesli chcesz po prostu wpasc po szkole lub pracy i miec zyjacy serwer, znajdziesz tu swoje miejsce.'
+    },
+    {
+        label: '02',
+        title: 'Dla tych, ktorzy lubia rywalizacje',
+        desc: 'Rankingi, eventy i sezonowe cele daja powod, zeby wracac i walczyc o cos wiecej niz sam survival.'
+    },
+    {
+        label: '03',
+        title: 'Dla ekip i znajomych',
+        desc: 'HEX jest projektowany tak, by dalo sie tu jednoczesnie wspolpracowac, rywalizowac i tworzyc swoja historie.'
+    },
+];
+
+const aboutValues = [
+    {
+        icon: '⚖️',
+        title: 'Fair-play',
+        desc: 'Dbamy o uczciwa rywalizacje i mechaniki, ktore nie rozwalaja balansu.'
+    },
+    {
+        icon: '🤝',
+        title: 'Szacunek',
+        desc: 'Nie ma miejsca na toksycznosc, nękanie i chaos komunikacyjny.'
+    },
+    {
+        icon: '🛡️',
+        title: 'Bezpieczenstwo',
+        desc: 'Moderacja, przejrzyste zasady i szybka reakcja sa czescia codziennego utrzymania projektu.'
+    },
+    {
+        icon: '📣',
+        title: 'Transparentnosc',
+        desc: 'Zmiany, terminy i nagrody komunikujemy wprost, bez zgadywania po stronie graczy.'
+    },
+];
+
+const aboutEventFlow = [
+    {
+        step: '01',
+        title: 'Zapowiedz',
+        desc: 'Najpierw pokazujemy motyw, zasady i termin, zeby kazdy wiedzial, o co gra.'
+    },
+    {
+        step: '02',
+        title: 'Zapisy i przygotowanie',
+        desc: 'Zbieramy chetnych, dopinamy mape, pluginy i scenariusz konkretnej edycji.'
+    },
+    {
+        step: '03',
+        title: 'Rozgrywka',
+        desc: 'Event ma tempo, emocje i czytelne cele. Ma byc widowiskowy, ale rowniez uczciwy.'
+    },
+    {
+        step: '04',
+        title: 'Ranking i nagrody',
+        desc: 'Po wszystkim zostaje historia edycji, wyniki i punkty, ktore buduja dluzsza motywacje.'
+    },
+];
+
+const aboutSupportPillars = [
+    'hosting i infrastruktura',
+    'narzedzia, zabezpieczenia i rozwój pluginow',
+    'czas potrzebny na eventy, support i utrzymanie projektu',
+];
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground" imageClass="otherAspect" wrapperStyle="height: 500px;" altText="Zespol HEX Network i spolecznosc Minecraft podczas wydarzenia">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+    <Breadcrumbs items={[{ label: "O nas" }]} />
+    <FullImageContainer imagePath="images/About/about.jpeg" imageLink="#" wrapperClass="blackBackground aboutHeroBanner" imageClass="otherAspect" wrapperStyle="height: 420px;" altText="Zespol HEX Network i spolecznosc Minecraft podczas wydarzenia">
+        <div class="aboutHeroOverlay"></div>
+        <div class="aboutHeroContent">
+            <span class="aboutHeroBadge">👥 O NAS</span>
+            <h1 class="aboutBannerText">HEX Network</h1>
+            <p class="aboutHeroSub">Polska społeczność i serwer Minecraft — turnieje, eventy, ranking graczy.</p>
         </div>
-        
     </FullImageContainer>
 
     <Section>
         <section class="about">
-            <header class="about__header">
-                <h1>O nas</h1>
+            <header class="about__header reveal">
                 <p>
                 <b>HEX Network</b> to polska społeczność i serwer Minecraft, który łączy <b>turnieje, eventy, ranking graczy oraz autorskie tryby rozgrywki</b>.
                 Zaczęliśmy od turniejów dla znajomych, a dziś budujemy miejsce, gdzie można rywalizować, współpracować i po prostu dobrze się bawić na co dzień.
                 </p>
             </header>
 
-            <section class="about__stats" aria-label="Najwazniejsze informacje o HEX Network">
-                <article class="about__statCard">
+            <section class="about__stats reveal" aria-label="Najwazniejsze informacje o HEX Network">
+                <article class="about__statCard reveal-child" style="--reveal-i:0">
                     <span>Start projektu</span>
                     <strong>15.03.2025</strong>
                 </article>
-                <article class="about__statCard">
+                <article class="about__statCard reveal-child" style="--reveal-i:1">
                     <span>Rozegrane turnieje</span>
-                    <strong>6</strong>
+                    <strong data-count-to={hexProjectStats.tournamentsPlayed}>0</strong>
                 </article>
-                <article class="about__statCard">
+                <article class="about__statCard reveal-child" style="--reveal-i:2">
                     <span>Gracze w rankingach</span>
-                    <strong>44</strong>
+                    <strong data-count-to={hexProjectStats.rankedPlayers}>0</strong>
                 </article>
-                <article class="about__statCard">
-                    <span>Aktywna społeczność</span>
-                    <strong>Discord + serwer</strong>
+                <article class="about__statCard reveal-child" style="--reveal-i:3">
+                    <span>Na Discordzie</span>
+                    <strong data-count-to={hexProjectStats.discordMembers}>0</strong>
                 </article>
             </section>
 
-            <section class="about__section">
+            <section class="about__section about__focusSection reveal">
+                <span class="about__eyebrow">Jak pracujemy</span>
                 <h2>Co robimy</h2>
-                <ul>
-                <li>Organizujemy turnieje i eventy Minecraft z rankingiem punktowym.</li>
-                <li>Prowadzimy stały serwer (Survival/SMP) oraz osobny świat mini-gier.</li>
-                <li>Budujemy aktywne community na Discordzie - tam dzieje się większość komunikacji.</li>
-                <li>Testujemy nowe pomysły, mapy i tryby w krótszych, eventowych formatach.</li>
-                <li>Przygotowujemy projekty, które wykraczają po za świat Minecraft.</li>
-                </ul>
+                <div class="about__focusGrid">
+                    {aboutFocusAreas.map((item, index) => (
+                        <article class="about__focusCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__focusIcon" aria-hidden="true">{item.icon}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section">
-                <h2>Dla kogo jest HEX Network</h2>
-                <p>
-                Dla graczy, którzy lubią Minecrafta i chcą mieć:
-                <strong>stały serwer</strong> do grania na co dzień oraz <strong>wydarzenia</strong>, które dodają emocji i celów na dłużej.
-                Najczęściej trafiają do nas nastolatkowie i młodzi dorośli, ale każdy szanujący zasady jest mile widziany.
-                </p>
+            <section class="about__section about__audienceSection reveal">
+                <div class="about__audienceIntro">
+                    <span class="about__eyebrow">Dla kogo to jest</span>
+                    <h2>Dla graczy, ktorzy chca czegos wiecej niz pusty survival</h2>
+                    <p>
+                    HEX jest dla osob, ktore lubia Minecrafta, ale chca miec jednoczesnie <strong>staly serwer</strong>,
+                    <strong>wydarzenia z emocjami</strong> i projekt, ktory zyje rowniez pomiedzy eventami.
+                    Najczesciej trafiaja do nas nastolatkowie i mlodzi dorosli, ale kazdy szanujacy zasady jest mile widziany.
+                    </p>
+                </div>
+                <div class="about__audienceCards">
+                    {aboutAudienceCards.map((item, index) => (
+                        <article class="about__audienceCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__audienceLabel">{item.label}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section">
+            <section class="about__section about__valuesSection reveal">
+                <span class="about__eyebrow">Zasady gry</span>
                 <h2>Nasze zasady</h2>
-                <ul>
-                <li><strong>Fair-play</strong> - stawiamy na uczciwą rywalizację i przejrzyste reguły.</li>
-                <li><strong>Szacunek</strong> - zero toksyczności, wyzwisk i nękania.</li>
-                <li><strong>Bezpieczeństwo</strong> - moderacja i jasne zasady porządku na serwerze oraz Discordzie.</li>
-                <li><strong>Transparentność</strong> - komunikujemy zmiany, terminy eventów i zasady nagród.</li>
-                </ul>
+                <div class="about__valuesGrid">
+                    {aboutValues.map((item, index) => (
+                        <article class="about__valueCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__valueIcon" aria-hidden="true">{item.icon}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section">
-                <h2>Jak działają eventy i nagrody</h2>
-                <p>
-                Organizujemy turnieje i wyzwania sezonowe. Za udział i wyniki można zdobywać punkty do rankingów,
-                a najlepsze osoby zgarniają nagrody oraz wyróżnienia. Informacje o konkretnych zasadach, terminach i pulach nagród
-                zawsze publikujemy z wyprzedzeniem na Discordzie oraz w <a href="/archive"><b>archiwum eventów</b></a> i na stronie głównej.
+            <section class="about__section about__eventSection reveal">
+                <span class="about__eyebrow">Od pomyslu do eventu</span>
+                <h2>Jak dzialaja eventy i nagrody</h2>
+                <div class="about__eventTimeline">
+                    {aboutEventFlow.map((item, index) => (
+                        <article class="about__eventCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__eventStep">{item.step}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
+                <p class="about__eventNote">
+                Konkretne zasady, terminy i pule nagrod publikujemy z wyprzedzeniem na Discordzie oraz w <a href={`${base}archive`}><b>archiwum eventow</b></a>.
                 </p>
             </section>
 
-            <section class="about__section">
-                <h2>Skąd to wszystko się bierze</h2>
-                <p>
-                Utrzymanie serwera i organizacja eventów kosztują (hosting, zabezpieczenia, narzędzia, czas). Dlatego mamy sklep z
-                opcjami wspierającymi projekt (np. VIP i dodatki kosmetyczne / quality-of-life). Naszym celem jest, aby wsparcie
-                <strong>nie psuło rozgrywki</strong> i było uczciwe wobec graczy.
-                </p>
-                <p>
-                Jeśli chcesz zobaczyć, jak wygląda wsparcie projektu w praktyce, sprawdź <a href="/shop"><b>sklep HEX Network</b></a>.
+            <section class="about__section about__supportSection reveal">
+                <div class="about__supportIntro">
+                    <span class="about__eyebrow">Zaplecze projektu</span>
+                    <h2>Skad to wszystko sie bierze</h2>
+                    <p>
+                    Utrzymanie serwera i organizacja eventow kosztuja. Dlatego mamy sklep z opcjami wspierajacymi projekt,
+                    ale naszym celem jest, aby wsparcie <strong>nie psulo rozgrywki</strong> i pozostawalo uczciwe wobec graczy.
+                    </p>
+                </div>
+                <div class="about__supportGrid">
+                    {aboutSupportPillars.map((item, index) => (
+                        <div class="about__supportPillar reveal-child" style={`--reveal-i:${index}`}>
+                            <span>{item}</span>
+                        </div>
+                    ))}
+                </div>
+                <p class="about__supportNote">
+                Jesli chcesz zobaczyc, jak wyglada wsparcie projektu w praktyce, sprawdz <a href={`${base}shop`}><b>sklep HEX Network</b></a>.
                 </p>
             </section>
 
-            <section class="about__section about__linksSection">
+            <section class="about__section about__linksSection reveal">
                 <h2>Gdzie zacząć?</h2>
                 <div class="about__linkGrid">
-                    <a class="about__linkCard" href="/">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:0" href={base}>
                         <h3>Strona główna</h3>
                         <p>Poznaj aktualne turnieje, plany projektu i najważniejsze informacje o serwerze.</p>
                     </a>
-                    <a class="about__linkCard" href="/archive">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:1" href={`${base}archive`}>
                         <h3>Archiwum eventów</h3>
                         <p>Zobacz poprzednie edycje, zwycięzców, nagrody i historię wydarzeń HEX.</p>
                     </a>
-                    <a class="about__linkCard" href="/contact">
+                    <a class="about__linkCard reveal-child" style="--reveal-i:2" href={`${base}contact`}>
                         <h3>Kontakt</h3>
                         <p>Masz pytanie, pomysł na współpracę albo chcesz odezwać się do administracji? Napisz do nas.</p>
                     </a>
                 </div>
             </section>
 
-            <section >
-                
-                <ImageBoxContent imagePath="images/contact/discord.png" wrapperClass="bottomGap imageRight" lazyMeanColor="#e5e3dd" altText="Discord HEX Network - dolacz do spolecznosci Minecraft">
-                    <div class="fullWidthTileContent" >
-                        <h1>Dołącz do community</h1>
-                        <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
-                            Wbijaj - tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera. </p>
-                        <div class="fullWidthTileContent about__ctaRow" >
-                            <a class="about__ctaButton" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na Discord</b></a>
-                            <a class="about__ctaButton about__ctaGhost" href="/"><b>Zobacz stronę główną</b></a>
-                        </div>
+            <section class="about__community reveal">
+                <div class="about__communityImg">
+                    <picture><source srcset={`${base}images/contact/discord.webp`} type="image/webp" /><img src={`${base}images/contact/discord.png`} alt="Discord HEX Network - dołącz do społeczności Minecraft" loading="lazy" decoding="async" /></picture>
+                </div>
+                <div class="about__communityText">
+                    <h2>Dołącz do community</h2>
+                    <p>Chcesz grać z nami, brać udział w eventach albo po prostu posiedzieć na Discordzie?
+                        Wbijaj — tam znajdziesz aktualne informacje, zapowiedzi i linki do serwera.</p>
+                    <div class="about__ctaRow">
+                        <a class="about__ctaButton" href="https://discord.gg/e6SuCrQHak"><b>Dołącz na Discord</b></a>
+                        <a class="about__ctaButton about__ctaGhost" href={base}><b>Zobacz stronę główną</b></a>
                     </div>
-                </ImageBoxContent>
+                </div>
             </section>
 
-            <section class="about__section about__faqSection faqSection showcasePanel faqPanel">
+            <section class="about__section about__faqSection faqSection showcasePanel faqPanel reveal">
                 <h2 class="about__faqHeading">FAQ - O nas</h2>
                 <FAQ>
                     <FAQLine>
@@ -158,8 +292,130 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 </ContentContainer>
 <Footer/>
 
+<script>
+/* === Scroll Reveal === */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+/* === Counting Numbers === */
+const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target as HTMLElement;
+        const countTo = el.dataset.countTo;
+        if (!countTo) return;
+        const target = parseInt(countTo, 10);
+        if (isNaN(target)) return;
+        countObserver.unobserve(el);
+        const duration = 1200;
+        const start = performance.now();
+        const animate = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = String(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll<HTMLElement>("[data-count-to]").forEach((el) => countObserver.observe(el));
+</script>
+
 <style>
-    section{
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-child {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.5s cubic-bezier(.22,1,.36,1), transform 0.5s cubic-bezier(.22,1,.36,1);
+        transition-delay: calc(var(--reveal-i, 0) * 120ms);
+    }
+    .revealed .reveal-child {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
+    }
+
+    /* ===== HERO ===== */
+    :global(.aboutHeroBanner) {
+        position: relative;
+    }
+
+    .aboutHeroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(10, 13, 18, 0.7) 70%,
+            #0a0d12 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .aboutHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        gap: 12px;
+    }
+
+    .aboutHeroBadge {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.1);
+        color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .aboutBannerText {
+        color: white;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-family: "minecraft";
+        margin: 0;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.25), 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .aboutHeroSub {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 560px;
+    }
+
+    section {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -167,11 +423,11 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .about {
         gap: 28px;
-        --about-panel-gradient: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
-        --about-card-bg: rgba(0, 0, 0, 0.42);
-        --about-card-bg-hover: rgba(0, 0, 0, 0.5);
-        --about-border: rgba(255, 255, 255, 0.24);
-        --about-panel-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+        --about-panel-gradient: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        --about-card-bg: rgba(0, 0, 0, 0.32);
+        --about-card-bg-hover: rgba(0, 0, 0, 0.45);
+        --about-border: rgba(255, 255, 255, 0.08);
+        --about-panel-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
     }
 
     .about__header {
@@ -187,16 +443,18 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         margin: 0;
         line-height: 1.7;
         font-size: clamp(1.08rem, 1.35vw, 1.24rem);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .about__header h1 {
-
+        color: #fff;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
     }
 
     .about__stats {
         border-radius: 18px;
         padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         background: var(--about-panel-gradient);
         box-shadow: var(--about-panel-shadow);
         display: grid;
@@ -214,7 +472,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.12), transparent 42%);
     }
 
     .about__statCard {
@@ -235,29 +493,52 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .about__statCard span {
-        color: #ffd49c;
-        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.72rem;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.12em;
         font-weight: 700;
     }
 
     .about__statCard strong {
-        color: #ffe39f;
-        font-size: clamp(1.25rem, 2vw, 1.8rem);
+        color: #fff;
+        font-size: clamp(1.15rem, 1.8vw, 1.5rem);
         line-height: 1.2;
     }
 
     .about__section {
         border-radius: 18px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         background: var(--about-panel-gradient);
         box-shadow: var(--about-panel-shadow);
         position: relative;
         overflow: hidden;
         box-sizing: border-box;
         gap: 10px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.22);
+        background: rgba(255, 166, 0, 0.08);
+        color: #ffd89d;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__section:hover {
+        border-color: rgba(255, 166, 0, 0.15);
+        box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 166, 0, 0.04);
     }
 
     .about__section p {
@@ -270,9 +551,21 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .about__section h2 {
-        color: #ffe39f;
+        color: #fff;
         position: relative;
         z-index: 1;
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+    }
+
+    .about__section h2::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin: 8px auto 0;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
     }
 
     .about__section strong {
@@ -291,6 +584,205 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .about__linksSection {
         align-items: stretch;
+    }
+
+    .about__focusGrid,
+    .about__valuesGrid,
+    .about__eventTimeline,
+    .about__supportGrid {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__focusGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__focusCard,
+    .about__valueCard,
+    .about__eventCard,
+    .about__supportPillar,
+    .about__audienceCard {
+        border: 1px solid var(--about-border);
+        background: var(--about-card-bg);
+        border-radius: 14px;
+        box-sizing: border-box;
+        transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .about__focusCard {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px;
+    }
+
+    .about__focusCard:hover,
+    .about__valueCard:hover,
+    .about__eventCard:hover,
+    .about__supportPillar:hover,
+    .about__audienceCard:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 210, 120, 0.28);
+        background: var(--about-card-bg-hover);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    .about__focusIcon,
+    .about__valueIcon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(145deg, rgba(255, 166, 0, 0.24), rgba(255, 166, 0, 0.08));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+        font-size: 1.15rem;
+    }
+
+    .about__focusCard h3,
+    .about__valueCard h3,
+    .about__eventCard h3,
+    .about__audienceCard h3 {
+        margin: 0;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+        font-size: 1.1rem;
+    }
+
+    .about__focusCard p,
+    .about__valueCard p,
+    .about__eventCard p,
+    .about__audienceCard p {
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        font-size: 1rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+    .about__audienceSection {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .about__audienceIntro {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__audienceIntro h2,
+    .about__supportIntro h2 {
+        margin: 0;
+    }
+
+    .about__audienceCards {
+        display: grid;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__audienceCard {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .about__audienceLabel,
+    .about__eventStep {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        width: fit-content;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(255, 166, 0, 0.12);
+        color: #ffd79c;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .about__valuesGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__valueCard {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 18px;
+    }
+
+    .about__eventTimeline {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__eventCard {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px;
+        min-height: 190px;
+    }
+
+    .about__eventNote,
+    .about__supportNote {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__supportSection {
+        gap: 16px;
+    }
+
+    .about__supportIntro {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__supportGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .about__supportPillar {
+        min-height: 96px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .about__supportPillar span {
+        color: #f1eadb;
+        font-size: 1rem;
+        line-height: 1.55;
     }
 
     .about__linkGrid {
@@ -324,7 +816,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 
     .about__linkCard h3 {
         margin: 0;
-        color: #ffe39f;
+        color: var(--accent-color);
     }
 
     .about__linkCard p {
@@ -334,60 +826,150 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         line-height: 1.65;
     }
 
+    /* ===== COMMUNITY CTA ===== */
+    .about__community {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--about-panel-gradient);
+        box-shadow: var(--about-panel-shadow);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+    }
+
+    .about__community:hover {
+        border-color: rgba(255, 166, 0, 0.15);
+    }
+
+    .about__communityImg {
+        display: flex;
+        overflow: hidden;
+        max-height: 320px;
+    }
+
+    .about__communityImg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        transition: transform 0.5s ease;
+    }
+
+    .about__community:hover .about__communityImg img {
+        transform: scale(1.05);
+    }
+
+    .about__communityText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 32px 28px;
+        gap: 14px;
+    }
+
+    .about__communityText h2 {
+        color: #fff;
+        margin: 0;
+        font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    }
+
+    .about__communityText h2::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        margin: 8px auto 0;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+    }
+
+    .about__communityText p {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+    }
+
     .about__ctaRow {
         display: flex;
-        justify-content: center;
         gap: 12px;
         flex-wrap: wrap;
-        margin-top: 8px;
+        margin-top: 4px;
     }
 
     .about__ctaButton {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 24px;
-        border-radius: 999px;
+        padding: 12px 28px;
+        border-radius: 12px;
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: 1rem;
         background: var(--accent-color);
-        color: #181818;
+        color: #0a0d12 !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 20px rgba(255, 166, 0, 0.3);
+    }
+
+    .about__ctaButton:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 166, 0, 0.45);
     }
 
     .about__ctaGhost {
         background: transparent;
-        color: var(--accent-color);
-        border: 1px solid var(--accent-color);
+        color: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: none;
+    }
+
+    .about__ctaGhost:hover {
+        border-color: var(--accent-color);
+        color: #fff !important;
+        box-shadow: none;
     }
 
     .about__faqSection {
         gap: 12px;
-        padding: 14px 16px;
+        padding: 20px 16px;
+        text-align: center;
+        align-items: center;
     }
 
     .about__faqHeading {
-        color: #ffe39f;
+        color: #fff;
         position: relative;
         z-index: 1;
+        margin: 0 0 4px 0;
+    }
+
+    .about__faqSection .about__faqHeading::after {
+        width: 8px;
+        height: 8px;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        border-right: 2px solid #ffe39f;
+        border-bottom: 2px solid #ffe39f;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform-origin: center;
+        transform: translateY(-50%) rotate(-45deg);
+        transition: transform 0.4s ease;
+    }
+
+    .about__faqSection :global(.about__faqHeading[aria-expanded="true"])::after {
+        transform: translateY(-50%) rotate(45deg);
     }
 
     .about__faqSection :global(.faqContainer) {
         margin-top: 10px;
         position: relative;
         z-index: 1;
-    }
-
-    .about__faqSection :global(.faqContent) {
-        gap: 12px;
-    }
-
-    .about__faqSection :global(.faqQuestion) {
-        font-size: clamp(1.12rem, 1.45vw, 1.28rem);
-    }
-
-    .about__faqSection :global(.faqAnswer) {
-        font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-        line-height: 1.7;
     }
 
     li {
@@ -399,29 +981,56 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         z-index: 1;
     }
 
-    .archiveBannerText{
-        color: white;
-        font-size: 6rem;
-        font-family: "minecraft";
+    @media (max-width: 500px) {
+        .aboutBannerText {
+            font-size: clamp(2rem, 8vw, 3rem);
+        }
     }
 
     @media(max-width: 980px){
         .about__stats,
-        .about__linkGrid {
+        .about__linkGrid,
+        .about__focusGrid,
+        .about__valuesGrid,
+        .about__eventTimeline,
+        .about__supportGrid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .about__audienceSection {
+            grid-template-columns: 1fr;
         }
     }
 
+
+
     @media(max-width: 870px){
-        .archiveBannerText{
-            font-size: 4rem;
+        .about__community {
+            grid-template-columns: 1fr;
+        }
+
+        .about__communityImg {
+            max-height: 260px;
+        }
+
+        .about__communityText {
+            padding: 24px 20px;
         }
     }
 
     @media(max-width: 640px){
         .about__stats,
-        .about__linkGrid {
+        .about__linkGrid,
+        .about__focusGrid,
+        .about__valuesGrid,
+        .about__eventTimeline,
+        .about__supportGrid {
             grid-template-columns: 1fr;
+        }
+
+        .about__section,
+        .about__communityText {
+            padding: 20px;
         }
     }
 </style>

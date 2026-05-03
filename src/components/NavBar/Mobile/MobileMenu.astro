@@ -1,26 +1,45 @@
 ---
 import "../../../styles/global.css"
 import "./MobileMenu.styles.css"
+const base = import.meta.env.BASE_URL;
 ---
 <div class="mobileMenu" id="mobileMenu">
     <div class="mobileMenuInnerWrapper">
         <div class="mobileMenuInner">
-            <div class="submenuHeader">Serwer Minecraft HEX</div>
-            <div class="fullWidthTileContent"><a href="/hexParkour">Serwer Parkour</a></div>
-            <div class="fullWidthTileContent"><a href="/hexEvent">Serwer Event Zone</a></div>
-            <div class="fullWidthTileContent"><a href="/hexMiniGames">Server mini gier</a></div>
-            <div class="fullWidthTileContent"><a href="/hexPvp">Serwer HEX Mask Ritual (PVP)</a></div>
-            <div class="fullWidthTileContent"><a href="/hexHardcoreSmp">Serwer Hardcore SMP</a></div>
-            
-            <div class="submenuHeader">HEX Network</div>
-            <!-- <div class="fullWidthTileContent"><a href="/future">Przyszłe projekty</a></div> -->
-            <div class="fullWidthTileContent"><a href="/archive">Archiwum eventów</a></div>
-            <div class="fullWidthTileContent"><a href="/shop">Sklep</a></div>
+            <div class="mobileMenuGroup">
+                <div class="submenuHeader">Serwer Minecraft HEX</div>
+                <div class="mobileMenuLinks">
+                    <a href={`${base}hexEvent`}>Event Zone</a>
+                    <a href={`${base}hexSmp`}>HEX SMP</a>
+                </div>
+                <div class="submenuHeader submenuHeaderSoon">W niedalekiej przyszłości</div>
+                <div class="mobileMenuLinks">
+                    <span class="mobileMenuDisabled">Mini Games</span>
+                    <span class="mobileMenuDisabled">Parkour</span>
+                    <span class="mobileMenuDisabled">HEX Mask Ritual (PVP)</span>
+                </div>
+            </div>
 
-            <div class="submenuHeader">Kontakt</div>
-            <!-- <div class="fullWidthTileContent"><a href="/future">Przyszłe projekty</a></div> -->
-            <div class="fullWidthTileContent"><a href="/about">O nas</div>
-            <div class="fullWidthTileContent"><a href="/contact">Kontakt</a></div>
+            <div class="mobileMenuGroup">
+                <div class="submenuHeader">HEX Network</div>
+                <div class="mobileMenuLinks">
+                    <a href={`${base}archive`}>Archiwum eventów</a>
+                    <a href={`${base}devlog`}>Devlog</a>
+                    <a href={`${base}shop`}>Sklep</a>
+                </div>
+            </div>
+
+            <div class="mobileMenuGroup">
+                <div class="submenuHeader">Informacje</div>
+                <div class="mobileMenuLinks">
+                    <a href={`${base}about`}>O nas</a>
+                    <a href={`${base}contact`}>Kontakt</a>
+                </div>
+            </div>
+
+            <div class="mobileMenuCta">
+                <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer" class="mobileDiscordBtn">Dołącz na Discord</a>
+            </div>
         </div>
     </div>
 </div>

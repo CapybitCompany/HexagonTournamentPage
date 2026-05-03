@@ -12,10 +12,13 @@ import FAQ from '../../FAQ/FAQ.astro'
 import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
 <ContentContainer>
+    <Breadcrumbs items={[{ label: "Mini Games" }]} />
     <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground construction" altText="Serwer Mini-Games Minecraft HEX - strona w przygotowaniu">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
             <h1 class="archiveBannerText"></h1>
@@ -27,7 +30,7 @@ import FAQAnswer from '../../FAQ/FAQAnswer.astro'
     </div>
 
     <Section>
-        <article class="serverArticle">
+        <article class="serverArticle" style={`background-image: linear-gradient(rgba(0,0,0,0.32),rgba(0,0,0,0.9)), url('${base}images/Welcome/dirt.webp');`}>
             <header class="articleHeader">
                 <p class="statusKicker">Status projektu</p>
                 <h1>Serwer Mini-Games</h1>

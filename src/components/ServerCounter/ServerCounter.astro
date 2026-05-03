@@ -2,9 +2,33 @@
 const {sourceIP} = Astro.props;
 ---
 
-<div id="mc-status" style="font-family: minecraft; font-weight: bold; font-size: 2rem; font-color: white;">
-  Aktywni gracze: <span style="margin-left: 1rem;" id="mc-players">...</span>
+<div id="mc-status">
+  <span class="mc-label">Aktywni gracze:</span>
+  <span class="mc-count" id="mc-players">...</span>
 </div>
+
+<style>
+  #mc-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "minecraft";
+    font-weight: bold;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 0;
+  }
+
+  .mc-label {
+    opacity: 0.7;
+  }
+
+  .mc-count {
+    color: var(--accent-color, #ffa600);
+    text-shadow: 0 0 12px rgba(255, 166, 0, 0.35);
+  }
+</style>
 
 <script define:vars={{sourceIP}}>
   const SERVER_IP = 'MinecraftHEX.pl';

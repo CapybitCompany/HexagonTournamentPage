@@ -2,7 +2,6 @@
 import NavBar from './NavBar/NavBar.astro'
 import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
-import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
@@ -15,34 +14,55 @@ import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
-
+import { homepageHeroStats, homepageStatsGrid, homepageTimeline, serverRoadmap } from '../data/hex-network';
+const base = import.meta.env.BASE_URL;
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy">
-    <div class="bannerHero">
-        <h1 class="bannerTitle">Polski Serwer Minecraft</h1>
-        <a class="welcomeButton bannerCta" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer"><b>Dołącz</b></a>
+    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner heroBanner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy" priority={true}>
+    <div class="heroOverlay"></div>
+    <div class="heroParticles" aria-hidden="true">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
     </div>
+    <div class="bannerHero">
+        <span class="heroBadge">⚔️ SERWER MINECRAFT POLSKA</span>
+        <h1 class="bannerTitle">HEX NETWORK</h1>
+        <p class="bannerSubtitle">Turnieje z nagrodami · Eventy · Rankingi graczy · Autorskie tryby</p>
+        <div class="heroCtas">
+            <a class="welcomeButton bannerCta glowBtn" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer"><b>Dołącz na Discord</b></a>
+            <a class="welcomeButton bannerCtaOutline" href="#servers"><b>Poznaj serwery ↓</b></a>
+        </div>
+    </div>
+    <div class="scrollIndicator" aria-hidden="true"><span></span></div>
     </FullImageContainer>
 
-     <div style="display: flex; width: 100%; justify-content: center;">    
+    <aside class="heroSocialProof" aria-label="Kluczowe liczby HEX Network">
+        {homepageHeroStats.map((item, index) => (
+            <>
+                <span class="heroSocialProofItem"><span class="heroSocialProofIcon" aria-hidden="true">{item.icon}</span><strong>{item.value}</strong> {item.label}</span>
+                {index < homepageHeroStats.length - 1 && <span class="heroSocialProofSep" aria-hidden="true"></span>}
+            </>
+        ))}
+    </aside>
+
+    <div id="servers" style="display: flex; width: 100%; justify-content: center;">    
         <TimeContainer />
     </div>
 
 
     <ServerContainerWrapper sourceIP="MinecraftHEX.pl">
 
-        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href="/hexEvent"/>
+        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
 
-        <HexContainer src="images/Welcome/ServerBanner2.png" headerText="MINI GAMES" href="/hexMiniGames"/>
-
-        <HexContainer headerText="PARKOUR" href="/hexParkour" comingSoon={true} soonText="Niebawem"/>
-
-        <HexContainer headerText="PVP" href="/hexPvp" comingSoon={true} soonText="Niebawem"/>
-
-        <HexContainer headerText="HARDCORE SMP" href="/hexHardcoreSmp" comingSoon={true} soonText="Niebawem"/>
+        {serverRoadmap.map((item) => (
+            <HexContainer headerText={item.headerText} href={`${base}${item.href}`} comingSoon={true} soonText="Niebawem" progress={item.progress} eta={item.eta}/>
+        ))}
 
     </ServerContainerWrapper>
 
@@ -59,10 +79,9 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         <h2>HEX w liczbach</h2>
         <div class="showcasePanel socialProofPanel">
             <div class="showcaseGrid socialProofGrid">
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Rozegranych turniejów</p><h3>6</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Graczy w rankingach</p><h3>44</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Członków Discord</p><h3>121</h3></article>
-                <article class="showcaseCard socialProofItem"><p class="timelineLabel">Dni naszej działalności</p><h3 data-days-from="2025-03-15">0</h3></article>
+                {homepageStatsGrid.map((item) => (
+                    <article class="showcaseCard socialProofItem"><p class="timelineLabel">{item.label}</p><h3 data-days-from={item.daysFrom}>{item.value}</h3></article>
+                ))}
             </div>
         </div>
     </Section>
@@ -72,43 +91,24 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         <h2>Aktualności i plany</h2>
         <div class="showcasePanel updatesPanel">
             <p class="showcaseLead">Oficjalne aktualizacje projektu HEX Network: terminy turniejów, nowe tryby, sezony rankingowe i najważniejsze premiery serwera.</p>
-            <div class="updatesList">
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Term.jpg" alt="Najbliższy turniej 3.04.2026 o godzinie 19:00."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>HEX VII — 3.04.2026, 19:00</h3>
-                        <p>Najbliższy turniej z pulą nagród i punktami do rankingu.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Minigames.jpg" alt="Start Minigames w okolicy końca kwietnia."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>Start Minigames — koniec kwietnia</h3>
-                        <p>Ruszamy z nowym segmentem luźniejszych trybów i oryginalnymi mini-grami.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Castle.jpg" alt="W 2027 startuje HEXHogwart inspirowany światem magii w klimatach RPG."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>HEXHogwart — w budowie</h3>
-                        <p>Trwają prace nad nowym światem i mechanikami RPG.</p>
-                    </div>
-                </article>
-                <article class="showcaseCard updatesItem">
-                    <div class="updatesMedia" aria-hidden="true">
-                        <img src="images/Welcome/Activities/Rank.jpg" alt="Nasz serwer posiada rankingi najlepszych graczy sezonowo i rocznie."/>
-                    </div>
-                    <div class="updatesContent">
-                        <h3>Nowy sezon rankingowy — wkrótce</h3>
-                        <p>Przygotuj się na nową klasyfikację i walkę o topkę.</p>
-                    </div>
-                </article>
+            <ol class="updatesTimeline">
+                {homepageTimeline.map((item) => (
+                    <li class="updatesTimelineItem">
+                        <div class="updatesTimelineDot" aria-hidden="true"></div>
+                        <div class="updatesTimelineContent">
+                            <div class="updatesTimelineMeta">
+                                <time class="updatesTimelineDate" datetime={item.dateTime}>{item.date}</time>
+                                <span class={`updatesTimelineTag ${item.tagClass}`}>{item.tag}</span>
+                            </div>
+                            <h3>{item.title}</h3>
+                            <p>{item.description}</p>
+                            {item.href && item.cta && <a class="updatesTimelineLink" href={`${base}${item.href}`}>{item.cta}</a>}
+                        </div>
+                    </li>
+                ))}
+            </ol>
+            <div class="updatesTimelineFooter">
+                <a class="updatesTimelineAllLink" href={`${base}devlog`}>Zobacz pełen devlog →</a>
             </div>
         </div>
     </Section>
@@ -117,33 +117,61 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         <h2>Dlaczego warto zagrać?</h2>
         <div class="showcasePanel benefitsPanel">
             <div class="showcaseGrid benefitsGrid">
-                <article class="showcaseCard"><h3>Turnieje z nagrodami</h3></article>
-                <article class="showcaseCard"><h3>Ranking sezonowy i roczny</h3></article>
-                <article class="showcaseCard"><h3>Aktywna społeczność i administracja</h3></article>
-                <article class="showcaseCard"><h3>Regularne eventy i nowe tryby</h3></article>
+                <article class="showcaseCard benefitCard"><span class="benefitIcon">⚔️</span><h3>Turnieje z nagrodami</h3><p>Rywalizuj w cyklicznych turniejach z realnymi nagrodami pieniężnymi i zdobywaj punkty rankingowe.</p></article>
+                <article class="showcaseCard benefitCard"><span class="benefitIcon">📊</span><h3>Ranking sezonowy i roczny</h3><p>Śledź swoje postępy, awansuj w klasyfikacji i walcz o miano najlepszego gracza sezonu.</p></article>
+                <article class="showcaseCard benefitCard"><span class="benefitIcon">💬</span><h3>Aktywna społeczność</h3><p>Dołącz do zaangażowanej społeczności na Discordzie, która wspólnie tworzy wydarzenia i nowe tryby.</p></article>
+                <article class="showcaseCard benefitCard"><span class="benefitIcon">🎮</span><h3>Regularne eventy i tryby</h3><p>Co miesiąc nowe wydarzenia, autorskie mini-gry i oryginalne mechaniki tworzone przez nasz zespół.</p></article>
             </div>
         </div>
     </Section>
 
     <Section>
-        <h2 class="spotlightSectionTitle">Sklep Minecraft HEX i archiwum eventów</h2>
-
-        <ImageBoxContent imagePath="images/Welcome/Shop.jpg" wrapperClass="bottomGap imageRight welcomeFeatureBox" lazyMeanColor="#e5e3dd" altText="Sklep serwera Minecraft HEX - nagrody i pakiety">
-            <div class="fullWidthTileContent spotlightTile" >
-                <h3 class="spotlightCardTitle">Sklep serwera Minecraft HEX</h3>
-                <p class="spotlightCardText">Sprawdź pakiety VIP i dodatki, które wspierają rozwój projektu oraz organizację turniejów Minecraft.</p>
-                <a class="spotlightLink welcomeButton" href="/shop"><b>Przejdź do sklepu</b></a>
+        <h2>Jak dołączyć na serwer?</h2>
+        <div class="showcasePanel joinPanel">
+            <div class="showcaseGrid joinGrid">
+                <article class="showcaseCard joinStep">
+                    <span class="joinStepNumber">1</span>
+                    <h3>Minecraft Java Edition</h3>
+                    <p>Zadziała zarówno wersja premium, jak i non-premium. Wymagana wersja gry: 1.21 – 1.21.11.</p>
+                </article>
+                <article class="showcaseCard joinStep">
+                    <span class="joinStepNumber">2</span>
+                    <h3>Wpisz adres serwera</h3>
+                    <p>W Minecraft dodaj serwer i wpisz adres: <strong>MinecraftHEX.pl</strong></p>
+                </article>
+                <article class="showcaseCard joinStep">
+                    <span class="joinStepNumber">3</span>
+                    <h3>Wybierz tryb w lobby</h3>
+                    <p>Po wejściu na serwer wybierz interesujący Cię tryb gry przez portal lub kompas.</p>
+                </article>
             </div>
-        </ImageBoxContent>
-        <ImageBoxContent imagePath="images/Welcome/Archive.png" wrapperClass="bottomGap welcomeFeatureBox" lazyMeanColor="#596872" altText="Archiwum turniejów Minecraft HEX - wyniki i relacje">
-            <div class="fullWidthTileContent spotlightTile" >
-                <h3 class="spotlightCardTitle">Archiwum eventów Minecraft</h3>
-                <p class="spotlightCardText">Zobacz poprzednie edycje turniejów HEX: zwycięzców, pule nagród, daty wydarzeń i kluczowe momenty sezonu.</p>
-                <a class="spotlightLink welcomeButton" href="/archive"><b>Zobacz archiwum eventów</b></a>
-            </div>
-        </ImageBoxContent>
+        </div>
+    </Section>
 
-        </FullImageContainer>
+    <Section>
+        <h2 class="spotlightSectionTitle">Sklep i Archiwum</h2>
+        <div class="spotlightGrid">
+            <a href={`${base}shop`} class="spotlightCard">
+                <div class="spotlightCardBg" style={`background-image: url('${base}images/Welcome/Shop.jpg');`}></div>
+                <div class="spotlightCardOverlay"></div>
+                <div class="spotlightCardInner">
+                    <span class="spotlightIcon">🛒</span>
+                    <h3 class="spotlightCardTitle">Sklep HEX</h3>
+                    <p class="spotlightCardText">Pakiety VIP i HexCoins, które pozwalają na dodatki kosmetyczne i elementy QoL.</p>
+                    <span class="spotlightCta">Przejdź do sklepu →</span>
+                </div>
+            </a>
+            <a href={`${base}archive`} class="spotlightCard">
+                <div class="spotlightCardBg" style={`background-image: url('${base}images/Welcome/Archive.png');`}></div>
+                <div class="spotlightCardOverlay"></div>
+                <div class="spotlightCardInner">
+                    <span class="spotlightIcon">🏆</span>
+                    <h3 class="spotlightCardTitle">Archiwum eventów</h3>
+                    <p class="spotlightCardText">Zwycięzcy, pule nagród, daty i kluczowe momenty poprzednich turniejów.</p>
+                    <span class="spotlightCta">Zobacz archiwum →</span>
+                </div>
+            </a>
+        </div>
     </Section>
 
     <Section>
@@ -152,7 +180,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
             <FAQ>
                 <FAQLine>
                     <FAQQuestion>Jak zapisać się na turniej Minecraft?</FAQQuestion>
-                    <FAQAnswer>Większość wydarzeń nie wymaga wcześniejszych zapisów. Dołącz na nasz Discord, obserwuj nasz TikTok, Instagram lub YouTube i śledź ogłoszenia, aby być na bierząco.</FAQAnswer>
+                    <FAQAnswer>Większość wydarzeń nie wymaga wcześniejszych zapisów. Dołącz na nasz Discord, obserwuj nasz TikTok, Instagram lub YouTube i śledź ogłoszenia, aby być na bieżąco.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
                     <FAQQuestion>Co dają punkty?</FAQQuestion>
@@ -164,7 +192,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </FAQLine>
                 <FAQLine>
                     <FAQQuestion>Kiedy pojawią się kolejne serwery?</FAQQuestion>
-                    <FAQAnswer>Informacje o nowych serwerach będą ogłaszane na naszym Discordzie oraz na stronie internetowej. Śledź nasze kanały, aby być na bierząco z nowościami. Planujemy wprowadzać je cyklicznie w kolejnych miesiącach.</FAQAnswer>
+                    <FAQAnswer>Informacje o nowych serwerach będą ogłaszane na naszym Discordzie oraz na stronie internetowej. Śledź nasze kanały, aby być na bieżąco z nowościami. Planujemy wprowadzać je cyklicznie w kolejnych miesiącach.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
                     <FAQQuestion>Jak grać w różne tryby?</FAQQuestion>
@@ -172,7 +200,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
                 </FAQLine>
                 <FAQLine>
                     <FAQQuestion>Co muszę zrobić aby dołączyć na serwer?</FAQQuestion>
-                    <FAQAnswer>Musisz posiadać Minecraft Java Edition. Zadziała zarówno wersja premium, jak i non-premium. Wymagana jest dowonlna wersja gry 1.21 - 1.21.11. Skopiuj adres serwera i wklej go w Minecraft, aby dołączyć.</FAQAnswer>
+                    <FAQAnswer>Musisz posiadać Minecraft Java Edition. Zadziała zarówno wersja premium, jak i non-premium. Wymagana jest dowolna wersja gry 1.21 - 1.21.1. Skopiuj adres serwera i wklej go w Minecraft, aby dołączyć.</FAQAnswer>
                 </FAQLine>
             </FAQ>
         </div>
@@ -190,6 +218,9 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         const numberElements = socialProofGrid.querySelectorAll("h3");
         const animationDurationMs = 2500;
         let hasAnimated = false;
+
+        const prefersReducedMotion = typeof window.matchMedia === "function"
+            && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const daysElement = socialProofGrid.querySelector("h3[data-days-from]");
         if (daysElement instanceof HTMLElement) {
@@ -211,74 +242,289 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
             const targetValue = Number.isNaN(parsedValue) ? 0 : parsedValue;
 
             element.setAttribute("data-target", String(targetValue));
-            element.textContent = "0";
         });
 
-        const startCountAnimation = () => {
-            if (hasAnimated) {
-                return;
-            }
-
-            hasAnimated = true;
-            const animationStart = performance.now();
-
-            const tick = () => {
-                const now = performance.now();
-                const progress = Math.min((now - animationStart) / animationDurationMs, 1);
-
-                numberElements.forEach((element) => {
-                    const targetValue = Number.parseInt(element.getAttribute("data-target") ?? "0", 10);
-                    const nextValue = Math.round(targetValue * progress);
-                    element.textContent = String(nextValue);
-                });
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
+        if (prefersReducedMotion) {
+            // Respect user preference: show final values immediately, no animation.
+            numberElements.forEach((element) => {
+                const targetValue = element.getAttribute("data-target") ?? "0";
+                element.textContent = targetValue;
+            });
+        } else {
+            const startCountAnimation = () => {
+                if (hasAnimated) {
+                    return;
                 }
+
+                hasAnimated = true;
+                numberElements.forEach((element) => {
+                    element.textContent = "0";
+                });
+                const animationStart = performance.now();
+
+                const tick = () => {
+                    const now = performance.now();
+                    const progress = Math.min((now - animationStart) / animationDurationMs, 1);
+
+                    numberElements.forEach((element) => {
+                        const targetValue = Number.parseInt(element.getAttribute("data-target") ?? "0", 10);
+                        const nextValue = Math.round(targetValue * progress);
+                        element.textContent = String(nextValue);
+                    });
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    }
+                };
+
+                requestAnimationFrame(tick);
             };
 
-            requestAnimationFrame(tick);
-        };
+            const isInViewport = () => {
+                const rect = socialProofGrid.getBoundingClientRect();
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                return rect.top < viewportHeight && rect.bottom > 0;
+            };
 
-        if ("IntersectionObserver" in window) {
-            const counterObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
+            if ("IntersectionObserver" in window) {
+                const counterObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
 
-                        startCountAnimation();
-                        counterObserver.disconnect();
-                    });
-                },
-                { threshold: 0.35 }
-            );
+                            startCountAnimation();
+                            counterObserver.disconnect();
+                        });
+                    },
+                    { threshold: 0.35 }
+                );
 
-            counterObserver.observe(socialProofGrid);
-        } else {
-            startCountAnimation();
+                counterObserver.observe(socialProofGrid);
+
+                // If the grid is already in viewport at load time, kick off immediately.
+                if (isInViewport()) {
+                    startCountAnimation();
+                    counterObserver.disconnect();
+                }
+            } else {
+                startCountAnimation();
+            }
         }
+    }
+
+    // Scroll Reveal
+    const revealSections = document.querySelectorAll(".sectionContainer");
+    if ("IntersectionObserver" in window) {
+        const revealObs = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("revealed");
+                        revealObs.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        revealSections.forEach((s) => revealObs.observe(s));
+    } else {
+        revealSections.forEach((s) => s.classList.add("revealed"));
     }
 
 </script>
 
 <style>
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translate(-40px, 200px);
-            transform: scale(10);
-        }
-        to {
-            opacity: 1;
-            transform: translate(0,0);
-            transform: scale(1);
-        }
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
 
-    .bannerHero{
+    /* ===== SCROLL REVEAL ===== */
+    :global(.sectionContainer) {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        margin-bottom: 50px;
+    }
+    :global(.sectionContainer.revealed) {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :global(.sectionContainer) { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ===== SECTION HEADING ACCENT ===== */
+    h2 { color: #fff; }
+    h2:not(.faqToggleHeading)::after {
+        content: "";
+        width: 60px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+        margin-top: 10px;
+        align-self: center;
+    }
+
+    /* ===== HERO BANNER ===== */
+    :global(.heroBanner) {
+        height: 100vh !important;
+        margin-top: 0 !important;
+        min-height: 580px;
+    }
+
+    .heroOverlay {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 50% 18%, rgba(255, 166, 0, 0.16), transparent 34%),
+            linear-gradient(180deg,
+                rgba(0,0,0,0.28) 0%,
+                rgba(8,9,10,0.68) 58%,
+                #090a0d 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* --- Floating particles --- */
+    .heroParticles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+    }
+    .particle {
+        position: absolute;
+        display: block;
+        width: 6px; height: 6px;
+        background: rgba(255, 158, 54, 0.78);
+        border-radius: 1px;
+        box-shadow: 0 0 12px rgba(255, 150, 46, 0.35);
+        animation: floatUp linear infinite;
+        opacity: 0;
+    }
+    .particle:nth-child(1)  { left: 8%;  width: 5px; height: 5px; animation-duration: 14s; animation-delay: 0s; }
+    .particle:nth-child(2)  { left: 18%; width: 4px; height: 4px; animation-duration: 18s; animation-delay: 2s; }
+    .particle:nth-child(3)  { left: 30%; width: 7px; height: 7px; animation-duration: 12s; animation-delay: 4s; }
+    .particle:nth-child(4)  { left: 42%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: 1s; }
+    .particle:nth-child(5)  { left: 55%; width: 3px; height: 3px; animation-duration: 20s; animation-delay: 3s; }
+    .particle:nth-child(6)  { left: 65%; width: 6px; height: 6px; animation-duration: 13s; animation-delay: 5s; }
+    .particle:nth-child(7)  { left: 76%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: 0.5s; }
+    .particle:nth-child(8)  { left: 85%; width: 5px; height: 5px; animation-duration: 15s; animation-delay: 2.5s; }
+    .particle:nth-child(9)  { left: 22%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: 6s; }
+    .particle:nth-child(10) { left: 50%; width: 8px; height: 8px; animation-duration: 11s; animation-delay: 1.5s; }
+    .particle:nth-child(11) { left: 72%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: 4.5s; }
+    .particle:nth-child(12) { left: 92%; width: 4px; height: 4px; animation-duration: 14s; animation-delay: 3.5s; }
+    .particle:nth-child(13) { left: 12%; width: 6px; height: 6px; animation-duration: 15s; animation-delay: 1.8s; }
+    .particle:nth-child(14) { left: 38%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: 3.2s; }
+    .particle:nth-child(15) { left: 60%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: 0.8s; }
+    .particle:nth-child(16) { left: 80%; width: 7px; height: 7px; animation-duration: 16s; animation-delay: 5.5s; }
+    .particle:nth-child(17) { left: 48%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: 2.8s; }
+    .particle:nth-child(18) { left: 28%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 4.2s; }
+
+    @keyframes floatUp {
+        0%   { transform: translate3d(0, 105vh, 0) rotate(0deg); opacity: 0; }
+        10%  { opacity: 0.85; }
+        90%  { opacity: 0.6; }
+        100% { transform: translate3d(0, -12vh, 0) rotate(180deg); opacity: 0; }
+    }
+
+    @keyframes fadeInHero {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .heroBadge {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.1);
+        color: var(--accent-color);
+        font-size: clamp(0.72rem, 1.1vw, 0.92rem);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-shadow: none;
+        opacity: 0;
+        animation: fadeInHero 0.6s ease forwards 1.2s;
+    }
+
+    /* --- Scroll indicator --- */
+    .scrollIndicator {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+    }
+    .scrollIndicator span {
+        display: block;
+        width: 22px; height: 22px;
+        border-right: 2px solid rgba(255,255,255,0.45);
+        border-bottom: 2px solid rgba(255,255,255,0.45);
+        transform: rotate(45deg);
+        animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+        0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
+        40% { transform: rotate(45deg) translateY(8px); }
+        60% { transform: rotate(45deg) translateY(4px); }
+    }
+
+    .heroCtas {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 6px;
+        opacity: 0;
+        animation: fadeInHero 0.6s ease forwards 2s;
+    }
+
+    .glowBtn {
+        box-shadow: 0 0 20px rgba(255,166,0,0.4), 0 0 60px rgba(255,166,0,0.15);
+        background: linear-gradient(90deg, var(--brand-accent, #ffa600), #ff7a00, var(--brand-accent, #ffa600)) !important;
+        background-size: 200% 100% !important;
+        animation: heroCtaShimmer 4s linear infinite;
+    }
+    @keyframes heroCtaShimmer {
+        0%   { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .glowBtn { animation: none; }
+    }
+
+    .bannerCtaOutline {
+        background: transparent !important;
+        border: 2px solid rgba(255,255,255,0.45);
+        color: #fff !important;
+        box-shadow: none !important;
+        margin-top: 0;
+    }
+    .bannerCtaOutline:hover {
+        background: rgba(255,255,255,0.1) !important;
+        border-color: #fff;
+        transform: translateY(-2px);
+    }
+    .bannerCtaOutline b { color: #fff; }
+
+    /* ===== BANNER IMAGE ANIMATION ===== */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(10); }
+        to   { opacity: 1; transform: scale(1); }
+    }
+
+    .bannerHero {
         width: min(900px, 92%);
         margin: 0 auto;
         height: 100%;
@@ -287,33 +533,37 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 18px;
+        gap: 16px;
         color: white;
         text-align: center;
-        z-index: 1;
-        opacity: 0; 
-        animation: fadeIn 0.6s ease forwards;
-        animation-delay: 1.4s;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
-        margin-top: 100px;
+        z-index: 3;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
     }
 
     .bannerTitle {
         margin: 0;
-        font-size: clamp(2.3rem, 3.9vw, 3.8rem);
-        line-height: 1.15;
+        font-family: 'Minecraft', 'Montserrat', sans-serif;
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        line-height: 1.05;
         font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 40px rgba(255,166,0,0.3), 0 4px 20px rgba(0,0,0,0.7);
+        opacity: 0;
+        animation: fadeInHero 0.7s ease forwards 1.4s;
     }
 
     .bannerSubtitle {
         margin: 0;
-        max-width: 760px;
-        font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-        line-height: 1.45;
+        max-width: 700px;
+        font-size: clamp(1rem, 1.5vw, 1.3rem);
+        line-height: 1.5;
+        color: rgba(255,255,255,0.8);
+        opacity: 0;
+        animation: fadeInHero 0.6s ease forwards 1.7s;
     }
 
     .bannerCta {
-        margin-top: 4px;
+        margin-top: 0;
     }
 
     .welcomeButton {
@@ -321,18 +571,19 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         align-items: center;
         justify-content: center;
         margin-top: 8px;
-        padding: 12px 34px;
+        padding: 14px 36px;
         border-radius: 999px;
         background-color: var(--accent-color);
         color: #141414;
-        font-size: clamp(1.05rem, 1.2vw, 1.35rem);
+        font-size: clamp(1.05rem, 1.2vw, 1.3rem);
         font-weight: 700;
         text-decoration: none;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         white-space: normal;
         text-align: center;
         line-height: 1.25;
+        border: none;
     }
 
     .welcomeButton b {
@@ -361,22 +612,44 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     .seoIntro {
         gap: 8px;
         text-align: center;
+        padding: 28px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .seoIntro::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        opacity: 0.5;
     }
 
     .seoIntro p {
         margin: 0;
         font-size: clamp(1.08rem, 1.35vw, 1.3rem);
         line-height: 1.7;
+        color: #d4cdc0;
+    }
+
+    .seoIntro b {
+        color: #ffe39f;
     }
 
     .showcasePanel {
         border-radius: 18px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: #fff4d8;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     }
 
     .showcasePanel::before {
@@ -384,7 +657,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+        background: radial-gradient(ellipse at 15% -5%, rgba(255, 166, 0, 0.12), transparent 50%);
     }
 
     .stepsPanel,
@@ -393,13 +666,14 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     .leaderboardPanel,
     .updatesPanel,
     .benefitsPanel,
-    .socialProofPanel {
-        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+    .socialProofPanel,
+    .joinPanel {
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
     }
 
     .updatesList {
         display: grid;
-        gap: 10px;
+        gap: 14px;
         position: relative;
         z-index: 1;
     }
@@ -410,11 +684,12 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         align-items: stretch;
         justify-content: flex-start;
         text-align: left;
-        gap: 14px;
+        gap: 18px;
         min-width: 0;
         width: 100%;
         max-width: 100%;
         overflow: visible;
+        padding: 14px;
     }
 
     .showcaseCard.updatesItem:nth-child(even) {
@@ -425,19 +700,26 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         flex: 0 0 34%;
         max-width: 34%;
         min-height: 120px;
-        border-radius: 10px;
-        border: 1px dashed rgba(255, 255, 255, 0.35);
-        background: rgba(0, 0, 0, 0.26);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(0, 0, 0, 0.3);
         color: #f5ddb2;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 10px;
+        padding: 0;
         box-sizing: border-box;
         overflow: hidden;
         overflow-wrap: anywhere;
         word-break: break-word;
+    }
+
+    .updatesMedia img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
     }
 
     .updatesContent {
@@ -464,32 +746,79 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         word-break: break-word;
     }
 
-    .benefitsGrid,
-    .socialProofGrid {
+    .benefitsGrid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .benefitsGrid .showcaseCard,
+    .socialProofGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     .socialProofItem {
         min-height: 110px;
+        position: relative;
+    }
+
+    .socialProofGrid .socialProofItem:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(255,166,0,0.3), transparent);
+    }
+
+    .joinGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .joinStep {
+        text-align: center;
+        position: relative;
+    }
+
+    .joinStepNumber {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: transparent;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+        box-shadow: 0 0 16px rgba(255, 166, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+        .joinGrid {
+            grid-template-columns: 1fr;
+        }
     }
 
     .socialProofItem h3 {
-        font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+        font-size: clamp(2.2rem, 3.2vw, 3rem);
+        color: var(--accent-color);
+        text-shadow: 0 0 24px rgba(255, 166, 0, 0.4);
     }
 
     .showcaseLead {
-        margin: 0 0 14px 0;
+        margin: 0 0 16px 0;
         text-align: center;
         line-height: 1.7;
-        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
+        font-size: clamp(1.05rem, 1.3vw, 1.2rem);
         position: relative;
         z-index: 1;
+        color: #c8b88a;
     }
 
     .showcaseGrid {
         display: grid;
-        gap: 10px;
+        gap: 14px;
         position: relative;
         z-index: 1;
     }
@@ -506,12 +835,20 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.24);
-        border-radius: 12px;
-        background: rgba(0, 0, 0, 0.42);
-        padding: 12px;
+        gap: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 18px;
         box-sizing: border-box;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+    }
+
+    .showcaseCard:hover {
+        border-color: rgba(255, 166, 0, 0.35);
+        box-shadow: 0 0 20px rgba(255, 166, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.3);
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.06);
     }
 
     .showcaseCard h3,
@@ -526,8 +863,8 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .showcaseCard p {
-        color: #f1eadb;
-        font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+        color: #d4cdc0;
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
         line-height: 1.65;
     }
 
@@ -543,10 +880,10 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .timelineLabel {
-        color: #ffd49c;
+        color: #c8b88a;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
-        font-size: 0.98rem;
+        letter-spacing: 0.06em;
+        font-size: 0.9rem;
         font-weight: 700;
     }
 
@@ -584,29 +921,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     .faqPanel {
-        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
-    }
-
-    .spotlightSectionTitle {
-        margin-bottom: 8px;
-        font-size: clamp(2.05rem, 3vw, 2.9rem);
-        letter-spacing: 0.01em;
-    }
-
-    .spotlightCardTitle {
-        margin: 0 0 8px 0;
-        font-size: clamp(1.75rem, 2.45vw, 2.3rem);
-        line-height: 1.2;
-    }
-
-    .spotlightCardText {
-        margin: 0;
-        font-size: clamp(1.08rem, 1.35vw, 1.24rem);
-        line-height: 1.65;
-    }
-
-    .spotlightLink {
-        margin-top: 8px;
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
     }
 
     .spotlightLink b,
@@ -618,21 +933,14 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         gap: 10px;
     }
 
-    .hogwartTile,
-    .spotlightTile {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
     .hogwartShowcase {
         border-radius: 18px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
         display: grid;
         grid-template-columns: minmax(260px, 42%) 1fr;
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     }
 
     .hogwartShowcaseMedia {
@@ -662,6 +970,10 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         word-break: break-word;
         color: #ffe39f;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+    }
+
+    .fullWidthTileContent p {
+        color: #d4cdc0;
     }
 
     .hogwartLead {
@@ -726,28 +1038,19 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     .faqSection h2 {
         font-size: clamp(2rem, 2.8vw, 2.75rem);
         line-height: 1.2;
+        color: #fff;
     }
 
     @media (max-width: 1070px){
         .bannerHero{
             gap: 14px;
             width: min(760px, 94%);
-            margin-top: 50px;
         }
     }
 
     @media (min-width: 768px) {
         .welcomeButton {
             font-size: clamp(1.18rem, 1.42vw, 1.52rem);
-        }
-
-        :global(.faqQuestion) {
-            font-size: clamp(1.2rem, 1.7vw, 1.42rem);
-        }
-
-        :global(.faqAnswer) {
-            font-size: 1.08rem;
-            line-height: 1.7;
         }
     }
 
@@ -775,21 +1078,33 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         }
 
         .bannerTitle {
-            font-size: clamp(1.5rem, 7vw, 2rem);
+            font-size: clamp(2.2rem, 8vw, 3.2rem);
         }
 
         .bannerSubtitle {
-            font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+            max-width: 90%;
+        }
+
+        .heroCtas {
+            flex-direction: column;
         }
 
         .welcomeButton {
-            width: min(220px, 90%);
-            padding: 11px 24px;
+            width: min(260px, 90%);
+            padding: 12px 24px;
         }
 
-        .benefitsGrid,
-        .socialProofGrid {
+        .benefitsGrid {
             grid-template-columns: 1fr;
+        }
+        
+        .socialProofGrid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .socialProofGrid .socialProofItem:not(:last-child)::after {
+            display: none;
         }
 
         .showcaseCard.updatesItem,
@@ -811,34 +1126,17 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     @media (max-width: 870px) {
-        .imageBoxWrapper.welcomeFeatureBox {
-            height: 980px;
-        }
-
-        .imageBoxWrapper.welcomeFeatureBox .imageBoxContent {
-            height: 58%;
-            justify-content: flex-start;
-            padding: 14px 14px 20px 14px;
-        }
-
-        .imageBoxWrapper.welcomeFeatureBox .imageBoxImageContainer {
-            height: 42%;
-        }
-
-        .hogwartTile,
-        .spotlightTile {
+        .hogwartTile {
             justify-content: flex-start;
             gap: 8px;
         }
 
-        .hogwartTitle,
-        .spotlightCardTitle {
+        .hogwartTitle {
             font-size: clamp(1.2rem, 4.6vw, 1.55rem);
             line-height: 1.22;
         }
 
         .hogwartLead,
-        .spotlightCardText,
         .hogwartRelease {
             max-width: 96%;
             font-size: clamp(0.94rem, 3.4vw, 1rem);
@@ -858,10 +1156,6 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
     }
 
     @media (max-width: 500px) {
-        .imageBoxWrapper.welcomeFeatureBox {
-            height: 1180px;
-        }
-
         .hogwartShowcaseMedia {
             min-height: 220px;
         }
@@ -870,14 +1164,319 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
             padding: 14px 12px 18px 12px;
             gap: 8px;
         }
+    }
 
-        .imageBoxWrapper.welcomeFeatureBox .imageBoxContent {
-            height: 64%;
-        }
+    /* ===== SPOTLIGHT CARDS (Shop & Archive) ===== */
+    .spotlightGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        width: 100%;
+    }
 
-        .imageBoxWrapper.welcomeFeatureBox .imageBoxImageContainer {
-            height: 36%;
+    .spotlightCard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 18px;
+        overflow: hidden;
+        min-height: 340px;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .spotlightCard:hover {
+        border-color: rgba(255, 166, 0, 0.4);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 166, 0, 0.1);
+    }
+
+    .spotlightCardBg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s ease;
+    }
+
+    .spotlightCard:hover .spotlightCardBg {
+        transform: scale(1.08);
+    }
+
+    .spotlightCardOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            rgba(10, 13, 18, 0.3) 0%,
+            rgba(10, 13, 18, 0.75) 50%,
+            rgba(10, 13, 18, 0.95) 100%);
+        z-index: 1;
+    }
+
+    .spotlightCardInner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: center;
+        padding: 32px 24px;
+        height: 100%;
+        gap: 8px;
+        box-sizing: border-box;
+    }
+
+    .spotlightIcon {
+        font-size: 2.4rem;
+        display: block;
+        margin-bottom: 4px;
+        filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .spotlightCardTitle {
+        margin: 0;
+        font-size: clamp(1.5rem, 2.2vw, 2rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .spotlightCardText {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 340px;
+    }
+
+    .spotlightCta {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 10px 24px;
+        border-radius: 999px;
+        background: var(--accent-color);
+        color: #141414;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .spotlightCard:hover .spotlightCta {
+        background-color: #ffb52a;
+        transform: translateY(-1px);
+        box-shadow: 0 0 20px rgba(255, 166, 0, 0.35), 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .spotlightSectionTitle {
+        margin-bottom: 12px;
+        font-size: clamp(2.05rem, 3vw, 2.9rem);
+        letter-spacing: 0.01em;
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .spotlightGrid { grid-template-columns: 1fr; }
+        .spotlightCard { min-height: 280px; }
+    }
+
+    /* ===== BENEFIT ICONS ===== */
+    .benefitIcon {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 4px;
+        filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+
+    .benefitCard {
+        padding: 24px 18px;
+        text-align: center;
+    }
+
+    /* ===== SECTION DIVIDERS ===== */
+    :global(.sectionContainer) {
+        position: relative;
+    }
+
+    @media (max-width: 600px) {
+        .heroParticles { opacity: 0.9; }
+        .particle { box-shadow: 0 0 8px rgba(255, 150, 46, 0.28); }
+        .heroBadge { font-size: 0.7rem; padding: 5px 12px; }
+        .scrollIndicator { bottom: 16px; }
+    }
+
+    /* ===== HERO SOCIAL PROOF STRIP ===== */
+    .heroSocialProof {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        width: min(1100px, 92%);
+        margin: -24px auto 20px auto;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(24, 29, 40, 0.92), rgba(17, 22, 32, 0.92));
+        border: 1px solid rgba(255, 166, 0, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 166, 0, 0.08);
+        position: relative;
+        z-index: 2;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .heroSocialProofItem {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+    .heroSocialProofItem strong {
+        color: var(--brand-accent, #ffa600);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .heroSocialProofIcon {
+        font-size: 1.05rem;
+        line-height: 1;
+    }
+    .heroSocialProofSep {
+        width: 1px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    @media (max-width: 600px) {
+        .heroSocialProof {
+            font-size: 0.82rem;
+            padding: 10px 16px;
+            border-radius: 18px;
         }
+        .heroSocialProofSep { display: none; }
+    }
+
+    /* ===== UPDATES TIMELINE ===== */
+    .updatesTimeline {
+        list-style: none;
+        padding: 12px 0 12px 12px;
+        margin: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+    .updatesTimeline::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 166, 0, 0.6), rgba(255, 166, 0, 0.1));
+        border-radius: 2px;
+    }
+    .updatesTimelineItem {
+        position: relative;
+        padding-left: 52px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .updatesTimelineDot {
+        position: absolute;
+        left: 14px;
+        top: 6px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffcf5a 0%, #ffa600 60%, rgba(255, 166, 0, 0.1) 100%);
+        box-shadow: 0 0 12px rgba(255, 166, 0, 0.55), 0 0 0 3px rgba(10, 13, 18, 0.9);
+    }
+    .updatesTimelineContent {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .updatesTimelineMeta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+    }
+    .updatesTimelineDate {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 207, 90, 0.9);
+    }
+    .updatesTimelineTag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.82);
+    }
+    .updatesTimelineTag.tagEvent   { color: #ffb366; border-color: rgba(255, 166, 0, 0.35); }
+    .updatesTimelineTag.tagSmp     { color: #7fd3ff; border-color: rgba(127, 211, 255, 0.35); }
+    .updatesTimelineTag.tagRanking { color: #b6ff9e; border-color: rgba(182, 255, 158, 0.3); }
+    .updatesTimelineTag.tagFuture  { color: #d6b6ff; border-color: rgba(214, 182, 255, 0.3); }
+    .updatesTimelineContent h3 {
+        margin: 0 0 4px 0;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+    .updatesTimelineContent p {
+        margin: 0 0 6px 0;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .updatesTimelineLink {
+        display: inline-block;
+        margin-top: 4px;
+        color: var(--brand-accent, #ffa600);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .updatesTimelineLink:hover {
+        color: #ffcf5a;
+        transform: translateX(3px);
+    }
+    .updatesTimelineFooter {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        text-align: center;
+    }
+    .updatesTimelineAllLink {
+        color: var(--brand-accent, #ffa600);
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+    .updatesTimelineAllLink:hover { color: #ffcf5a; }
+    @media (max-width: 600px) {
+        .updatesTimeline { padding-left: 4px; }
+        .updatesTimeline::before { left: 14px; }
+        .updatesTimelineDot { left: 6px; width: 16px; height: 16px; }
+        .updatesTimelineItem { padding-left: 40px; }
+        .updatesTimelineContent h3 { font-size: 1rem; }
     }
 </style>
 

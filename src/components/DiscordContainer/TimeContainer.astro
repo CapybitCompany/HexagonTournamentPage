@@ -1,12 +1,16 @@
 ---
 import CountdownTimer from "./CountdownTimer.astro";
+import { nextHexEvent } from "../../data/hex-network";
 ---
 <div class="discordContainerWrapper">
     <div class="discordContainer">
         <div class="headerWrapper">
             <h2 class="discordHeader" style="font-family: minecraft; font-weight: bold; color: #fff243">Start turnieju Minecraft za:</h2>
         </div>
-        <CountdownTimer />
+        <CountdownTimer
+            targetStart={nextHexEvent.startIso}
+            targetEnd={nextHexEvent.endIso}
+        />
     
     </div>
 </div>
@@ -21,41 +25,40 @@ import CountdownTimer from "./CountdownTimer.astro";
     .discordContainer {
         width: 100%;
         flex-direction: column;
-        background: linear-gradient(
-            rgba(44, 45, 50, 1) 0%,
-            rgba(0,0,0,1) 100%
-        );
-        /* background-color:rgb(44, 45, 50); */
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
         color: white;
         border-radius: 20px;
-        border: 1px solid #424549;
-        padding: 15px;
+        border: 1px solid rgba(255, 166, 0, 0.15);
+        padding: 20px 15px;
         align-items: center;
         justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
+
+    .discordContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(255, 166, 0, 0.5), transparent);
+    }
+
     .headerWrapper{
         flex-direction: row;
         justify-content: center;
         align-items: center;
         color: white;
     }
-    .subHeaderWrapper{
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin: 0px 10px 15px 0px;
-        color: white;
-    }
+
     .discordHeader {
         text-align: center;
-    }
-    .discordSubHeader {
-        margin: 0 0 0 15px;
-        text-align: center;
-    }
-    .discordText {
-        color: white;
-        text-align: center;
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        color: #ffe39f;
+        text-shadow: 0 0 20px rgba(255, 166, 0, 0.3);
     }
 
     .countdownExtraInfo {
@@ -65,31 +68,4 @@ import CountdownTimer from "./CountdownTimer.astro";
         font-weight: 600;
         font-size: clamp(1rem, 1.4vw, 1.2rem);
     }
-    .discordUrl{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        text-decoration: none;
-        color: 	#7289da;
-        font-weight: 600;
-        font-size: 48px;
-    }
-    .discordUrl:hover{
-        color: 	#b8c4f0;
-    }
-
-    .discordIcon {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-        overflow: hidden;
-    }
-
-    .discordIcon svg{
-        width: 50px !important;
-        height: 50px !important; 
-    }
-
 </style>

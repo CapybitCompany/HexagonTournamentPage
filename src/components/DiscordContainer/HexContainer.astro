@@ -1,5 +1,7 @@
 ---
-var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.props;
+var {src, headerText, href, comingSoon = false, soonText = "Niebawem", progress, eta } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const progressNum = typeof progress === "number" ? Math.max(0, Math.min(100, progress)) : null;
 ---
 <div class="discordContainerWrapper">
     <a href={comingSoon ? undefined : href} aria-disabled={comingSoon ? "true" : "false"} class={comingSoon ? "disabledLink" : ""}>
@@ -11,10 +13,21 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
             <div class="imageContainer">
                 {
                     src ? (
-                        <img class="hexImage" src={src} alt={headerText}/>
+                        <img class="hexImage" src={src} alt={headerText} loading="lazy" decoding="async"/>
                     ) : (
-                        <div class="hexPlaceholder" aria-label={`${headerText} - ${soonText}`}>
+                        <div class="hexPlaceholder" style={`background-image: url('${base}images/stonebrick.jpg');`} aria-label={`${headerText} - ${soonText}`}>
                             <span>{soonText}</span>
+                            {(progressNum !== null || eta) && (
+                                <div class="hexPlaceholderMeta">
+                                    {progressNum !== null && (
+                                        <div class="hexProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={progressNum} aria-label={`Postęp prac: ${progressNum}%`}>
+                                            <div class="hexProgressBar" style={`width: ${progressNum}%;`}></div>
+                                            <span class="hexProgressLabel">{progressNum}%</span>
+                                        </div>
+                                    )}
+                                    {eta && <span class="hexEta">ETA: {eta}</span>}
+                                </div>
+                            )}
                         </div>
                     )
                 }
@@ -43,14 +56,15 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         height: 300px;
         max-height: 300px;
         flex-direction: column;
-        background-color: #ffffff27;
         color: white;
-        border-radius: 20px;
+        border-radius: 16px;
         align-items: center;
         justify-content: center;
-
         overflow: hidden;
-        transition: background-color 0.2s ease;
+        position: relative;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
     }
 
     .disabledLink {
@@ -70,22 +84,31 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         width: 100%;
         object-fit: cover;
         display: block;
-        transition: transform 0.2s ease;
+        transition: transform 0.45s ease;
         transform: scale(1);
     }
 
-    /* hover: rozjaśnij tło + powiększ img */
+    /* hover: accent glow + powiększ img */
     .discordContainerWrapper:hover .discordContainer {
-        background-color: #ffffff40;
+        border-color: rgba(255, 166, 0, 0.35);
+        box-shadow:
+            0 0 24px rgba(255, 166, 0, 0.12),
+            0 12px 32px rgba(0, 0, 0, 0.4);
+        transform: translateY(-4px);
     }
 
     .discordContainerWrapper:hover .imageContainer img,
     .discordContainerWrapper:hover .hexImage {
-        transform: scale(1.2);
+        transform: scale(1.12);
     }
 
     .discordContainerWrapper:hover .hexPlaceholder {
         filter: brightness(1.12);
+    }
+
+    /* disabled (coming soon) cards don't lift as much */
+    .disabledLink:hover .discordContainer {
+        transform: translateY(-2px);
     }
 
 
@@ -95,59 +118,24 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         align-items: center;
         color: white;
         font-family: "minecraft";
+        position: relative;
+        z-index: 1;
     }
     .headerWrapper h2{
         margin: 5px 0;
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        letter-spacing: 0.04em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
     
-    .subHeaderWrapper{
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin: 0px 10px 15px 0px;
-        color: white;
-    }
     .discordHeader {
         text-align: center;
-    }
-    .discordSubHeader {
-        margin: 0 0 0 15px;
-        text-align: center;
-    }
-    .discordText {
-        color: white;
-        text-align: center;
-    }
-    .discordUrl{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        text-decoration: none;
-        color: 	#7289da;
-        font-weight: 600;
-        font-size: 32px;
-    }
-    .discordUrl:hover{
-        color: 	#b8c4f0;
-    }
-
-    .discordIcon {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-        overflow: hidden;
-    }
-
-    .discordIcon svg{
-        width: 50px !important;
-        height: 50px !important; 
     }
 
     .imageContainer{
         width: 100%;
         height: 240px;
+        position: relative;
     }
 
     img{
@@ -160,14 +148,15 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 14px;
         position: relative;
-        background-image: url("/images/stonebrick.jpg");
         background-repeat: repeat;
         background-size: 128px 128px;
         overflow: hidden;
-        transition: filter 0.2s ease;
+        transition: filter 0.35s ease;
     }
 
     .hexPlaceholder::before {
@@ -182,10 +171,71 @@ var {src, headerText, href, comingSoon = false, soonText = "Niebawem" } = Astro.
         position: relative;
         z-index: 1;
         font-family: "minecraft";
-        font-size: clamp(1.55rem, 3.8vw, 2.25rem);
+        font-size: clamp(1.2rem, 3vw, 1.7rem);
         color: #ffcf5a;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
+        text-shadow: 0 0 16px rgba(255, 207, 90, 0.4), 0 2px 6px rgba(0, 0, 0, 0.8);
+        padding: 8px 20px;
+        border: 1px solid rgba(255, 207, 90, 0.25);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hexPlaceholderMeta {
+        position: relative;
+        z-index: 1;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: min(260px, 80%);
+    }
+
+    .hexProgress {
+        position: relative;
+        width: 100%;
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 207, 90, 0.25);
+        overflow: hidden;
+    }
+
+    .hexProgressBar {
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255, 166, 0, 0.85), rgba(255, 207, 90, 0.95));
+        box-shadow: 0 0 10px rgba(255, 166, 0, 0.4);
+        transition: width 0.6s ease;
+    }
+
+    .hexProgressLabel {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.05em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .hexEta {
+        font-family: "Montserrat", system-ui, sans-serif;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 207, 90, 0.85);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
 
     @media (max-width: 980px){

@@ -5,7 +5,7 @@
     padding: 28px;
     color: white;
     text-align: left;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.9)), url('/images/Welcome/dirt.webp');
+    /* background-image moved to inline style for base path support */
 }
 
 .articleHeader h1 {
@@ -115,15 +115,6 @@
 .faqSection h2 {
     margin: 0 0 10px 0;
     text-align: center;
-}
-
-.faqSection :global(.faqQuestion) {
-    font-size: clamp(1.12rem, 1.45vw, 1.28rem);
-}
-
-.faqSection :global(.faqAnswer) {
-    font-size: clamp(1.05rem, 1.28vw, 1.16rem);
-    line-height: 1.7;
 }
 
 .faqList {

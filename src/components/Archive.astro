@@ -2,298 +2,280 @@
 import NavBar from './NavBar/NavBar.astro'
 import Footer from './Footer/Footer.astro'
 import ContentContainer from './ContentContainer/ContentContainer.astro'
-import ImageBoxContent from './ImageBoxContent/ImageBoxContent.astro'
 import './NavBar/NavBar.css'
 import './PageContent/WelcomePage/Welcome.styles.css'
 import FullImageContainer from './FullImageContainer/FullImageContainer.astro'
-import Grid21 from './Grid/Grid2_1/Grid2_1.astro'
-import TimeContainer from './DiscordContainer/TimeContainer.astro'
 import Section from './ContentContainer/Section.astro'
 import FAQ from './FAQ/FAQ.astro'
 import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+const base = import.meta.env.BASE_URL;
+
+const editions = [
+    {
+        title: "Turniej HEX VI",
+        subtitle: "Świąteczny",
+        date: "13.12.2025",
+        players: 35,
+        prize: "400zł + 200zł w bonusach",
+        prizeValue: 600,
+        winner: "Grzesztof",
+        winnerLabel: "Zwycięzca",
+        tags: ["2025", "swiateczny"],
+        games: ["Budowa Renifera", "Kevin sam w domu", "Czerwone Zielone", "Mob Race", "Spleef", "Final boss: Yeti"],
+        images: ["images/Archive/Hex6/1.jpg", "images/Archive/Hex6/2.jpg", "images/Archive/Hex6/3.jpg", "images/Archive/Hex6/4.jpg"],
+    },
+    {
+        title: "Turniej HEX V",
+        subtitle: "inspirowana światem Harrego Pottera",
+        date: "18.10.2025",
+        players: 31,
+        prize: "500 zł",
+        prizeValue: 500,
+        winner: "love_kanye",
+        winnerLabel: "Zwycięzca",
+        tags: ["2025", "inspirowane"],
+        games: ["Lot przez obręcze", "Komnata tajemnic", "Berek", "Smok, Czarne jezioro, Labirynt", "Pojedynek na różdżki", "Pokój życzeń", "Most"],
+        images: ["images/Archive/Hex5/1.jpg", "images/Archive/Hex5/2.jpg", "images/Archive/Hex5/3.jpg", "images/Archive/Hex5/4.jpg"],
+    },
+    {
+        title: "Turniej HEX IV",
+        subtitle: "inspirowana światem Squid Game",
+        date: "2.08.2025",
+        players: 33,
+        prize: "1000 zł",
+        prizeValue: 1000,
+        winner: "soonne, Gizzeusz",
+        winnerLabel: "Zwycięzcy",
+        tags: ["2025", "inspirowane"],
+        games: ["Simon mówi", "Skakanka", "Mingle", "Bierki", "Bomberman", "Quiz", "Gra w chowanego"],
+        images: ["images/Archive/Hex4/1.jpg", "images/Archive/Hex4/2.jpg", "images/Archive/Hex4/3.jpg", "images/Archive/Hex4/4.jpg"],
+    },
+    {
+        title: "Turniej HEX III",
+        subtitle: "inspirowana światem Pokemon",
+        date: "31.05.2025",
+        players: 17,
+        prize: "400 zł",
+        prizeValue: 400,
+        winner: "Bartimoza, soonne",
+        winnerLabel: "Zwycięzcy",
+        tags: ["2025", "inspirowane"],
+        games: ["Bulbasaur (Spleef)", "Charmander (Hot Head)", "Gengar (Escape Room)", "Snorlax (Odszukaj odpowiednią ilość przedmiotów i unikaj Snorlaxów)", "Decidueye (PVP Łuki - Dwie drużyny)", "Voltorb (Bomberman)"],
+        images: ["images/Archive/Hex3/1.jpg", "images/Archive/Hex3/2.jpg", "images/Archive/Hex3/3.jpg", "images/Archive/Hex3/4.jpg"],
+    },
+    {
+        title: "Turniej HEX II",
+        subtitle: "",
+        date: "19.04.2025",
+        players: 15,
+        prize: "650 zł",
+        prizeValue: 650,
+        winner: "Grzesztof",
+        winnerLabel: "Zwycięzca",
+        tags: ["2025", "klasyczny"],
+        games: ["Czerwone, zielone", "Mingle", "Lot przez tunel", "Wieża Breeze'a", "Lodowy wyścig"],
+        images: ["images/Archive/Hex2/1.jpg", "images/Archive/Hex2/2.jpg", "images/Archive/Hex2/3.jpg", "images/Archive/Hex2/4.jpg"],
+    },
+    {
+        title: "Turniej HEX I",
+        subtitle: "",
+        date: "15.03.2025",
+        players: 10,
+        prize: "300 zł",
+        prizeValue: 300,
+        winner: "Endrju_",
+        winnerLabel: "Zwycięzca",
+        tags: ["2025", "klasyczny"],
+        games: ["Wybierz i zbuduj", "Walc kwiatów", "Cztery pory roku", "Szklany most + Escape Room", "Labirynt"],
+        images: ["images/Archive/Hex1/1.jpg", "images/Archive/Hex1/2.jpg", "images/Archive/Hex1/3.jpg", "images/Archive/Hex1/4.jpg"],
+    },
+];
+
+// Summary stats
+const totalEditions = editions.length;
+const totalPlayers = editions.reduce((sum, ed) => sum + ed.players, 0);
+const totalPrize = editions.reduce((sum, ed) => sum + ed.prizeValue, 0);
+const totalGames = editions.reduce((sum, ed) => sum + ed.games.length, 0);
+
+// Hall of Fame — agregacja zwycięzców
+const winnerCounts = new Map<string, number>();
+for (const edition of editions) {
+    const names = edition.winner.split(",").map((name) => name.trim()).filter(Boolean);
+    for (const name of names) {
+        winnerCounts.set(name, (winnerCounts.get(name) ?? 0) + 1);
+    }
+}
+const hallOfFame = Array.from(winnerCounts.entries())
+    .map(([name, wins]) => ({ name, wins }))
+    .sort((a, b) => b.wins - a.wins || a.name.localeCompare(b.name))
+    .slice(0, 5);
+
+const filters = [
+    { id: "all", label: "Wszystkie" },
+    { id: "2025", label: "2025" },
+    { id: "2026", label: "2026" },
+    { id: "swiateczny", label: "Świąteczne" },
+    { id: "inspirowane", label: "Inspirowane" },
+    { id: "klasyczny", label: "Klasyczne" },
+];
 ---
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground" wrapperStyle="height: 500px;" altText="Archiwum turniejow Minecraft HEX - poprzednie edycje, zwyciezcy i nagrody">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-            <h1 class="archiveBannerText">Archiwum turniejów</h1>
+    <Breadcrumbs items={[{ label: "Archiwum eventów" }]} />
+    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground archiveHeroBanner" wrapperStyle="height: 420px;" altText="Archiwum turniejow Minecraft HEX - poprzednie edycje, zwyciezcy i nagrody">
+        <div class="archiveHeroOverlay"></div>
+        <div class="archiveHeroContent">
+            <span class="archiveHeroBadge">🏆 HISTORIA TURNIEJÓW</span>
+            <h1 class="archiveBannerText">Archiwum eventów</h1>
+            <p class="archiveHeroSub">Poprzednie edycje, zwycięzcy, pule nagród i najważniejsze momenty.</p>
         </div>
     </FullImageContainer>
 
     <Section>
-        <section class="archiveSeoIntro">
-            <h2>Historia turniejow HEX Network</h2>
-            <p>W archiwum znajdziesz poprzednie edycje turniejow Minecraft HEX: daty, liczbe graczy, pule nagrod i zwyciezcow.</p>
-            <p>To miejsce, w ktorym dokumentujemy rozwoj wydarzen i najwazniejsze momenty kazdego sezonu.</p>
-        </section>
+        <aside class="archiveStatsBanner" aria-label="Podsumowanie turniejów">
+            <div class="archiveStat">
+                <span class="archiveStatValue">{totalEditions}</span>
+                <span class="archiveStatLabel">turniejów</span>
+            </div>
+            <span class="archiveStatDivider" aria-hidden="true">·</span>
+            <div class="archiveStat">
+                <span class="archiveStatValue">{totalPlayers}</span>
+                <span class="archiveStatLabel">uczestników łącznie</span>
+            </div>
+            <span class="archiveStatDivider" aria-hidden="true">·</span>
+            <div class="archiveStat">
+                <span class="archiveStatValue">{totalPrize} zł</span>
+                <span class="archiveStatLabel">rozdanych</span>
+            </div>
+            <span class="archiveStatDivider" aria-hidden="true">·</span>
+            <div class="archiveStat">
+                <span class="archiveStatValue">{totalGames}</span>
+                <span class="archiveStatLabel">gier w sumie</span>
+            </div>
+        </aside>
 
-        <h1 class="eventHeader">Truniej HEX VI - Świąteczny</h1>
+        <div class="archiveFilters" role="tablist" aria-label="Filtruj archiwum">
+            {filters.map((filter) => (
+                <button
+                    type="button"
+                    class="archiveFilterPill"
+                    data-filter={filter.id}
+                    aria-pressed={filter.id === "all" ? "true" : "false"}
+                >
+                    {filter.label}
+                </button>
+            ))}
+        </div>
+        <p class="archiveFilterEmpty" hidden>Brak turniejów pasujących do wybranego filtra.</p>
 
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/1.jpg" lazyMeanColor="#dcc5ea" isLightBox wrapperClass="small">
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>400zł + 200zł w bonusach</h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight small" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
-                    <h1>Grzesztof</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
+        <div class="archiveTimeline">
+            {editions.map((ed, i) => (
+                <article class="editionCard" data-tags={ed.tags.join(" ")}>
+                    <div class="editionHeader">
+                        <div class="editionTitleBlock">
+                            <span class="editionNumber">#{editions.length - i}</span>
+                            <div class="editionTitleWrapper">
+                                <h2 class="editionTitle">{ed.title}</h2>
+                                {ed.subtitle && <span class="editionSubtitle">{ed.subtitle}</span>}
+                            </div>
+                        </div>
+                        <span class="editionDate">📅 {ed.date}</span>
+                    </div>
 
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>13.12.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>35</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex6/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Budowa Renifera</li>
-                            <li>Kevin sam w domu</li>
-                            <li>Czerwone Zielone</li>
-                            <li>Mob Race</li>
-                            <li>Spleef</li>
-                            <li>Final boss: Yeti</li>
+                    <div class="editionStats">
+                        <div class="editionStat">
+                            <span class="editionStatLabel">Pula nagród</span>
+                            <span class="editionStatValue prize">{ed.prize}</span>
+                        </div>
+                        <div class="editionStat">
+                            <span class="editionStatLabel">{ed.winnerLabel}</span>
+                            <span class="editionStatValue winner">{ed.winner}</span>
+                        </div>
+                        <div class="editionStat">
+                            <span class="editionStatLabel">Graczy</span>
+                            <span class="editionStatValue">{ed.players}</span>
+                        </div>
+                    </div>
+
+                    <div class={`editionGallery pswp-gallery-${i}`}>
+                        {ed.images.map((img, j) => {
+                            const webp = img.replace(/\.(jpe?g|png)$/i, '.webp');
+                            const hasWebp = webp !== img;
+                            return (
+                                <a href={`${base}${img}`} data-pswp-width="1920" data-pswp-height="1080" class="editionThumb">
+                                    {hasWebp ? (
+                                        <picture>
+                                            <source srcset={`${base}${webp}`} type="image/webp" />
+                                            <img src={`${base}${img}`} alt={`${ed.title} - zdjęcie ${j + 1}`} loading="lazy" decoding="async" />
+                                        </picture>
+                                    ) : (
+                                        <img src={`${base}${img}`} alt={`${ed.title} - zdjęcie ${j + 1}`} loading="lazy" decoding="async" />
+                                    )}
+                                    <div class="editionThumbOverlay">
+                                        <span>🔍</span>
+                                    </div>
+                                </a>
+                            );
+                        })}
+                    </div>
+
+                    <details class="editionGames">
+                        <summary>Lista gier ({ed.games.length})</summary>
+                        <ol class="editionGamesList">
+                            {ed.games.map((game) => (
+                                <li>{game}</li>
+                            ))}
                         </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-
-        <h1 class="eventHeader">Truniej HEX V - inspirowana światem Harrego Pottera</h1>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>500 zł </h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
-                    <h1>love_kanye</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>18.10.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>31</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex5/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Lot przez obręcze</li>
-                            <li>Komnata tajemnic</li>
-                            <li>Berek</li>
-                            <li>Smok, Czarne jezioro, Labirynt</li>
-                            <li>Pojedynek na różdżki</li>
-                            <li>Pokój życzeń</li>
-                            <li>Most</li>
-                        </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <h1 class="eventHeader">Truniej HEX IV - inspirowana światem Squid Game</h1>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>1000 zł </h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
-                    <h1>soonne, Gizzeusz</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>2.08.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>33</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex4/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Simon mówi</li>
-                            <li>Skakanka</li>
-                            <li>Mingle</li>
-                            <li>Bierki</li>
-                            <li>Bomberman</li>
-                            <li>Quiz</li>
-                            <li>Gra w chowanego</li>
-                        </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <h1 class="eventHeader">Truniej HEX III - inspirowana światem Pokemon</h1>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/1.jpg" lazyMeanColor="#dcc5ea" isLightBox >
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>400 zł </h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzcy: </strong></p>
-                    <h1>Bartimoza, soonne</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>31.05.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>17</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex3/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Bulbasaur (Spleef)</li>
-                            <li>Charmander (Hot Head)</li>
-                            <li>Gengar (Escape Room)</li>
-                            <li>Snorlax (Odszukaj odpowiednią ilość przedmiotów i unikaj Snorlaxów)</li>
-                            <li>Decidueye (PVP Łuki - Dwie drużyny)</li>
-                            <li>Voltorb (Bomberman)</li>
-                        </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <h1 class="eventHeader">Truniej HEX II</h1>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>650 zł </h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
-                    <h1>Grzesztof</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>19.04.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>15</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex2/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Czerwone, zielone</li>
-                            <li>Mingle</li>
-                            <li>Lot przez tunel</li>
-                            <li>Wieża Breeze'a</li>
-                            <li>Lodowy wyścig</li>
-                        </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-        
-        <h1 class="eventHeader">Truniej HEX I</h1>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/1.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <b>Nagroda:</b></p>
-                    <h1>300 zł </h1>
-                    
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/2.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;"> <strong>Zwycięzca: </strong></p>
-                    <h1>Endrju_</h1>
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-
-        <Grid21>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/3.jpg" lazyMeanColor="#dcc5ea" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                    <p style="font-size: 1.8rem; font-weight: 600;">Data: <strong>15.03.2025</strong></p>
-                    <p style="font-size: 1.8rem; font-weight: 600;">Liczba graczy: <strong>10</strong></p>
-                </div>
-            </ImageBoxContent>
-            <ImageBoxContent slot="left" imagePath="images/Archive/Hex1/4.jpg" lazyMeanColor="#dcc5ea" wrapperClass="imageRight" isLightBox>
-                <div class="fullWidthTileContent" style="text-align: center;">
-                        <h1>Gry:</h1>
-                        <ol>
-                            <li>Wybierz i zbuduj</li>
-                            <li>Walc kwiatów</li>
-                            <li>Cztery pory roku</li>
-                            <li>Szklany most + Escape Room</li>
-                            <li>Labirynt</li>
-                        </ol>
-                    <!-- <a href="/frontendAndBackendSubject"><b>Więcej informacji</b></a> -->
-                </div>
-            </ImageBoxContent>
-        </Grid21>
-        <div style="">
-            <i>Motywy edycji jest wyłącznie inspirowany światem </i>
+                    </details>
+                </article>
+            ))}
         </div>
 
-        <section class="archiveFaq showcaseFaq">
-            <h2>FAQ - Archiwum wydarzen</h2>
+        <p class="archiveDisclaimer"><i>Motywy edycji są wyłącznie inspirowane oryginalnymi światami.</i></p>
+
+        <section class="archiveHallOfFame" aria-labelledby="archiveHallTitle">
+            <h2 id="archiveHallTitle">Hall of Fame</h2>
+            <p class="archiveHallSub">Najczęściej wygrywający gracze HEX.</p>
+            <ol class="archiveHallList">
+                {hallOfFame.map((entry, index) => (
+                    <li class="archiveHallItem">
+                        <span class="archiveHallRank">#{index + 1}</span>
+                        <img
+                            class="archiveHallAvatar"
+                            src={`https://mc-heads.net/avatar/${encodeURIComponent(entry.name)}/80`}
+                            alt={`Awatar gracza ${entry.name}`}
+                            loading="lazy"
+                            decoding="async"
+                            width="56"
+                            height="56"
+                        />
+                        <div class="archiveHallInfo">
+                            <span class="archiveHallName">{entry.name}</span>
+                            <span class="archiveHallWins">{entry.wins} {entry.wins === 1 ? "wygrana" : "wygrane"}</span>
+                        </div>
+                    </li>
+                ))}
+            </ol>
+        </section>
+
+        <section class="archiveFaq">
+            <h2>FAQ — Archiwum wydarzeń</h2>
             <FAQ>
                 <FAQLine>
-                    <FAQQuestion>Skad pochodza dane o turniejach?</FAQQuestion>
-                    <FAQAnswer>Dane o liczbie graczy, nagrodach i zwyciezcach pochodza z oficjalnych podsumowan kazdej edycji HEX.</FAQAnswer>
+                    <FAQQuestion>Skąd pochodzą dane o turniejach?</FAQQuestion>
+                    <FAQAnswer>Dane o liczbie graczy, nagrodach i zwycięzcach pochodzą z oficjalnych podsumowań każdej edycji HEX.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
                     <FAQQuestion>Czy archiwum zawiera wszystkie poprzednie edycje?</FAQQuestion>
-                    <FAQAnswer>Tak, sukcesywnie uzupelniamy archiwum, aby kazdy sezon i event byly opisane w jednym miejscu.</FAQAnswer>
+                    <FAQAnswer>Tak, sukcesywnie uzupełniamy archiwum, aby każdy sezon i event były opisane w jednym miejscu. Informacje o każdym ewencie powinny pojawić się w przeciągu kilku tygodni od wydarzenia.</FAQAnswer>
                 </FAQLine>
                 <FAQLine>
-                    <FAQQuestion>Gdzie szukac informacji o nadchodzacych turniejach?</FAQQuestion>
-                    <FAQAnswer>Aktualne zapowiedzi i harmonogramy publikujemy na stronie glownej oraz na Discordzie HEX.</FAQAnswer>
+                    <FAQQuestion>Gdzie szukać informacji o nadchodzących turniejach?</FAQQuestion>
+                    <FAQAnswer>Aktualne zapowiedzi i harmonogramy publikujemy na stronie głównej oraz na Discordzie HEX.</FAQAnswer>
                 </FAQLine>
             </FAQ>
         </section>
@@ -302,37 +284,572 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
 </ContentContainer>
 <Footer/>
 
+<script>
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
+
+const lightbox = new PhotoSwipeLightbox({
+    gallery: ".editionGallery",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+});
+lightbox.init();
+
+// ===== Filtry archiwum =====
+const filterButtons = document.querySelectorAll<HTMLButtonElement>(".archiveFilterPill");
+const editionCards = document.querySelectorAll<HTMLElement>(".editionCard");
+const emptyState = document.querySelector<HTMLElement>(".archiveFilterEmpty");
+
+function applyFilter(filter: string) {
+    let visibleCount = 0;
+    editionCards.forEach((card) => {
+        const tags = (card.dataset.tags ?? "").split(/\s+/).filter(Boolean);
+        const matches = filter === "all" || tags.includes(filter);
+        card.hidden = !matches;
+        if (matches) visibleCount += 1;
+    });
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+}
+
+filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const filter = button.dataset.filter ?? "all";
+        filterButtons.forEach((btn) => btn.setAttribute("aria-pressed", btn === button ? "true" : "false"));
+        applyFilter(filter);
+    });
+});
+</script>
+
 <style>
-    .eventHeader {
-        margin: 100px 0 40px 0;
+    /* ===== DARK THEME ===== */
+    :global(#main-content) {
+        background: #0a0d12 !important;
+        color: #e0d8cc !important;
     }
 
-    .archiveSeoIntro,
+    /* ===== HERO ===== */
+    :global(.archiveHeroBanner) {
+        position: relative;
+    }
+
+    .archiveHeroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(10, 13, 18, 0.7) 70%,
+            #0a0d12 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .archiveHeroContent {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        gap: 12px;
+    }
+
+    .archiveHeroBadge {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.4);
+        background: rgba(255, 166, 0, 0.1);
+        color: var(--accent-color);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .archiveBannerText {
+        color: white;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-family: "minecraft";
+        margin: 0;
+        text-shadow: 0 0 40px rgba(255, 166, 0, 0.25), 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .archiveHeroSub {
+        margin: 0;
+        font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 560px;
+    }
+
+    /* ===== HEADING ACCENTS ===== */
+    h2 { color: #fff; }
+    h2:not(.faqToggleHeading)::after {
+        content: "";
+        width: 60px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+        box-shadow: 0 0 14px rgba(255, 166, 0, 0.4);
+        margin-top: 10px;
+        align-self: center;
+    }
+
+    /* ===== TIMELINE ===== */
+    .archiveTimeline {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        width: 100%;
+        position: relative;
+    }
+
+    /* ===== EDITION CARD ===== */
+    .editionCard {
+        display: flex;
+        flex-direction: column;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .editionCard:hover {
+        border-color: rgba(255, 166, 0, 0.2);
+        box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 166, 0, 0.05);
+    }
+
+    /* --- Header --- */
+    .editionHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+    }
+
+    .editionHeader::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        opacity: 0.45;
+    }
+
+    .editionTitleBlock {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .editionTitleWrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .editionNumber {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 166, 0, 0.1);
+        border: 1px solid rgba(255, 166, 0, 0.3);
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .editionTitle {
+        margin: 0;
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+        line-height: 1.2;
+        color: #fff;
+    }
+
+    .editionTitle::after {
+        display: none;
+    }
+
+    .editionSubtitle {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-style: italic;
+    }
+
+    .editionDate {
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.5);
+        white-space: nowrap;
+    }
+
+    /* --- Stats grid --- */
+    .editionStats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .editionStat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 18px 12px;
+        text-align: center;
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+    }
+
+    .editionStatLabel {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .editionStatValue {
+        font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .editionStatValue.prize {
+        color: var(--accent-color);
+        text-shadow: 0 0 16px rgba(255, 166, 0, 0.3);
+    }
+
+    .editionStatValue.winner {
+        color: #ffe39f;
+    }
+
+    /* --- Gallery strip --- */
+    .editionGallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .editionThumb {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 9;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .editionThumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .editionThumbOverlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 13, 18, 0.55);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-size: 1.6rem;
+        pointer-events: none;
+    }
+
+    .editionThumb:hover img {
+        transform: scale(1.08);
+        filter: brightness(1.15);
+    }
+
+    .editionThumb:hover .editionThumbOverlay {
+        opacity: 1;
+    }
+
+    /* --- Games accordion --- */
+    .editionGames {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .editionGames summary {
+        display: flex;
+        align-items: center;
+        padding: 14px 24px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.25s ease, background-color 0.25s ease;
+        user-select: none;
+        list-style: none;
+    }
+
+    .editionGames summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .editionGames summary::before {
+        content: "▸";
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 0.85rem;
+        transition: transform 0.25s ease;
+        color: var(--accent-color);
+    }
+
+    .editionGames[open] summary::before {
+        transform: rotate(90deg);
+    }
+
+    .editionGames summary:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .editionGamesList {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 0 24px 18px 48px;
+        margin: 0;
+        list-style: decimal;
+    }
+
+    .editionGamesList li {
+        text-align: left;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.5;
+        padding: 2px 0;
+    }
+
+    .editionGamesList li::marker {
+        color: rgba(255, 166, 0, 0.5);
+    }
+
+    /* ===== DISCLAIMER ===== */
+    .archiveDisclaimer {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 0.88rem;
+        margin: 24px 0 36px 0;
+    }
+
+    /* ===== STATS BANNER ===== */
+    .archiveStatsBanner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 18px 24px;
+        width: 100%;
+        padding: 18px 20px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 166, 0, 0.18);
+        background: linear-gradient(155deg, rgba(255, 166, 0, 0.08), rgba(255, 106, 0, 0.03));
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        box-sizing: border-box;
+    }
+
+    .archiveStat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        min-width: 96px;
+    }
+
+    .archiveStatValue {
+        font-family: "minecraft";
+        font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+        color: var(--accent-color);
+        text-shadow: 0 0 18px rgba(255, 166, 0, 0.35);
+        line-height: 1;
+    }
+
+    .archiveStatLabel {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-transform: lowercase;
+        letter-spacing: 0.03em;
+    }
+
+    .archiveStatDivider {
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    /* ===== FILTERS ===== */
+    .archiveFilters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin: 6px 0 22px 0;
+    }
+
+    .archiveFilterPill {
+        padding: 8px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.75);
+        font-family: inherit;
+        font-size: 0.88rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .archiveFilterPill:hover {
+        color: #fff;
+        border-color: rgba(255, 166, 0, 0.35);
+    }
+
+    .archiveFilterPill[aria-pressed="true"] {
+        color: #0a0d12;
+        background: var(--accent-color);
+        border-color: var(--accent-color);
+        box-shadow: 0 4px 16px rgba(255, 166, 0, 0.3);
+    }
+
+    .archiveFilterEmpty {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        margin: 8px 0 24px 0;
+    }
+
+    /* ===== HALL OF FAME ===== */
+    .archiveHallOfFame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 28px 24px;
+        margin: 0 0 36px 0;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .archiveHallOfFame h2 {
+        margin: 0;
+        color: #fff;
+    }
+
+    .archiveHallSub {
+        margin: 0 0 10px 0;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.95rem;
+    }
+
+    .archiveHallList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .archiveHallItem {
+        display: grid;
+        grid-template-columns: 48px 56px 1fr;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        text-align: left;
+    }
+
+    .archiveHallItem:first-child {
+        border-color: rgba(255, 166, 0, 0.25);
+        background: rgba(255, 166, 0, 0.06);
+    }
+
+    .archiveHallRank {
+        font-family: "minecraft";
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        text-shadow: 0 0 12px rgba(255, 166, 0, 0.3);
+    }
+
+    .archiveHallAvatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        image-rendering: pixelated;
+        background: #0a0d12;
+    }
+
+    .archiveHallInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .archiveHallName {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .archiveHallWins {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.85rem;
+    }
+
+    @media (max-width: 500px) {
+        .archiveStatsBanner { gap: 12px 16px; padding: 14px 12px; }
+        .archiveStatDivider { display: none; }
+        .archiveStat { min-width: 78px; }
+        .archiveFilterPill { padding: 6px 14px; font-size: 0.82rem; }
+    }
+
+    /* ===== FAQ ===== */
     .archiveFaq {
         display: flex;
         text-align: center;
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        width: 100%;
-    }
-
-    .archiveSeoIntro p {
-        margin: 0;
-        line-height: 1.6;
-    }
-
-    .archiveFaq {
-        width: min(1100px, 96%);
+        width: min(1100px, 100%);
         margin: 10px auto 0 auto;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 18px;
-        padding: 16px;
+        padding: 20px 16px;
         color: #f6f0dd;
-        background: linear-gradient(155deg, #222833 0%, #151920 55%, #10141a 100%);
+        background: linear-gradient(155deg, #181d28 0%, #111620 55%, #0c0f16 100%);
         position: relative;
         overflow: hidden;
-        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     }
 
     .archiveFaq::before {
@@ -340,7 +857,7 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.2), transparent 42%);
+        background: radial-gradient(circle at 10% 0%, rgba(255, 195, 87, 0.12), transparent 42%);
     }
 
     .archiveFaq h2 {
@@ -349,39 +866,33 @@ import FAQAnswer from './FAQ/FAQAnswer.astro'
         z-index: 1;
     }
 
-    .archiveFaq article {
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 12px;
-        padding: 10px 12px;
-        background: rgba(0, 0, 0, 0.24);
-        position: relative;
-        z-index: 1;
-    }
-
-    .archiveFaq h3 {
-        margin: 0 0 6px 0;
-        color: #ffd88c;
-    }
-
-    .archiveFaq p {
-        margin: 0;
-        line-height: 1.6;
-    }
-
-    li {
-        text-align: left;
-    }
-
-    .archiveBannerText{
-        color: white;
-        font-size: 6rem;
-        font-family: "minecraft";
-    }
-
-    @media(max-width: 870px){
-        .archiveBannerText{
-            font-size: 4rem;
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .editionGallery {
+            grid-template-columns: repeat(2, 1fr);
         }
-        
+
+        .editionStats {
+            grid-template-columns: 1fr;
+        }
+
+        .editionHeader {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .archiveBannerText {
+            font-size: clamp(2rem, 8vw, 3rem);
+        }
+
+        .editionGallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .editionCard {
+            border-radius: 14px;
+        }
     }
 </style>
