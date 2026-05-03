@@ -32,7 +32,7 @@ export const homepageStatsGrid = [
 ];
 
 export const serverRoadmap = [
-  { headerText: 'SMP Economy', href: 'hexSMP', progress: 33, eta: '4.07.2026' },
+  { headerText: 'SMP Economy', href: 'hexSMP', progress: 33, eta: '3.07.2026' },
   { headerText: 'Mini Games', href: 'hexMiniGames', progress: 10, eta: 'Q3 2026' },
   { headerText: 'PARKOUR', href: 'hexParkour', progress: 0, eta: 'Q4 2026' },
   { headerText: 'PVP', href: 'hexPvp', progress: 0, eta: 'Q4 2026' },
@@ -50,7 +50,7 @@ export const homepageTimeline = [
     cta: 'Szczegóły eventu →',
   },
   {
-    date: '4.07.2026',
+    date: '3.07.2026',
     tag: 'SMP',
     tagClass: 'tagSmp',
     title: 'Start serwera HEX SMP',
