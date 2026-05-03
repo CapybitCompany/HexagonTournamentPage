@@ -11,8 +11,11 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+import { getLatestDevlogEntries } from '../../../data/devlog';
 
 const base = import.meta.env.BASE_URL;
+
+const devlogPreviewEntries = getLatestDevlogEntries(3);
 ---
 
 <NavBar/>
@@ -20,12 +23,12 @@ const base = import.meta.env.BASE_URL;
     <Breadcrumbs items={[{ label: "HEX SMP" }]} />
 
     <!-- ===== HERO ===== -->
-    <FullImageContainer imagePath="images/construction.jpeg" imageLink="#" wrapperClass="blackBackground smpHeroBanner" imageClass="otherAspect" wrapperStyle="height: 440px;" altText="HEX SMP - nowy tryb Minecraft w produkcji">
+    <FullImageContainer imagePath="images/Archive/Banner.png" imageLink="#" wrapperClass="blackBackground smpHeroBanner" imageClass="otherAspect" wrapperStyle="height: 440px;" altText="HEX SMP - nowy tryb Minecraft w produkcji">
         <div class="smpHeroOverlay"></div>
         <div class="smpHeroContent">
             <span class="smpHeroBadge">⚔️ HEX SMP</span>
             <span class="smpStatusPill"><span class="smpPulse"></span> W PRODUKCJI</span>
-            <h1 class="smpHeroTitle">Twój świat. Twoje zasady. Twoi rywale.</h1>
+            <h1 class="smpHeroTitle">SMP + Kolekcje + Miasta</h1>
             <p class="smpHeroSub">Nowy tryb Minecraft SMP, w którym to co zbudujesz naprawdę ma znaczenie.<br/>Śledź produkcję — i bądź pierwszy, gdy serwer wystartuje.</p>
             <div class="smpHeroCta">
                 <a class="smpBtn smpBtnPrimary" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
@@ -37,15 +40,16 @@ const base = import.meta.env.BASE_URL;
     <Section>
         <div class="smp">
 
-            <!-- ===== HOOK: NIE KOLEJNY SMP ===== -->
+            <!-- ===== HOOK: NOWE PODEJŚCIE DO SMP ===== -->
             <section class="smpHook reveal">
                 <span class="smpSectionLabel" aria-hidden="true">// INTRO</span>
-                <h2 class="smpSectionTitle">Nie kolejny SMP.</h2>
+                <h2 class="smpSectionTitle">Nowe podejście do SMP</h2>
                 <div class="smpHookText">
-                    <p>Znasz to uczucie — wchodzisz na serwer, budujesz bazę, po tygodniu jest nudno.</p>
-                    <p><strong>HEX SMP to coś innego.</strong></p>
-                    <p>Tutaj Twoja baza to nie tylko bloki — to Twoja ekonomia, Twoja siła, Twój cel. Inni gracze nie są tłem — są zagrożeniem i szansą jednocześnie. A system gry sprawia, że <strong>codziennie masz powód, żeby wrócić</strong>.</p>
-                    <p>Nie ma tu przypadkowych mechanik. Każdy element jest zaprojektowany żebyś chciał grać — nie dlatego że musisz, ale dlatego że nie możesz się oderwać.</p>
+                    <p>Ekonomia jest oklepana. Ale walka o to, kto dobije jako pierwszy do 1 miliona diamentów? Nie da się?</p>
+                    <p><strong>Hex SMP to coś nowego.</strong></p>
+                    <p>Tutaj budujesz swoje miasto, poszerzasz je, stawiasz miniony, ulepszasz je i dążysz do tego by stać się najbogatszym. Handel, aukcje i <strong>rozwój miasta</strong>, tak aby generowało możliwie dużo łupów.</p>
+                    <p>Chcesz tworzyć historię z przyjaciółmi? Niech dołączą do coopa i razem projektujcie bogactwo.</p>
+                    <p>To nie kolejny SMP, a bardziej MMO inspirowane serwerem Hipixel!</p>
                 </div>
             </section>
 
@@ -59,33 +63,33 @@ const base = import.meta.env.BASE_URL;
                 <div class="smpFeatureGrid">
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:0">
                         <span class="smpFeatureIcon">🏗️</span>
-                        <h3>Twoja baza, Twoja twierdza</h3>
-                        <p>Budujesz nie dla ładnego wyglądu — budujesz, żeby przetrwać.</p>
+                        <h3>Twoje miasto, twoje reguły</h3>
+                        <p>Budujesz nie dla łądnego wyglądu - budujesz, żeby mieć swoją fabrykę.</p>
                     </article>
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:1">
                         <span class="smpFeatureIcon">💰</span>
-                        <h3>Ekonomia, która działa</h3>
-                        <p>Twoje zasoby generują się automatycznie. Im lepiej zarządzasz, tym szybciej rośniesz.</p>
+                        <h3>Ekonomia</h3>
+                        <p>Myślisz że skrzynia diamentów to sporo? Nie kiedy w grę wchodzą nowe updaty minionów i miasta.</p>
                     </article>
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:2">
                         <span class="smpFeatureIcon">⚔️</span>
-                        <h3>PvP z prawdziwą stawką</h3>
-                        <p>Vanilla combat, zero pay-to-win. Każda walka coś kosztuje — i coś daje.</p>
+                        <h3>PvP</h3>
+                        <p>W mieście możesz czuć się bezpiecznie... </p>
                     </article>
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:3">
                         <span class="smpFeatureIcon">🤝</span>
-                        <h3>Inni gracze to nie tło</h3>
-                        <p>Twoje decyzje wpływają na nich. Ich decyzje wpływają na Ciebie. Codziennie.</p>
+                        <h3>Gracze i coopy</h3>
+                        <p>Możesz z przyjaciółmi współtworzyć miasto. Z innymi handlować. Wasze decyzje i wasze wpływy kształtują świat.</p>
                     </article>
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:4">
                         <span class="smpFeatureIcon">📅</span>
-                        <h3>Powód żeby wracać</h3>
-                        <p>System gry daje Ci coś do zrobienia każdego dnia. Zero pustych sesji.</p>
+                        <h3>Codzienny powrót</h3>
+                        <p>Zawsze jest coś do zrobienia, ulepszenia, wykonania.</p>
                     </article>
                     <article class="smpFeatureCard reveal-child" style="--reveal-i:5">
                         <span class="smpFeatureIcon">🔮</span>
-                        <h3>To dopiero początek</h3>
-                        <p>Nowe mechaniki będą się pojawiać po starcie. Bądź od początku — zanim reszta się połapie.</p>
+                        <h3>Aktualizacje</h3>
+                        <p>Jeśli powie się A, to trzeba powiedzieć też B. Planowane są liczne aktualizacje rozwijające mechaniki.</p>
                     </article>
                 </div>
             </section>
@@ -166,34 +170,34 @@ const base = import.meta.env.BASE_URL;
 
             <!-- ===== PILLARS: KAŻDY ELEMENT MA SENS ===== -->
             <section class="smpPillars reveal">
-                <h2 class="smpSectionTitle">Każdy element ma sens.</h2>
+                <h2 class="smpSectionTitle">Balans rozgrywki</h2>
                 <div class="smpPillarList">
                     <div class="smpPillar reveal-child" style="--reveal-i:0">
                         <span class="smpPillarIcon">💰</span>
                         <div class="smpPillarBody">
                             <h3>Ekonomia, która działa sama</h3>
-                            <p>Nie musisz siedzieć godzinami w kopalni. Twoje zasoby rosną nawet gdy jesteś offline. Ale… inni o tym wiedzą.</p>
+                            <p>Nie musisz siedzieć godzinami w kopalni. Twoje zasoby rosną nawet gdy jesteś offline. Pytanie jak szybko i czy da się szybciej?</p>
                         </div>
                     </div>
                     <div class="smpPillar reveal-child" style="--reveal-i:1">
-                        <span class="smpPillarIcon">⚔️</span>
+                        <span class="smpPillarIcon">📅</span>
                         <div class="smpPillarBody">
-                            <h3>PvP z prawdziwą stawką</h3>
-                            <p>Zero artefaktów za kasę, zero OP broni. Czysty skill. A każda walka ma konsekwencje — dla obydwu stron.</p>
+                            <h3>Miasto, które trzeba rozwinąć</h3>
+                            <p>Poszerzaj granice miasta, dodawaj miniony, zwiększaj limity.</p>
                         </div>
                     </div>
                     <div class="smpPillar reveal-child" style="--reveal-i:2">
-                        <span class="smpPillarIcon">📅</span>
+                        <span class="smpPillarIcon">⚔️</span>
                         <div class="smpPillarBody">
-                            <h3>Codziennie coś nowego</h3>
-                            <p>System gry nie pozwala Ci się nudzić. Każdego dnia masz nowy powód żeby wejść — i nowy powód żeby zostać dłużej.</p>
+                            <h3>PvE - Moby, Dungeony, Bossy</h3>
+                            <p>Elementy świata MMO, które pozwalają cieszyć się wyzwaniem nawet mając bardzo mocne sety.</p>
                         </div>
                     </div>
                     <div class="smpPillar reveal-child" style="--reveal-i:3">
                         <span class="smpPillarIcon">🔮</span>
                         <div class="smpPillarBody">
-                            <h3>Tryb, który rośnie</h3>
-                            <p>Na starcie dostaniesz bazę. Z czasem pojawią się mechaniki, które zmienią wszystko. Bądź od początku.</p>
+                            <h3>Nowe Itemy</h3>
+                            <p>Kolekcjonowanie przedmiotów dla samej liczby? Oj nie! Rozwój pochłania zasoby!</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +209,7 @@ const base = import.meta.env.BASE_URL;
             <!-- ===== FOMO CTA ===== -->
             <section class="smpFomo reveal">
                 <h2 class="smpSectionTitle">Bądź pierwszy.</h2>
-                <p class="smpFomoText">Serwer jest w produkcji. To znaczy, że ci co dołączą teraz — będą mieli przewagę.</p>
+                <p class="smpFomoText">Serwer jest w fazie produkcji. To znaczy, że kto dołączy na początku, będzie mieć przewagę.</p>
                 <p class="smpFomoText">Śledź devlog. Bądź na Discordzie. Kiedy serwer ruszy — będziesz gotowy.</p>
                 <a class="smpBtn smpBtnPrimary smpBtnWide" href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer">Dołącz na Discord</a>
             </section>
@@ -215,32 +219,18 @@ const base = import.meta.env.BASE_URL;
 
             <!-- ===== DEVLOG PREVIEW ===== -->
             <section class="smpDevlogPreview reveal">
-                <h2 class="smpSectionTitle">Co słychać w produkcji?</h2>
+                <h2 class="smpSectionTitle">Spojrzenie na serwer</h2>
                 <div class="smpDevlogList">
-                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:0">
-                        <div class="smpDevlogMeta">
-                            <time>10 kwi 2026</time>
-                            <span class="smpDevlogTag" data-tag="mechanika">mechanika</span>
-                        </div>
-                        <h3>System ekonomii — pierwsze testy</h3>
-                        <p>Automatyczne generowanie zasobów działa. Balansujemy tempo wzrostu.</p>
-                    </article>
-                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:1">
-                        <div class="smpDevlogMeta">
-                            <time>28 mar 2026</time>
-                            <span class="smpDevlogTag" data-tag="mapa">mapa</span>
-                        </div>
-                        <h3>Spawn i strefy startowe</h3>
-                        <p>Nowy spawn w budowie. Strefy startowe zaprojektowane pod 4 kierunki.</p>
-                    </article>
-                    <article class="smpDevlogEntry reveal-child" style="--reveal-i:2">
-                        <div class="smpDevlogMeta">
-                            <time>15 mar 2026</time>
-                            <span class="smpDevlogTag" data-tag="balans">balans</span>
-                        </div>
-                        <h3>PvP — vanilla combat testy</h3>
-                        <p>Testy walki vanilla. Zero custom enchantów — czysty skill.</p>
-                    </article>
+                    {devlogPreviewEntries.map((entry, index) => (
+                        <article class="smpDevlogEntry reveal-child" style={`--reveal-i:${index}`}>
+                            <div class="smpDevlogMeta">
+                                <time datetime={entry.dateTime}>{entry.date}</time>
+                                <span class="smpDevlogTag" data-tag={entry.tag}>{entry.tag}</span>
+                            </div>
+                            <h3>{entry.title}</h3>
+                            <p>{entry.summary}</p>
+                        </article>
+                    ))}
                 </div>
                 <a class="smpDevlogLink" href={`${base}devlog`}>Zobacz cały devlog →</a>
             </section>
@@ -259,7 +249,7 @@ const base = import.meta.env.BASE_URL;
                             <span>Film z procesu tworzenia — wkrótce</span>
                         </div>
                     </div>
-                    <div class="smpGallerySlot">
+                    <!-- <div class="smpGallerySlot">
                         <picture><source srcset={`${base}images/Archive/Hex6/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa HEX SMP — zdjęcie 1" loading="lazy" decoding="async" /></picture>
                     </div>
                     <div class="smpGallerySlot">
@@ -267,6 +257,18 @@ const base = import.meta.env.BASE_URL;
                     </div>
                     <div class="smpGallerySlot">
                         <picture><source srcset={`${base}images/Archive/Hex6/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa HEX SMP — zdjęcie 3" loading="lazy" decoding="async" /></picture>
+                    </div> -->
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
+                    </div>
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
+                    </div>
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
+                    </div>
+                    <div class="smpGallerySlot smpGalleryPlaceholder">
+                        <span>Więcej screenów wkrótce</span>
                     </div>
                     <div class="smpGallerySlot smpGalleryPlaceholder">
                         <span>Więcej screenów wkrótce</span>
@@ -290,11 +292,11 @@ const base = import.meta.env.BASE_URL;
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Kiedy start serwera?</FAQQuestion>
-                        <FAQAnswer>Tryb jest w produkcji. Datę ogłosimy na Discordzie — dołącz żeby być na bieżąco.</FAQAnswer>
+                        <FAQAnswer>Tryb jest w produkcji. Start 4.07.2026.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Co wyróżnia HEX SMP od innych serwerów?</FAQQuestion>
-                        <FAQAnswer>System, w którym codziennie masz co robić. Ekonomia działa sama, PvP ma stawkę, a decyzje mają konsekwencje. Nie jest nudno.</FAQAnswer>
+                        <FAQAnswer>System, w którym codziennie masz co robić. Ekonomia działa sama, system miast i coop, kolekcje itemów i wiele innych. Nie jest nudno.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Czy to pay-to-win?</FAQQuestion>
@@ -302,7 +304,7 @@ const base = import.meta.env.BASE_URL;
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Jak dołączyć?</FAQQuestion>
-                        <FAQAnswer>Wejdź na Discorda HEX — tam zapisy, ogłoszenia i społeczność.</FAQAnswer>
+                        <FAQAnswer>Wejdź na Discorda HEX — tam informacje, ogłoszenia i społeczność.</FAQAnswer>
                     </FAQLine>
                     <FAQLine>
                         <FAQQuestion>Gdzie śledzić postępy?</FAQQuestion>
@@ -1032,9 +1034,9 @@ const base = import.meta.env.BASE_URL;
         letter-spacing: 0.06em;
     }
 
-    .smpDevlogTag[data-tag="mechanika"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
-    .smpDevlogTag[data-tag="mapa"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
-    .smpDevlogTag[data-tag="balans"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
+    .smpDevlogTag[data-tag="Event"] { background: rgba(100,180,255,0.12); color: rgba(100,180,255,0.9); }
+    .smpDevlogTag[data-tag="SMP"] { background: rgba(100,200,120,0.12); color: rgba(100,200,120,0.9); }
+    .smpDevlogTag[data-tag="Ogólne"] { background: rgba(255,166,0,0.12); color: rgba(255,166,0,0.9); }
 
     .smpDevlogEntry h3 {
         margin: 0;

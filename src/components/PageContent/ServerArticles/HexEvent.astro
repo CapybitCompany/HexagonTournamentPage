@@ -82,7 +82,7 @@ const base = import.meta.env.BASE_URL;
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            🎯 Zapisz się na {nextHexEvent.edition} →
+                            🎯 Dołącz do {nextHexEvent.edition} →
                         </a>
                     </div>
                 </div>
@@ -123,13 +123,13 @@ const base = import.meta.env.BASE_URL;
                         </div>
                     </div>
                     <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex6/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" /></picture>
+                        <picture><source srcset={`${base}images/Archive/Hex8/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" /></picture>
                     </div>
                     <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex6/2.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" /></picture>
+                        <picture><source srcset={`${base}images/Archive/Hex8/2.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" /></picture>
                     </div>
                     <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex6/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex6/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" /></picture>
+                        <picture><source srcset={`${base}images/Archive/Hex8/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" /></picture>
                     </div>
                 </div>
             </section>
@@ -361,6 +361,7 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 
     .evUpcomingTitle {
         display: flex;
+        flex-direction: column;
         align-items: center;
         margin: 0 0 12px 0; font-size: clamp(2rem, 4vw, 3rem); font-family: "minecraft";
         color: #fff; text-shadow: 0 0 30px rgba(255,166,0,0.2);

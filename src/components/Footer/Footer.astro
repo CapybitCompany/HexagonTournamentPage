@@ -26,11 +26,17 @@ const base = import.meta.env.BASE_URL;
 <!-- Easter egg overlay -->
 <div class="easterEggOverlay" id="easterEgg" aria-hidden="true">
     <div class="easterEggContent">
-        <pre class="creeperFace">&#32;████ ████
-&#32;████ ████
-&#32;   ████
-&#32; ████████
-&#32; ██    ██</pre>
+        <pre class="creeperFace">
+███████        ███████
+███████        ███████
+███████        ███████
+███████        ███████
+
+    ████████    
+  ████████████  
+  ████    ████  
+  ████    ████  
+</pre>
         <span class="easterEggText">Ssssss... Znalazłeś Creepera! 💥</span>
     </div>
 </div>
@@ -314,6 +320,9 @@ const base = import.meta.env.BASE_URL;
         pointer-events: auto;
     }
     .easterEggContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
         animation: eggPop 0.5s cubic-bezier(.22,1,.36,1);
     }

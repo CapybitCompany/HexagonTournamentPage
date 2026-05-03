@@ -1,7 +1,7 @@
 export const hexProjectStats = {
   tournamentsPlayed: 7,
-  rankedPlayers: 52,
-  discordMembers: 140,
+  rankedPlayers: 141,
+  discordMembers: 133,
   prizePoolPln: 3450,
   activityStartedOn: '2025-03-15',
 };
@@ -26,15 +26,16 @@ export const homepageHeroStats = [
 
 export const homepageStatsGrid = [
   { label: 'Rozegranych turniejów', value: `${hexProjectStats.tournamentsPlayed}` },
-  { label: 'Graczy w rankingach', value: `${hexProjectStats.rankedPlayers}` },
+  { label: 'Łącznie graczy w turniejach', value: `${hexProjectStats.rankedPlayers}` },
   { label: 'Członków Discord', value: `${hexProjectStats.discordMembers}` },
   { label: 'Dni naszej działalności', value: '0', daysFrom: hexProjectStats.activityStartedOn },
 ];
 
 export const serverRoadmap = [
-  { headerText: 'Mini Games', href: 'hexMiniGames', progress: 25, eta: 'Q4 2026' },
-  { headerText: 'PARKOUR', href: 'hexParkour', progress: 15, eta: 'Q1 2027' },
-  { headerText: 'PVP', href: 'hexPvp', progress: 30, eta: 'Q3 2026' },
+  { headerText: 'SMP Economy', href: 'hexSMP', progress: 33, eta: '4.07.2026' },
+  { headerText: 'Mini Games', href: 'hexMiniGames', progress: 10, eta: 'Q3 2026' },
+  { headerText: 'PARKOUR', href: 'hexParkour', progress: 0, eta: 'Q4 2026' },
+  { headerText: 'PVP', href: 'hexPvp', progress: 0, eta: 'Q4 2026' },
 ];
 
 export const homepageTimeline = [
@@ -49,7 +50,7 @@ export const homepageTimeline = [
     cta: 'Szczegóły eventu →',
   },
   {
-    date: 'Q3 2026',
+    date: '4.07.2026',
     tag: 'SMP',
     tagClass: 'tagSmp',
     title: 'Start serwera HEX SMP',
@@ -75,8 +76,10 @@ export const homepageTimeline = [
 
 export const nextHexEventSchedule = [
   { time: '19:00', label: 'Zbiórka graczy na serwerze' },
-  { time: '19:15', label: 'Runda 1 — start rozgrywki' },
-  { time: '20:00', label: 'Runda 2 — kolejne wyzwanie' },
-  { time: '21:00', label: 'Finał — decydujące zadanie' },
-  { time: '21:30', label: 'Wręczenie nagród i podsumowanie' },
+  { time: '19:05', label: 'Przywitanie i omówienie zasad' },
+  { time: '19:10', label: 'Konkurencja - Prawda/Fałsz' },
+  { time: '19:20', label: 'Konkurencja - Sajmon mówi' },
+  { time: '19:30', label: 'Panel I - Wejście na pokład Titanica' },
+  { time: '20:10', label: 'Panel II - 1 z 10' },
+  { time: '21:30', label: 'Koniec eventu i opcjonalna rozmowa z organizatorami' },
 ];

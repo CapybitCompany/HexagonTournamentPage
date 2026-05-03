@@ -11,7 +11,101 @@ import FAQLine from './FAQ/FAQLine.astro'
 import FAQQuestion from './FAQ/FAQQuestion.astro'
 import FAQAnswer from './FAQ/FAQAnswer.astro'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs.astro'
+import { hexProjectStats } from '../data/hex-network'
 const base = import.meta.env.BASE_URL;
+
+const aboutFocusAreas = [
+    {
+        icon: '🏆',
+        title: 'Turnieje i eventy',
+        desc: 'Budujemy wydarzenia z jasnym celem, własnymi zasadami i rankingiem punktowym.'
+    },
+    {
+        icon: '🌍',
+        title: 'Staly serwer do grania',
+        desc: 'Poza eventami rozwijamy swiat, do ktorego mozna wracac codziennie i budowac cos swojego.'
+    },
+    {
+        icon: '🧩',
+        title: 'Autorskie mechaniki',
+        desc: 'Testujemy pluginy, mapy i formaty gry, ktore daja nam wiecej niz kolejny zwykly serwer.'
+    },
+    {
+        icon: '💬',
+        title: 'Discord jako centrum projektu',
+        desc: 'To tam sa zapowiedzi, komunikacja z graczami, zapisy i feedback po kazdej edycji.'
+    },
+];
+
+const aboutAudienceCards = [
+    {
+        label: '01',
+        title: 'Dla graczy codziennych',
+        desc: 'Jesli chcesz po prostu wpasc po szkole lub pracy i miec zyjacy serwer, znajdziesz tu swoje miejsce.'
+    },
+    {
+        label: '02',
+        title: 'Dla tych, ktorzy lubia rywalizacje',
+        desc: 'Rankingi, eventy i sezonowe cele daja powod, zeby wracac i walczyc o cos wiecej niz sam survival.'
+    },
+    {
+        label: '03',
+        title: 'Dla ekip i znajomych',
+        desc: 'HEX jest projektowany tak, by dalo sie tu jednoczesnie wspolpracowac, rywalizowac i tworzyc swoja historie.'
+    },
+];
+
+const aboutValues = [
+    {
+        icon: '⚖️',
+        title: 'Fair-play',
+        desc: 'Dbamy o uczciwa rywalizacje i mechaniki, ktore nie rozwalaja balansu.'
+    },
+    {
+        icon: '🤝',
+        title: 'Szacunek',
+        desc: 'Nie ma miejsca na toksycznosc, nękanie i chaos komunikacyjny.'
+    },
+    {
+        icon: '🛡️',
+        title: 'Bezpieczenstwo',
+        desc: 'Moderacja, przejrzyste zasady i szybka reakcja sa czescia codziennego utrzymania projektu.'
+    },
+    {
+        icon: '📣',
+        title: 'Transparentnosc',
+        desc: 'Zmiany, terminy i nagrody komunikujemy wprost, bez zgadywania po stronie graczy.'
+    },
+];
+
+const aboutEventFlow = [
+    {
+        step: '01',
+        title: 'Zapowiedz',
+        desc: 'Najpierw pokazujemy motyw, zasady i termin, zeby kazdy wiedzial, o co gra.'
+    },
+    {
+        step: '02',
+        title: 'Zapisy i przygotowanie',
+        desc: 'Zbieramy chetnych, dopinamy mape, pluginy i scenariusz konkretnej edycji.'
+    },
+    {
+        step: '03',
+        title: 'Rozgrywka',
+        desc: 'Event ma tempo, emocje i czytelne cele. Ma byc widowiskowy, ale rowniez uczciwy.'
+    },
+    {
+        step: '04',
+        title: 'Ranking i nagrody',
+        desc: 'Po wszystkim zostaje historia edycji, wyniki i punkty, ktore buduja dluzsza motywacje.'
+    },
+];
+
+const aboutSupportPillars = [
+    'hosting i infrastruktura',
+    'narzedzia, zabezpieczenia i rozwój pluginow',
+    'czas potrzebny na eventy, support i utrzymanie projektu',
+];
 ---
 
 <NavBar/>
@@ -42,66 +136,102 @@ const base = import.meta.env.BASE_URL;
                 </article>
                 <article class="about__statCard reveal-child" style="--reveal-i:1">
                     <span>Rozegrane turnieje</span>
-                    <strong data-count-to="6">0</strong>
+                    <strong data-count-to={hexProjectStats.tournamentsPlayed}>0</strong>
                 </article>
                 <article class="about__statCard reveal-child" style="--reveal-i:2">
                     <span>Gracze w rankingach</span>
-                    <strong data-count-to="44">0</strong>
+                    <strong data-count-to={hexProjectStats.rankedPlayers}>0</strong>
                 </article>
                 <article class="about__statCard reveal-child" style="--reveal-i:3">
-                    <span>Aktywna społeczność</span>
-                    <strong>Discord + serwer</strong>
+                    <span>Na Discordzie</span>
+                    <strong data-count-to={hexProjectStats.discordMembers}>0</strong>
                 </article>
             </section>
 
-            <section class="about__section reveal">
+            <section class="about__section about__focusSection reveal">
+                <span class="about__eyebrow">Jak pracujemy</span>
                 <h2>Co robimy</h2>
-                <ul>
-                <li>Organizujemy turnieje i eventy Minecraft z rankingiem punktowym.</li>
-                <li>Prowadzimy stały serwer (Survival/SMP) oraz osobny świat mini-gier.</li>
-                <li>Budujemy aktywne community na Discordzie - tam dzieje się większość komunikacji.</li>
-                <li>Testujemy nowe pomysły, mapy i tryby w krótszych, eventowych formatach.</li>
-                <li>Przygotowujemy projekty, które wykraczają po za świat Minecraft.</li>
-                </ul>
+                <div class="about__focusGrid">
+                    {aboutFocusAreas.map((item, index) => (
+                        <article class="about__focusCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__focusIcon" aria-hidden="true">{item.icon}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section reveal">
-                <h2>Dla kogo jest HEX Network</h2>
-                <p>
-                Dla graczy, którzy lubią Minecrafta i chcą mieć:
-                <strong>stały serwer</strong> do grania na co dzień oraz <strong>wydarzenia</strong>, które dodają emocji i celów na dłużej.
-                Najczęściej trafiają do nas nastolatkowie i młodzi dorośli, ale każdy szanujący zasady jest mile widziany.
-                </p>
+            <section class="about__section about__audienceSection reveal">
+                <div class="about__audienceIntro">
+                    <span class="about__eyebrow">Dla kogo to jest</span>
+                    <h2>Dla graczy, ktorzy chca czegos wiecej niz pusty survival</h2>
+                    <p>
+                    HEX jest dla osob, ktore lubia Minecrafta, ale chca miec jednoczesnie <strong>staly serwer</strong>,
+                    <strong>wydarzenia z emocjami</strong> i projekt, ktory zyje rowniez pomiedzy eventami.
+                    Najczesciej trafiaja do nas nastolatkowie i mlodzi dorosli, ale kazdy szanujacy zasady jest mile widziany.
+                    </p>
+                </div>
+                <div class="about__audienceCards">
+                    {aboutAudienceCards.map((item, index) => (
+                        <article class="about__audienceCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__audienceLabel">{item.label}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section reveal">
+            <section class="about__section about__valuesSection reveal">
+                <span class="about__eyebrow">Zasady gry</span>
                 <h2>Nasze zasady</h2>
-                <ul>
-                <li><strong>Fair-play</strong> - stawiamy na uczciwą rywalizację i przejrzyste reguły.</li>
-                <li><strong>Szacunek</strong> - zero toksyczności, wyzwisk i nękania.</li>
-                <li><strong>Bezpieczeństwo</strong> - moderacja i jasne zasady porządku na serwerze oraz Discordzie.</li>
-                <li><strong>Transparentność</strong> - komunikujemy zmiany, terminy eventów i zasady nagród.</li>
-                </ul>
+                <div class="about__valuesGrid">
+                    {aboutValues.map((item, index) => (
+                        <article class="about__valueCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__valueIcon" aria-hidden="true">{item.icon}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <section class="about__section reveal">
-                <h2>Jak działają eventy i nagrody</h2>
-                <p>
-                Organizujemy turnieje i wyzwania sezonowe. Za udział i wyniki można zdobywać punkty do rankingów,
-                a najlepsze osoby zgarniają nagrody oraz wyróżnienia. Informacje o konkretnych zasadach, terminach i pulach nagród
-                zawsze publikujemy z wyprzedzeniem na Discordzie oraz w <a href={`${base}archive`}><b>archiwum eventów</b></a> i na stronie głównej.
+            <section class="about__section about__eventSection reveal">
+                <span class="about__eyebrow">Od pomyslu do eventu</span>
+                <h2>Jak dzialaja eventy i nagrody</h2>
+                <div class="about__eventTimeline">
+                    {aboutEventFlow.map((item, index) => (
+                        <article class="about__eventCard reveal-child" style={`--reveal-i:${index}`}>
+                            <span class="about__eventStep">{item.step}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                        </article>
+                    ))}
+                </div>
+                <p class="about__eventNote">
+                Konkretne zasady, terminy i pule nagrod publikujemy z wyprzedzeniem na Discordzie oraz w <a href={`${base}archive`}><b>archiwum eventow</b></a>.
                 </p>
             </section>
 
-            <section class="about__section reveal">
-                <h2>Skąd to wszystko się bierze</h2>
-                <p>
-                Utrzymanie serwera i organizacja eventów kosztują (hosting, zabezpieczenia, narzędzia, czas). Dlatego mamy sklep z
-                opcjami wspierającymi projekt (np. VIP i dodatki kosmetyczne / quality-of-life). Naszym celem jest, aby wsparcie
-                <strong>nie psuło rozgrywki</strong> i było uczciwe wobec graczy.
-                </p>
-                <p>
-                Jeśli chcesz zobaczyć, jak wygląda wsparcie projektu w praktyce, sprawdź <a href={`${base}shop`}><b>sklep HEX Network</b></a>.
+            <section class="about__section about__supportSection reveal">
+                <div class="about__supportIntro">
+                    <span class="about__eyebrow">Zaplecze projektu</span>
+                    <h2>Skad to wszystko sie bierze</h2>
+                    <p>
+                    Utrzymanie serwera i organizacja eventow kosztuja. Dlatego mamy sklep z opcjami wspierajacymi projekt,
+                    ale naszym celem jest, aby wsparcie <strong>nie psulo rozgrywki</strong> i pozostawalo uczciwe wobec graczy.
+                    </p>
+                </div>
+                <div class="about__supportGrid">
+                    {aboutSupportPillars.map((item, index) => (
+                        <div class="about__supportPillar reveal-child" style={`--reveal-i:${index}`}>
+                            <span>{item}</span>
+                        </div>
+                    ))}
+                </div>
+                <p class="about__supportNote">
+                Jesli chcesz zobaczyc, jak wyglada wsparcie projektu w praktyce, sprawdz <a href={`${base}shop`}><b>sklep HEX Network</b></a>.
                 </p>
             </section>
 
@@ -179,8 +309,10 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 const countObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseInt(el.dataset.countTo, 10);
+        const el = entry.target as HTMLElement;
+        const countTo = el.dataset.countTo;
+        if (!countTo) return;
+        const target = parseInt(countTo, 10);
         if (isNaN(target)) return;
         countObserver.unobserve(el);
         const duration = 1200;
@@ -195,7 +327,7 @@ const countObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.observe(el));
+document.querySelectorAll<HTMLElement>("[data-count-to]").forEach((el) => countObserver.observe(el));
 </script>
 
 <style>
@@ -387,6 +519,23 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .about__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 166, 0, 0.22);
+        background: rgba(255, 166, 0, 0.08);
+        color: #ffd89d;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+    }
+
     .about__section:hover {
         border-color: rgba(255, 166, 0, 0.15);
         box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 166, 0, 0.04);
@@ -435,6 +584,205 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
 
     .about__linksSection {
         align-items: stretch;
+    }
+
+    .about__focusGrid,
+    .about__valuesGrid,
+    .about__eventTimeline,
+    .about__supportGrid {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__focusGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__focusCard,
+    .about__valueCard,
+    .about__eventCard,
+    .about__supportPillar,
+    .about__audienceCard {
+        border: 1px solid var(--about-border);
+        background: var(--about-card-bg);
+        border-radius: 14px;
+        box-sizing: border-box;
+        transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .about__focusCard {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px;
+    }
+
+    .about__focusCard:hover,
+    .about__valueCard:hover,
+    .about__eventCard:hover,
+    .about__supportPillar:hover,
+    .about__audienceCard:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 210, 120, 0.28);
+        background: var(--about-card-bg-hover);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    .about__focusIcon,
+    .about__valueIcon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(145deg, rgba(255, 166, 0, 0.24), rgba(255, 166, 0, 0.08));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+        font-size: 1.15rem;
+    }
+
+    .about__focusCard h3,
+    .about__valueCard h3,
+    .about__eventCard h3,
+    .about__audienceCard h3 {
+        margin: 0;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+        font-size: 1.1rem;
+    }
+
+    .about__focusCard p,
+    .about__valueCard p,
+    .about__eventCard p,
+    .about__audienceCard p {
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        font-size: 1rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+    .about__audienceSection {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .about__audienceIntro {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__audienceIntro h2,
+    .about__supportIntro h2 {
+        margin: 0;
+    }
+
+    .about__audienceCards {
+        display: grid;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__audienceCard {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .about__audienceLabel,
+    .about__eventStep {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        width: fit-content;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(255, 166, 0, 0.12);
+        color: #ffd79c;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .about__valuesGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__valueCard {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 18px;
+    }
+
+    .about__eventTimeline {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about__eventCard {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px;
+        min-height: 190px;
+    }
+
+    .about__eventNote,
+    .about__supportNote {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__supportSection {
+        gap: 16px;
+    }
+
+    .about__supportIntro {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about__supportGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .about__supportPillar {
+        min-height: 96px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .about__supportPillar span {
+        color: #f1eadb;
+        font-size: 1rem;
+        line-height: 1.55;
     }
 
     .about__linkGrid {
@@ -641,8 +989,16 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
 
     @media(max-width: 980px){
         .about__stats,
-        .about__linkGrid {
+        .about__linkGrid,
+        .about__focusGrid,
+        .about__valuesGrid,
+        .about__eventTimeline,
+        .about__supportGrid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .about__audienceSection {
+            grid-template-columns: 1fr;
         }
     }
 
@@ -664,8 +1020,17 @@ document.querySelectorAll("[data-count-to]").forEach((el) => countObserver.obser
 
     @media(max-width: 640px){
         .about__stats,
-        .about__linkGrid {
+        .about__linkGrid,
+        .about__focusGrid,
+        .about__valuesGrid,
+        .about__eventTimeline,
+        .about__supportGrid {
             grid-template-columns: 1fr;
+        }
+
+        .about__section,
+        .about__communityText {
+            padding: 20px;
         }
     }
 </style>

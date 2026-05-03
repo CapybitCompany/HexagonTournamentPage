@@ -144,7 +144,7 @@ const filters = [
             <span class="archiveStatDivider" aria-hidden="true">·</span>
             <div class="archiveStat">
                 <span class="archiveStatValue">{totalPlayers}</span>
-                <span class="archiveStatLabel">uczestników</span>
+                <span class="archiveStatLabel">uczestników łącznie</span>
             </div>
             <span class="archiveStatDivider" aria-hidden="true">·</span>
             <div class="archiveStat">
@@ -178,7 +178,7 @@ const filters = [
                     <div class="editionHeader">
                         <div class="editionTitleBlock">
                             <span class="editionNumber">#{editions.length - i}</span>
-                            <div>
+                            <div class="editionTitleWrapper">
                                 <h2 class="editionTitle">{ed.title}</h2>
                                 {ed.subtitle && <span class="editionSubtitle">{ed.subtitle}</span>}
                             </div>
@@ -450,6 +450,12 @@ filterButtons.forEach((button) => {
         display: flex;
         align-items: center;
         gap: 14px;
+    }
+
+    .editionTitleWrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
     }
 
     .editionNumber {

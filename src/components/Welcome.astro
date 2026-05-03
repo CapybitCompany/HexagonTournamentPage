@@ -60,8 +60,6 @@ const base = import.meta.env.BASE_URL;
 
         <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
 
-        <HexContainer src="images/Welcome/ServerBanner4.png" headerText="SMP Economy" href={`${base}hexSMP`}/>
-
         {serverRoadmap.map((item) => (
             <HexContainer headerText={item.headerText} href={`${base}${item.href}`} comingSoon={true} soonText="Niebawem" progress={item.progress} eta={item.eta}/>
         ))}
