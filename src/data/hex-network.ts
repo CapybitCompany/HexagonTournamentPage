@@ -51,7 +51,7 @@ export const homepageTimeline = [
     cta: 'Szczegóły eventu →',
   },
   {
-    date: '4.07.2026',
+    date: '3.07.2026',
     tag: 'SMP',
     tagClass: 'tagSmp',
     title: 'Start serwera HEX SMP',
