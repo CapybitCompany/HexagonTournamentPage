@@ -20,7 +20,7 @@ const base = import.meta.env.BASE_URL;
 
 <NavBar/>
 <ContentContainer>
-    <FullImageContainer id="mainBanner" imagePath="images/Welcome/Banner.jpg" imageLink="#" wrapperClass="blackBackground banner heroBanner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy" priority={true}>
+    <FullImageContainer id="mainBanner" imagePath="images/Welcome/BannerNew.webp" imageLink="#" wrapperClass="blackBackground banner heroBanner" imageClass="fade-image" altText="Turniej Minecraft HEX - serwer Minecraft Polska, event i ranking graczy" priority={true}>
     <div class="heroOverlay"></div>
     <div class="heroParticles" aria-hidden="true">
         <span class="particle"></span><span class="particle"></span><span class="particle"></span>
@@ -58,7 +58,7 @@ const base = import.meta.env.BASE_URL;
 
     <ServerContainerWrapper sourceIP="MinecraftHEX.pl">
 
-        <HexContainer src="images/Welcome/ServerBanner1.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
+        <HexContainer src="images/Welcome/EventZone.png" headerText="EVENT ZONE" href={`${base}hexEvent`}/>
 
         {serverRoadmap.map((item) => (
             <HexContainer headerText={item.headerText} href={`${base}${item.href}`} comingSoon={true} soonText="Niebawem" progress={item.progress} eta={item.eta}/>
