@@ -15,6 +15,11 @@ import CountdownTimer from '../../DiscordContainer/CountdownTimer.astro'
 import { nextHexEvent, nextHexEventSchedule } from '../../../data/hex-network';
 
 const base = import.meta.env.BASE_URL;
+const eventGalleryImages = Array.from({ length: 6 }, (_, index) => ({
+    src: `${base}images/Event/Titanic${index + 1}.jpg`,
+    alt: `Titanic - przygotowania do eventu HEX, zdjęcie ${index + 1}`
+}));
+const eventGalleryVideo = `${base}images/Event/TitanicMovie.mp4`;
 ---
 
 <NavBar/>
@@ -116,21 +121,22 @@ const base = import.meta.env.BASE_URL;
 
                 <div class="evGallery">
                     <div class="evGallerySlot evGalleryMain">
-                        <!-- Placeholder for main behind-the-scenes video -->
-                        <div class="evVideoPlaceholder">
-                            <span class="evVideoIcon">▶</span>
-                            <span>Film z procesu tworzenia — wkrótce</span>
+                        <video
+                            class="evGalleryVideo"
+                            controls
+                            preload="metadata"
+                            playsinline
+                            poster={eventGalleryImages[0].src}
+                        >
+                            <source src={eventGalleryVideo} type="video/mp4" />
+                            Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+                        </video>
+                    </div>
+                    {eventGalleryImages.map((image) => (
+                        <div class="evGallerySlot">
+                            <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
                         </div>
-                    </div>
-                    <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex8/1.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/1.jpg`} alt="Budowa mapy eventowej — zdjęcie 1" loading="lazy" decoding="async" /></picture>
-                    </div>
-                    <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex8/2.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/2.jpg`} alt="Budowa mapy eventowej — zdjęcie 2" loading="lazy" decoding="async" /></picture>
-                    </div>
-                    <div class="evGallerySlot">
-                        <picture><source srcset={`${base}images/Archive/Hex8/3.webp`} type="image/webp" /><img src={`${base}images/Archive/Hex8/3.jpg`} alt="Budowa mapy eventowej — zdjęcie 3" loading="lazy" decoding="async" /></picture>
-                    </div>
+                    ))}
                 </div>
             </section>
 
@@ -529,33 +535,30 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 
     .evGallery {
         display: grid; width: 100%;
-        grid-template-columns: 1.6fr 1fr;
-        grid-template-rows: auto auto;
+        grid-template-columns: 1.6fr 1fr 1fr;
         gap: 12px;
     }
 
-    .evGalleryMain { grid-row: 1 / 3; }
+    .evGalleryMain {
+        grid-row: 1 / 4;
+        min-height: 100%;
+    }
 
     .evGallerySlot {
         border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);
         background: rgba(0,0,0,0.3); min-height: 140px;
     }
-    .evGallerySlot img {
+    .evGallerySlot img,
+    .evGallerySlot video {
+        display: block;
         width: 100%; height: 100%; object-fit: cover;
         transition: transform 0.4s ease;
     }
     .evGallerySlot:hover img { transform: scale(1.05); }
 
-    .evVideoPlaceholder {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        width: 100%; height: 100%; min-height: 280px; gap: 12px;
-        color: rgba(255,255,255,0.35); font-size: 0.95rem;
-    }
-    .evVideoIcon {
-        width: 56px; height: 56px; border-radius: 50%;
-        background: rgba(255,166,0,0.12); border: 2px solid rgba(255,166,0,0.3);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.4rem; color: var(--accent-color);
+    .evGalleryVideo {
+        min-height: 100%;
+        background: #000;
     }
 
     /* ===== FEATURES ===== */
