@@ -81,10 +81,11 @@ const base = import.meta.env.BASE_URL;
 
 <script>
     const strip = document.querySelector('.footerMcStrip');
-    if (strip && window.innerWidth >= 768) {
+    if (strip) {
+        const isDesktop = window.innerWidth >= 768;
         const bg = strip.querySelector('.mcParallaxBg') as HTMLElement;
         const blocks = strip.querySelectorAll('.mcFloatingBlock') as NodeListOf<HTMLElement>;
-        
+
         const layers = [
             { el: blocks[0], speed: 0.7,  floatAmp: 14, floatPeriod: 8,  rotAmp: 5,  phase: 0,    destroyed: false },
             { el: blocks[1], speed: 0.5,  floatAmp: 10, floatPeriod: 10, rotAmp: 4,  phase: 2.1,  destroyed: false },
@@ -94,7 +95,6 @@ const base = import.meta.env.BASE_URL;
         ];
 
         let scrollOffset = 0;
-        let inView = false;
         let destroyedCount = 0;
         const totalBlocks = layers.length;
         const overlay = document.getElementById('easterEgg');
@@ -131,7 +131,11 @@ const base = import.meta.env.BASE_URL;
         blocks.forEach((block, idx) => {
             block.style.cursor = 'pointer';
             block.style.zIndex = '3';
-            block.addEventListener('click', () => {
+            // Enlarge tap target on touch devices without changing visual size
+            block.style.touchAction = 'manipulation';
+
+            const destroyBlock = (ev: Event) => {
+                ev.preventDefault();
                 if (layers[idx].destroyed) return;
                 layers[idx].destroyed = true;
                 spawnParticles(block);
@@ -143,8 +147,18 @@ const base = import.meta.env.BASE_URL;
                         setTimeout(() => overlay.classList.remove('show'), 3200);
                     }, 500);
                 }
-            });
+            };
+
+            block.addEventListener('click', destroyBlock);
+            // Some mobile browsers need an explicit touch handler for non-button elements
+            block.addEventListener('touchend', destroyBlock, { passive: false });
         });
+
+        if (!isDesktop) {
+            // Skip scroll parallax + RAF loop on mobile — clicks still work
+        } else {
+
+        let inView = false;
 
         window.addEventListener('scroll', () => {
             const rect = strip.getBoundingClientRect();
@@ -170,6 +184,7 @@ const base = import.meta.env.BASE_URL;
             requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
+        }
     }
 </script>
 
@@ -273,8 +288,13 @@ const base = import.meta.env.BASE_URL;
     }
 
     /* ===== BLOCK SHATTER ===== */
-    .mcFloatingBlock:hover:not(.mcBlockShatter) {
-        filter: brightness(1.4) drop-shadow(0 0 8px rgba(255,166,0,0.4));
+    @media (hover: hover) {
+        .mcFloatingBlock:hover:not(.mcBlockShatter) {
+            filter: brightness(1.4) drop-shadow(0 0 8px rgba(255,166,0,0.4));
+        }
+    }
+    .mcFloatingBlock:active:not(.mcBlockShatter) {
+        filter: brightness(1.5) drop-shadow(0 0 10px rgba(255,166,0,0.5));
     }
 
     .mcBlockShatter {

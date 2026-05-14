@@ -7,38 +7,41 @@ const base = import.meta.env.BASE_URL;
     <div class="mobileMenuInnerWrapper">
         <div class="mobileMenuInner">
             <div class="mobileMenuGroup">
-                <div class="submenuHeader">Serwer Minecraft HEX</div>
+                <div class="submenuHeader"><span class="submenuHeaderIcon">🎮</span>Serwer Minecraft HEX</div>
                 <div class="mobileMenuLinks">
-                    <a href={`${base}hexEvent`}>Event Zone</a>
-                    <a href={`${base}hexSmp`}>HEX SMP</a>
+                    <a href={`${base}hexEvent`}><span class="mobileMenuLinkIcon">⚔️</span><span class="mobileMenuLinkLabel">Event Zone</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
+                    <a href={`${base}hexSmp`}><span class="mobileMenuLinkIcon">🌍</span><span class="mobileMenuLinkLabel">HEX SMP</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
                 </div>
-                <div class="submenuHeader submenuHeaderSoon">W niedalekiej przyszłości</div>
+                <div class="submenuHeader submenuHeaderSoon"><span class="submenuHeaderIcon">⏳</span>W niedalekiej przyszłości</div>
                 <div class="mobileMenuLinks">
-                    <span class="mobileMenuDisabled">Mini Games</span>
-                    <span class="mobileMenuDisabled">Parkour</span>
-                    <span class="mobileMenuDisabled">HEX Mask Ritual (PVP)</span>
-                </div>
-            </div>
-
-            <div class="mobileMenuGroup">
-                <div class="submenuHeader">HEX Network</div>
-                <div class="mobileMenuLinks">
-                    <a href={`${base}archive`}>Archiwum eventów</a>
-                    <a href={`${base}devlog`}>Devlog</a>
-                    <a href={`${base}shop`}>Sklep</a>
+                    <span class="mobileMenuDisabled"><span class="mobileMenuLinkIcon">🎲</span><span class="mobileMenuLinkLabel">Mini Games</span><span class="mobileMenuSoonBadge">Soon</span></span>
+                    <span class="mobileMenuDisabled"><span class="mobileMenuLinkIcon">🏃</span><span class="mobileMenuLinkLabel">Parkour</span><span class="mobileMenuSoonBadge">Soon</span></span>
+                    <span class="mobileMenuDisabled"><span class="mobileMenuLinkIcon">🎭</span><span class="mobileMenuLinkLabel">HEX Mask Ritual (PVP)</span><span class="mobileMenuSoonBadge">Soon</span></span>
                 </div>
             </div>
 
             <div class="mobileMenuGroup">
-                <div class="submenuHeader">Informacje</div>
+                <div class="submenuHeader"><span class="submenuHeaderIcon">🌐</span>HEX Network</div>
                 <div class="mobileMenuLinks">
-                    <a href={`${base}about`}>O nas</a>
-                    <a href={`${base}contact`}>Kontakt</a>
+                    <a href={`${base}archive`}><span class="mobileMenuLinkIcon">🏆</span><span class="mobileMenuLinkLabel">Archiwum eventów</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
+                    <a href={`${base}devlog`}><span class="mobileMenuLinkIcon">📰</span><span class="mobileMenuLinkLabel">Devlog</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
+                    <a href={`${base}shop`}><span class="mobileMenuLinkIcon">🛒</span><span class="mobileMenuLinkLabel">Sklep</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
+                </div>
+            </div>
+
+            <div class="mobileMenuGroup">
+                <div class="submenuHeader"><span class="submenuHeaderIcon">ℹ️</span>Informacje</div>
+                <div class="mobileMenuLinks">
+                    <a href={`${base}about`}><span class="mobileMenuLinkIcon">👥</span><span class="mobileMenuLinkLabel">O nas</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
+                    <a href={`${base}contact`}><span class="mobileMenuLinkIcon">✉️</span><span class="mobileMenuLinkLabel">Kontakt</span><span class="mobileMenuChevron" aria-hidden="true">›</span></a>
                 </div>
             </div>
 
             <div class="mobileMenuCta">
-                <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer" class="mobileDiscordBtn">Dołącz na Discord</a>
+                <a href="https://discord.gg/e6SuCrQHak" target="_blank" rel="noopener noreferrer" class="mobileDiscordBtn">
+                    <span class="mobileDiscordBtnIcon" aria-hidden="true">💬</span>
+                    <span>Dołącz na Discord</span>
+                </a>
             </div>
         </div>
     </div>

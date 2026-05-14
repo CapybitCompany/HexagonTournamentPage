@@ -32,11 +32,10 @@ export const homepageStatsGrid = [
 ];
 
 export const serverRoadmap = [
-  { headerText: 'SMP Economy', href: 'hexSMP', progress: 36, eta: '4.07.2026' },
-  { headerText: 'Mini Games', href: 'hexMiniGames', progress: 10, eta: 'Q3 2026' },
-  { headerText: 'PARKOUR', href: 'hexParkour', progress: 0, eta: 'Q4 2026' },
-  { headerText: 'PVP', href: 'hexPvp', progress: 0, eta: 'Q4 2026' },
-  { headerText: 'HEX Hogwart', href: 'hexHogwart', progress: 0, eta: 'Q1 2027' },
+  { headerText: 'HEX SMP', src: 'images/Welcome/SMP.png', href: 'hexSmp', available: true, progress: 40, eta: '4.07.2026' },
+  { headerText: 'Mini Games', src: 'images/Welcome/Minigames.png', href: 'hexMiniGames', available: false, progress: 10, eta: 'Q3 2026' },
+  { headerText: 'PVP — Mask Ritual', src: 'images/Welcome/MaskRitual.png', href: 'hexPvp', available: false, progress: 0, eta: 'Q4 2026' },
+  { headerText: 'HEX Hogwart', src: 'images/Welcome/HarryPotter.png', href: 'hexHogwart', available: false, progress: 0, eta: 'Q1 2027' },
 ];
 
 export const homepageTimeline = [
