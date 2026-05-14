@@ -32,7 +32,7 @@ export const homepageStatsGrid = [
 ];
 
 export const serverRoadmap = [
-  { headerText: 'HEX SMP', src: 'images/Welcome/SMP.png', href: 'hexSmp', available: true, progress: 40, eta: '4.07.2026' },
+  { headerText: 'HEX SMP', src: 'images/Welcome/SMP.png', href: 'hexSmp', available: true, progress: 40, eta: '3.07.2026' },
   { headerText: 'Mini Games', src: 'images/Welcome/Minigames.png', href: 'hexMiniGames', available: false, progress: 10, eta: 'Q3 2026' },
   { headerText: 'PVP — Mask Ritual', src: 'images/Welcome/MaskRitual.png', href: 'hexPvp', available: false, progress: 0, eta: 'Q4 2026' },
   { headerText: 'HEX Hogwart', src: 'images/Welcome/HarryPotter.png', href: 'hexHogwart', available: false, progress: 0, eta: 'Q1 2027' },
@@ -50,7 +50,7 @@ export const homepageTimeline = [
     cta: 'Szczegóły eventu →',
   },
   {
-    date: '4.07.2026',
+    date: '3.07.2026',
     tag: 'SMP',
     tagClass: 'tagSmp',
     title: 'Start serwera HEX SMP',
