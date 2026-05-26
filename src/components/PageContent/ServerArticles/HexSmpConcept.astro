@@ -1,0 +1,859 @@
+---
+// Interaktywny komponent z zakładkami prezentujący mechaniki HEX SMP
+// Inspirowane Hypixel Skyblock, ale w wersji "miasta gracza" (nie skybloki).
+const base = import.meta.env.BASE_URL;
+
+type TabFeature = { icon: string; title: string; text: string };
+type Tab = {
+    id: string;
+    label: string;
+    icon: string;
+    tagline: string;
+    title: string;
+    intro: string;
+    features: TabFeature[];
+    bullets?: string[];
+    media: {
+        type: 'image' | 'video' | 'placeholder';
+        src?: string;
+        poster?: string;
+        alt?: string;
+        caption: string;
+    };
+    badges?: string[];
+};
+
+const tabs: Tab[] = [
+    {
+        id: 'miasta',
+        label: 'Miasta',
+        icon: '🏛️',
+        tagline: 'CORE GAMEPLAY',
+        title: 'Miasto = Twoja baza, Twoja fabryka',
+        intro: 'Stawiasz blok „Serce bazy" i automatycznie claimujesz teren. Zarządzasz panelem, członkami COOP i limitami minionów. Miasto to SafeZone — bez PvP, bez griefów, ale z pełnym ryzykiem PvE.',
+        features: [
+            { icon: '🛡️', title: 'SafeZone', text: 'Brak PvP i niszczenia bloków przez graczy. Twoje zasoby są bezpieczne.' },
+            { icon: '🧱', title: 'Serce bazy', text: 'Custom blok-entity z HP i regenem. To on definiuje granice Twojego miasta.' },
+            { icon: '📈', title: 'Rozwój', text: 'Powiększaj cuboid, kupuj kolejne chunki, zwiększaj limity minionów.' },
+            { icon: '👑', title: 'Twoje reguły', text: 'Panel zarządzania pozwala kontrolować członków, prawa i limity.' },
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Render miasta gracza — wkrótce',
+        },
+        badges: ['SafeZone PvE', 'Cuboid + Panel', 'Auto-claim'],
+    },
+    {
+        id: 'miniony',
+        label: 'Miniony',
+        icon: '⛏️',
+        tagline: 'OFFLINE PROGRESS',
+        title: 'Pracują nawet gdy śpisz',
+        intro: 'Trzy typy startowe: mining, farming, combat. 6 slotów na start, do 10 poziomów ulepszeń każdy. Wolniejsze niż aktywna gra — ale działają 24/7. Główny powód, dla którego wracasz na serwer.',
+        features: [
+            { icon: '⚡', title: 'Paliwo (fuel)', text: 'Drogie i zużywalne, ale znacząco przyspiesza działanie miniona.' },
+            { icon: '🔥', title: 'Auto-smelting', text: 'Surowce przetwarzane są automatycznie w trakcie zbierania.' },
+            { icon: '✨', title: 'Auto-crafting', text: 'Tworzenie enchantowanych wersji surowców do mid/endgame.' },
+            { icon: '📦', title: 'Storage upgrade', text: 'Naprzemienne ulepszenia: pojemność ↔ szybkość.' },
+        ],
+        bullets: [
+            '6 slotów startowych, kolejne odblokowywane przez progres',
+            'Miniony zaliczają progres do kolekcji i skilli (~50% XP)',
+            'Nie dropią rzadkich itemów ani lootów z bossów',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'GUI miniona + ulepszenia — wkrótce',
+        },
+        badges: ['3 typy startowe', '10 levelów', 'Offline farming'],
+    },
+    {
+        id: 'kolekcje',
+        label: 'Kolekcje',
+        icon: '📚',
+        tagline: 'INSPIRED BY HYPIXEL',
+        title: '~7 poziomów dla każdego surowca',
+        intro: 'Każdy logiczny surowiec ma swoją kolekcję, którą rozwijasz globalnie dla miasta / COOP. Pierwszy poziom odblokowuje recepturę na miniona. Kolejne — upgrady, crafty i bonusy.',
+        features: [
+            { icon: '⛏️', title: 'Mining', text: 'Cobblestone, Iron, Coal, Gold, Diamond, Emerald, Netherite' },
+            { icon: '🌾', title: 'Farming', text: 'Pszenica, marchew, ziemniak, melon, dynia, krowy, owce, kury, świnie, króliki' },
+            { icon: '⚔️', title: 'Combat', text: 'Zgniłe mięso, kości, proch, perły Endu, nitki — z każdego głównego moba' },
+            { icon: '🧪', title: 'Enchantowane surowce', text: 'Skompresowana forma materiałów do mid/endgame craftingu.' },
+        ],
+        bullets: [
+            'Liczone GLOBALNIE dla miasta i COOP (nie per gracz)',
+            'Tylko pierwszy uzysk + miniony — przekazywanie itemów NIE liczy się',
+            'Anti-abuse: brak farmienia kolekcji znajomych',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Menu kolekcji a la Hypixel — wkrótce',
+        },
+        badges: ['~7 poziomów', 'Per miasto/COOP', 'Anti-abuse'],
+    },
+    {
+        id: 'skille',
+        label: 'Skille',
+        icon: '🎯',
+        tagline: 'PROGRESJA POSTACI',
+        title: '4 skille, max level 25',
+        intro: 'Prosty, czytelny system progresji. Każdy skill ma 25 poziomów, podzielonych na 3 etapy: szybki start (1–10), średnie tempo (10–20), grind (20–25). Każdy level daje odczuwalny bonus.',
+        features: [
+            { icon: '⛏️', title: 'Mining', text: 'Szansa na podwójny drop surowców.' },
+            { icon: '⚔️', title: 'Combat', text: 'Zwiększony drop z mobów (BEZ buffów do damage — balans PvP).' },
+            { icon: '🌾', title: 'Farming', text: 'Szansa na dodatkowe plony przy zbiorach.' },
+            { icon: '🎣', title: 'Fishing', text: 'Zwiększona szansa na rzadkie dropy z łowienia.' },
+        ],
+        bullets: [
+            'Każdy level → mała ilość waluty (skaluje się z levelem)',
+            'BEZ wpływu na PvP — broń vanilla zawsze ma równy balans',
+            'Custom itemy działają tylko w PvE',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Pasek skilli + bonusy — wkrótce',
+        },
+        badges: ['Max LVL 25', '4 skille', 'PvP-safe'],
+    },
+    {
+        id: 'pvp',
+        label: 'PvP & Inwazje',
+        icon: '⚔️',
+        tagline: 'RYZYKO I NAGRODA',
+        title: 'Inwazje 1v1 zamiast griefów',
+        intro: 'Bazy są niezniszczalne — chyba że ktoś wywoła INWAZJĘ. Komenda dostępna raz na dobę (VIP/SVIP/Elita mają więcej). Trzeba fizycznie znaleźć bazę przeciwnika i być przy niej.',
+        features: [
+            { icon: '🗡️', title: 'Tylko vanilla PvP', text: 'Bez custom broni — równa walka oparta na umiejętnościach.' },
+            { icon: '💔', title: 'Cel: Serce bazy', text: 'Zniszcz blok-entity w 7 min = wygrywasz inwazję.' },
+            { icon: '🪂', title: 'Strategia budowy', text: '4 bloki nad sercem są wolne — elytra od góry to realna opcja.' },
+            { icon: '🎁', title: 'Loot z minionów', text: 'Skrzynka z części zmagazynowanych surowców pokonanego.' },
+        ],
+        bullets: [
+            'Opuszczenie obszaru miasta na >10 sek = przegrana',
+            'COOP NIE może być najechany — sojusznicy bezpieczni',
+            'Custom TNT I–V nie niszczy terenu, ale zadaje większy DMG',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Mechanika inwazji w akcji — wkrótce',
+        },
+        badges: ['1v1 vanilla', '1 inwazja / dobę', 'Bazy niezniszczalne'],
+    },
+    {
+        id: 'bossy',
+        label: 'Bossy & PvE',
+        icon: '🐉',
+        tagline: 'ENDGAME',
+        title: 'Mob → Miniboss → Boss → Dungeon',
+        intro: 'Świat podzielony na biomy easy → mid → hard. 3–4 globalne custom moby + unikalne biomy z własnymi przeciwnikami i dropami. Endgame to bossy z unikalnymi mechanikami, preferowane party.',
+        features: [
+            { icon: '👹', title: 'Custom moby', text: '3–4 globalne moby + unikalne dla 3–4 biomów/struktur.' },
+            { icon: '👑', title: 'Minibossy na wilderness', text: 'Spawn z info ±200 kratek. Boss ma „tag" — kto zada najwięcej DMG, dostaje loot.' },
+            { icon: '🎟️', title: 'Wejściówki do bossów', text: 'Drop z trudniejszych mobów lub crafting z kolekcji.' },
+            { icon: '🏰', title: 'Dungeony', text: 'W iteracjach po starcie — kolejne poziomy trudności i loot.' },
+        ],
+        bullets: [
+            'Custom broń działa TYLKO w PvE (balans PvP zachowany)',
+            'Endgame boss preferuje COOP / party',
+            'Najlepszy gear: kolekcje + drop z bossów + crafting z rzadkich materiałów',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Walka z bossem — wkrótce',
+        },
+        badges: ['3 tiery biomów', 'PvE only', 'Party content'],
+    },
+    {
+        id: 'ekonomia',
+        label: 'Ekonomia',
+        icon: '💰',
+        tagline: 'PLAYER-DRIVEN',
+        title: 'Auction House > NPC',
+        intro: 'Pieniądze zdobywasz powoli, wydajesz dużo. Główny obrót generuje handel między graczami przez Auction House. NPC sprzedaje QoL po wysokich cenach — to opcja awaryjna, nie główne źródło.',
+        features: [
+            { icon: '🏪', title: 'Auction House', text: 'Ceny regulowane przez rynek. Główne centrum handlu.' },
+            { icon: '🤝', title: 'COOP-economy', text: 'Wspólny progres miasta, ale walka inwazyjna zawsze 1v1.' },
+            { icon: '💸', title: 'Money sinki', text: 'Miniony, bossy, update bazy, kolejne chunki, dungeony.' },
+            { icon: '🛡️', title: 'Anti-inflacja', text: 'Limity zarobków z PvP, sensowne ceny NPC, balans minionów.' },
+        ],
+        bullets: [
+            'Sprzedaż surowców do NPC po niskich stawkach (awaryjnie)',
+            'Item "ciastko" — 4 dni dodatkowych komend (płatny money sink)',
+            'Handel między graczami to filar długoterminowej ekonomii',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Interfejs Auction House — wkrótce',
+        },
+        badges: ['Auction House', 'Money sinki', 'COOP'],
+    },
+    {
+        id: 'start',
+        label: 'Start na serwerze',
+        icon: '🚀',
+        tagline: 'PIERWSZE KROKI',
+        title: 'Spawn → /miasto create → RTP → Grasz',
+        intro: 'Po wejściu na spawn dostajesz info o komendzie /miasto create. Odbierasz customową skrzynkę (Serce bazy), korzystasz z RTP i rozpoczynasz rozgrywkę w losowym miejscu świata 20 000 × 20 000.',
+        features: [
+            { icon: '🗺️', title: 'Mapa 20k × 20k', text: 'Czysta vanilla z barierą — możliwe rozszerzenie w przyszłości.' },
+            { icon: '🎲', title: 'Random Teleport', text: 'Każdy gracz startuje w innym miejscu — żadnych klastrów baz.' },
+            { icon: '📜', title: 'Tutorial-quest', text: 'Postaw pierwszego miniona, zbierz 32 cobblestone, dostajesz ulepszenie.' },
+            { icon: '🎁', title: 'Event startowy', text: 'Pierwsi gracze dostają złoty kilof + słup surowców do wykopania.' },
+        ],
+        bullets: [
+            'Daily quest + nagrody za codzienne logowanie (retention)',
+            'NPC wprowadzający w ekonomię, miasta i progres',
+            'Brak rozbudowanych questlinów w MVP — naturalny progres',
+        ],
+        media: {
+            type: 'placeholder',
+            caption: 'Spawn point + NPC — wkrótce',
+        },
+        badges: ['MVP-friendly', 'RTP start', 'Event na otwarcie'],
+    },
+];
+---
+
+<section class="smpConcept reveal" id="smpConcept" aria-labelledby="smpConceptTitle">
+    <div class="smpConceptHeader">
+        <span class="smpConceptLabel">// HEX SMP — KONCEPCJA</span>
+        <h2 id="smpConceptTitle" class="smpConceptTitle">Czym dokładnie będzie HEX SMP?</h2>
+        <p class="smpConceptSub">
+            Inspirowane Hypixel Skyblock, ale w naszych zasadach — <strong>bez skybloków</strong>, za to z <strong>miastami</strong>, które naprawdę żyją. Wybierz zakładkę i zobacz co Cię czeka.
+        </p>
+    </div>
+
+    <div class="smpConceptShell" data-tabs-root>
+        <!-- TABS NAV -->
+        <div class="smpConceptTabs" role="tablist" aria-label="Mechaniki HEX SMP">
+            {tabs.map((tab, i) => (
+                <button
+                    type="button"
+                    role="tab"
+                    class={`smpConceptTab${i === 0 ? ' is-active' : ''}`}
+                    id={`smpTab-${tab.id}`}
+                    data-tab-target={tab.id}
+                    aria-selected={i === 0 ? 'true' : 'false'}
+                    aria-controls={`smpPanel-${tab.id}`}
+                    tabindex={i === 0 ? 0 : -1}
+                >
+                    <span class="smpConceptTabIcon" aria-hidden="true">{tab.icon}</span>
+                    <span class="smpConceptTabLabel">{tab.label}</span>
+                    <span class="smpConceptTabIndex" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                </button>
+            ))}
+            <div class="smpConceptTabIndicator" data-tab-indicator></div>
+        </div>
+
+        <!-- PANELS -->
+        <div class="smpConceptPanels">
+            {tabs.map((tab, i) => (
+                <article
+                    role="tabpanel"
+                    class={`smpConceptPanel${i === 0 ? ' is-active' : ''}`}
+                    id={`smpPanel-${tab.id}`}
+                    aria-labelledby={`smpTab-${tab.id}`}
+                    data-tab-panel={tab.id}
+                    hidden={i !== 0}
+                >
+                    <div class="smpConceptPanelGrid">
+                        <div class="smpConceptPanelText">
+                            <span class="smpConceptTagline">{tab.tagline}</span>
+                            <h3 class="smpConceptPanelTitle">
+                                <span class="smpConceptPanelEmoji" aria-hidden="true">{tab.icon}</span>
+                                {tab.title}
+                            </h3>
+                            <p class="smpConceptIntro">{tab.intro}</p>
+
+                            {tab.badges && (
+                                <div class="smpConceptBadges">
+                                    {tab.badges.map((b) => <span class="smpConceptBadge">{b}</span>)}
+                                </div>
+                            )}
+
+                            <div class="smpConceptFeatures">
+                                {tab.features.map((f, fi) => (
+                                    <div class="smpConceptFeature" style={`--fi:${fi}`}>
+                                        <span class="smpConceptFeatureIcon" aria-hidden="true">{f.icon}</span>
+                                        <div class="smpConceptFeatureBody">
+                                            <h4>{f.title}</h4>
+                                            <p>{f.text}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {tab.bullets && tab.bullets.length > 0 && (
+                                <ul class="smpConceptBullets">
+                                    {tab.bullets.map((b) => <li>{b}</li>)}
+                                </ul>
+                            )}
+                        </div>
+
+                        <div class="smpConceptMedia">
+                            <div class="smpConceptMediaFrame">
+                                {tab.media.type === 'placeholder' && (
+                                    <div class="smpConceptMediaPlaceholder">
+                                        <span class="smpConceptMediaPlay" aria-hidden="true">▶</span>
+                                        <span class="smpConceptMediaCaption">{tab.media.caption}</span>
+                                    </div>
+                                )}
+                                {tab.media.type === 'image' && tab.media.src && (
+                                    <picture>
+                                        <img src={`${base}${tab.media.src}`} alt={tab.media.alt ?? tab.media.caption} loading="lazy" decoding="async" />
+                                    </picture>
+                                )}
+                                {tab.media.type === 'video' && tab.media.src && (
+                                    <video
+                                        src={`${base}${tab.media.src}`}
+                                        poster={tab.media.poster ? `${base}${tab.media.poster}` : undefined}
+                                        controls
+                                        preload="none"
+                                        playsinline
+                                    ></video>
+                                )}
+                            </div>
+                            <span class="smpConceptMediaNote">📸 Miejsce na screen / film z gameplay</span>
+                        </div>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </div>
+</section>
+
+<script>
+    type TabRoot = HTMLElement;
+
+    function initTabs(root: TabRoot) {
+        const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tab-target]'));
+        const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-tab-panel]'));
+        const indicator = root.querySelector<HTMLElement>('[data-tab-indicator]');
+
+        function moveIndicator(target: HTMLButtonElement) {
+            if (!indicator) return;
+            const rectRoot = (target.parentElement as HTMLElement).getBoundingClientRect();
+            const rect = target.getBoundingClientRect();
+            // Decide orientation: if tabs are stacked vertically (desktop), use top/height; else left/width
+            const isVertical = window.matchMedia('(min-width: 900px)').matches;
+            if (isVertical) {
+                indicator.style.transform = `translateY(${rect.top - rectRoot.top}px)`;
+                indicator.style.height = `${rect.height}px`;
+                indicator.style.width = '';
+                indicator.style.left = '';
+            } else {
+                indicator.style.transform = `translateX(${rect.left - rectRoot.left}px)`;
+                indicator.style.width = `${rect.width}px`;
+                indicator.style.height = '';
+                indicator.style.top = '';
+            }
+        }
+
+        function activate(id: string, focusTab = false) {
+            tabs.forEach((t) => {
+                const active = t.dataset.tabTarget === id;
+                t.classList.toggle('is-active', active);
+                t.setAttribute('aria-selected', active ? 'true' : 'false');
+                t.tabIndex = active ? 0 : -1;
+                if (active) {
+                    moveIndicator(t);
+                    if (focusTab) t.focus();
+                }
+            });
+            panels.forEach((p) => {
+                const active = p.dataset.tabPanel === id;
+                p.classList.toggle('is-active', active);
+                if (active) {
+                    p.removeAttribute('hidden');
+                } else {
+                    p.setAttribute('hidden', '');
+                }
+            });
+        }
+
+        tabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => {
+                const id = tab.dataset.tabTarget;
+                if (id) activate(id);
+            });
+            tab.addEventListener('keydown', (e) => {
+                let nextIndex = -1;
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextIndex = (i + 1) % tabs.length;
+                else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') nextIndex = (i - 1 + tabs.length) % tabs.length;
+                else if (e.key === 'Home') nextIndex = 0;
+                else if (e.key === 'End') nextIndex = tabs.length - 1;
+                if (nextIndex >= 0) {
+                    e.preventDefault();
+                    const id = tabs[nextIndex].dataset.tabTarget;
+                    if (id) activate(id, true);
+                }
+            });
+        });
+
+        // Initial indicator placement
+        const activeTab = tabs.find((t) => t.classList.contains('is-active')) ?? tabs[0];
+        if (activeTab) requestAnimationFrame(() => moveIndicator(activeTab));
+
+        // Reposition on resize
+        let resizeTimer: number | undefined;
+        window.addEventListener('resize', () => {
+            if (resizeTimer) window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(() => {
+                const current = tabs.find((t) => t.classList.contains('is-active'));
+                if (current) moveIndicator(current);
+            }, 80);
+        });
+    }
+
+    document.querySelectorAll<HTMLElement>('[data-tabs-root]').forEach(initTabs);
+</script>
+
+<style>
+    .smpConcept {
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px 0 8px 0;
+        color: #e0d8cc;
+    }
+
+    .smpConceptHeader {
+        text-align: center;
+        margin-bottom: 32px;
+        padding: 0 16px;
+    }
+
+    .smpConceptLabel {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(100, 180, 255, 0.85);
+        background: rgba(100, 180, 255, 0.08);
+        border: 1px solid rgba(100, 180, 255, 0.2);
+        border-radius: 999px;
+        padding: 4px 14px;
+        margin-bottom: 12px;
+    }
+
+    .smpConceptTitle {
+        font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+        margin: 0 0 10px 0;
+        color: #fff;
+        line-height: 1.2;
+    }
+
+    .smpConceptSub {
+        max-width: 640px;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* ===== SHELL ===== */
+    .smpConceptShell {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 20px;
+        background: linear-gradient(180deg, rgba(20, 26, 36, 0.85) 0%, rgba(12, 16, 22, 0.85) 100%);
+        border: 1px solid rgba(100, 180, 255, 0.14);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .smpConceptShell::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(100, 180, 255, 0.05) 1px, transparent 1px);
+        background-size: 24px 24px;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* ===== TABS NAV (vertical on desktop) ===== */
+    .smpConceptTabs {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 6px;
+        background: rgba(8, 11, 16, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        z-index: 1;
+    }
+
+    .smpConceptTab {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        color: rgba(224, 216, 204, 0.7);
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+        z-index: 2;
+    }
+
+    .smpConceptTab:hover {
+        color: #fff;
+        background: rgba(255, 207, 90, 0.06);
+    }
+
+    .smpConceptTab.is-active {
+        color: #fff;
+        background: rgba(255, 207, 90, 0.1);
+    }
+
+    .smpConceptTab:focus-visible {
+        outline: 2px solid #ffcf5a;
+        outline-offset: 2px;
+    }
+
+    .smpConceptTabIcon {
+        font-size: 1.25rem;
+        line-height: 1;
+        filter: drop-shadow(0 2px 6px rgba(255, 207, 90, 0.25));
+    }
+
+    .smpConceptTabLabel { flex: 1; }
+
+    .smpConceptTabIndex {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.3);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .smpConceptTab.is-active .smpConceptTabIndex { color: rgba(255, 207, 90, 0.7); }
+
+    .smpConceptTabIndicator {
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        top: 0;
+        height: 0;
+        background: linear-gradient(135deg, rgba(255, 207, 90, 0.18) 0%, rgba(255, 207, 90, 0.06) 100%);
+        border: 1px solid rgba(255, 207, 90, 0.35);
+        border-radius: 10px;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+        z-index: 1;
+        box-shadow: 0 8px 24px -10px rgba(255, 207, 90, 0.45);
+    }
+
+    /* ===== PANELS ===== */
+    .smpConceptPanels {
+        position: relative;
+        z-index: 1;
+        min-height: 480px;
+    }
+
+    .smpConceptPanel {
+        animation: smpPanelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .smpConceptPanel[hidden] { display: none !important; }
+
+    @keyframes smpPanelIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .smpConceptPanelGrid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 24px;
+        padding: 20px;
+        background: rgba(8, 11, 16, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .smpConceptPanelText { display: flex; flex-direction: column; gap: 14px; }
+
+    .smpConceptTagline {
+        align-self: flex-start;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #ffcf5a;
+        background: rgba(255, 207, 90, 0.08);
+        border: 1px solid rgba(255, 207, 90, 0.25);
+        border-radius: 999px;
+        padding: 4px 12px;
+    }
+
+    .smpConceptPanelTitle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+        font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+        line-height: 1.25;
+        color: #fff;
+    }
+
+    .smpConceptPanelEmoji { font-size: 1.6rem; line-height: 1; }
+
+    .smpConceptIntro {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .smpConceptBadges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .smpConceptBadge {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: rgba(100, 180, 255, 0.95);
+        background: rgba(100, 180, 255, 0.08);
+        border: 1px solid rgba(100, 180, 255, 0.22);
+        border-radius: 6px;
+        padding: 3px 9px;
+    }
+
+    .smpConceptFeatures {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 4px;
+    }
+
+    .smpConceptFeature {
+        display: flex;
+        gap: 10px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+        animation: smpFeatureIn 0.5s ease both;
+        animation-delay: calc(0.08s * var(--fi, 0) + 0.1s);
+    }
+
+    .smpConceptFeature:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 207, 90, 0.05);
+        border-color: rgba(255, 207, 90, 0.2);
+    }
+
+    @keyframes smpFeatureIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .smpConceptFeatureIcon {
+        font-size: 1.4rem;
+        line-height: 1.2;
+        flex-shrink: 0;
+    }
+
+    .smpConceptFeatureBody h4 {
+        margin: 0 0 4px 0;
+        font-size: 0.95rem;
+        color: #fff;
+    }
+    .smpConceptFeatureBody p {
+        margin: 0;
+        font-size: 0.86rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    .smpConceptBullets {
+        list-style: none;
+        padding: 0;
+        margin: 6px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .smpConceptBullets li {
+        position: relative;
+        padding-left: 22px;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .smpConceptBullets li::before {
+        content: '▸';
+        position: absolute;
+        left: 4px;
+        top: 0;
+        color: #ffcf5a;
+        font-weight: 700;
+    }
+
+    /* ===== MEDIA ===== */
+    .smpConceptMedia {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .smpConceptMediaFrame {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        background: linear-gradient(135deg, rgba(255, 207, 90, 0.06) 0%, rgba(100, 180, 255, 0.05) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .smpConceptMediaFrame::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+    }
+
+    .smpConceptMediaFrame img,
+    .smpConceptMediaFrame video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .smpConceptMediaPlaceholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.92rem;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .smpConceptMediaPlay {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #ffcf5a;
+        background: rgba(255, 207, 90, 0.08);
+        border: 1px solid rgba(255, 207, 90, 0.35);
+        border-radius: 50%;
+        animation: smpConceptPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes smpConceptPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 207, 90, 0.4); }
+        50% { transform: scale(1.06); box-shadow: 0 0 0 16px rgba(255, 207, 90, 0); }
+    }
+
+    .smpConceptMediaCaption { font-style: italic; }
+
+    .smpConceptMediaNote {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 899px) {
+        .smpConceptShell {
+            grid-template-columns: 1fr;
+            padding: 12px;
+            gap: 12px;
+        }
+
+        .smpConceptTabs {
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            gap: 6px;
+            padding: 6px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 207, 90, 0.4) transparent;
+        }
+
+        .smpConceptTabs::-webkit-scrollbar { height: 6px; }
+        .smpConceptTabs::-webkit-scrollbar-thumb {
+            background: rgba(255, 207, 90, 0.4);
+            border-radius: 6px;
+        }
+
+        .smpConceptTab {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+        }
+
+        .smpConceptTabIndex { display: none; }
+
+        .smpConceptTabIndicator {
+            left: 6px;
+            right: auto;
+            top: 6px;
+            bottom: 6px;
+            height: auto !important;
+            width: 0;
+        }
+
+        .smpConceptPanelGrid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 16px;
+        }
+
+        .smpConceptFeatures { grid-template-columns: 1fr; }
+
+        .smpConceptPanels { min-height: 0; }
+    }
+
+    @media (max-width: 480px) {
+        .smpConceptTitle { font-size: 1.4rem; }
+        .smpConceptSub { font-size: 0.92rem; }
+        .smpConceptPanelGrid { padding: 12px; }
+        .smpConceptIntro { font-size: 0.94rem; }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .smpConceptPanel,
+        .smpConceptFeature,
+        .smpConceptMediaPlay,
+        .smpConceptTabIndicator { animation: none !important; transition: none !important; }
+    }
+</style>

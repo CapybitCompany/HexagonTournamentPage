@@ -11,6 +11,8 @@ import FAQLine from '../../FAQ/FAQLine.astro'
 import FAQQuestion from '../../FAQ/FAQQuestion.astro'
 import FAQAnswer from '../../FAQ/FAQAnswer.astro'
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs.astro'
+import TimeContainer from '../../DiscordContainer/TimeContainer.astro'
+import HexSmpConcept from './HexSmpConcept.astro'
 import { getLatestDevlogEntries } from '../../../data/devlog';
 
 const base = import.meta.env.BASE_URL;
@@ -39,6 +41,17 @@ const devlogPreviewEntries = getLatestDevlogEntries(3);
 
     <Section>
         <div class="smp">
+
+            <!-- ===== COUNTDOWN DO STARTU ===== -->
+            <div class="smpCountdownWrap" style="display:flex; width:100%; justify-content:center; margin: 8px 0 24px;">
+                <TimeContainer />
+            </div>
+
+            <!-- ===== INTERAKTYWNA KONCEPCJA SMP (zakładki) ===== -->
+            <HexSmpConcept />
+
+            <!-- ===== DIVIDER ===== -->
+            <div class="smpDivider" aria-hidden="true"></div>
 
             <!-- ===== HOOK: NOWE PODEJŚCIE DO SMP ===== -->
             <section class="smpHook reveal">

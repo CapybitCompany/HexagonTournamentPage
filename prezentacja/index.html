@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HEX Network — Strategia Marketingowa v2 (maj → listopad 2026)</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+</head>
+<body>
+
+<div id="deck">
+
+  <!-- ============== SLIDE 1: TITLE ============== -->
+  <section class="slide slide-title" data-title="Start">
+    <div class="bg-grid"></div>
+    <div class="title-content">
+      <div class="badge">⚔️ HEX NETWORK</div>
+      <h1>Strategia marketingowa <span class="accent">v2</span></h1>
+      <p class="subtitle">maj → listopad 2026</p>
+      <div class="title-meta">
+        <div class="meta-item">
+          <div class="meta-label">Cel #1</div>
+          <div class="meta-value">Discord <span class="accent">250+</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Cel #2</div>
+          <div class="meta-value">SMP aktywni <span class="accent">~20</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Budżet</div>
+          <div class="meta-value"><span class="accent">200–300</span> zł/mies.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Deadline</div>
+          <div class="meta-value"><span class="accent">30.11.2026</span></div>
+        </div>
+      </div>
+      <div class="title-cta">
+        <button class="btn-md primary" id="open-md-1" data-open-strategy>📄 Otwórz strategia.md / pełną strategię</button>
+      </div>
+      <p class="hint">Użyj <kbd>→</kbd> / <kbd>←</kbd> żeby przewijać · <kbd>F</kbd> tryb pełnoekranowy · <kbd>M</kbd> strategia.md · <kbd>?</kbd> pomoc</p>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: KONTEKST ============== -->
+  <section class="slide" data-title="Czym jest HEX Network">
+    <h2>Czym jest HEX Network — szybki kontekst</h2>
+    <div class="ctx-grid">
+      <div class="ctx-card">
+        <div class="ctx-tag">CO TO</div>
+        <p>Polski projekt Minecrafta. Strona <code>minecrafthex.pl</code> + Discord + serwery gry. Robicie cykliczne turnieje z nagrodami pieniężnymi (HEX I–VII już za Wami) i przygotowujecie flagowy <strong>tryb SMP</strong> (start 3.07.2026).</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">DLA KOGO</div>
+        <p>Polscy gracze MC <strong>12–20 lat</strong>. Siedzą na TikToku, YouTube Shorts, Discordzie, w grze. Nie na Facebooku, nie w Allegro, nie w newsletterze.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">CO JUŻ JEST</div>
+        <p><strong>7 turniejów</strong> rozegranych, <strong>3450 zł</strong> rozdanych w nagrodach, <strong>133 osoby</strong> na Discordzie, świetna strona zoptymalizowana SEO, publiczny devlog.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">CO WCHODZI</div>
+        <p><strong>HEX SMP 3.07</strong> — autorski SMP z mechanikami Hypixel SkyBlock po polsku (miniony, skille, kolekcje, bazaar). Plus: tryb Minigry (22.08), Parkour (19.09), PVP (24.10), Hogwart event (styczeń 2027).</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">PROBLEM</div>
+        <p>Macie świetny produkt — ale <strong>nikt o nim nie wie</strong>. TikTok robi 300 views/film. Discord rośnie 10 osób/miesiąc. Płacicie ~40 zł za nową osobę, a powinno być &lt;5 zł.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">ROZWIĄZANIE</div>
+        <p>Ta strategia. 23 slajdy. Cel: <strong>podwoić Discord do 250</strong> i uruchomić <strong>20 stałych graczy SMP</strong> do końca listopada 2026 — bez zwiększania budżetu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: ZESPÓŁ ============== -->
+  <section class="slide" data-title="Zespół">
+    <h2>Zespół — kto za co odpowiada</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#ffa600,#ff6b6b)">C</div>
+        <div class="team-name">Capybit</div>
+        <div class="team-role">Lead / Strategia</div>
+        <ul>
+          <li>Wizja produktu, kierunek</li>
+          <li>Briefy ambasadorów, koordynacja</li>
+          <li>Tracking KPI, decyzje cięć</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#64b4ff,#a18fff)">H</div>
+        <div class="team-name">Havix</div>
+        <div class="team-role">Tech / Web / Pluginy</div>
+        <ul>
+          <li>Strona Astro (minecrafthex.pl)</li>
+          <li>Pluginy: skille, kolekcje, ekonomia</li>
+          <li>Quiz, /dolacz, OG, vanity invites</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#6ddf94,#64b4ff)">S</div>
+        <div class="team-name">Sevin</div>
+        <div class="team-role">DevOps / Community / Eventy</div>
+        <ul>
+          <li>Serwer (hosting, backup, performance)</li>
+          <li>Pluginy event, miniony, działki</li>
+          <li>„Życie" na Discord — codzienna obecność</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#ffd166,#ffa600)">Q</div>
+        <div class="team-name">Quezo</div>
+        <div class="team-role">Marketing / Content</div>
+        <ul>
+          <li>TikTok + YT Shorts + IG Reels</li>
+          <li>Scenariusze, mapy, livestreamy</li>
+          <li>Wstępny montaż (brak dedykowanego montażysty long-form)</li>
+        </ul>
+      </div>
+      <div class="team-card team-support">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#9aa3b3,#6b7384)">A</div>
+        <div class="team-name">Ania</div>
+        <div class="team-role">Support</div>
+        <ul>
+          <li>Discord moderacja</li>
+          <li>Wsparcie graczy</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote">⚠️ <strong>Ograniczenie kluczowe:</strong> brak dedykowanego montażysty long-form. Stąd cała strategia content TikTok = krótkie formaty bez edycji + cross-post na YT Shorts / IG Reels.</p>
+  </section>
+
+  <!-- ============== SLIDE 2: DLACZEGO TA STRATEGIA ============== -->
+  <section class="slide" data-title="Punkt wyjścia">
+    <h2>Skąd startujemy</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">133</div>
+        <div class="stat-label">członków Discord (start)</div>
+        <div class="stat-foot">cel: 250 do 30.11</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~300</div>
+        <div class="stat-label">views/film TikTok</div>
+        <div class="stat-foot">cel: 1500 do listopada</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~40 zł</div>
+        <div class="stat-label">CAC z płatnego promo</div>
+        <div class="stat-foot warn">absurdalnie drogo dla free Discord</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">turniejów rozegranych</div>
+        <div class="stat-foot">3450 zł rozdanych w nagrodach</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30</div>
+        <div class="stat-label">osób z referal v1</div>
+        <div class="stat-foot warn">wyczerpany po 3 miesiącach</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-number">4</div>
+        <div class="stat-label">lojalnych ambasadorów</div>
+        <div class="stat-foot ok">Ławka · Daxel · peter · sonnee</div>
+      </div>
+    </div>
+    <p class="footnote">Mamy produkt, mamy zespół, mamy społeczność. Brakuje TYLKO dystrybucji i systematyczności.</p>
+  </section>
+
+  <!-- ============== SLIDE 3: 2 CELE ============== -->
+  <section class="slide" data-title="2 cele">
+    <h2>Dwa cele, nie jeden</h2>
+    <div class="goals-split">
+      <div class="goal-card goal-acq">
+        <div class="goal-num">#1</div>
+        <div class="goal-title">AKWIZYCJA</div>
+        <div class="goal-big">133 → <span class="accent">250</span></div>
+        <div class="goal-sub">członków Discord do 30.11</div>
+        <div class="goal-detail">≈ 18 nowych netto / miesiąc</div>
+        <div class="goal-tactic">Lejek: TikTok + listy MC + partnerstwa + ambasadorzy</div>
+      </div>
+      <div class="goal-card goal-ret">
+        <div class="goal-num">#2</div>
+        <div class="goal-title">RETENCJA</div>
+        <div class="goal-big"><span class="accent">~20</span></div>
+        <div class="goal-sub">stale aktywnych graczy SMP</div>
+        <div class="goal-detail">≥3 logowania w tygodniu, 2 tyg. z rzędu</div>
+        <div class="goal-tactic">Hypixel-style loop: daily quests · miniony · skille · kolekcje · sezony</div>
+      </div>
+    </div>
+    <p class="footnote warn">Bez retencji liczba na Discordzie jest fikcyjna — każdy nowy gracz przyjdzie i wyjdzie.</p>
+  </section>
+
+  <!-- ============== SLIDE 4: AUDYT KANAŁÓW ============== -->
+  <section class="slide" data-title="Audyt kanałów">
+    <h2>Audyt obecnych kanałów akwizycji</h2>
+    <table class="audit-table">
+      <thead>
+        <tr><th>Kanał</th><th>Stan</th><th>Koszt</th><th>CAC</th><th>Werdykt v2</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TikTok organic</td><td>~300 views/film</td><td>0 zł</td><td>n/a</td><td class="tag tag-keep">Utrzymać</td></tr>
+        <tr><td>TikTok promo płatny</td><td>100–200 zł = 2–5 os.</td><td>200 zł/mies.</td><td class="warn">~40 zł</td><td class="tag tag-test">Test 12.05 i 15.05, potem decyzja</td></tr>
+        <tr><td>Referal v1</td><td>wyczerpany</td><td>0 zł</td><td>0 zł</td><td class="tag tag-redo">Przeprojektować v2</td></tr>
+        <tr><td>Discord (133)</td><td>~10 nowych/mies.</td><td>0 zł</td><td>0 zł</td><td class="tag tag-keep">Sevin „prowadzi życie"</td></tr>
+        <tr><td>Strona</td><td>świetna technicznie</td><td>0 zł</td><td>n/a</td><td class="tag tag-fix">Brak SEO traffic</td></tr>
+        <tr class="row-star"><td>4 ambasadorzy (Ławka i in.)</td><td>nie aktywowani</td><td>0 zł</td><td>0 zł</td><td class="tag tag-now">⭐ Aktywować TERAZ</td></tr>
+        <tr class="row-star"><td>Listy serwerów MC</td><td>zero obecności</td><td>0 zł</td><td>n/a</td><td class="tag tag-now">⭐ Zgłosić w tym tyg.</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">Wniosek: <strong>płacicie za to, co macie za darmo.</strong> Audytujemy → kasujemy szybko → skalujemy to, co działa.</p>
+  </section>
+
+  <!-- ============== SLIDE 5: 5 WNIOSKÓW ============== -->
+  <section class="slide" data-title="5 wniosków">
+    <h2>5 kluczowych wniosków</h2>
+    <div class="insights">
+      <div class="insight"><span class="ins-num">1</span><div><strong>To NIE jakość contentu</strong>, tylko dystrybucja + częstotliwość + social proof. Algorytm Was nie zna.</div></div>
+      <div class="insight"><span class="ins-num">2</span><div><strong>Płacicie za to, co macie za darmo.</strong> Listy MC, cudze Discordy, YT Shorts — wszystkie kosztują tylko czas.</div></div>
+      <div class="insight"><span class="ins-num">3</span><div><strong>Macie quiz „Jaki typ gracza jesteś?"</strong> — gotowy viral mechanism, którego nikt nie zna bo brak ruchu na stronę.</div></div>
+      <div class="insight new"><span class="ins-num">4</span><div><strong>SMP launch 3.07 = jedyny prawdziwy publicity stunt roku.</strong> Wszystko maj–czerwiec to pre-launch hype.</div></div>
+      <div class="insight new"><span class="ins-num">5</span><div><strong>Macie 4 lojalnych graczy</strong> gotowych do roli ambasadora. Aktywacja = 0 zł, ROI 10× wyższy niż obcy influencer.</div></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: ANALIZA RYNKU ============== -->
+  <section class="slide" data-title="Rynek">
+    <h2>Analiza rynku — gdzie jesteście</h2>
+    <div class="market-grid">
+      <div class="market-row">
+        <div class="market-seg">Top komercyjne (Vimeworld)</div>
+        <div class="market-bar"><div class="bar bar-top" style="width:100%">500–2000 online</div></div>
+        <div class="market-chance fail">ZERO szans</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Średnie SMP / Skyblock</div>
+        <div class="market-bar"><div class="bar bar-mid" style="width:55%">50–300 online</div></div>
+        <div class="market-chance ok">REALNE — Wasz target</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Małe community (jak Wy)</div>
+        <div class="market-bar"><div class="bar bar-low" style="width:25%">&lt;50 online</div></div>
+        <div class="market-chance neutral">Naturalni partnerzy</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Hardcore SMP EN / global</div>
+        <div class="market-bar"><div class="bar bar-en" style="width:80%">tysiące</div></div>
+        <div class="market-chance fail">2027, nie teraz</div>
+      </div>
+    </div>
+    <div class="market-niche">
+      <strong>Wasza nisza:</strong> nikt w Polsce 2026 nie robi <em>SMP z mechanikami Hypixel SkyBlock + autorski event co 2 mies. + transparentny devlog</em>. Konkurujecie konsekwencją publikacji i dostępnością ekipy — nie skalą.
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 7: KPI #1 wzrost Discord ============== -->
+  <section class="slide" data-title="KPI #1 wzrost">
+    <h2>KPI #1 — Discord 133 → 250+</h2>
+    <div class="chart-wrap"><canvas id="chartDiscord"></canvas></div>
+    <div class="kpi-callouts">
+      <div class="callout"><div class="cal-month">Lipiec</div><div class="cal-note">🔥 SMP launch — make or break (+40)</div></div>
+      <div class="callout"><div class="cal-month">Sierpień–wrzesień</div><div class="cal-note">Dywersyfikacja (Minigry, Parkour)</div></div>
+      <div class="callout"><div class="cal-month">Październik</div><div class="cal-note">PVP + Halloween + Awantura o Kasę</div></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 8: KPI #2 RETENCJA SMP ============== -->
+  <section class="slide" data-title="KPI #2 retencja SMP">
+    <h2>KPI #2 — retencja SMP, 0 → ~20 stałych</h2>
+    <div class="chart-wrap"><canvas id="chartSMP"></canvas></div>
+    <p class="footnote">„Stale aktywny" = ≥3 logowania w tygodniu przez 2 kolejne tygodnie. Klucz: <strong>mechaniki Hypixel-style</strong> + miniony + sezony + Discord↔MC linking.</p>
+  </section>
+
+  <!-- ============== SLIDE 9: LEJEK KONWERSJI ============== -->
+  <section class="slide" data-title="Lejek konwersji">
+    <h2>Lejek konwersji TikTok → stały gracz SMP</h2>
+    <div class="funnel">
+      <div class="fn-step fn-1"><div class="fn-num">1000</div><div class="fn-lbl">wyświetleń TikTok</div></div>
+      <div class="fn-arrow">↓ 2% CTR</div>
+      <div class="fn-step fn-2"><div class="fn-num">20</div><div class="fn-lbl">wejść na /dolacz lub /hexSmp</div></div>
+      <div class="fn-arrow">↓ 40% (quiz + dynamic OG)</div>
+      <div class="fn-step fn-3"><div class="fn-num">8</div><div class="fn-lbl">nowych Discord members</div></div>
+      <div class="fn-arrow">↓ 50% (przy SMP hype)</div>
+      <div class="fn-step fn-4"><div class="fn-num">4</div><div class="fn-lbl">graczy testuje SMP</div></div>
+      <div class="fn-arrow">↓ 25% D7 retencja</div>
+      <div class="fn-step fn-5 winner"><div class="fn-num">1</div><div class="fn-lbl">stały gracz SMP</div></div>
+    </div>
+    <p class="footnote">Aby zdobyć 20 stałych potrzebujemy <strong>~108 000 wyświetleń</strong> łącznie. Planowane: 135 rolek × średnio 800 views (rosnąco) = <strong>cel matematycznie wykonalny</strong>.</p>
+  </section>
+
+  <!-- ============== SLIDE 10: TIKTOK FORMATY ============== -->
+  <section class="slide" data-title="TikTok formaty">
+    <h2>6 formatów TikToka — zero montażysty, zero pomysłów</h2>
+    <div class="formats-grid">
+      <div class="fmt"><div class="fmt-tag">A · 3–4×/tyg</div><div class="fmt-name">Devlog POV</div><div class="fmt-desc">Ekran z MC + hook tekstowy + pytanie do widza.</div><div class="fmt-time">5 min</div></div>
+      <div class="fmt"><div class="fmt-tag">B · 2×/tyg</div><div class="fmt-name">Reply na komentarz</div><div class="fmt-desc">Natywna funkcja TikToka — algorytm pcha reply.</div><div class="fmt-time">3 min</div></div>
+      <div class="fmt"><div class="fmt-tag">C · 1×/tyg</div><div class="fmt-name">Tier list / ranking</div><div class="fmt-desc">„5 rzeczy które robi 99% nowych graczy SMP — i się myli".</div><div class="fmt-time">20 min</div></div>
+      <div class="fmt"><div class="fmt-tag">D · 1×/tyg</div><div class="fmt-name">Before / After</div><div class="fmt-desc">Budowa: szkielet → finał w 15 sekundach.</div><div class="fmt-time">10 min</div></div>
+      <div class="fmt"><div class="fmt-tag">E · 1×/tyg</div><div class="fmt-name">Behind the scenes</div><div class="fmt-desc">Pokazuje że żyjecie — buduje relację z marką.</div><div class="fmt-time">15 min</div></div>
+      <div class="fmt"><div class="fmt-tag">F · 1×/2tyg</div><div class="fmt-name">POV jesteś graczem</div><div class="fmt-desc">Cinematic + 1 zdanie. Zero edycji.</div><div class="fmt-time">5 min</div></div>
+    </div>
+    <p class="footnote"><strong>~70 min/tydzień</strong> łącznie. Cross-post na YT Shorts + IG Reels = 2× zasięg za 0 zł dodatkowo.</p>
+  </section>
+
+  <!-- ============== SLIDE 11: ALGORYTM TIKTOKA ============== -->
+  <section class="slide" data-title="Algorytm TikToka">
+    <h2>Algorytm TikToka — co się liczy</h2>
+    <div class="chart-wrap chart-half"><canvas id="chartAlgo"></canvas></div>
+    <div class="algo-notes">
+      <div class="algo-note"><strong>Share/Save</strong> — najsilniejszy sygnał. Stąd quiz na końcu rolki + share buttons.</div>
+      <div class="algo-note"><strong>Comments</strong> — drugi najsilniejszy. Stąd „Reply video" (format B) + Boost Squad.</div>
+      <div class="algo-note"><strong>Watch time</strong> — % obejrzanego. Hook w pierwsze 1.5s decyduje.</div>
+      <div class="algo-note"><strong>Likes</strong> — najsłabszy ale liczy się masa. Boost Squad daje pierwsze 30 min.</div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 12: DARMOWE KANAŁY ============== -->
+  <section class="slide" data-title="Darmowe kanały">
+    <h2>Kanały, których nie używacie (a powinniście)</h2>
+    <div class="channels">
+      <div class="chn">
+        <div class="chn-head">📋 Listy serwerów MC</div>
+        <div class="chn-detail">7 polskich list. Każda z osobnym vanity invite. Mechanika głosowania = darmowy referal który nie umrze.</div>
+        <div class="chn-target">+5–10 os./mies. ciągle</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🤝 Discord ↔ Discord partnerstwa</div>
+        <div class="chn-detail">5–10 małych polskich Discordów (50–500 osób). Wymiany jednorazowych ogłoszeń. 3 partnerstwa/mies.</div>
+        <div class="chn-target">+15–30 os./mies.</div>
+      </div>
+      <div class="chn star">
+        <div class="chn-head">⭐ Ambasadorzy (Ławka, Daxel, peter, sonnee)</div>
+        <div class="chn-detail">Już Was znają. Aktywacja: rola, VIP, ranga. W zamian: lajk+komentarz w 30 min po rolce + wzmianka 1×/tyg.</div>
+        <div class="chn-target">+20–60 os./mies.</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🔁 Referal v2 (3-warstwowy)</div>
+        <div class="chn-detail">Mikro-nagrody ciągłe + wzajemność dla zapraszanego + miesięczny leaderboard „Ambasadora HEX".</div>
+        <div class="chn-target">+10–20 os./mies. (po reaktywacji)</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🎬 Mikroinfluencerzy obcy (po SMP launch)</div>
+        <div class="chn-detail">1–10k followers. Oferta: VIP, ranga twórcy, pierwszeństwo. Bez kasy.</div>
+        <div class="chn-target">+20–50 os. na 1 twórcę</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">📍 Reddit r/Minecraft_Polska</div>
+        <div class="chn-detail">2×/mies. devlog post + after-event recap. Mały subreddit ale targetowany.</div>
+        <div class="chn-target">+2–5 os./mies.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 13: AMBASADORZY ============== -->
+  <section class="slide" data-title="Ambasadorzy">
+    <h2>4 ambasadorów — Wasze niewykorzystane aktywo</h2>
+    <div class="ambas-grid">
+      <div class="amb">
+        <div class="amb-name">Ławka</div>
+        <div class="amb-role">Mikroinfluencer · obserwuje Capybit</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">DaxelPL</div>
+        <div class="amb-role">Lojalny gracz z eventów</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">peter</div>
+        <div class="amb-role">Aktywny w Discord</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">sonnee</div>
+        <div class="amb-role">Wraca na każdy event</div>
+      </div>
+    </div>
+    <div class="deal-grid">
+      <div class="deal deal-give">
+        <h3>🎁 Co dajecie (koszt: ~0 zł)</h3>
+        <ul>
+          <li>Rola 🌟 Ambasador na Discordzie</li>
+          <li>Darmowe VIP konto (30 dni, odnawiane)</li>
+          <li>Dedykowana ranga w grze</li>
+          <li>Dostęp do SMP 1.07 (2 dni przed publicznym)</li>
+          <li>Wczesny dostęp do scenariuszy eventów</li>
+        </ul>
+      </div>
+      <div class="deal deal-take">
+        <h3>🎯 Co dostajecie</h3>
+        <ul>
+          <li>Lajk + komentarz w pierwsze 30 min po rolce</li>
+          <li>Wzmianka o HEX 1× tyg. (opisy, streamy)</li>
+          <li>Polecenie znajomym w grze</li>
+          <li>+20–60 nowych członków Discord/mies. organicznie</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 14: ZMIANY NA STRONIE ============== -->
+  <section class="slide" data-title="Zmiany na stronie">
+    <h2>Zmiany na stronie — konwersja TikTok → Discord</h2>
+    <div class="page-changes">
+      <div class="pc red">
+        <div class="pc-prio">🔴 KRYTYCZNE</div>
+        <div class="pc-name">Quiz „Jaki typ gracza jesteś?"</div>
+        <div class="pc-desc">Web Share API · dynamic OG image · share buttons · canvas download. Gotowy viral mechanism.</div>
+      </div>
+      <div class="pc orange">
+        <div class="pc-prio">🟠 WYSOKIE</div>
+        <div class="pc-name">SEO — devlog → Astro Content Collection</div>
+        <div class="pc-desc">Każdy wpis = osobna strona z OG image. Landing /jak-dolaczyc pod long-tail keyword.</div>
+      </div>
+      <div class="pc orange">
+        <div class="pc-prio">🟠 WYSOKIE</div>
+        <div class="pc-name">Vanity invites + tracking</div>
+        <div class="pc-desc">7+ unikalnych linków Discord. Bez tego nie wiemy CO działa.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Sticky CTA + Live member count</div>
+        <div class="pc-desc">Floating button Discord + widget online członków = social proof.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Strona /dolacz</div>
+        <div class="pc-desc">Minimalistyczny landing pod link w bio TikToka. 1 nagłówek, 1 CTA, 3 mikro-proofy.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Auto-redirect po quizie</div>
+        <div class="pc-desc">„Twój typ to Strateg → otwieramy Discord za 3...2...1". +2–3× konwersja.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 15: SMP LAUNCH PLAYBOOK ============== -->
+  <section class="slide" data-title="SMP Launch">
+    <h2>🔥 SMP Launch Playbook — 6 tygodni pre-launch</h2>
+    <div class="timeline">
+      <div class="tl-row"><div class="tl-week">T-6</div><div class="tl-date">20.05</div><div class="tl-phase">Teaser</div><div class="tl-what">„Coś dużego 3.07. Bez detali." 3 rolki.</div></div>
+      <div class="tl-row"><div class="tl-week">T-5</div><div class="tl-date">27.05</div><div class="tl-phase">Ujawnienie 1</div><div class="tl-what">Pierwszy screen spawnu + miniony. 4 rolki.</div></div>
+      <div class="tl-row"><div class="tl-week">T-4</div><div class="tl-date">3.06</div><div class="tl-phase">Ujawnienie 2</div><div class="tl-what">Ekonomia + bazaar mock. 4 rolki + 1 YT Short 60s.</div></div>
+      <div class="tl-row"><div class="tl-week">T-3</div><div class="tl-date">10.06</div><div class="tl-phase">Ujawnienie 3</div><div class="tl-what">Skille, kolekcje, leaderboardy. 5 rolek + livestream.</div></div>
+      <div class="tl-row"><div class="tl-week">T-2</div><div class="tl-date">17.06</div><div class="tl-phase">Zapisy + waitlist</div><div class="tl-what">Rola 🎯 Waitlist SMP = priorytet 1.07. DM-y do ambasadorów.</div></div>
+      <div class="tl-row"><div class="tl-week">T-1</div><div class="tl-date">24.06</div><div class="tl-phase">Final hype</div><div class="tl-what">Listy MC update. Trailer 30s. Codzienne posty.</div></div>
+      <div class="tl-row launch"><div class="tl-week">T-0</div><div class="tl-date">3.07</div><div class="tl-phase">🚀 LAUNCH</div><div class="tl-what">Discord @everyone · livestream · cały zespół ON</div></div>
+    </div>
+    <p class="footnote warn">⚠️ MVP SMP gotowy 25.06 + tydzień testów. Notatki post-event: „serwer musi być gotowy 2 tygodnie wcześniej". NIE IGNORUJCIE.</p>
+  </section>
+
+  <!-- ============== SLIDE 16: KALENDARZ EVENT-DRIVEN ============== -->
+  <section class="slide" data-title="Kalendarz eventów">
+    <h2>Kalendarz event-driven — każdy event = 2-tyg. kampania</h2>
+    <div class="cal-grid">
+      <div class="cal-event"><div class="cal-date">16.05</div><div class="cal-name">HEX VIII Titanic + 1z10</div><div class="cal-goal">+15 Discord · test promo rolek</div></div>
+      <div class="cal-event"><div class="cal-date">30.05</div><div class="cal-name">Mini PVP Eliminator</div><div class="cal-goal">test pluginów PVP</div></div>
+      <div class="cal-event"><div class="cal-date">13.06</div><div class="cal-name">Wyspa Kanibali</div><div class="cal-goal">test mechanik survival</div></div>
+      <div class="cal-event hot"><div class="cal-date">3.07</div><div class="cal-name">🔥 SMP LAUNCH</div><div class="cal-goal">+30 Discord · ~10 D7 active</div></div>
+      <div class="cal-event"><div class="cal-date">4.07</div><div class="cal-name">HEX IX Star Wars</div><div class="cal-goal">+5 Discord, zamknięcie launch weekendu</div></div>
+      <div class="cal-event"><div class="cal-date">22.08</div><div class="cal-name">Serwer Minigry (Party)</div><div class="cal-goal">+10 Discord · dywersyfikacja</div></div>
+      <div class="cal-event"><div class="cal-date">19.09</div><div class="cal-name">Parkour launch</div><div class="cal-goal">+5 Discord · retencja</div></div>
+      <div class="cal-event star"><div class="cal-date">wrz/paź</div><div class="cal-name">⭐ Awantura o Kasę</div><div class="cal-goal">+30–50 multi-creator</div></div>
+      <div class="cal-event"><div class="cal-date">24.10</div><div class="cal-name">PVP + HEX X Halloween</div><div class="cal-goal">+10 Discord</div></div>
+      <div class="cal-event"><div class="cal-date">listopad</div><div class="cal-name">Hogwart hype-up</div><div class="cal-goal">teaser 2027</div></div>
+    </div>
+    <p class="footnote">Zasada: każdy event = min. 5 rolek TikTok (T-7, T-3, T-1, T-0, T+1) = <strong>50+ rolek narzuconych kalendarzem</strong>, bez wymyślania tematów.</p>
+  </section>
+
+  <!-- ============== SLIDE 17: RETENCJA SMP MECHANIKI ============== -->
+  <section class="slide" data-title="Mechaniki retencji">
+    <h2>Retencja SMP — mechaniki Hypixel-style</h2>
+    <div class="retention-grid">
+      <div class="ret-card d1">
+        <div class="ret-period">D1</div>
+        <div class="ret-mech">Daily quests</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card d7">
+        <div class="ret-period">D7</div>
+        <div class="ret-mech">Miniony (auto-farm offline)</div>
+        <div class="ret-when">do 1.07 · Sevin</div>
+      </div>
+      <div class="ret-card d30">
+        <div class="ret-period">D30</div>
+        <div class="ret-mech">Skille z poziomami (kopanie/combat/farming/fishing)</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Kolekcje all-time + leaderboard na stronie</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Boss raid co 3 dni</div>
+        <div class="ret-when">od sierpnia · Sevin</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Sezonowe rankingi + reset kwartalny</div>
+        <div class="ret-when">sezon 1: lip–wrz · sezon 2: paź–gru</div>
+      </div>
+      <div class="ret-card social">
+        <div class="ret-period">Social</div>
+        <div class="ret-mech">Działki / towny</div>
+        <div class="ret-when">do 1.07 · Sevin</div>
+      </div>
+      <div class="ret-card social">
+        <div class="ret-period">Social</div>
+        <div class="ret-mech">Discord↔MC linking (webhook bot)</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+    </div>
+    <p class="footnote">Wszystko jest w Waszej wizji SMP. Sprawa to <strong>TERMIN</strong>: MVP 25.06, freeze + testy, launch 3.07.</p>
+  </section>
+
+  <!-- ============== SLIDE 18: BOOST SQUAD ============== -->
+  <section class="slide" data-title="Boost Squad">
+    <h2>Boost Squad — rozwiązanie Waszej diagnozy z notatek</h2>
+    <blockquote class="quote">
+      „Algorytmy lubią lajki, komentarze, ulubione, a ludzie lubią gdy ktoś pisze, pyta, mówi wbijam — tzw. Social Proofs. Porozmawiać ze znajomymi by nas realnie wspierali po wrzuceniu filmiku."
+      <cite>— Wasze notatki post-event 03.04.2026</cite>
+    </blockquote>
+    <div class="squad-flow">
+      <div class="sq-step"><div class="sq-n">1</div><div>Lista 8–12 zaufanych: Capybit · Ania · Quezo · Sevin · Havix · Ławka · Daxel · peter · sonnee · 3 znajomych</div></div>
+      <div class="sq-step"><div class="sq-n">2</div><div>Kanał Discord <code>#boost-squad</code> — ping z linkiem do każdej nowej rolki</div></div>
+      <div class="sq-step"><div class="sq-n">3</div><div>Pierwsze 30 min: każdy lajkuje, komentuje (różne, naturalne), zapisuje</div></div>
+      <div class="sq-step"><div class="sq-n">4</div><div>Pytania w komentarzach → szansa na reply video (format B)</div></div>
+      <div class="sq-step"><div class="sq-n">5</div><div>Po 24h: sprawdzacie watch time + share rate. Działa? Powtarzacie.</div></div>
+    </div>
+    <p class="footnote ok">To NIE jest fake engagement — to realni ludzie, którzy chcą Waszego sukcesu. Każdy serwer MC tak startował. Najtańsza, najszybsza dźwignia.</p>
+  </section>
+
+  <!-- ============== SLIDE 19: BUDŻET ============== -->
+  <section class="slide" data-title="Budżet">
+    <h2>Budżet — gdzie wydać 200–300 zł sensownie</h2>
+    <div class="chart-wrap chart-half"><canvas id="chartBudget"></canvas></div>
+    <table class="budget-table">
+      <thead><tr><th>Pozycja</th><th>Koszt</th><th>Kiedy</th></tr></thead>
+      <tbody>
+        <tr><td>Promo rolki 12.05 + 15.05 (Titanic)</td><td>200 zł</td><td class="ok">✅ Maj (zaplanowane)</td></tr>
+        <tr><td>Trailer SMP 30s (Fiverr)</td><td>100 zł</td><td>Czerwiec, jednorazowo</td></tr>
+        <tr><td>Nagrody Awantura o Kasę</td><td>200–300 zł</td><td>Wrzesień, jednorazowo</td></tr>
+        <tr><td>Boost płatny TikTok (rolka &gt;2000 views)</td><td>100 zł</td><td>Lipiec+, warunkowy</td></tr>
+        <tr><td>Nagrody TOP 3 referal (kubek/naklejki)</td><td>50 zł/mies.</td><td>Od czerwca</td></tr>
+        <tr><td>Wsparcie ambasadorów (VIP, drobnostki)</td><td>30 zł/mies.</td><td>Od czerwca</td></tr>
+        <tr><td>Sticker pack (50 szt.)</td><td>30 zł</td><td>Czerwiec/lipiec</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote"><strong>Reguła v2:</strong> każda złotówka ma vanity-invite ID. Po miesiącu sprawdzamy ROI per zł — nie po przeczuciu.</p>
+  </section>
+
+  <!-- ============== SLIDE 20: CO NIE ZADZIAŁA ============== -->
+  <section class="slide" data-title="Co NIE robić">
+    <h2>Co NIE zadziała — świadome cięcia</h2>
+    <div class="dont-grid">
+      <div class="dont"><span class="dont-x">✕</span>Google / Facebook Ads — 200 zł za mało, grupa 12–20 wymaga zgody rodziców</div>
+      <div class="dont"><span class="dont-x">✕</span>TikTok Spark Ads <strong>przed</strong> rolką &gt;5000 views — utopione pieniądze</div>
+      <div class="dont"><span class="dont-x">✕</span>Płatne posty na grupach FB „Polski Minecraft" — Wasi gracze tam nie są</div>
+      <div class="dont"><span class="dont-x">✕</span>YouTube long-form — brak montażysty. <strong>Shorts tak, long-form nie.</strong></div>
+      <div class="dont"><span class="dont-x">✕</span>Plakaty / ulotki / offline — niemierzalne</div>
+      <div class="dont"><span class="dont-x">✕</span>„Udostępnij i otaguj 5 znajomych" — łamie regulamin platform</div>
+      <div class="dont"><span class="dont-x">✕</span>Hardcore SMP EN w 2026 — odkładamy na 2027</div>
+      <div class="dont"><span class="dont-x">✕</span>Allegro / OLX / Vinted — kanały dla 25+</div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 21: PLAN TYGODNIA 1 ============== -->
+  <section class="slide" data-title="Tydzień 1">
+    <h2>Plan tygodnia 1 (do 24.05) — kto co robi</h2>
+    <div class="week-grid">
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Stworzyć 7 vanity invites Discord (hex-tiktok, hex-yt, hex-promo1205, hex-promo1505, hex-titanic, hex-quiz, hex-lista1)</div></div>
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who c">Capybit</div><div class="wp-task">Brief do Ławki, Daxela, petera, sonnee z propozycją „Ambasador HEX"</div></div>
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Założyć kanał #boost-squad + zaprosić 8–12 zaufanych osób</div></div>
+      <div class="wp"><div class="wp-day">Wt 19.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Zgłosić serwer na 5 list MC (unikalne vanity per lista)</div></div>
+      <div class="wp"><div class="wp-day">Wt 19.05+</div><div class="wp-who s">Sevin</div><div class="wp-task">Codzienne życie na Discord (10 min/dzień) — nawyk uruchomiony</div></div>
+      <div class="wp"><div class="wp-day">Śr 20.05</div><div class="wp-who q">Quezo</div><div class="wp-task">5 wiadomości partnerskich do innych polskich Discordów MC</div></div>
+      <div class="wp"><div class="wp-day">Śr 20.05</div><div class="wp-who q">Quezo</div><div class="wp-task">3 rolki Devlog POV — zaplanować publikację śr/pt/sob</div></div>
+      <div class="wp"><div class="wp-day">Czw 21.05</div><div class="wp-who h">Havix</div><div class="wp-task">Brief: quiz Web Share API + dynamic OG image + /dolacz landing</div></div>
+      <div class="wp"><div class="wp-day">Czw 21.05</div><div class="wp-who q">Quezo + squad</div><div class="wp-task">Publikacja pierwszej rolki + ping #boost-squad (komentarze 30 min)</div></div>
+      <div class="wp"><div class="wp-day">Pt 22.05</div><div class="wp-who q">Quezo</div><div class="wp-task">Reply video do komentarzy z czwartku</div></div>
+      <div class="wp"><div class="wp-day">Pt/Sob</div><div class="wp-who h">Sevin + Havix</div><div class="wp-task">MVP daily quests + miniony konfiguracja (pod SMP)</div></div>
+      <div class="wp"><div class="wp-day">Nd 24.05</div><div class="wp-who c">Capybit</div><div class="wp-task">Przegląd vanity invites: 12.05 vs 15.05 vs organic. Zapis w tracker.md</div></div>
+    </div>
+    <p class="footnote">Total: <strong>~7h zespołowo</strong> w tygodniu 1. Potem 3–4h/tydz. dla marketingu + osobna praca techniczna SMP.</p>
+  </section>
+
+  <!-- ============== SLIDE 22: KRYTERIA SUKCESU ============== -->
+  <section class="slide" data-title="Kryteria sukcesu">
+    <h2>Test 30.11.2026 — 8 pytań</h2>
+    <div class="success-grid">
+      <div class="sx"><span class="sx-q">1</span>Discord ma <strong>≥250</strong> członków?</div>
+      <div class="sx"><span class="sx-q">2</span><strong>≥20 graczy</strong> zalogowało się na SMP ≥3× w ostatnich 14 dniach?</div>
+      <div class="sx"><span class="sx-q">3</span>Znamy <strong>3 najskuteczniejsze kanały</strong> akwizycji (z vanity)?</div>
+      <div class="sx"><span class="sx-q">4</span>TikTok ma <strong>≥1500 views/film</strong> w ostatnich 30 dniach?</div>
+      <div class="sx"><span class="sx-q">5</span>Ambasadorzy nadal aktywni (<strong>≥2 z 4</strong>)?</div>
+      <div class="sx"><span class="sx-q">6</span><strong>≥1 obcy mikroinfluencer</strong> zrobił content o HEX z własnej woli?</div>
+      <div class="sx"><span class="sx-q">7</span>Quiz daje <strong>≥150 ukończeń/mies.</strong>?</div>
+      <div class="sx"><span class="sx-q">8</span>Sklep (VIP/SVIP/ELITA) generuje <strong>≥100 zł/mies.</strong>?</div>
+    </div>
+    <div class="success-scale">
+      <div class="scale-row ok"><span>6–8 TAK</span> · strategia działa, skalujemy 2027 z Hogwart launch</div>
+      <div class="scale-row warn"><span>4–5 TAK</span> · podstawa jest, wycieki w lejku — korekta v3 w grudniu</div>
+      <div class="scale-row fail"><span>≤3 TAK</span> · fundamentalna diagnoza błędu, re-do strategy w styczniu</div>
+    </div>
+    <p class="footnote"><strong>Sygnał wczesny 30.07:</strong> jeśli w pierwszym miesiącu SMP macie ≥5 stałych — jesteście na trajektorii. Jeśli ≤2 — alarm.</p>
+  </section>
+
+  <!-- ============== SLIDE 23: ZAMKNIĘCIE ============== -->
+  <section class="slide slide-final" data-title="Zamknięcie">
+    <div class="final-content">
+      <div class="badge">🎯 PRZESŁANIE</div>
+      <h2>Macie wszystko, brakuje konsekwencji</h2>
+      <div class="final-three">
+        <div class="ft"><div class="ft-n">1</div><div class="ft-t">Ambasador-aktywacja</div><div class="ft-d">w tym tygodniu</div></div>
+        <div class="ft"><div class="ft-n">2</div><div class="ft-t">MVP SMP do 25.06</div><div class="ft-d">bez fuck-upów</div></div>
+        <div class="ft"><div class="ft-n">3</div><div class="ft-t">Systematyczne wrzucanie</div><div class="ft-d">według harmonogramu, niezależnie od natchnienia</div></div>
+      </div>
+      <p class="final-quote">„Każde zadanie staje się proste po rozłożeniu go na mniejsze zadania."<br><cite>— Henry Ford (Wasz cytat z notatek)</cite></p>
+      <p class="final-end">Reszta to taktyki. Powodzenia.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- nav UI -->
+<div id="nav-bar">
+  <button id="prev" aria-label="Poprzedni slajd" title="Poprzedni (←)">◀</button>
+  <span id="counter">1 / 25</span>
+  <button id="next" aria-label="Następny slajd" title="Następny (→)">▶</button>
+  <span class="nav-divider"></span>
+  <button id="open-md" class="btn-md ghost" data-open-strategy title="Otwórz strategia.md (M)">📄 strategia.md</button>
+</div>
+<div id="progress"><div id="progress-fill"></div></div>
+
+<!-- help overlay -->
+<div id="help-overlay" hidden>
+  <div class="help-box">
+    <h3>Skróty klawiszowe</h3>
+    <ul>
+      <li><kbd>→</kbd> / <kbd>Space</kbd> — następny slajd</li>
+      <li><kbd>←</kbd> — poprzedni</li>
+      <li><kbd>Home</kbd> / <kbd>End</kbd> — pierwszy / ostatni</li>
+      <li><kbd>F</kbd> — pełny ekran</li>
+      <li><kbd>M</kbd> — otwórz strategia.md / pełną strategię</li>
+      <li><kbd>?</kbd> — ta pomoc</li>
+      <li><kbd>Esc</kbd> — zamknij okno</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MD viewer modal -->
+<div id="md-modal" hidden>
+  <div class="md-box">
+    <header class="md-head">
+      <div class="md-title">
+        <span class="md-icon">📄</span>
+        <div>
+          <div class="md-h1">Pełna strategia marketingowa v2</div>
+          <div class="md-h2">HEX Network · maj → listopad 2026 · 570 linii · 14 sekcji</div>
+        </div>
+      </div>
+      <div class="md-actions">
+        <button id="md-toc-toggle" class="md-btn" title="Spis treści">☰ Spis treści</button>
+        <button id="md-close" class="md-btn md-btn-close" title="Zamknij (Esc)">✕</button>
+      </div>
+    </header>
+    <div class="md-body-wrap">
+      <aside id="md-toc" class="md-toc" hidden></aside>
+      <article id="md-content" class="markdown-body">
+        <div class="md-loading">⏳ Ładowanie strategii…</div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="presentation.js"></script>
+</body>
+</html>

@@ -1,0 +1,2498 @@
+﻿ <!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HEX Network — Strategia Marketingowa v2 (maj → listopad 2026)</title>
+<style>
+/* ============ HEX Network presentation styles ============ */
+:root{
+  --bg: #0a0b0e;
+  --bg-2: #10141a;
+  --bg-3: #151920;
+  --surface: #1a1f28;
+  --line: #262d39;
+  --text: #e0d8cc;
+  --text-dim: #9aa3b3;
+  --text-mute: #6b7384;
+  --accent: #ffa600;
+  --accent-2: #ffcc66;
+  --blue: #64b4ff;
+  --green: #6ddf94;
+  --red: #ff6b6b;
+  --yellow: #ffd166;
+  --shadow: 0 20px 60px rgba(0,0,0,.55);
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Montserrat','Segoe UI',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-weight:800;letter-spacing:-.01em;margin:0 0 .6em}
+h1{font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.05}
+h2{font-size:clamp(1.6rem,3.2vw,2.6rem);color:#fff;border-bottom:2px solid var(--accent);padding-bottom:.4em;margin-bottom:1.2em;display:inline-block}
+h3{font-size:1.15rem}
+p{margin:0 0 .9em}
+.accent{color:var(--accent)}
+kbd{display:inline-block;background:var(--bg-3);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 7px;font:600 .82rem/1 ui-monospace,Consolas,monospace;color:var(--accent)}
+code{background:var(--bg-3);padding:2px 6px;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.92em;color:var(--accent-2)}
+
+/* ============ DECK / SLIDES ============ */
+#deck{
+  scroll-snap-type:y mandatory;
+  height:100vh;
+  overflow-y:scroll;
+  scroll-behavior:smooth;
+}
+#deck::-webkit-scrollbar{width:0}
+.slide{
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  min-height:100vh;
+  padding:54px 7vw 90px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  position:relative;
+  border-bottom:1px solid var(--line);
+}
+.slide > h2:first-child,
+.slide > h2{margin-top:.2em}
+
+/* ============ TITLE SLIDE ============ */
+.slide-title{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:radial-gradient(ellipse at 30% 20%, rgba(255,166,0,.12), transparent 55%), radial-gradient(ellipse at 75% 80%, rgba(100,180,255,.08), transparent 55%), var(--bg);
+}
+.bg-grid{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(100,180,255,.07) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events:none;
+}
+.title-content{position:relative;z-index:1;max-width:900px}
+.badge{display:inline-block;font:700 .85rem/1 'Montserrat';letter-spacing:.25em;color:var(--accent);background:rgba(255,166,0,.12);border:1px solid rgba(255,166,0,.4);padding:8px 16px;border-radius:99px;margin-bottom:24px}
+.subtitle{font-size:1.4rem;color:var(--text-dim);margin-top:-.4em;margin-bottom:2.2em}
+.title-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:30px 0 50px}
+.meta-item{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 14px}
+.meta-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-mute);margin-bottom:6px}
+.meta-value{font-size:1.35rem;font-weight:700;color:#fff}
+.hint{color:var(--text-mute);font-size:.92rem}
+
+/* ============ STAT GRID (slide 2) ============ */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+.stat-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:24px;position:relative;transition:transform .2s;}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.stat-card.highlight{border-color:var(--accent);background:linear-gradient(135deg, rgba(255,166,0,.08), var(--bg-2))}
+.stat-number{font-size:3rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:8px}
+.stat-label{font-size:1rem;color:#fff;font-weight:600;margin-bottom:6px}
+.stat-foot{font-size:.85rem;color:var(--text-mute)}
+.stat-foot.ok{color:var(--green)}
+.stat-foot.warn{color:var(--yellow)}
+
+/* ============ GOALS SPLIT ============ */
+.goals-split{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:30px}
+.goal-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;position:relative;overflow:hidden}
+.goal-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, currentColor 0%, transparent 60%);opacity:.07;pointer-events:none}
+.goal-acq{color:var(--accent)}
+.goal-ret{color:var(--blue)}
+.goal-num{font:800 1rem/1 'Montserrat';color:currentColor;letter-spacing:.15em;margin-bottom:8px}
+.goal-title{font-size:.85rem;letter-spacing:.3em;color:var(--text-mute);margin-bottom:20px;text-transform:uppercase}
+.goal-big{font-size:3.4rem;font-weight:800;color:#fff;line-height:1;margin-bottom:8px}
+.goal-sub{font-size:1.1rem;color:var(--text);margin-bottom:18px}
+.goal-detail{font-size:.95rem;color:var(--text-dim);margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.goal-tactic{font-size:.95rem;color:var(--text-dim)}
+
+/* ============ AUDIT TABLE ============ */
+.audit-table{width:100%;border-collapse:collapse;background:var(--bg-2);border-radius:var(--r-md);overflow:hidden;margin-bottom:18px;font-size:.95rem}
+.audit-table th{background:var(--bg-3);color:var(--accent);text-align:left;padding:14px 16px;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid var(--accent)}
+.audit-table td{padding:14px 16px;border-bottom:1px solid var(--line);color:var(--text)}
+.audit-table tr:last-child td{border-bottom:none}
+.audit-table tr.row-star{background:rgba(255,166,0,.05)}
+.audit-table tr.row-star td:first-child{color:var(--accent);font-weight:600}
+.audit-table .warn{color:var(--yellow)}
+.tag{display:inline-block;padding:4px 10px;border-radius:99px;font-size:.78rem;font-weight:600}
+.tag-keep{background:rgba(109,223,148,.15);color:var(--green)}
+.tag-test{background:rgba(255,209,102,.15);color:var(--yellow)}
+.tag-redo{background:rgba(255,107,107,.15);color:var(--red)}
+.tag-fix{background:rgba(100,180,255,.15);color:var(--blue)}
+.tag-now{background:var(--accent);color:#000}
+
+/* ============ INSIGHTS ============ */
+.insights{display:flex;flex-direction:column;gap:14px}
+.insight{display:flex;gap:18px;align-items:flex-start;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;font-size:1.05rem}
+.insight.new{border-color:var(--accent);background:linear-gradient(90deg, rgba(255,166,0,.06), var(--bg-2) 60%)}
+.ins-num{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#000;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+
+/* ============ MARKET ============ */
+.market-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.market-row{display:grid;grid-template-columns:280px 1fr 200px;gap:18px;align-items:center}
+.market-seg{font-weight:600;color:#fff}
+.market-bar{background:var(--bg-3);border-radius:99px;height:36px;overflow:hidden;border:1px solid var(--line)}
+.bar{height:100%;display:flex;align-items:center;padding:0 16px;color:#fff;font-size:.88rem;font-weight:600;border-radius:99px}
+.bar-top{background:linear-gradient(90deg,#ff6b6b,#ff8e53)}
+.bar-mid{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+.bar-low{background:linear-gradient(90deg,var(--blue),#a18fff)}
+.bar-en{background:linear-gradient(90deg,#444,#666);color:var(--text-mute)}
+.market-chance{font-weight:700;font-size:.95rem}
+.market-chance.ok{color:var(--green)}
+.market-chance.fail{color:var(--red)}
+.market-chance.neutral{color:var(--text-dim)}
+.market-niche{background:rgba(255,166,0,.08);border-left:4px solid var(--accent);padding:18px 22px;border-radius:0 var(--r-md) var(--r-md) 0;color:var(--text);font-size:1.02rem}
+
+/* ============ CHARTS ============ */
+.chart-wrap{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:24px;margin-bottom:20px;height:auto}
+.chart-wrap canvas{max-height:420px}
+.chart-half{max-width:760px;margin-left:auto;margin-right:auto}
+.kpi-callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.callout{background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:14px 16px}
+.cal-month{font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-bottom:4px}
+.cal-note{font-size:.95rem;color:var(--text)}
+
+/* ============ FUNNEL ============ */
+.funnel{max-width:560px;margin:0 auto 18px;display:flex;flex-direction:column;align-items:center}
+.fn-step{background:var(--bg-2);border:1px solid var(--line);padding:18px 30px;border-radius:var(--r-md);text-align:center;min-width:300px;transition:all .2s}
+.fn-step:hover{transform:scale(1.02);border-color:var(--accent)}
+.fn-1{width:100%}
+.fn-2{width:80%}
+.fn-3{width:62%}
+.fn-4{width:46%}
+.fn-5{width:32%;background:var(--accent);color:#000;border-color:var(--accent)}
+.fn-5 .fn-num,.fn-5 .fn-lbl{color:#000}
+.fn-num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.fn-lbl{font-size:.9rem;color:var(--text-dim);margin-top:4px}
+.fn-arrow{color:var(--text-mute);font-size:.85rem;padding:6px 0}
+.winner{box-shadow:0 0 30px rgba(255,166,0,.4)}
+
+/* ============ FORMATS ============ */
+.formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
+.fmt{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:22px;position:relative;overflow:hidden}
+.fmt::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent)}
+.fmt-tag{font-size:.75rem;color:var(--accent);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.fmt-name{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:8px}
+.fmt-desc{font-size:.92rem;color:var(--text-dim);margin-bottom:12px}
+.fmt-time{font-size:.82rem;color:var(--text-mute);padding-top:12px;border-top:1px solid var(--line)}
+.fmt-time::before{content:"⏱ "}
+
+/* ============ ALGO ============ */
+.algo-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.algo-note{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 18px;font-size:.95rem}
+.algo-note strong{color:var(--accent)}
+
+/* ============ CHANNELS ============ */
+.channels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.chn{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column}
+.chn.star{border-color:var(--accent);background:linear-gradient(135deg,rgba(255,166,0,.08),var(--bg-2))}
+.chn-head{font-weight:700;color:#fff;font-size:1.05rem;margin-bottom:10px}
+.chn-detail{font-size:.9rem;color:var(--text-dim);flex:1;margin-bottom:14px}
+.chn-target{font-size:.88rem;color:var(--accent);font-weight:700;padding-top:10px;border-top:1px solid var(--line)}
+
+/* ============ AMBASSADORS ============ */
+.ambas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.amb{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:18px;text-align:center;border-top:3px solid var(--accent)}
+.amb-name{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px}
+.amb-role{font-size:.85rem;color:var(--text-dim)}
+.deal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.deal{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:22px}
+.deal h3{color:#fff;margin-bottom:14px}
+.deal-give{border-left:4px solid var(--green)}
+.deal-take{border-left:4px solid var(--accent)}
+.deal ul{margin:0;padding-left:22px;color:var(--text-dim)}
+.deal li{margin-bottom:6px}
+
+/* ============ PAGE CHANGES ============ */
+.page-changes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:18px;border-left:4px solid var(--line)}
+.pc.red{border-left-color:var(--red)}
+.pc.orange{border-left-color:var(--accent)}
+.pc.yellow{border-left-color:var(--yellow)}
+.pc-prio{font-size:.78rem;font-weight:700;letter-spacing:.1em;margin-bottom:8px;color:var(--text-mute)}
+.pc-name{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:8px}
+.pc-desc{font-size:.88rem;color:var(--text-dim)}
+
+/* ============ TIMELINE (SMP launch) ============ */
+.timeline{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 0;margin-bottom:14px;overflow:hidden}
+.tl-row{display:grid;grid-template-columns:60px 90px 160px 1fr;gap:18px;padding:14px 22px;align-items:center;border-bottom:1px solid var(--line);transition:background .15s}
+.tl-row:last-child{border-bottom:none}
+.tl-row:hover{background:rgba(255,166,0,.03)}
+.tl-row.launch{background:linear-gradient(90deg,rgba(255,166,0,.15),transparent 70%);border-bottom:none}
+.tl-week{font:800 1rem/1 'Montserrat';color:var(--accent);text-align:center}
+.tl-date{color:var(--text-dim);font-size:.9rem;font-weight:600}
+.tl-phase{font-weight:700;color:#fff}
+.tl-what{font-size:.9rem;color:var(--text-dim)}
+.tl-row.launch .tl-phase,.tl-row.launch .tl-week{color:var(--accent);font-size:1.1rem}
+
+/* ============ CALENDAR EVENTS ============ */
+.cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.cal-event{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 14px;text-align:center;position:relative}
+.cal-event.hot{border-color:var(--accent);background:linear-gradient(180deg,rgba(255,166,0,.12),var(--bg-2));box-shadow:0 6px 24px rgba(255,166,0,.18)}
+.cal-event.star{border-color:var(--yellow)}
+.cal-date{font-size:.8rem;color:var(--accent);font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.cal-name{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:8px;min-height:2.4em}
+.cal-goal{font-size:.78rem;color:var(--text-dim);line-height:1.4}
+
+/* ============ RETENTION GRID ============ */
+.retention-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.ret-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;position:relative;overflow:hidden}
+.ret-card .ret-period{position:absolute;top:0;right:0;background:var(--accent);color:#000;font-weight:800;font-size:.7rem;letter-spacing:.08em;padding:3px 10px;border-radius:0 var(--r-md) 0 var(--r-md)}
+.ret-card.d1 .ret-period{background:var(--red)}
+.ret-card.d7 .ret-period{background:var(--accent)}
+.ret-card.d30 .ret-period{background:var(--yellow)}
+.ret-card.late .ret-period{background:var(--blue)}
+.ret-card.social .ret-period{background:var(--green)}
+.ret-mech{font-weight:700;color:#fff;font-size:1rem;margin:14px 0 10px;padding-right:50px}
+.ret-when{font-size:.82rem;color:var(--text-mute)}
+
+/* ============ BOOST SQUAD ============ */
+.quote{background:var(--bg-2);border-left:4px solid var(--accent);padding:20px 26px;margin:0 0 26px;font-style:italic;color:var(--text);border-radius:0 var(--r-md) var(--r-md) 0;font-size:1.05rem}
+.quote cite{display:block;margin-top:10px;font-size:.85rem;color:var(--text-mute);font-style:normal}
+.squad-flow{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.sq-step{display:flex;gap:18px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 20px}
+.sq-n{flex-shrink:0;width:38px;height:38px;border-radius:8px;background:var(--accent);color:#000;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* ============ BUDGET ============ */
+.budget-table{width:100%;border-collapse:collapse;background:var(--bg-2);border-radius:var(--r-md);overflow:hidden;font-size:.95rem;margin-bottom:14px}
+.budget-table th{background:var(--bg-3);color:var(--accent);text-align:left;padding:12px 16px;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}
+.budget-table td{padding:12px 16px;border-bottom:1px solid var(--line)}
+.budget-table tr:last-child td{border-bottom:none}
+.budget-table .ok{color:var(--green)}
+
+/* ============ DONT GRID ============ */
+.dont-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dont{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 18px;display:flex;gap:14px;align-items:center;font-size:.95rem;color:var(--text-dim)}
+.dont strong{color:#fff}
+.dont-x{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(255,107,107,.15);color:var(--red);font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* ============ WEEK PLAN ============ */
+.week-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.wp{display:grid;grid-template-columns:90px 90px 1fr;gap:14px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;font-size:.9rem}
+.wp-day{font-weight:700;color:var(--accent);font-size:.85rem}
+.wp-who{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:99px;text-align:center}
+.wp-who.s{background:rgba(100,180,255,.18);color:var(--blue)}
+.wp-who.c{background:rgba(255,166,0,.18);color:var(--accent)}
+.wp-who.q{background:rgba(109,223,148,.18);color:var(--green)}
+.wp-who.h{background:rgba(255,209,102,.18);color:var(--yellow)}
+.wp-task{color:var(--text-dim);font-size:.88rem}
+
+/* ============ SUCCESS ============ */
+.success-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.sx{background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:14px 18px;display:flex;gap:14px;align-items:center;font-size:.98rem;color:var(--text-dim)}
+.sx strong{color:#fff}
+.sx-q{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#000;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.92rem}
+.success-scale{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.scale-row{padding:12px 18px;border-radius:var(--r-sm);font-size:.95rem;color:var(--text-dim)}
+.scale-row span{font-weight:800;padding:2px 12px;border-radius:99px;margin-right:14px}
+.scale-row.ok{background:rgba(109,223,148,.08)}
+.scale-row.ok span{background:var(--green);color:#000}
+.scale-row.warn{background:rgba(255,209,102,.08)}
+.scale-row.warn span{background:var(--yellow);color:#000}
+.scale-row.fail{background:rgba(255,107,107,.08)}
+.scale-row.fail span{background:var(--red);color:#fff}
+
+/* ============ FINAL SLIDE ============ */
+.slide-final{justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at center, rgba(255,166,0,.1), transparent 60%), var(--bg)}
+.final-content{max-width:900px}
+.final-content h2{border:none;color:#fff;font-size:clamp(2rem,4.5vw,3.4rem);margin:24px 0 40px;display:block}
+.final-three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:50px}
+.ft{background:var(--bg-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--r-md);padding:24px}
+.ft-n{font-size:2.4rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:8px}
+.ft-t{font-weight:700;color:#fff;margin-bottom:6px}
+.ft-d{font-size:.88rem;color:var(--text-dim)}
+.final-quote{font-style:italic;color:var(--text-dim);font-size:1.1rem;margin-bottom:30px}
+.final-quote cite{display:block;font-size:.85rem;color:var(--text-mute);font-style:normal;margin-top:8px}
+.final-end{color:var(--accent);font-weight:700;letter-spacing:.1em}
+
+/* ============ FOOTNOTES ============ */
+.footnote{font-size:.88rem;color:var(--text-mute);margin-top:auto;padding-top:18px;border-top:1px dashed var(--line)}
+.footnote.warn{color:var(--yellow);border-color:rgba(255,209,102,.3)}
+.footnote.ok{color:var(--green);border-color:rgba(109,223,148,.3)}
+
+/* ============ NAV ============ */
+#nav-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,25,35,.85);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:99px;padding:8px 14px;z-index:100;box-shadow:var(--shadow)}
+#nav-bar button{background:transparent;border:none;color:var(--accent);font-size:1rem;padding:6px 12px;border-radius:99px;cursor:pointer;font-weight:700;transition:background .15s}
+#nav-bar button:hover{background:rgba(255,166,0,.15)}
+#nav-bar button:disabled{color:var(--text-mute);cursor:not-allowed}
+#counter{color:var(--text);font-size:.92rem;font-weight:700;min-width:60px;text-align:center;font-variant-numeric:tabular-nums}
+#progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--bg-3);z-index:100}
+#progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .25s}
+
+/* ============ HELP OVERLAY ============ */
+#help-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:200}
+#help-overlay[hidden]{display:none}
+.help-box{background:var(--bg-2);border:1px solid var(--accent);border-radius:var(--r-md);padding:30px 40px;max-width:420px;box-shadow:var(--shadow)}
+.help-box h3{color:var(--accent);margin-bottom:14px}
+.help-box ul{margin:0;padding-left:0;list-style:none}
+.help-box li{padding:6px 0;color:var(--text-dim);border-bottom:1px solid var(--line)}
+.help-box li:last-child{border:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1100px){
+  .stat-grid,.formats-grid,.channels,.page-changes{grid-template-columns:repeat(2,1fr)}
+  .ambas-grid{grid-template-columns:repeat(2,1fr)}
+  .cal-grid{grid-template-columns:repeat(3,1fr)}
+  .retention-grid{grid-template-columns:repeat(2,1fr)}
+  .title-meta{grid-template-columns:repeat(2,1fr)}
+  .week-grid,.dont-grid,.success-grid,.kpi-callouts,.algo-notes,.deal-grid,.goals-split{grid-template-columns:1fr}
+  .market-row{grid-template-columns:1fr;gap:6px}
+  .market-chance{text-align:right}
+  .tl-row{grid-template-columns:50px 70px 1fr;gap:10px}
+  .tl-what{grid-column:1/-1;color:var(--text-mute)}
+}
+@media (max-width: 640px){
+  .slide{padding:40px 5vw 80px}
+  .stat-grid,.formats-grid,.channels,.page-changes,.cal-grid,.ambas-grid,.retention-grid{grid-template-columns:1fr}
+  .wp{grid-template-columns:1fr}
+  .audit-table{font-size:.82rem}
+  .audit-table th,.audit-table td{padding:8px 10px}
+}
+
+/* ============ CONTEXT SLIDE ============ */
+.ctx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:14px}
+.ctx-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:22px;position:relative;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s}
+.ctx-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ctx-tag{font:800 .72rem/1 'Montserrat';letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.ctx-card p{margin:0;font-size:.96rem;color:var(--text-dim);line-height:1.55}
+.ctx-card p strong{color:#fff}
+.ctx-card p code{font-size:.88em}
+
+/* ============ TEAM SLIDE ============ */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.team-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .2s,border-color .2s}
+.team-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.team-card.team-support{grid-column:span 1;opacity:.85}
+.team-avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.7rem;color:#fff;margin-bottom:14px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.team-name{font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:4px}
+.team-role{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line);width:100%}
+.team-card ul{margin:0;padding-left:18px;text-align:left;color:var(--text-dim);font-size:.86rem;line-height:1.5}
+.team-card li{margin-bottom:4px}
+
+/* ============ TITLE CTA BUTTON ============ */
+.title-cta{margin:20px 0 30px}
+.btn-md{background:transparent;border:1px solid var(--line);color:var(--text);padding:10px 18px;border-radius:99px;cursor:pointer;font:600 .92rem/1 'Montserrat',sans-serif;display:inline-flex;align-items:center;gap:8px;transition:all .18s}
+.btn-md:hover{background:rgba(255,166,0,.12);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn-md.primary{background:var(--accent);color:#000;border-color:var(--accent);padding:14px 28px;font-size:1rem;box-shadow:0 8px 24px rgba(255,166,0,.3)}
+.btn-md.primary:hover{background:var(--accent-2);color:#000;transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,166,0,.45)}
+.btn-md.ghost{padding:6px 14px;font-size:.84rem;border-color:var(--line)}
+.nav-divider{width:1px;height:22px;background:var(--line);margin:0 6px}
+
+/* ============ MD MODAL ============ */
+#md-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);z-index:300;display:flex;align-items:center;justify-content:center;padding:30px;animation:mdFadeIn .25s ease-out}
+#md-modal[hidden]{display:none}
+@keyframes mdFadeIn{from{opacity:0}to{opacity:1}}
+.md-box{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);width:100%;max-width:1100px;height:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.7);overflow:hidden}
+.md-head{display:flex;justify-content:space-between;align-items:center;padding:18px 26px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--bg-2),var(--bg));flex-shrink:0}
+.md-title{display:flex;gap:14px;align-items:center;min-width:0}
+.md-icon{font-size:1.6rem;flex-shrink:0}
+.md-h1{font-size:1.1rem;font-weight:800;color:#fff}
+.md-h2{font-size:.82rem;color:var(--text-mute);margin-top:2px}
+.md-actions{display:flex;gap:8px;flex-shrink:0}
+.md-btn{background:transparent;border:1px solid var(--line);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font:600 .85rem/1 'Montserrat';transition:all .15s}
+.md-btn:hover{background:var(--bg-3);border-color:var(--accent);color:var(--accent)}
+.md-btn-close{font-size:1rem;padding:8px 12px;width:36px;text-align:center}
+.md-body-wrap{flex:1;display:flex;overflow:hidden}
+.md-toc{flex-shrink:0;width:260px;border-right:1px solid var(--line);overflow-y:auto;padding:20px 18px;background:var(--bg-2);font-size:.86rem}
+.md-toc[hidden]{display:none}
+.md-toc h4{color:var(--accent);font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;margin:0 0 12px}
+.md-toc a{display:block;color:var(--text-dim);text-decoration:none;padding:5px 8px;border-radius:5px;border-left:2px solid transparent;line-height:1.4;margin-bottom:2px}
+.md-toc a:hover{background:var(--bg-3);color:var(--text);border-left-color:var(--accent)}
+.md-toc a.lvl-3{padding-left:20px;font-size:.82rem;color:var(--text-mute)}
+.md-toc a.lvl-4{padding-left:32px;font-size:.78rem;color:var(--text-mute)}
+.md-toc a.active{background:rgba(255,166,0,.1);color:var(--accent);border-left-color:var(--accent)}
+
+#md-content{flex:1;overflow-y:auto;padding:38px 56px 60px;scroll-behavior:smooth}
+.md-loading{padding:40px;text-align:center;color:var(--text-mute);font-size:1.05rem}
+
+/* ============ MARKDOWN BODY ============ */
+.markdown-body{color:var(--text);line-height:1.7;font-size:1rem;max-width:780px;margin:0 auto}
+.markdown-body h1{color:#fff;font-size:2rem;border-bottom:2px solid var(--accent);padding-bottom:.4em;margin:0 0 1em}
+.markdown-body h2{color:var(--accent);font-size:1.55rem;margin:2.4em 0 .8em;border:none;display:block;padding:0;border-top:1px solid var(--line);padding-top:1.4em}
+.markdown-body h2:first-of-type{border-top:none;padding-top:0;margin-top:1.2em}
+.markdown-body h3{color:#fff;font-size:1.2rem;margin:2em 0 .6em}
+.markdown-body h4{color:var(--accent-2);font-size:1.02rem;margin:1.6em 0 .5em;letter-spacing:.02em}
+.markdown-body p{margin:0 0 1.05em;color:var(--text-dim)}
+.markdown-body strong{color:#fff;font-weight:700}
+.markdown-body em{color:var(--accent-2)}
+.markdown-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,166,0,.4)}
+.markdown-body a:hover{text-decoration-color:var(--accent)}
+.markdown-body ul,.markdown-body ol{padding-left:1.4em;margin:0 0 1.1em;color:var(--text-dim)}
+.markdown-body li{margin-bottom:.45em}
+.markdown-body li>ul,.markdown-body li>ol{margin:.45em 0 .25em}
+.markdown-body code{background:var(--bg-3);color:var(--accent-2);padding:2px 7px;border-radius:5px;font:600 .88em/1 ui-monospace,Consolas,monospace;border:1px solid var(--line)}
+.markdown-body pre{background:var(--bg-3);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:18px 22px;overflow-x:auto;margin:0 0 1.2em;font-size:.9em}
+.markdown-body pre code{background:transparent;border:none;padding:0;color:var(--text);font-weight:400}
+.markdown-body blockquote{margin:0 0 1.3em;padding:14px 22px;background:rgba(255,166,0,.05);border-left:4px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;color:var(--text)}
+.markdown-body blockquote p{color:var(--text);margin-bottom:.5em}
+.markdown-body blockquote p:last-child{margin-bottom:0}
+.markdown-body blockquote strong{color:var(--accent)}
+.markdown-body hr{border:none;border-top:1px dashed var(--line);margin:2.5em 0}
+.markdown-body table{width:100%;border-collapse:collapse;margin:0 0 1.3em;font-size:.92em;background:var(--bg-2);border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--line)}
+.markdown-body th{background:var(--bg-3);color:var(--accent);text-align:left;padding:10px 14px;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--accent);font-weight:700}
+.markdown-body td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text-dim);vertical-align:top}
+.markdown-body tr:last-child td{border-bottom:none}
+.markdown-body tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.markdown-body td strong{color:#fff}
+
+/* scrollbar for MD content */
+#md-content::-webkit-scrollbar,.md-toc::-webkit-scrollbar{width:10px}
+#md-content::-webkit-scrollbar-track,.md-toc::-webkit-scrollbar-track{background:var(--bg-2)}
+#md-content::-webkit-scrollbar-thumb,.md-toc::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:5px;border:2px solid var(--bg-2)}
+#md-content::-webkit-scrollbar-thumb:hover,.md-toc::-webkit-scrollbar-thumb:hover{background:var(--line)}
+
+@media (max-width:900px){
+  .ctx-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .md-toc{position:absolute;left:0;top:0;bottom:0;width:80%;max-width:280px;z-index:5;box-shadow:8px 0 24px rgba(0,0,0,.5)}
+  #md-content{padding:24px 22px 40px}
+  .md-box{max-height:96vh}
+}
+
+/* ============ PRINT ============ */
+@media print{
+  #nav-bar,#progress,#help-overlay,#md-modal{display:none!important}
+  .slide{min-height:auto;page-break-after:always;border:none}
+}
+
+.chart-wrap{position:relative;min-height:360px}
+.chart-wrap canvas{display:block;width:100%;height:320px;max-height:none}
+@media (max-width:640px){
+  .chart-wrap{min-height:280px}
+  .chart-wrap canvas{height:240px}
+}
+</style>
+</head>
+<body>
+
+
+<div id="deck">
+
+  <!-- ============== SLIDE 1: TITLE ============== -->
+  <section class="slide slide-title" data-title="Start">
+    <div class="bg-grid"></div>
+    <div class="title-content">
+      <div class="badge">⚔️ HEX NETWORK</div>
+      <h1>Strategia marketingowa <span class="accent">v2</span></h1>
+      <p class="subtitle">maj → listopad 2026</p>
+      <div class="title-meta">
+        <div class="meta-item">
+          <div class="meta-label">Cel #1</div>
+          <div class="meta-value">Discord <span class="accent">250+</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Cel #2</div>
+          <div class="meta-value">SMP aktywni <span class="accent">~20</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Budżet</div>
+          <div class="meta-value"><span class="accent">200–300</span> zł/mies.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Deadline</div>
+          <div class="meta-value"><span class="accent">30.11.2026</span></div>
+        </div>
+      </div>
+      <div class="title-cta">
+        <button class="btn-md primary" id="open-md-1" data-open-strategy>📄 Otwórz strategia.md / pełną strategię</button>
+      </div>
+      <p class="hint">Użyj <kbd>→</kbd> / <kbd>←</kbd> żeby przewijać · <kbd>F</kbd> tryb pełnoekranowy · <kbd>M</kbd> strategia.md · <kbd>?</kbd> pomoc</p>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: KONTEKST ============== -->
+  <section class="slide" data-title="Czym jest HEX Network">
+    <h2>Czym jest HEX Network — szybki kontekst</h2>
+    <div class="ctx-grid">
+      <div class="ctx-card">
+        <div class="ctx-tag">CO TO</div>
+        <p>Polski projekt Minecrafta. Strona <code>minecrafthex.pl</code> + Discord + serwery gry. Robicie cykliczne turnieje z nagrodami pieniężnymi (HEX I–VII już za Wami) i przygotowujecie flagowy <strong>tryb SMP</strong> (start 3.07.2026).</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">DLA KOGO</div>
+        <p>Polscy gracze MC <strong>12–20 lat</strong>. Siedzą na TikToku, YouTube Shorts, Discordzie, w grze. Nie na Facebooku, nie w Allegro, nie w newsletterze.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">CO JUŻ JEST</div>
+        <p><strong>7 turniejów</strong> rozegranych, <strong>3450 zł</strong> rozdanych w nagrodach, <strong>133 osoby</strong> na Discordzie, świetna strona zoptymalizowana SEO, publiczny devlog.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">CO WCHODZI</div>
+        <p><strong>HEX SMP 3.07</strong> — autorski SMP z mechanikami Hypixel SkyBlock po polsku (miniony, skille, kolekcje, bazaar). Plus: tryb Minigry (22.08), Parkour (19.09), PVP (24.10), Hogwart event (styczeń 2027).</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">PROBLEM</div>
+        <p>Macie świetny produkt — ale <strong>nikt o nim nie wie</strong>. TikTok robi 300 views/film. Discord rośnie 10 osób/miesiąc. Płacicie ~40 zł za nową osobę, a powinno być &lt;5 zł.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-tag">ROZWIĄZANIE</div>
+        <p>Ta strategia. 23 slajdy. Cel: <strong>podwoić Discord do 250</strong> i uruchomić <strong>20 stałych graczy SMP</strong> do końca listopada 2026 — bez zwiększania budżetu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: ZESPÓŁ ============== -->
+  <section class="slide" data-title="Zespół">
+    <h2>Zespół — kto za co odpowiada</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#ffa600,#ff6b6b)">C</div>
+        <div class="team-name">Capybit</div>
+        <div class="team-role">Lead / Strategia</div>
+        <ul>
+          <li>Wizja produktu, kierunek</li>
+          <li>Briefy ambasadorów, koordynacja</li>
+          <li>Tracking KPI, decyzje cięć</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#64b4ff,#a18fff)">H</div>
+        <div class="team-name">Havix</div>
+        <div class="team-role">Tech / Web / Pluginy</div>
+        <ul>
+          <li>Strona Astro (minecrafthex.pl)</li>
+          <li>Pluginy: skille, kolekcje, ekonomia</li>
+          <li>Quiz, /dolacz, OG, vanity invites</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#6ddf94,#64b4ff)">S</div>
+        <div class="team-name">Sevin</div>
+        <div class="team-role">DevOps / Community / Eventy</div>
+        <ul>
+          <li>Serwer (hosting, backup, performance)</li>
+          <li>Pluginy event, miniony, działki</li>
+          <li>„Życie" na Discord — codzienna obecność</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#ffd166,#ffa600)">Q</div>
+        <div class="team-name">Quezo</div>
+        <div class="team-role">Marketing / Content</div>
+        <ul>
+          <li>TikTok + YT Shorts + IG Reels</li>
+          <li>Scenariusze, mapy, livestreamy</li>
+          <li>Wstępny montaż (brak dedykowanego montażysty long-form)</li>
+        </ul>
+      </div>
+      <div class="team-card team-support">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#9aa3b3,#6b7384)">A</div>
+        <div class="team-name">Ania</div>
+        <div class="team-role">Support</div>
+        <ul>
+          <li>Discord moderacja</li>
+          <li>Wsparcie graczy</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote">⚠️ <strong>Ograniczenie kluczowe:</strong> brak dedykowanego montażysty long-form. Stąd cała strategia content TikTok = krótkie formaty bez edycji + cross-post na YT Shorts / IG Reels.</p>
+  </section>
+
+  <!-- ============== SLIDE 2: DLACZEGO TA STRATEGIA ============== -->
+  <section class="slide" data-title="Punkt wyjścia">
+    <h2>Skąd startujemy</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">133</div>
+        <div class="stat-label">członków Discord (start)</div>
+        <div class="stat-foot">cel: 250 do 30.11</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~300</div>
+        <div class="stat-label">views/film TikTok</div>
+        <div class="stat-foot">cel: 1500 do listopada</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~40 zł</div>
+        <div class="stat-label">CAC z płatnego promo</div>
+        <div class="stat-foot warn">absurdalnie drogo dla free Discord</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">turniejów rozegranych</div>
+        <div class="stat-foot">3450 zł rozdanych w nagrodach</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30</div>
+        <div class="stat-label">osób z referal v1</div>
+        <div class="stat-foot warn">wyczerpany po 3 miesiącach</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-number">4</div>
+        <div class="stat-label">lojalnych ambasadorów</div>
+        <div class="stat-foot ok">Ławka · Daxel · peter · sonnee</div>
+      </div>
+    </div>
+    <p class="footnote">Mamy produkt, mamy zespół, mamy społeczność. Brakuje TYLKO dystrybucji i systematyczności.</p>
+  </section>
+
+  <!-- ============== SLIDE 3: 2 CELE ============== -->
+  <section class="slide" data-title="2 cele">
+    <h2>Dwa cele, nie jeden</h2>
+    <div class="goals-split">
+      <div class="goal-card goal-acq">
+        <div class="goal-num">#1</div>
+        <div class="goal-title">AKWIZYCJA</div>
+        <div class="goal-big">133 → <span class="accent">250</span></div>
+        <div class="goal-sub">członków Discord do 30.11</div>
+        <div class="goal-detail">≈ 18 nowych netto / miesiąc</div>
+        <div class="goal-tactic">Lejek: TikTok + listy MC + partnerstwa + ambasadorzy</div>
+      </div>
+      <div class="goal-card goal-ret">
+        <div class="goal-num">#2</div>
+        <div class="goal-title">RETENCJA</div>
+        <div class="goal-big"><span class="accent">~20</span></div>
+        <div class="goal-sub">stale aktywnych graczy SMP</div>
+        <div class="goal-detail">≥3 logowania w tygodniu, 2 tyg. z rzędu</div>
+        <div class="goal-tactic">Hypixel-style loop: daily quests · miniony · skille · kolekcje · sezony</div>
+      </div>
+    </div>
+    <p class="footnote warn">Bez retencji liczba na Discordzie jest fikcyjna — każdy nowy gracz przyjdzie i wyjdzie.</p>
+  </section>
+
+  <!-- ============== SLIDE 4: AUDYT KANAŁÓW ============== -->
+  <section class="slide" data-title="Audyt kanałów">
+    <h2>Audyt obecnych kanałów akwizycji</h2>
+    <table class="audit-table">
+      <thead>
+        <tr><th>Kanał</th><th>Stan</th><th>Koszt</th><th>CAC</th><th>Werdykt v2</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TikTok organic</td><td>~300 views/film</td><td>0 zł</td><td>n/a</td><td class="tag tag-keep">Utrzymać</td></tr>
+        <tr><td>TikTok promo płatny</td><td>100–200 zł = 2–5 os.</td><td>200 zł/mies.</td><td class="warn">~40 zł</td><td class="tag tag-test">Test 12.05 i 15.05, potem decyzja</td></tr>
+        <tr><td>Referal v1</td><td>wyczerpany</td><td>0 zł</td><td>0 zł</td><td class="tag tag-redo">Przeprojektować v2</td></tr>
+        <tr><td>Discord (133)</td><td>~10 nowych/mies.</td><td>0 zł</td><td>0 zł</td><td class="tag tag-keep">Sevin „prowadzi życie"</td></tr>
+        <tr><td>Strona</td><td>świetna technicznie</td><td>0 zł</td><td>n/a</td><td class="tag tag-fix">Brak SEO traffic</td></tr>
+        <tr class="row-star"><td>4 ambasadorzy (Ławka i in.)</td><td>nie aktywowani</td><td>0 zł</td><td>0 zł</td><td class="tag tag-now">⭐ Aktywować TERAZ</td></tr>
+        <tr class="row-star"><td>Listy serwerów MC</td><td>zero obecności</td><td>0 zł</td><td>n/a</td><td class="tag tag-now">⭐ Zgłosić w tym tyg.</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">Wniosek: <strong>płacicie za to, co macie za darmo.</strong> Audytujemy → kasujemy szybko → skalujemy to, co działa.</p>
+  </section>
+
+  <!-- ============== SLIDE 5: 5 WNIOSKÓW ============== -->
+  <section class="slide" data-title="5 wniosków">
+    <h2>5 kluczowych wniosków</h2>
+    <div class="insights">
+      <div class="insight"><span class="ins-num">1</span><div><strong>To NIE jakość contentu</strong>, tylko dystrybucja + częstotliwość + social proof. Algorytm Was nie zna.</div></div>
+      <div class="insight"><span class="ins-num">2</span><div><strong>Płacicie za to, co macie za darmo.</strong> Listy MC, cudze Discordy, YT Shorts — wszystkie kosztują tylko czas.</div></div>
+      <div class="insight"><span class="ins-num">3</span><div><strong>Macie quiz „Jaki typ gracza jesteś?"</strong> — gotowy viral mechanism, którego nikt nie zna bo brak ruchu na stronę.</div></div>
+      <div class="insight new"><span class="ins-num">4</span><div><strong>SMP launch 3.07 = jedyny prawdziwy publicity stunt roku.</strong> Wszystko maj–czerwiec to pre-launch hype.</div></div>
+      <div class="insight new"><span class="ins-num">5</span><div><strong>Macie 4 lojalnych graczy</strong> gotowych do roli ambasadora. Aktywacja = 0 zł, ROI 10× wyższy niż obcy influencer.</div></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: ANALIZA RYNKU ============== -->
+  <section class="slide" data-title="Rynek">
+    <h2>Analiza rynku — gdzie jesteście</h2>
+    <div class="market-grid">
+      <div class="market-row">
+        <div class="market-seg">Top komercyjne (Vimeworld)</div>
+        <div class="market-bar"><div class="bar bar-top" style="width:100%">500–2000 online</div></div>
+        <div class="market-chance fail">ZERO szans</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Średnie SMP / Skyblock</div>
+        <div class="market-bar"><div class="bar bar-mid" style="width:55%">50–300 online</div></div>
+        <div class="market-chance ok">REALNE — Wasz target</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Małe community (jak Wy)</div>
+        <div class="market-bar"><div class="bar bar-low" style="width:25%">&lt;50 online</div></div>
+        <div class="market-chance neutral">Naturalni partnerzy</div>
+      </div>
+      <div class="market-row">
+        <div class="market-seg">Hardcore SMP EN / global</div>
+        <div class="market-bar"><div class="bar bar-en" style="width:80%">tysiące</div></div>
+        <div class="market-chance fail">2027, nie teraz</div>
+      </div>
+    </div>
+    <div class="market-niche">
+      <strong>Wasza nisza:</strong> nikt w Polsce 2026 nie robi <em>SMP z mechanikami Hypixel SkyBlock + autorski event co 2 mies. + transparentny devlog</em>. Konkurujecie konsekwencją publikacji i dostępnością ekipy — nie skalą.
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 7: KPI #1 wzrost Discord ============== -->
+  <section class="slide" data-title="KPI #1 wzrost">
+    <h2>KPI #1 — Discord 133 → 250+</h2>
+    <div class="chart-wrap"><canvas id="chartDiscord"></canvas></div>
+    <div class="kpi-callouts">
+      <div class="callout"><div class="cal-month">Lipiec</div><div class="cal-note">🔥 SMP launch — make or break (+40)</div></div>
+      <div class="callout"><div class="cal-month">Sierpień–wrzesień</div><div class="cal-note">Dywersyfikacja (Minigry, Parkour)</div></div>
+      <div class="callout"><div class="cal-month">Październik</div><div class="cal-note">PVP + Halloween + Awantura o Kasę</div></div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 8: KPI #2 RETENCJA SMP ============== -->
+  <section class="slide" data-title="KPI #2 retencja SMP">
+    <h2>KPI #2 — retencja SMP, 0 → ~20 stałych</h2>
+    <div class="chart-wrap"><canvas id="chartSMP"></canvas></div>
+    <p class="footnote">„Stale aktywny" = ≥3 logowania w tygodniu przez 2 kolejne tygodnie. Klucz: <strong>mechaniki Hypixel-style</strong> + miniony + sezony + Discord↔MC linking.</p>
+  </section>
+
+  <!-- ============== SLIDE 9: LEJEK KONWERSJI ============== -->
+  <section class="slide" data-title="Lejek konwersji">
+    <h2>Lejek konwersji TikTok → stały gracz SMP</h2>
+    <div class="funnel">
+      <div class="fn-step fn-1"><div class="fn-num">1000</div><div class="fn-lbl">wyświetleń TikTok</div></div>
+      <div class="fn-arrow">↓ 2% CTR</div>
+      <div class="fn-step fn-2"><div class="fn-num">20</div><div class="fn-lbl">wejść na /dolacz lub /hexSmp</div></div>
+      <div class="fn-arrow">↓ 40% (quiz + dynamic OG)</div>
+      <div class="fn-step fn-3"><div class="fn-num">8</div><div class="fn-lbl">nowych Discord members</div></div>
+      <div class="fn-arrow">↓ 50% (przy SMP hype)</div>
+      <div class="fn-step fn-4"><div class="fn-num">4</div><div class="fn-lbl">graczy testuje SMP</div></div>
+      <div class="fn-arrow">↓ 25% D7 retencja</div>
+      <div class="fn-step fn-5 winner"><div class="fn-num">1</div><div class="fn-lbl">stały gracz SMP</div></div>
+    </div>
+    <p class="footnote">Aby zdobyć 20 stałych potrzebujemy <strong>~108 000 wyświetleń</strong> łącznie. Planowane: 135 rolek × średnio 800 views (rosnąco) = <strong>cel matematycznie wykonalny</strong>.</p>
+  </section>
+
+  <!-- ============== SLIDE 10: TIKTOK FORMATY ============== -->
+  <section class="slide" data-title="TikTok formaty">
+    <h2>6 formatów TikToka — zero montażysty, zero pomysłów</h2>
+    <div class="formats-grid">
+      <div class="fmt"><div class="fmt-tag">A · 3–4×/tyg</div><div class="fmt-name">Devlog POV</div><div class="fmt-desc">Ekran z MC + hook tekstowy + pytanie do widza.</div><div class="fmt-time">5 min</div></div>
+      <div class="fmt"><div class="fmt-tag">B · 2×/tyg</div><div class="fmt-name">Reply na komentarz</div><div class="fmt-desc">Natywna funkcja TikToka — algorytm pcha reply.</div><div class="fmt-time">3 min</div></div>
+      <div class="fmt"><div class="fmt-tag">C · 1×/tyg</div><div class="fmt-name">Tier list / ranking</div><div class="fmt-desc">„5 rzeczy które robi 99% nowych graczy SMP — i się myli".</div><div class="fmt-time">20 min</div></div>
+      <div class="fmt"><div class="fmt-tag">D · 1×/tyg</div><div class="fmt-name">Before / After</div><div class="fmt-desc">Budowa: szkielet → finał w 15 sekundach.</div><div class="fmt-time">10 min</div></div>
+      <div class="fmt"><div class="fmt-tag">E · 1×/tyg</div><div class="fmt-name">Behind the scenes</div><div class="fmt-desc">Pokazuje że żyjecie — buduje relację z marką.</div><div class="fmt-time">15 min</div></div>
+      <div class="fmt"><div class="fmt-tag">F · 1×/2tyg</div><div class="fmt-name">POV jesteś graczem</div><div class="fmt-desc">Cinematic + 1 zdanie. Zero edycji.</div><div class="fmt-time">5 min</div></div>
+    </div>
+    <p class="footnote"><strong>~70 min/tydzień</strong> łącznie. Cross-post na YT Shorts + IG Reels = 2× zasięg za 0 zł dodatkowo.</p>
+  </section>
+
+  <!-- ============== SLIDE 11: ALGORYTM TIKTOKA ============== -->
+  <section class="slide" data-title="Algorytm TikToka">
+    <h2>Algorytm TikToka — co się liczy</h2>
+    <div class="chart-wrap chart-half"><canvas id="chartAlgo"></canvas></div>
+    <div class="algo-notes">
+      <div class="algo-note"><strong>Share/Save</strong> — najsilniejszy sygnał. Stąd quiz na końcu rolki + share buttons.</div>
+      <div class="algo-note"><strong>Comments</strong> — drugi najsilniejszy. Stąd „Reply video" (format B) + Boost Squad.</div>
+      <div class="algo-note"><strong>Watch time</strong> — % obejrzanego. Hook w pierwsze 1.5s decyduje.</div>
+      <div class="algo-note"><strong>Likes</strong> — najsłabszy ale liczy się masa. Boost Squad daje pierwsze 30 min.</div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 12: DARMOWE KANAŁY ============== -->
+  <section class="slide" data-title="Darmowe kanały">
+    <h2>Kanały, których nie używacie (a powinniście)</h2>
+    <div class="channels">
+      <div class="chn">
+        <div class="chn-head">📋 Listy serwerów MC</div>
+        <div class="chn-detail">7 polskich list. Każda z osobnym vanity invite. Mechanika głosowania = darmowy referal który nie umrze.</div>
+        <div class="chn-target">+5–10 os./mies. ciągle</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🤝 Discord ↔ Discord partnerstwa</div>
+        <div class="chn-detail">5–10 małych polskich Discordów (50–500 osób). Wymiany jednorazowych ogłoszeń. 3 partnerstwa/mies.</div>
+        <div class="chn-target">+15–30 os./mies.</div>
+      </div>
+      <div class="chn star">
+        <div class="chn-head">⭐ Ambasadorzy (Ławka, Daxel, peter, sonnee)</div>
+        <div class="chn-detail">Już Was znają. Aktywacja: rola, VIP, ranga. W zamian: lajk+komentarz w 30 min po rolce + wzmianka 1×/tyg.</div>
+        <div class="chn-target">+20–60 os./mies.</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🔁 Referal v2 (3-warstwowy)</div>
+        <div class="chn-detail">Mikro-nagrody ciągłe + wzajemność dla zapraszanego + miesięczny leaderboard „Ambasadora HEX".</div>
+        <div class="chn-target">+10–20 os./mies. (po reaktywacji)</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">🎬 Mikroinfluencerzy obcy (po SMP launch)</div>
+        <div class="chn-detail">1–10k followers. Oferta: VIP, ranga twórcy, pierwszeństwo. Bez kasy.</div>
+        <div class="chn-target">+20–50 os. na 1 twórcę</div>
+      </div>
+      <div class="chn">
+        <div class="chn-head">📍 Reddit r/Minecraft_Polska</div>
+        <div class="chn-detail">2×/mies. devlog post + after-event recap. Mały subreddit ale targetowany.</div>
+        <div class="chn-target">+2–5 os./mies.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 13: AMBASADORZY ============== -->
+  <section class="slide" data-title="Ambasadorzy">
+    <h2>4 ambasadorów — Wasze niewykorzystane aktywo</h2>
+    <div class="ambas-grid">
+      <div class="amb">
+        <div class="amb-name">Ławka</div>
+        <div class="amb-role">Mikroinfluencer · obserwuje Capybit</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">DaxelPL</div>
+        <div class="amb-role">Lojalny gracz z eventów</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">peter</div>
+        <div class="amb-role">Aktywny w Discord</div>
+      </div>
+      <div class="amb">
+        <div class="amb-name">sonnee</div>
+        <div class="amb-role">Wraca na każdy event</div>
+      </div>
+    </div>
+    <div class="deal-grid">
+      <div class="deal deal-give">
+        <h3>🎁 Co dajecie (koszt: ~0 zł)</h3>
+        <ul>
+          <li>Rola 🌟 Ambasador na Discordzie</li>
+          <li>Darmowe VIP konto (30 dni, odnawiane)</li>
+          <li>Dedykowana ranga w grze</li>
+          <li>Dostęp do SMP 1.07 (2 dni przed publicznym)</li>
+          <li>Wczesny dostęp do scenariuszy eventów</li>
+        </ul>
+      </div>
+      <div class="deal deal-take">
+        <h3>🎯 Co dostajecie</h3>
+        <ul>
+          <li>Lajk + komentarz w pierwsze 30 min po rolce</li>
+          <li>Wzmianka o HEX 1× tyg. (opisy, streamy)</li>
+          <li>Polecenie znajomym w grze</li>
+          <li>+20–60 nowych członków Discord/mies. organicznie</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 14: ZMIANY NA STRONIE ============== -->
+  <section class="slide" data-title="Zmiany na stronie">
+    <h2>Zmiany na stronie — konwersja TikTok → Discord</h2>
+    <div class="page-changes">
+      <div class="pc red">
+        <div class="pc-prio">🔴 KRYTYCZNE</div>
+        <div class="pc-name">Quiz „Jaki typ gracza jesteś?"</div>
+        <div class="pc-desc">Web Share API · dynamic OG image · share buttons · canvas download. Gotowy viral mechanism.</div>
+      </div>
+      <div class="pc orange">
+        <div class="pc-prio">🟠 WYSOKIE</div>
+        <div class="pc-name">SEO — devlog → Astro Content Collection</div>
+        <div class="pc-desc">Każdy wpis = osobna strona z OG image. Landing /jak-dolaczyc pod long-tail keyword.</div>
+      </div>
+      <div class="pc orange">
+        <div class="pc-prio">🟠 WYSOKIE</div>
+        <div class="pc-name">Vanity invites + tracking</div>
+        <div class="pc-desc">7+ unikalnych linków Discord. Bez tego nie wiemy CO działa.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Sticky CTA + Live member count</div>
+        <div class="pc-desc">Floating button Discord + widget online członków = social proof.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Strona /dolacz</div>
+        <div class="pc-desc">Minimalistyczny landing pod link w bio TikToka. 1 nagłówek, 1 CTA, 3 mikro-proofy.</div>
+      </div>
+      <div class="pc yellow">
+        <div class="pc-prio">🟡 ŚREDNIE</div>
+        <div class="pc-name">Auto-redirect po quizie</div>
+        <div class="pc-desc">„Twój typ to Strateg → otwieramy Discord za 3...2...1". +2–3× konwersja.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 15: SMP LAUNCH PLAYBOOK ============== -->
+  <section class="slide" data-title="SMP Launch">
+    <h2>🔥 SMP Launch Playbook — 6 tygodni pre-launch</h2>
+    <div class="timeline">
+      <div class="tl-row"><div class="tl-week">T-6</div><div class="tl-date">20.05</div><div class="tl-phase">Teaser</div><div class="tl-what">„Coś dużego 3.07. Bez detali." 3 rolki.</div></div>
+      <div class="tl-row"><div class="tl-week">T-5</div><div class="tl-date">27.05</div><div class="tl-phase">Ujawnienie 1</div><div class="tl-what">Pierwszy screen spawnu + miniony. 4 rolki.</div></div>
+      <div class="tl-row"><div class="tl-week">T-4</div><div class="tl-date">3.06</div><div class="tl-phase">Ujawnienie 2</div><div class="tl-what">Ekonomia + bazaar mock. 4 rolki + 1 YT Short 60s.</div></div>
+      <div class="tl-row"><div class="tl-week">T-3</div><div class="tl-date">10.06</div><div class="tl-phase">Ujawnienie 3</div><div class="tl-what">Skille, kolekcje, leaderboardy. 5 rolek + livestream.</div></div>
+      <div class="tl-row"><div class="tl-week">T-2</div><div class="tl-date">17.06</div><div class="tl-phase">Zapisy + waitlist</div><div class="tl-what">Rola 🎯 Waitlist SMP = priorytet 1.07. DM-y do ambasadorów.</div></div>
+      <div class="tl-row"><div class="tl-week">T-1</div><div class="tl-date">24.06</div><div class="tl-phase">Final hype</div><div class="tl-what">Listy MC update. Trailer 30s. Codzienne posty.</div></div>
+      <div class="tl-row launch"><div class="tl-week">T-0</div><div class="tl-date">3.07</div><div class="tl-phase">🚀 LAUNCH</div><div class="tl-what">Discord @everyone · livestream · cały zespół ON</div></div>
+    </div>
+    <p class="footnote warn">⚠️ MVP SMP gotowy 25.06 + tydzień testów. Notatki post-event: „serwer musi być gotowy 2 tygodnie wcześniej". NIE IGNORUJCIE.</p>
+  </section>
+
+  <!-- ============== SLIDE 16: KALENDARZ EVENT-DRIVEN ============== -->
+  <section class="slide" data-title="Kalendarz eventów">
+    <h2>Kalendarz event-driven — każdy event = 2-tyg. kampania</h2>
+    <div class="cal-grid">
+      <div class="cal-event"><div class="cal-date">16.05</div><div class="cal-name">HEX VIII Titanic + 1z10</div><div class="cal-goal">+15 Discord · test promo rolek</div></div>
+      <div class="cal-event"><div class="cal-date">30.05</div><div class="cal-name">Mini PVP Eliminator</div><div class="cal-goal">test pluginów PVP</div></div>
+      <div class="cal-event"><div class="cal-date">13.06</div><div class="cal-name">Wyspa Kanibali</div><div class="cal-goal">test mechanik survival</div></div>
+      <div class="cal-event hot"><div class="cal-date">3.07</div><div class="cal-name">🔥 SMP LAUNCH</div><div class="cal-goal">+30 Discord · ~10 D7 active</div></div>
+      <div class="cal-event"><div class="cal-date">4.07</div><div class="cal-name">HEX IX Star Wars</div><div class="cal-goal">+5 Discord, zamknięcie launch weekendu</div></div>
+      <div class="cal-event"><div class="cal-date">22.08</div><div class="cal-name">Serwer Minigry (Party)</div><div class="cal-goal">+10 Discord · dywersyfikacja</div></div>
+      <div class="cal-event"><div class="cal-date">19.09</div><div class="cal-name">Parkour launch</div><div class="cal-goal">+5 Discord · retencja</div></div>
+      <div class="cal-event star"><div class="cal-date">wrz/paź</div><div class="cal-name">⭐ Awantura o Kasę</div><div class="cal-goal">+30–50 multi-creator</div></div>
+      <div class="cal-event"><div class="cal-date">24.10</div><div class="cal-name">PVP + HEX X Halloween</div><div class="cal-goal">+10 Discord</div></div>
+      <div class="cal-event"><div class="cal-date">listopad</div><div class="cal-name">Hogwart hype-up</div><div class="cal-goal">teaser 2027</div></div>
+    </div>
+    <p class="footnote">Zasada: każdy event = min. 5 rolek TikTok (T-7, T-3, T-1, T-0, T+1) = <strong>50+ rolek narzuconych kalendarzem</strong>, bez wymyślania tematów.</p>
+  </section>
+
+  <!-- ============== SLIDE 17: RETENCJA SMP MECHANIKI ============== -->
+  <section class="slide" data-title="Mechaniki retencji">
+    <h2>Retencja SMP — mechaniki Hypixel-style</h2>
+    <div class="retention-grid">
+      <div class="ret-card d1">
+        <div class="ret-period">D1</div>
+        <div class="ret-mech">Daily quests</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card d7">
+        <div class="ret-period">D7</div>
+        <div class="ret-mech">Miniony (auto-farm offline)</div>
+        <div class="ret-when">do 1.07 · Sevin</div>
+      </div>
+      <div class="ret-card d30">
+        <div class="ret-period">D30</div>
+        <div class="ret-mech">Skille z poziomami (kopanie/combat/farming/fishing)</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Kolekcje all-time + leaderboard na stronie</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Boss raid co 3 dni</div>
+        <div class="ret-when">od sierpnia · Sevin</div>
+      </div>
+      <div class="ret-card late">
+        <div class="ret-period">Late</div>
+        <div class="ret-mech">Sezonowe rankingi + reset kwartalny</div>
+        <div class="ret-when">sezon 1: lip–wrz · sezon 2: paź–gru</div>
+      </div>
+      <div class="ret-card social">
+        <div class="ret-period">Social</div>
+        <div class="ret-mech">Działki / towny</div>
+        <div class="ret-when">do 1.07 · Sevin</div>
+      </div>
+      <div class="ret-card social">
+        <div class="ret-period">Social</div>
+        <div class="ret-mech">Discord↔MC linking (webhook bot)</div>
+        <div class="ret-when">do 1.07 · Havix</div>
+      </div>
+    </div>
+    <p class="footnote">Wszystko jest w Waszej wizji SMP. Sprawa to <strong>TERMIN</strong>: MVP 25.06, freeze + testy, launch 3.07.</p>
+  </section>
+
+  <!-- ============== SLIDE 18: BOOST SQUAD ============== -->
+  <section class="slide" data-title="Boost Squad">
+    <h2>Boost Squad — rozwiązanie Waszej diagnozy z notatek</h2>
+    <blockquote class="quote">
+      „Algorytmy lubią lajki, komentarze, ulubione, a ludzie lubią gdy ktoś pisze, pyta, mówi wbijam — tzw. Social Proofs. Porozmawiać ze znajomymi by nas realnie wspierali po wrzuceniu filmiku."
+      <cite>— Wasze notatki post-event 03.04.2026</cite>
+    </blockquote>
+    <div class="squad-flow">
+      <div class="sq-step"><div class="sq-n">1</div><div>Lista 8–12 zaufanych: Capybit · Ania · Quezo · Sevin · Havix · Ławka · Daxel · peter · sonnee · 3 znajomych</div></div>
+      <div class="sq-step"><div class="sq-n">2</div><div>Kanał Discord <code>#boost-squad</code> — ping z linkiem do każdej nowej rolki</div></div>
+      <div class="sq-step"><div class="sq-n">3</div><div>Pierwsze 30 min: każdy lajkuje, komentuje (różne, naturalne), zapisuje</div></div>
+      <div class="sq-step"><div class="sq-n">4</div><div>Pytania w komentarzach → szansa na reply video (format B)</div></div>
+      <div class="sq-step"><div class="sq-n">5</div><div>Po 24h: sprawdzacie watch time + share rate. Działa? Powtarzacie.</div></div>
+    </div>
+    <p class="footnote ok">To NIE jest fake engagement — to realni ludzie, którzy chcą Waszego sukcesu. Każdy serwer MC tak startował. Najtańsza, najszybsza dźwignia.</p>
+  </section>
+
+  <!-- ============== SLIDE 19: BUDŻET ============== -->
+  <section class="slide" data-title="Budżet">
+    <h2>Budżet — gdzie wydać 200–300 zł sensownie</h2>
+    <div class="chart-wrap chart-half"><canvas id="chartBudget"></canvas></div>
+    <table class="budget-table">
+      <thead><tr><th>Pozycja</th><th>Koszt</th><th>Kiedy</th></tr></thead>
+      <tbody>
+        <tr><td>Promo rolki 12.05 + 15.05 (Titanic)</td><td>200 zł</td><td class="ok">✅ Maj (zaplanowane)</td></tr>
+        <tr><td>Trailer SMP 30s (Fiverr)</td><td>100 zł</td><td>Czerwiec, jednorazowo</td></tr>
+        <tr><td>Nagrody Awantura o Kasę</td><td>200–300 zł</td><td>Wrzesień, jednorazowo</td></tr>
+        <tr><td>Boost płatny TikTok (rolka &gt;2000 views)</td><td>100 zł</td><td>Lipiec+, warunkowy</td></tr>
+        <tr><td>Nagrody TOP 3 referal (kubek/naklejki)</td><td>50 zł/mies.</td><td>Od czerwca</td></tr>
+        <tr><td>Wsparcie ambasadorów (VIP, drobnostki)</td><td>30 zł/mies.</td><td>Od czerwca</td></tr>
+        <tr><td>Sticker pack (50 szt.)</td><td>30 zł</td><td>Czerwiec/lipiec</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote"><strong>Reguła v2:</strong> każda złotówka ma vanity-invite ID. Po miesiącu sprawdzamy ROI per zł — nie po przeczuciu.</p>
+  </section>
+
+  <!-- ============== SLIDE 20: CO NIE ZADZIAŁA ============== -->
+  <section class="slide" data-title="Co NIE robić">
+    <h2>Co NIE zadziała — świadome cięcia</h2>
+    <div class="dont-grid">
+      <div class="dont"><span class="dont-x">✕</span>Google / Facebook Ads — 200 zł za mało, grupa 12–20 wymaga zgody rodziców</div>
+      <div class="dont"><span class="dont-x">✕</span>TikTok Spark Ads <strong>przed</strong> rolką &gt;5000 views — utopione pieniądze</div>
+      <div class="dont"><span class="dont-x">✕</span>Płatne posty na grupach FB „Polski Minecraft" — Wasi gracze tam nie są</div>
+      <div class="dont"><span class="dont-x">✕</span>YouTube long-form — brak montażysty. <strong>Shorts tak, long-form nie.</strong></div>
+      <div class="dont"><span class="dont-x">✕</span>Plakaty / ulotki / offline — niemierzalne</div>
+      <div class="dont"><span class="dont-x">✕</span>„Udostępnij i otaguj 5 znajomych" — łamie regulamin platform</div>
+      <div class="dont"><span class="dont-x">✕</span>Hardcore SMP EN w 2026 — odkładamy na 2027</div>
+      <div class="dont"><span class="dont-x">✕</span>Allegro / OLX / Vinted — kanały dla 25+</div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 21: PLAN TYGODNIA 1 ============== -->
+  <section class="slide" data-title="Tydzień 1">
+    <h2>Plan tygodnia 1 (do 24.05) — kto co robi</h2>
+    <div class="week-grid">
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Stworzyć 7 vanity invites Discord (hex-tiktok, hex-yt, hex-promo1205, hex-promo1505, hex-titanic, hex-quiz, hex-lista1)</div></div>
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who c">Capybit</div><div class="wp-task">Brief do Ławki, Daxela, petera, sonnee z propozycją „Ambasador HEX"</div></div>
+      <div class="wp"><div class="wp-day">Pon 18.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Założyć kanał #boost-squad + zaprosić 8–12 zaufanych osób</div></div>
+      <div class="wp"><div class="wp-day">Wt 19.05</div><div class="wp-who s">Sevin</div><div class="wp-task">Zgłosić serwer na 5 list MC (unikalne vanity per lista)</div></div>
+      <div class="wp"><div class="wp-day">Wt 19.05+</div><div class="wp-who s">Sevin</div><div class="wp-task">Codzienne życie na Discord (10 min/dzień) — nawyk uruchomiony</div></div>
+      <div class="wp"><div class="wp-day">Śr 20.05</div><div class="wp-who q">Quezo</div><div class="wp-task">5 wiadomości partnerskich do innych polskich Discordów MC</div></div>
+      <div class="wp"><div class="wp-day">Śr 20.05</div><div class="wp-who q">Quezo</div><div class="wp-task">3 rolki Devlog POV — zaplanować publikację śr/pt/sob</div></div>
+      <div class="wp"><div class="wp-day">Czw 21.05</div><div class="wp-who h">Havix</div><div class="wp-task">Brief: quiz Web Share API + dynamic OG image + /dolacz landing</div></div>
+      <div class="wp"><div class="wp-day">Czw 21.05</div><div class="wp-who q">Quezo + squad</div><div class="wp-task">Publikacja pierwszej rolki + ping #boost-squad (komentarze 30 min)</div></div>
+      <div class="wp"><div class="wp-day">Pt 22.05</div><div class="wp-who q">Quezo</div><div class="wp-task">Reply video do komentarzy z czwartku</div></div>
+      <div class="wp"><div class="wp-day">Pt/Sob</div><div class="wp-who h">Sevin + Havix</div><div class="wp-task">MVP daily quests + miniony konfiguracja (pod SMP)</div></div>
+      <div class="wp"><div class="wp-day">Nd 24.05</div><div class="wp-who c">Capybit</div><div class="wp-task">Przegląd vanity invites: 12.05 vs 15.05 vs organic. Zapis w tracker.md</div></div>
+    </div>
+    <p class="footnote">Total: <strong>~7h zespołowo</strong> w tygodniu 1. Potem 3–4h/tydz. dla marketingu + osobna praca techniczna SMP.</p>
+  </section>
+
+  <!-- ============== SLIDE 22: KRYTERIA SUKCESU ============== -->
+  <section class="slide" data-title="Kryteria sukcesu">
+    <h2>Test 30.11.2026 — 8 pytań</h2>
+    <div class="success-grid">
+      <div class="sx"><span class="sx-q">1</span>Discord ma <strong>≥250</strong> członków?</div>
+      <div class="sx"><span class="sx-q">2</span><strong>≥20 graczy</strong> zalogowało się na SMP ≥3× w ostatnich 14 dniach?</div>
+      <div class="sx"><span class="sx-q">3</span>Znamy <strong>3 najskuteczniejsze kanały</strong> akwizycji (z vanity)?</div>
+      <div class="sx"><span class="sx-q">4</span>TikTok ma <strong>≥1500 views/film</strong> w ostatnich 30 dniach?</div>
+      <div class="sx"><span class="sx-q">5</span>Ambasadorzy nadal aktywni (<strong>≥2 z 4</strong>)?</div>
+      <div class="sx"><span class="sx-q">6</span><strong>≥1 obcy mikroinfluencer</strong> zrobił content o HEX z własnej woli?</div>
+      <div class="sx"><span class="sx-q">7</span>Quiz daje <strong>≥150 ukończeń/mies.</strong>?</div>
+      <div class="sx"><span class="sx-q">8</span>Sklep (VIP/SVIP/ELITA) generuje <strong>≥100 zł/mies.</strong>?</div>
+    </div>
+    <div class="success-scale">
+      <div class="scale-row ok"><span>6–8 TAK</span> · strategia działa, skalujemy 2027 z Hogwart launch</div>
+      <div class="scale-row warn"><span>4–5 TAK</span> · podstawa jest, wycieki w lejku — korekta v3 w grudniu</div>
+      <div class="scale-row fail"><span>≤3 TAK</span> · fundamentalna diagnoza błędu, re-do strategy w styczniu</div>
+    </div>
+    <p class="footnote"><strong>Sygnał wczesny 30.07:</strong> jeśli w pierwszym miesiącu SMP macie ≥5 stałych — jesteście na trajektorii. Jeśli ≤2 — alarm.</p>
+  </section>
+
+  <!-- ============== SLIDE 23: ZAMKNIĘCIE ============== -->
+  <section class="slide slide-final" data-title="Zamknięcie">
+    <div class="final-content">
+      <div class="badge">🎯 PRZESŁANIE</div>
+      <h2>Macie wszystko, brakuje konsekwencji</h2>
+      <div class="final-three">
+        <div class="ft"><div class="ft-n">1</div><div class="ft-t">Ambasador-aktywacja</div><div class="ft-d">w tym tygodniu</div></div>
+        <div class="ft"><div class="ft-n">2</div><div class="ft-t">MVP SMP do 25.06</div><div class="ft-d">bez fuck-upów</div></div>
+        <div class="ft"><div class="ft-n">3</div><div class="ft-t">Systematyczne wrzucanie</div><div class="ft-d">według harmonogramu, niezależnie od natchnienia</div></div>
+      </div>
+      <p class="final-quote">„Każde zadanie staje się proste po rozłożeniu go na mniejsze zadania."<br><cite>— Henry Ford (Wasz cytat z notatek)</cite></p>
+      <p class="final-end">Reszta to taktyki. Powodzenia.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- nav UI -->
+<div id="nav-bar">
+  <button id="prev" aria-label="Poprzedni slajd" title="Poprzedni (←)">◀</button>
+  <span id="counter">1 / 25</span>
+  <button id="next" aria-label="Następny slajd" title="Następny (→)">▶</button>
+  <span class="nav-divider"></span>
+  <button id="open-md" class="btn-md ghost" data-open-strategy title="Otwórz strategia.md (M)">📄 strategia.md</button>
+</div>
+<div id="progress"><div id="progress-fill"></div></div>
+
+<!-- help overlay -->
+<div id="help-overlay" hidden>
+  <div class="help-box">
+    <h3>Skróty klawiszowe</h3>
+    <ul>
+      <li><kbd>→</kbd> / <kbd>Space</kbd> — następny slajd</li>
+      <li><kbd>←</kbd> — poprzedni</li>
+      <li><kbd>Home</kbd> / <kbd>End</kbd> — pierwszy / ostatni</li>
+      <li><kbd>F</kbd> — pełny ekran</li>
+      <li><kbd>M</kbd> — otwórz strategia.md / pełną strategię</li>
+      <li><kbd>?</kbd> — ta pomoc</li>
+      <li><kbd>Esc</kbd> — zamknij okno</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MD viewer modal -->
+<div id="md-modal" hidden>
+  <div class="md-box">
+    <header class="md-head">
+      <div class="md-title">
+        <span class="md-icon">📄</span>
+        <div>
+          <div class="md-h1">Pełna strategia marketingowa v2</div>
+          <div class="md-h2">HEX Network · maj → listopad 2026 · 570 linii · 14 sekcji</div>
+        </div>
+      </div>
+      <div class="md-actions">
+        <button id="md-toc-toggle" class="md-btn" title="Spis treści">☰ Spis treści</button>
+        <button id="md-close" class="md-btn md-btn-close" title="Zamknij (Esc)">✕</button>
+      </div>
+    </header>
+    <div class="md-body-wrap">
+      <aside id="md-toc" class="md-toc" hidden></aside>
+      <article id="md-content" class="markdown-body">
+        <div class="md-loading">⏳ Ładowanie strategii…</div>
+      </article>
+    </div>
+  </div>
+</div>
+
+
+<script id="strategy-markdown" type="text/plain">
+# Strategia marketingowa HEX Network — maj → listopad 2026 (v2)
+
+> **Cel #1 (akwizycja):** Discord 133 → **250 osób do 30.11.2026** (≈6,5 mies., ~18 net new/mies.).
+> **Cel #2 (retencja, NOWY):** **~20 stale aktywnych graczy SMP** (zalogowanych ≥3 dni w tygodniu) do końca listopada. To jest KRYTYCZNE — bez retencji Discord będzie się sypał, każdy nowy gracz „przyjdzie i wyjdzie".
+> **Budżet:** 200–300 zł/mies. + 200 zł zaplanowane przez Quezo na promo rolki 12.05 i 15.05 pod Titanica.
+> **Zespół + ograniczenia:** Havix (pluginy/strona/płatności), Sevin (DevOps/pluginy event/Discord life), Quezo (marketing TikTok/YT, scenariusze, mapy, livestreamy, wstępny montaż), Ania (support). Brak dedykowanego montażysty long-form.
+> **Aktywa, które ZIGNOROWALIŚCIE w v1:** Ławka (mikroinfluencer, obserwuje już Capybit), DaxelPL, peter, sonnee — lojalni gracze gotowi do uruchomienia jako ambasadorzy. Mysha (streamerka, niepewne zaufanie) — opcjonalna karta. To są **darmowe armaty marketingowe**, które już macie.
+
+---
+
+## 0. TL;DR v2 — co zmieniło się względem v1 i co robić w tym tygodniu
+
+**Co się zmieniło:**
+- **Cel przesunięty na 30.11** (był 31.10) i obniżony z 270 na 250 — dzięki temu mamy +1 miesiąc bufora i miejsce na realny launch SMP (3.07) jako siłę napędową.
+- **Dodany cel retencji** (~20 aktywnych SMP). Bez tego liczba na Discordzie jest fikcyjna.
+- **Płatne promo rolki 12.05 i 15.05 zostają** (są już w planie Quezo) — ALE z jasnym KPI: jeśli każda nie da min. 5 osób na Discord (vanity invite tracking), wycinamy następne.
+- **Aktywujemy Ławkę i lojalnych graczy jako pierwszych ambasadorów** zanim szukamy obcych influencerów (sekcja 4.4 v2).
+- **SMP launch 3.07** = główny moment marketingowy roku. Cała strategia maj–czerwiec to pre-launch hype (sekcja 11).
+
+**Konkretne ruchy w najbliższych 7 dniach (do 20.05):**
+1. **Vanity invites Discord** — minimum 7 sztuk (`discord.gg/hex-tiktok`, `hex-yt`, `hex-promo1205`, `hex-promo1505`, `hex-titanic`, `hex-lista1`, `hex-quiz`). Bez tego nie wiemy co działa.
+2. **Promo rolki 12.05 i 15.05** — wrzućcie z dwoma RÓŻNYMI vanity invitami, żeby porównać.
+3. **Brief dla Ławki, Daxela, Petera, sonnee** — krótka wiadomość: „pomóż nam zalajkować i skomentować pierwsze 30 min po wrzuceniu rolek 12.05 i 15.05" (notatki, sekcja „Marketing - brak dummy komentarzy" — to dosłownie waszą diagnozą).
+4. **Sevin aktywuje Discord** — codziennie 1–2 wiadomości, gify, pytanie, reakcja. „Życie" na serwerze (z notatek, sekcja 16f).
+5. **Zgłoś serwer na 5 list MC** (sekcja 4.1) — czysta robota dla Sevina, 1.5h.
+6. **Quiz `/hexSmp`** — Web Share API + dynamic OG image (Havix, ≤2h).
+7. **Strona `/dolacz`** — landing pod link w bio TikToka (Havix, ≤2h).
+
+Jeśli zrobicie wyłącznie powyższe 7 ruchów w tym tygodniu, na koniec maja będziecie wiedzieli, które kanały żyją — i wybierzecie 2–3, w które wciskacie gaz przez wakacje.
+
+---
+
+## 1. Diagnoza — co mówią Wasze liczby (zaktualizowana)
+
+### Audyt obecnych kanałów
+
+| Kanał | Stan | Koszt | CAC* | Werdykt v2 |
+|---|---|---|---|---|
+| TikTok organic | ~300 views/film | 0 zł (czas) | n/a | **Utrzymać** — Quezo + Sevin, harmonogram z sekcji 3.4 |
+| TikTok promo płatny | 100–200 zł = 2–5 osób | ~40 zł/osobę | 40 zł | **Zostaje 12.05 + 15.05 jako test** — z trackingiem vanity invite. Po tym binarna decyzja: kasujemy lub skalujemy. |
+| Referal v1 | 30 osób / 3 mies., wyczerpany | 0 zł | 0 zł | **Przeprojektować** (sekcja 4.3) |
+| Discord 133 obecnie | ~10 nowych/mies. | 0 zł | 0 zł | **Sevin „prowadzi życie" codziennie** (notatki 16f) → cel: <5% miesięczny churn |
+| Strona | Świetna technicznie, słaby ruch | 0 zł | n/a | **Brak SEO** — patrz sekcja 5.2 |
+| Mikroinfluencerzy (Ławka, Daxel, peter, sonnee — JUŻ ZDOBYCI) | Lojalni, nie aktywowani jako kanał | 0 zł | 0 zł | **NAJWIĘKSZE NIEWYKORZYSTANE AKTYWO** (sekcja 4.4 v2) |
+| Lista serwerów MC | Zero obecności | 0 zł | n/a | **Stały dopływ ruchu** (sekcja 4.1) |
+
+*CAC = koszt pozyskania jednego członka.
+
+### Pięć kluczowych wniosków
+
+1. **Problem to NIE jakość contentu, tylko DYSTRYBUCJA + CZĘSTOTLIWOŚĆ + SOCIAL PROOF.** 300 views przy regularnym wrzucaniu = algorytm Was nie zna, plus pierwsze rolki nie mają komentarzy/lajków (sami to zdiagnozowaliście w notatkach: „Algorytmy lubią lajki, komentarze, ulubione, a ludzie lubią gdy ktoś pisze, pyta, mówi wbijam — Tzw. Social Proofs"). Naprawa: **dummy engagement od znajomych w pierwsze 30 min**.
+2. **Płacicie za to, co macie za darmo.** Polski MC 12–20 lat siedzi na listach serwerów, cudzych Discordach, YouTube Shorts. Te kanały kosztują tylko czas.
+3. **Macie quiz „Jaki typ gracza jesteś?"** w [src/pages/hexSmp.astro](src/pages/hexSmp.astro) — gotowy viral mechanism, którego nikt nie zna, bo brak ruchu na stronę.
+4. **NOWY:** Macie SMP launch 3.07 — to jedyny prawdziwy publicity stunt roku. Wszystko od dzisiaj do 3.07 to **pre-launch hype**, nie „normalna komunikacja".
+5. **NOWY:** Macie 4 lojalnych graczy gotowych do roli ambasadora (Ławka, Daxel, peter, sonnee — z feedbacku po HEX VII). Ich aktywacja kosztuje 0 zł i ma 10× wyższy ROI niż jakikolwiek influencer obcy.
+
+### Analiza rynku — gdzie jesteście vs. konkurencja
+
+Polski MC 2026 to zatłoczony rynek z wąskim oknem dla małych graczy:
+
+| Segment | Gracze | Wasza realistyczna szansa |
+|---|---|---|
+| Top komercyjne (Vimeworld, Craftserve flagship) | 500–2000 online | **Zero**. Nie konkurujecie. |
+| Średnie SMP/Skyblock (np. Anarchia.gg, klasyki) | 50–300 online | **Realna** — Wasza grupa docelowa, jest miejsce na 5–10 stałych graczy „odebranych" konkurencji |
+| Małe community Discord (50–500 osób, jak Wy) | <50 online | **Wasi naturalni partnerzy** (sekcja 4.2) |
+| Hardcore SMP EN / global | Tysiące mikrokanałów | **Opcja na 2027**, NIE teraz (sekcja 14) |
+
+**Wniosek rynkowy:** Polska scena MC nie ma w 2026 nikogo, kto robi **SMP z mechanikami Hypixel SkyBlock w polskim wydaniu z autorskim eventem co 2 miesiące**. To Wasza nisza. Konkurujecie nie skalą, tylko **konsekwencją publikacji + jakością eventów + dostępnością ekipy na Discordzie**.
+
+**Czego boi się konkurencja, a Wy macie za darmo:**
+- Polska, prawdziwa, gadająca z graczami ekipa (Vimeworld ma to martwo).
+- Eventy z prawdziwymi nagrodami pieniężnymi (3450 zł rozdane — sprawdzalne na `/archive`).
+- Publiczny devlog (transparentność, której nikt z konkurencji nie pokazuje).
+- Strona zoptymalizowana SEO — już rankujecie na „minecraft hex" pierwsi (notatki).
+
+**Czego boicie się Wy, a konkurencja ma to opanowane:**
+- Late-game retention (gracz po tygodniu nie wie co robić — diagnoza z notatek).
+- Skala bazy graczy (oni mają 500+, Wy 130).
+- Zasięg organiczny (oni mają historię i 10k+ followersów).
+
+Strategia v2 atakuje te trzy luki w kolejności: **retencja > dystrybucja > follower count**.
+
+---
+
+## 2. Cele i KPI v2 (Discord + retencja SMP)
+
+### KPI #1 — wzrost Discord (cel: 250 do 30.11)
+
+| Miesiąc | Discord target | Net new | TikTok rolek | Listy MC | Partnerstwa | Główne wydarzenie |
+|---|---|---|---|---|---|---|
+| Maj | 150 | +17 | 20 (w tym 2 promo) | 5 zgłoszonych | 3 | HEX VIII Titanic (16.05), Mini PVP Eliminator (30.05) |
+| Czerwiec | 170 | +20 | 20 | 7 łącznie | 3 | Wyspa Kanibali (13.06), pre-launch SMP hype |
+| **Lipiec** | **210** | **+40** | 25 (peak: pre/post SMP launch) | review | 5 | **🔥 SMP LAUNCH 3.07 + HEX IX Star Wars 4.07** |
+| Sierpień | 225 | +15 | 22 | 9 łącznie | 4 | Serwer Minigry 22.08 (Party) |
+| Wrzesień | 235 | +10 | 22 | review | 4 | Parkour launch 19.09 |
+| Październik | 245 | +10 | 25 | — | 5 | Tryb PVP 24.10 + HEX X Halloween 24.10 |
+| **Listopad** | **250+** | **+5** | 25 | — | 5 | Bufor + przygotowania pod Hogwart 8.01.2027 |
+
+**Lipiec to make-or-break miesiąc** — start SMP daje pojedynczy największy hype roku. Realistycznie +40 osób, jeśli kampania pre-launch (sekcja 11) zadziała. Jeśli SMP wystartuje cicho, listopadowy target jest niemożliwy.
+
+### KPI #2 — retencja SMP (cel: ~20 stale aktywnych do 30.11) ⭐ NOWY
+
+„Stale aktywny" = zaloguje się ≥3 razy w tygodniu przez 2 kolejne tygodnie.
+
+| Tydzień od launchu (3.07) | Aktywni 7-dniowo | Stale aktywni | Komentarz |
+|---|---|---|---|
+| Tydzień 1 (3–10.07) | 30–40 (hype) | n/a | Wszyscy wbijają, większość zostanie ≤3 dni |
+| Tydzień 2 (10–17.07) | 15–20 | — | Pierwszy filtr — odpada „turyści" |
+| Tydzień 4 (24–31.07) | 12–15 | **8–10** | Pierwsza fala stałych |
+| Tydzień 8 (sierpień) | 15–18 | **12–14** | HEX IX Star Wars (4.07) wrócił część dropouts |
+| Tydzień 12 (wrzesień) | 18–22 | **15–17** | Parkour launch reactivation |
+| Tydzień 16 (październik) | 22–25 | **18–20** | HEX X + PVP wzbogaca retencję |
+| Tydzień 20 (listopad) | 25–28 | **≥20** | **CEL #2 OSIĄGNIĘTY** |
+
+**Mechanizmy retencji** (sekcja 9 v2): daily quests, miniony, leaderboardy sezonowe, mini bossy co kilka dni, kolekcje all-time (jak Hypixel potato war).
+
+### Drugorzędne KPI (śledźcie co tydzień w arkuszu)
+
+- Średnia views/film TikTok: 300 → 1500 do listopada.
+- Click-through z TikToka na Discord (przez vanity invite — sekcja 5.3).
+- Konwersja vanity invite → członek Discord (Discord wbudowany invite tracker lub bot).
+- Konwersja Discord member → SMP login (Discord <-> MC linking via webhook lub plugin, notatki sek. 2.b „MySQL połączone z webhookami").
+- D1/D7/D30 retencja SMP (Day-1 retention = ile osób wraca dzień po pierwszym logowaniu).
+- Quiz `/hexSmp` ukończenia + share rate.
+- Vote count na listach MC (top placement = darmowy ruch).
+- Średni czas sesji SMP (target: >45 min — wskaźnik „mam co robić").
+
+**Reguła kasowania (zaostrzona w v2):** jeśli przez 4 tygodnie (było 6) jakaś taktyka daje <2 nowych Discord/mies. LUB <1 aktywnego SMP/mies. — wycinamy. Mamy mniej czasu i jasne cele.
+
+**Reguła kasowania:** jeśli przez 6 tygodni jakaś taktyka daje <2 nowych osób/mies., wycinacie ją i kierujecie ten czas gdzie indziej.
+
+---
+
+## 3. Content TikTok — co kręcić bez pomysłów i bez montażysty
+
+### 3.1 Złota zasada: nie wymyślajcie. Kopiujcie format, podstawiajcie treść
+
+To jest sekret 90% twórców MC: **template + nowy temat × 50 razy**. Nie potrzebujecie kreatywności — potrzebujecie powtarzalności.
+
+Wybierzcie 2–3 formaty, których trzymacie się przez 3 miesiące. Każdy odcinek = ten sam intro, ta sama struktura, inna treść.
+
+### 3.2 6 formatów które działają i wymagają zero montażu
+
+#### Format A: „Devlog POV" (3–4×/tyg., koszt: 5 min/film)
+- Nagrywacie ekran z Minecrafta podczas pracy nad HEX SMP.
+- 15–25s wideo, jeden hook tekstowy na ekranie u góry.
+- Hook = problem, środek = pokazanie rozwiązania, koniec = pytanie do widza.
+- **Przykład:** „Buduję ekonomię, w której nie musisz farmić 6h dziennie" → klip jak działa system → „Powiedz w komentarzu: ile godzin dziennie chcesz grać?"
+- Komentarze = paliwo dla algorytmu. Każde pytanie zwiększa watch time + engagement.
+
+#### Format B: „Reaguję na komentarz" (2×/tyg., koszt: 3 min/film)
+- TikTok ma natywną funkcję „reply with video" na komentarze.
+- Każdy komentarz z poprzednich filmów = nowy film.
+- **To jest CHEAT CODE** — TikTok algorytmicznie promuje reply videos, bo budują wątki.
+- Nie potrzebujecie pomysłów — komentujący Wam je dają.
+
+#### Format C: „Tier list / ranking" (1×/tyg.)
+- „Ranking 5 rzeczy które bałbyś się powiedzieć adminowi serwera MC"
+- „Tier list polskich serwerów MC z perspektywy gracza" (subtelnie, bez hate'u)
+- „5 rzeczy które robi 99% nowych graczy SMP — i dlaczego się mylą"
+- Format: skrin/grafika + voiceover. Edytujesz w Canva lub bezpośrednio w CapCut na telefonie.
+
+#### Format D: „Before / After" (1×/tyg.)
+- Budowa w MC: szkielet → finalna budowla, w 15 sekundach.
+- Pierwszy dzień serwera vs. po miesiącu.
+- Concept art HEX SMP vs. realizacja.
+- **Świetnie konwertuje na watch-time** bo ludzie czekają na „after".
+
+#### Format E: „Behind the scenes / kulisy" (1×/tyg.)
+- Pokażcie jak budujecie event, jak ustalacie zasady, jak dyskutujecie na Discordzie (z zachowaniem prywatności).
+- Ludzie 12–20 lat **uwielbiają** widzieć, jak coś powstaje. To buduje relację z marką.
+- Macie to już na stronie (Devlog), ale Wasi widzowie na TikToku tego nie widzą.
+
+#### Format F: „POV jesteś graczem" (1×/2 tyg.)
+- Cinematic shot z MC + tekst „POV: właśnie dołączasz na HEX SMP w dzień startu"
+- Buduje wyobrażenie i FOMO.
+- 1 film = 30 sek nagrania + 1 zdanie na ekranie. Zero edycji.
+
+### 3.3 Zasady minimum jakości (gdy nie ma montażysty)
+
+- **Pierwsze 1.5 sekundy decyduje.** Wrzućcie hook tekstowy NA EKRAN od razu (CapCut: „Caption → bold → first frame").
+- **Tekst na ekranie zawsze**, bo 70% TikToka jest oglądane bez dźwięku.
+- **Pionowy 9:16**, nawet jak nagrywacie z MC — załatwicie to przyciętym OBS lub mobile recording.
+- **Dźwięk trendujący** — TikTok daje za darmo zakładkę „Trending sounds". Wrzucajcie pod nimi własne wideo. Stary trick, ale działa zawsze.
+- **CTA na końcu zawsze ten sam:** „Discord w bio. Czekamy." Powtarzalność = rozpoznawalność.
+- **Konsekwentny brand:** logo HEX w rogu, ten sam font tekstu, ten sam kolor (#ffa600 — Wasz brand orange).
+
+### 3.4 Harmonogram tygodniowy (przykład realny)
+
+| Dzień | Format | Czas pracy |
+|---|---|---|
+| Pon | Devlog POV | 10 min |
+| Wt | Reaguję na komentarz (z piątku) | 5 min |
+| Śr | Tier list / ranking | 20 min |
+| Czw | Devlog POV | 10 min |
+| Pt | Before/After lub Behind scenes | 15 min |
+| Sb | Reaguję na komentarz | 5 min |
+| Nd | — (lub repost na YouTube Shorts) | 5 min |
+
+**Łącznie: ~70 min/tydzień**. To jest do zrobienia bez wyrzeczenia.
+
+### 3.5 YouTube Shorts + Instagram Reels = darmowy 2× zasięg
+
+Każdy film TikToka **wrzucajcie 1:1 na YouTube Shorts i IG Reels**. Czas: 30 sek/platformę. Algorytmy są różne — to co ginie na TikToku może wystrzelić na YT Shorts. Polski MC ma świetną pozycję na YT.
+
+**Watermark TikToka usuńcie przez `snaptik.app` lub natywne save bez watermarku** — YT i IG karzą cross-postowane filmy z watermarkiem konkurencji.
+
+---
+
+## 4. Tanie kanały, których nie używacie
+
+### 4.1 Polskie listy serwerów Minecraft (DARMOWE, stały dopływ)
+
+Zgłoście serwer (sam serwer + Discord) na:
+
+1. **minecraft-serverlist.com** (PL) — duży ruch, kategoria SMP/Eventy
+2. **lista-serwerow-minecraft.pl**
+3. **topmc.pl** — głosowanie codzienne (możecie poprosić społeczność o głosowanie, +ekspozycja)
+4. **mctop.pl**
+5. **serwery-minecraft.com.pl**
+6. **minecraft-mp.com** (międzynarodowy, ale część polskich graczy też patrzy)
+7. **freelist.pl/minecraft**
+
+**Każde zgłoszenie:**
+- Tytuł z wyróżnikiem: „HEX Network — turnieje, eventy, nowy SMP w produkcji"
+- Banner serwera (macie logo — wystarczy)
+- Link bezpośrednio na `/hexSmp` (nie na stronę główną — bo SMP to flagship)
+- Vanity Discord invite **unikalny per lista** (`discord.gg/hex-topmc`, `discord.gg/hex-mctop`...) — w ten sposób zmierzycie, która lista coś daje
+- Słowa kluczowe: „polski serwer minecraft", „SMP", „turnieje", „eventy", „darmowy"
+
+**Mechanika głosowania na listach (TopMC, MCTop):** zachęta dla graczy — „Zagłosuj codziennie, dostań X coinów w sklepie" lub punkty w rankingu. To jest **gotowy system referal, który jeszcze nie umarł**.
+
+### 4.2 Discord-to-Discord partnerstwa (DARMOWE, najszybszy growth)
+
+To jest **najbardziej niedoceniony kanał** dla małych serwerów MC.
+
+**Mechanizm:**
+- Znajdujecie 5–10 Discordów polskich serwerów MC podobnej wielkości (50–500 osób — nie 5000, oni Was zignorują).
+- Pytacie: „Wymiana ogłoszeń. Wy wrzucacie raz nasz event/SMP do `#partners`, my u Was wrzucamy Wasz event."
+- Nie pytajcie o stały kanał reklamowy — pytajcie o **jednorazową wymianę przy konkretnej okazji** (np. „macie event w piątek? Pomogę go promować, wzajemnie").
+
+**Gdzie szukać partnerów:**
+- Lista MC (sekcja 4.1) — patrzcie kto ma podobną liczbę online.
+- Discord Server Discovery (filtruj „Minecraft" + Poland).
+- Disboard.org (kategoria Minecraft, język PL).
+- Wyniki Google: „polski serwer minecraft discord" + filtruj te z 100–1000 członków.
+
+**Skrypt wiadomości (skopiujcie):**
+> Cześć! Prowadzę HEX Network (turnieje + nowy SMP w produkcji, 130+ osób na Discordzie). Widzę że robicie [X]. Proponuję wymianę: jednorazowo ogłaszamy sobie ważne wydarzenia na swoich Discordach. Bez stałych zobowiązań. Co myślicie?
+
+**Cel:** 3 partnerstwa/mies. Realistycznie każde partnerstwo = 5–10 osób. **30 osób/mies. tylko z tego, jak będziecie systematyczni.**
+
+### 4.3 Referal v2 — dlaczego stary umarł i jak go zrobić od nowa
+
+**Diagnoza starego:** 30 osób w 3 mies., potem zero. Klasyczny problem: nagroda była **jednorazowa i tylko dla zapraszającego**, więc gdy znajomi Was już znali, nie było paliwa.
+
+**Nowy model (3-warstwowy):**
+
+1. **Mikro-nagrody, ciągłe:** za każdego zaproszonego znajomego — punkty do sklepu (cosmetics, nie pay-to-win). Liniowo. Bez sufitu.
+2. **Wzajemność:** zaproszony też dostaje bonus startowy (np. cosmetic + 1 rola na Discordzie). Bo wtedy ten, kto zaprasza ma argument: „Wejdź, dostaniesz X".
+3. **Leaderboard miesięczny:** TOP 3 zapraszający dostają „Ambasadora HEX" — rola w Discord + wyróżnienie na stronie `/about` lub `/archive` + drobna nagroda fizyczna (kubek/naklejka, koszt 15 zł).
+
+**Techniczna implementacja:**
+- Discord ma natywne **Server Invite Tracking** poprzez boty (np. Invite Tracker, MEE6, Captcha.bot).
+- Każdy gracz otrzymuje swój invite link (`discord.gg/...` z trackingiem).
+- Raz w tygodniu post w `#ogłoszenia` z aktualnym rankingiem zapraszających.
+
+**Komunikat na stronie i Discordzie:**
+> „Zaproś znajomego → oboje dostajecie cosmetic na start HEX SMP. TOP 3 zapraszający w miesiącu — rola Ambasadora i miejsce w Hall of Fame na stronie."
+
+### 4.4 Mikroinfluencerzy v2 — najpierw AKTYWUJCIE tych, których MACIE
+
+W v1 sugerowałem szukanie obcych twórców. Po przeglądzie notatek post-event 03.04 — **macie ich już 4**. To Wasze najcenniejsze niewykorzystane aktywo.
+
+#### 4.4.1 Aktywacja lojalnych graczy jako ambasadorów (priorytet 🔴)
+
+Z feedbacku po HEX VII (notatki):
+- **Ławka** — zaobserwował Capybit na TikToku po evencie. Już Was zna, już jest lojalny.
+- **DaxelPL, peter, sonnee** — lojalni gracze z eventów, znają nazwy, gadają na Discordzie.
+- **Mysha** (streamerka, z notatek) — kiepskie zaufanie, opcja na później (nie traktować jako priorytet).
+
+**Pakiet „Ambasador HEX" dla każdego z 4 powyżej** (zero kosztów dla Was):
+- Rola `🌟 Ambasador` na Discordzie (kolor + uprawnienia do `#general-spam`, własny kanał `#ambasador-<nick>`).
+- Darmowe VIP konto na 30 dni (potem za każdy miesiąc działania w SMP — kolejne).
+- Dedykowana ranga w grze (kosmetyczna, np. ` [Ambasador] ` przed nickiem).
+- Pierwszeństwo: dostęp do SMP 1.07 (2 dni przed publicznym 3.07).
+- Wczesny dostęp do scenariuszy event (mogą doradzać — buduje lojalność).
+
+**W zamian (jawnie ustalone, BEZ kontraktów):**
+- Lajk + komentarz w pierwsze 30 min po wrzuceniu każdej Waszej rolki (rozwiązuje WASZĄ diagnozę z notatek: „brak początkowych komentarzy → algorytm Was nie pcha").
+- Wzmianka o HEX w opisach/streamach/komentarzach co najmniej 1× tygodniowo.
+- Polecenie HEX znajomym w grze (mierzalne przez referal v2, sekcja 4.3).
+
+**Cel: 4 aktywowanych ambasadorów do końca maja.** Każdy = ~5–15 nowych członków/mies. organicznie. **+20–60 osób/mies. tylko z tego.**
+
+#### 4.4.2 „Awantura o Kasę" jako PUBLICITY STUNT z drużynami influencerów
+
+Notatki opisują pomysł „Awantura o Kasę" / „Familiada" z drużynami:
+- Drużyna Leszka (jego widzowie wracają z marketingiem).
+- Drużyna Myshy (opcjonalna, decyzja po sezonie czerwiec).
+- Drużyna naszych ambasadorów (Daxel/sonnee/Ławka/peter — patrz wyżej).
+- Drużyna admin (ekipa HEX).
+
+**To jest jednorazowy game changer.** Każdy uczestnik streamuje/nagrywa z perspektywy własnej drużyny → 3–4 kanały = 3–4× zasięg jednego eventu. Realistyczna data: **wrzesień/październik 2026** (po launchu SMP, gdy serwer ma już co pokazać).
+
+**Cel kampanii:** +30–50 osób na Discord z jednego eventu, +5 stałych SMP.
+
+**Koszt:** głównie czas Quezo na koordynację + nagrody pieniężne (max 300 zł podzielone na drużyny). Mieści się w bieżącym budżecie eventów.
+
+#### 4.4.3 Polowanie na obcych twórców (po SMP launch, NIE wcześniej)
+
+Po 3.07, gdy macie SMP działający → **wtedy** wysyłajcie zaproszenia mikro-twórcom 1k–10k (TikTok hashtagi #polskiminecraft #polskismp #minecraftpl + YouTube „polski serwer minecraft 2026" <5k views). Oferta i argumentacja jak v1.
+
+**Argument, którego wcześniej nie mieliście:** „Mamy SMP z mechanikami Hypixel SkyBlock po polsku — przyjdź pierwszy, zrób z tego content, my Ci dajemy VIP + dedykowaną rangę + przewagę startu."
+
+**Cel: 1–2 twórców/miesiąc od sierpnia.** Bez tego launchu nie macie czym ich kupić.
+
+### 4.5 Reddit + r/Minecraft_Polska
+
+Mały subreddit, ale targetowany. Dwa razy w miesiącu można wrzucić:
+- Devlog post „Co nowego na HEX SMP" — z linkiem do `/devlog`.
+- After-event recap z fotkami z `/archive`.
+- **Nie spamujcie.** Czytajcie zasady subreddita, bądźcie aktywni przed posłaniem własnego linku.
+
+### 4.6 Allegro / OLX / Vinted? NIE.
+
+Wpisuję to żeby wykreślić — nie tracicie czasu na kanały dla 25+. Wasza grupa siedzi na TikToku, YouTube, Discordzie, w grze.
+
+---
+
+## 5. Zmiany na stronie wzmacniające marketing
+
+Strona jest świetna technicznie, ale ma luki pod kątem **konwersji ruchu z TikToka → Discord**. Każdy z punktów to <2h pracy.
+
+### 5.1 Quiz „Jaki typ gracza jesteś?" — uczynić udostępnialnym (🔴 KRYTYCZNE)
+
+To Wasz najsilniejszy asset marketingowy. W [src/components/PageContent/HexSMP/](src/components/PageContent/HexSMP/) sprawdźcie, czy:
+
+- **Wynik daje obrazek do pobrania.** Po quizie generuj `<canvas>` z wynikiem (typ + ikona + tagline) → przycisk „Pobierz i wrzuć na Snap/Insta story".
+- **Share buttons na końcu:** „Wyślij znajomemu" (Discord deeplink, Messenger share), „Wrzuć na Instagram Stories" (Web Share API).
+- **OG image dynamiczny:** każdy typ ma swoją grafikę, gdy link wkleja się na Discord/Messenger — pokazuje się obrazek z wynikiem. To 10× zwiększa CTR.
+- **Cel TikToka:** każdy 5. film powinien kończyć się „Wejdź na minecrafthex.pl/hexSmp, zrób quiz, pokaż wynik w komentarzu jaki typ jesteś".
+
+Quiz = **gotowy viral mechanism**, którego nie wykorzystujecie.
+
+### 5.2 SEO — najtańszy ruch, najgorzej wykorzystany
+
+Na stronie macie świetną treść, ale **nie macie ruchu z Google**, bo:
+
+- Tytuł strony: „Serwer Minecraft Polska - turnieje, eventy, PVP i Parkour | HEX Network" — dobry, ale brakuje konkretnych długich fraz.
+- Brak posts/devlog jako blog (Astro Content Collections nie wdrożone — patrz [AUDYT_ROZWOJ_2026-04.md](AUDYT_ROZWOJ_2026-04.md) sekcja 3.5).
+- Brak strony „Jak dołączyć do polskiego serwera MC w 2026" — to jest 1000+ wyszukiwań/mies. w PL.
+
+**Quick wins SEO (priorytet 🟠):**
+1. **Devlog → Content Collection + indywidualne URL-e per wpis.** Każdy devlog post = osobna strona z własnym tytułem, descriptions, OG image. Każdy = potencjał na ranking pod konkretną frazą.
+2. **Strona „Najlepszy polski serwer minecraft 2026" lub `/jak-dolaczyc`** — landing z prowadzaniem do Discorda, targetowany pod long-tail keyword.
+3. **`schema.org/VideoObject`** w devlogu i archiwum (filmy z eventów) — Google pokazuje wideo w wynikach.
+4. **Wewnętrzne linki:** każda strona linkuje do quizu na `/hexSmp` — buduje autorytet quizu.
+
+### 5.3 Vanity invites + tracking źródła ruchu
+
+W tej chwili **nie wiecie, skąd przychodzą członkowie Discorda**. To trzeba naprawić **dzisiaj**:
+
+- Na Discordzie: utwórzcie 7–10 vanity inviteów (`discord.gg/hex-tiktok`, `discord.gg/hex-yt`, `discord.gg/hex-topmc`, `discord.gg/hex-quiz`, `discord.gg/hex-event`...).
+- Każde miejsce, gdzie udostępniacie link, dostaje SWÓJ invite.
+- Discord wbudowane statystyki invite (lub bot Invite Tracker) pokażą, które źródła konwertują.
+- **Po miesiącu wiecie, co naprawdę działa.** Wycinacie 80% wysiłku, skalujecie te 20%, które dają wyniki.
+
+### 5.4 Drobne lecz wysoko-konwertujące UI changes
+
+- **Sticky CTA Discord na każdej stronie:** floating button w prawym dolnym rogu, „Dołącz na Discord" + pulse. Już macie `NavBar/IpCopyPill.astro` — analogiczny komponent dla Discorda.
+- **Live Discord member count:** widget Discord (`https://discord.com/widget`) z liczbą online → buduje social proof. „⚡ 23 osoby teraz online na Discordzie" jest mocniejsze niż „dołącz".
+- **Po quizie automatyczny redirect na Discord (z opóźnieniem 3s)**: „Twój typ to Strateg → otwieramy Discord za 3...2...1" + cancel button. Konwersja quizu → Discord wzrasta 2–3×.
+
+### 5.5 Strona `/landing-tiktok` (lub `/dolacz`) — dedykowana pod kampanie
+
+Pages [src/pages/hexSmp.astro](src/pages/hexSmp.astro) jest świetna, ale ZA DŁUGA dla someone z TikToka, który ma 8 sekund cierpliwości.
+
+Dodajcie minimalistyczną stronę `/dolacz`:
+- 1 nagłówek: „Polski serwer Minecraft. Turnieje + nowy SMP w produkcji."
+- 1 zdanie: „Bądź pierwszy, gdy serwer SMP wystartuje 4 lipca."
+- 1 wielki przycisk: „Dołącz na Discord →"
+- Pod spodem: 3 mikro-proofy (133 osób, 7 turniejów, 3450 zł rozdanych).
+- Koniec. Żadnych innych linków.
+- **Link w bio TikToka idzie TYLKO tu.** Aktualnie idzie na stronę główną (zgaduję) — tam jest za dużo opcji, gracz się rozprasza.
+
+---
+
+## 6. Czego o marketingu prawdopodobnie nie wiecie (uczciwy briefing)
+
+To sekcja edukacyjna — rzeczy, które mogłyby Was zaskoczyć.
+
+### 6.1 „Algorytmy" nie są magią. Są matematyką engagement-u.
+TikTok/YT pokazuje filmy losowo małej grupie (~200 osób) i mierzy:
+- **Watch time** (% obejrzanego materiału — najważniejsze).
+- **Loop rate** (czy ktoś obejrzał >1×).
+- **Share/Save** (najsilniejszy sygnał).
+- **Comments** (drugi najsilniejszy).
+- **Likes** (najsłabszy z głównych).
+
+Wasze 300 wyświetleń = pierwsza partia. Żeby przeskoczyć dalej, **wystarczy jedno z dwóch:** (a) wyższy watch time, (b) wyższy share rate. Stąd format „reply na komentarz" i „quiz na końcu" (share trigger).
+
+### 6.2 CAC dla free product MUSI być prawie zero.
+Płatne ads dla bezpłatnego Discorda mają sens TYLKO gdy:
+- Macie monetyzację per user (sklep, VIP) z jasnym LTV.
+- LTV per user > CAC × 3.
+- Macie >500 osób, żeby statystyki były wiarygodne.
+
+Wy nie macie tej dźwigni jeszcze. Płatne ads = utopione pieniądze. **Wracajcie do nich, gdy:**
+- Macie 500+ osób na Discordzie.
+- Sklep przynosi >300 zł/mies. organicznie.
+- Macie 1 sklep-konwersję z TikToka udokumentowaną przez UTM/vanity.
+
+### 6.3 Marketing małych serwerów = relacje, nie ads.
+Top polskie serwery MC (Vimeworld, Hypixel-podobne) wyrosły na **community-driven growth**: twórcy, mikrocelebryci, eventy, drama (kontrolowana). Reklamy są dodatkiem, nie silnikiem. Wasza droga to to samo, na mniejszą skalę.
+
+### 6.4 Sezonowość: lato to ZŁOTO dla MC.
+**Czerwiec–sierpień = peak audience.** Dzieciaki w wakacjach grają 4–6h/dzień. Wszystkie eventy, większy content output, kampanię launchową SMP **zaplanujcie pod koniec czerwca / lipiec**. Po wakacjach (wrzesień) zainteresowanie spada o 30–40% — wykorzystajcie ten szczyt.
+
+### 6.5 Branding > wszystko inne, gdy budżet jest mały.
+Każdy materiał (TikTok, screen, post) musi mieć ten sam:
+- Kolor accent: `#ffa600` (już macie w design systemie).
+- Font headline: Minecraft (już macie w `public/minecraft-font/`).
+- Logo HEX w rogu (zawsze).
+- Slogan, np. „Serwer, na który chciałeś trafić" lub stary „Twój świat. Twoje zasady. Twoi rywale."
+
+Po 50 ekspozycjach widz pamięta logo, nawet jak nie kliknął. To buduje pasywny growth — ktoś szuka „polski serwer MC", widzi Was, kojarzy — klika.
+
+### 6.6 Nie ma czegoś takiego jak „kontent który się nie udał".
+Każdy film TikToka, który ma 100 views, jest **danych do nauczenia algorytmu, kim jesteście**. Nie usuwajcie. Nie martwcie się jakością pierwszych 50 sztuk. Liczy się **konsekwencja** i **iteracja** (co tygodniowo: który format dał najwięcej views? robicie więcej tego).
+
+### 6.7 „Content calendar" to nie biurokracja, to wyzwolenie.
+Brak pomysłów = brak harmonogramu. Z harmonogramem (sekcja 3.4) nie myślicie „co dziś nagrać" — wiecie. To 80% problemu „nie mamy talentu" — nie chodzi o talent, chodzi o systematyczność.
+
+### 6.8 Dyskorda nie zwiększacie kontentem. Zwiększacie nim TRAFIC. A TRAFIC konwertujecie CTA.
+To brzmi oczywisto, ale 90% serwerów to ignoruje. Każdy materiał musi mieć **JEDEN clear CTA na końcu**, ten sam, powtarzalny. Nie „lajkuj i sub" — tylko „Discord w bio. Link na minecrafthex.pl. Czekamy."
+
+---
+
+## 7. Co JESZCZE warto rozważyć (dłuższe ramy)
+
+- **Twitch live-streamy z budowy HEX SMP** — 2× w miesiącu, 2h sesje. Nie po to żeby mieć viewers, tylko żeby mieć VOD-y do pociętego contentu (klipowanie clip-bots, repurposing na TikTok). Twitch jako narzędzie produkcyjne, nie kanał.
+- **Newsletter via Discord (#devlog channel auto-post):** kiedy wrzucacie devlog na stronę, bot automatycznie postuje na Discord — zwiększa retencję starych członków, zmniejsza churn.
+- **Merch tier 0 (sticker pack po 5 zł):** sticker z logo HEX jako reward za top zapraszanie. Buduje brand offline, koszt produkcji ~2 zł/szt.
+- **Open-source devlog:** GitHub repo `hex-network/devlog` (osobny od strony) z markdown postami. Pozycjonuje Was jako transparent, technicznych, „real builders". Niesie SEO i kredibilizację wśród starszych graczy/twórców.
+- **Wywiad / podcast z polskim MC twórcą:** raz na 2 mies. zrobicie 30-min rozmowę z autorem podobnego serwera. On promuje swój kanał, Wy zyskujecie ekspozycję u jego widzów. Win-win.
+
+---
+
+## 8. Co NIE zadziała (świadome cięcia)
+
+- **Reklamy Google Ads / Facebook Ads** — 200 zł/mies. to za mało na sensowną kampanię, kierowanie do grupy 12–20 wymaga zgody rodziców i dawno wycofanych formatów.
+- **TikTok Spark Ads (boost organicznych filmów)** — kuszące, ale tylko gdy macie film z >5000 organic views i widzicie wzór, kogo on przyciąga. Wcześniej = utopione pieniądze.
+- **Płatne posty na grupach Facebook „Polski Minecraft"** — Wasi gracze nie są na Facebooku.
+- **YouTube long-form videos** — wymaga montażysty, którego nie macie. **Shorts tak, long-form nie.**
+- **Plakaty / ulotki / offline** — niemożliwe do scale'owania, niemożliwe do mierzenia.
+- **„Konkursy z udostępnij i otaguj 5 znajomych" na Facebooku** — naruszają regulamin platformy, Wasza grupa wiekowa tego nie robi.
+
+---
+
+## 9. Retencja SMP — jak uzyskać 20 stale aktywnych do listopada ⭐ NOWA SEKCJA
+
+To jest cel #2 i KRYTYCZNE rozwinięcie wzgl. v1. Bez retencji każdy nowy gracz wchodzi i znika w 3 dni. **Diagnoza z Waszych notatek (dosłowna):** *„gracze wchodzą na serwer, po krótkim czasie nie mają co robić, przez brak stałego contentu tracą motywację"*. To jest priorytet #1 dla zespołu od dziś do 3.07.
+
+### 9.1 Hierarchia mechanik retencji (Hypixel-style, zaadaptowana pod Was)
+
+Skoro SMP ma być inspirowany Hypixel SkyBlock (Wasza wizja z notatek sek. 6) — kopiujcie ich loop retencji:
+
+| Mechanika | Cel retencji | Implementacja MVP (kto, kiedy) |
+|---|---|---|
+| **Daily quests** (3 dziennie, reset 00:00) | D1 retention | Havix, do 1.07. Pluginowo proste: zabij X mobów, wykop Y bloków, zarób Z złota |
+| **Miniony** (auto-farming offline) | D7 retention — gracz wraca po nagrody | Sevin, do 1.07. Hypixel SkyBlock 1:1, MVP: 4 typy minionów |
+| **Skille z poziomami** (kopanie, combat, farming, fishing) | D30 retention — długoterminowy progres | Havix, ✅ w wizji SMP, do 1.07 |
+| **Kolekcje all-time** (np. „kto wykopał najwięcej kamienia") | Late-game stickiness | Havix, ✅ wizja SMP, leaderboard na stronie + na Discord (z notatek) |
+| **Boss raid co 3 dni** (eventowy) | Powtórny powód do logowania | Sevin, MVP po launch (od sierpnia) |
+| **Sezonowe rankingi + reset** (kwartalnie) | Powrót dropout graczy | Havix, sezon 1 = lipiec–wrzesień, sezon 2 = paź–gru |
+| **Działki/towny** (społeczność) | Social retention — gracze trzymają siebie | Sevin, MVP do 1.07 |
+| **Mini boss losowy** (1× dziennie, pojawia się 1× na kilka gier) | Surprise & delight | Havix, od sierpnia |
+
+**Najważniejsze:** wszystkie te mechaniki są **w Waszej wizji** (notatki sek. 6) — sprawa to TERMIN. **MVP gotowe na 25.06**, tydzień testów wewnętrznych, **launch 3.07**.
+
+### 9.2 Social retencja (Discord ↔ MC)
+
+Sam gameplay nie wystarczy. Najsilniejszy haczyk retencyjny to **inni gracze**:
+
+- **Discord-MC linking via webhook** (z notatek 2.b „Plany na MySQL/webhooki"). Gracz loguje się na SMP → pojawia się w `#smp-online` bot embed. Tworzy presję społeczną „inni grają, ja też".
+- **Daily login post na Discord** od bota: „Dzisiaj zalogowało się X graczy. TOP coiniarze tygodnia: A, B, C". Każdy chce być w topce.
+- **Sevin „prowadzi życie" na Discord** (notatki 16f) → ekipa widziana jako prawdziwi ludzie, nie martwy server.
+- **Cotygodniowy livestream Quezo/Sevin z SMP** (notatki sek. 11 — wtorek + piątek). Gracze przychodzą na live, gadają, wchodzą do gry. Konwersja livestream → SMP session = 30–50%.
+
+### 9.3 Late-game (po miesiącu) — co zrobi 20-tka stałych
+
+Notatki słusznie identyfikują problem: *„coś co zatrzyma graczy gdy skończy się kontent, żeby oni czuli, że progresują"*.
+
+**Konkretne mechanizmy late-game do MVP:**
+
+1. **Bazaar po MVP (sierpień)** — handel gracz↔gracz tworzy ekonomię, która sama z siebie generuje content. Hypixel zna to.
+2. **Custom moby (notatki sek. 17)** — daje co tydzień nową rzecz do roboty (nowy boss → tydzień grindu → następny boss). MVP: 1 boss na sierpień, 1 na wrzesień, 1 na październik.
+3. **Sezonowe konkursy 1-dniowe** („W ten weekend kto zbierze najwięcej diamentów wygrywa 50 zł") → mikroevent co 2 tygodnie, retencja-booster. Inspiracja: gry mobilne, dokładnie jak Wasze notatki opisują.
+4. **Mini-eventy 11.07, 19.09, 12.02** (z notatek sek. 11). Krótkie 3h pracy zespołu, gracze dostają coś co reaktywuje konto.
+
+### 9.4 Lejek konwersji Discord → SMP → stały gracz (target)
+
+```
+1000 osób widzi TikTok rolkę
+  ↓ 2% CTR (typowo dla MC content)
+20 wejść na /dolacz lub /hexSmp
+  ↓ 40% konwersja landing → Discord (przy quizie + dynamic OG)
+8 nowych Discord members
+  ↓ 50% konwersja Discord → próba SMP (przy launchu + hype)
+4 graczy testuje SMP
+  ↓ 25% retencja D7 (przy daily quests + miniony + społeczność)
+1 stały gracz SMP
+```
+
+**Aby zdobyć 20 stałych, potrzebujecie 20 000 wyświetleń TikToka, które konwertują** — albo równoważne źródła (listy MC, partnerstwa, ambasadorzy = mniej viewów, ale wyższa konwersja, bo audience już targetowane).
+
+Z planowanej liczby ~135 rolek (maj–listopad) × średnio 800 views (rosnąco) = **108 000 wyświetleń**. Lejek wychodzi. Liczbowo cel #2 jest osiągalny — pod warunkiem D7 retencja ≥ 25% (czyli MVP SMP musi być solidne, nie placeholder).
+
+---
+
+## 10. SMP Launch Playbook (3.07.2026) — make-or-break ⭐ NOWA SEKCJA
+
+To jest pojedynczy najważniejszy moment marketingowy roku. Jak go zrobicie — przesądzi czy macie 250 Discord w listopadzie.
+
+### 10.1 6-tygodniowa kampania pre-launch (20.05 → 3.07)
+
+| Tydzień | Faza | Czego dotyczy komunikacja | Kanały |
+|---|---|---|---|
+| T-6 (20.05) | **Teaser** | „Coś dużego nadchodzi 3.07. Nie SMP. Nie Skyblock. Coś pomiędzy." Bez detali. | TikTok ×3, Discord pin, IG Reels |
+| T-5 (27.05) | **Ujawnienie 1** | Pokazujecie 1 screen z mapy spawnu + jedno zdanie o jednym systemie (miniony) | TikTok devlog POV ×4 |
+| T-4 (3.06) | **Ujawnienie 2** | Pokazujecie ekonomię — bazaar mock + cytat „nie musisz farmić 6h, miniony robią to za Ciebie" | TikTok ×4 + 1 YT Short long-form (60s) |
+| T-3 (10.06) | **Ujawnienie 3** | Skille, kolekcje, leaderboardy. Pokażcie zrzut z testów. | TikTok ×5 + 1 livestream Quezo (1h budowy) |
+| T-2 (17.06) | **Zapisy + waitlist** | Discord rola `🎯 Waitlist SMP` — dostajesz priorytet startu 1.07 (vs publiczny 3.07). DM-y do ambasadorów: aktywacja. | Strona: countdown, Discord: pin, TikTok: „2 tyg do startu" |
+| T-1 (24.06) | **Final hype** | Wszystkie listy MC zaktualizowane „startujemy 3.07!". Partnerstwa Discord aktywowane (sekcja 4.2). Trailer 30s (Quezo, dopuszczamy 100 zł na Fiverr za prosty edit). | Wszystkie kanały, codziennie. |
+| **T-0 (3.07)** | **LAUNCH** | Discord: pin + ping `@everyone`. Strona: countdown → live. TikTok: live event recap. Livestream Quezo: dzień otwarcia. | Wszystko ON |
+
+### 10.2 Aktywa contentowe niezbędne przed launchem (do 25.06)
+
+- ✅ Strona `/hexSmp` zaktualizowana z prawdziwymi screenami (nie placeholderami) — patrz [AUDYT_ROZWOJ_2026-04.md](AUDYT_ROZWOJ_2026-04.md) sek. 3.2.
+- ✅ Strona `/dolacz` jako pojedynczy entry point z TikToka.
+- ✅ Quiz `/hexSmp` z Web Share API.
+- ✅ Trailer 30s (Quezo + ewentualnie Fiverr 100 zł).
+- ✅ 5 screenów gameplay + 1 gif (loop demo minion).
+- ✅ Devlog z 4 wpisami pokazującymi co robicie tydzień po tygodniu (Astro Content Collection).
+- ✅ 25 nakręconych rolek TikTok (pre-cached, gotowe do publikacji).
+- ✅ Discord: kanały `#smp-info`, `#smp-aktualnosci`, `#smp-online` (bot), `#smp-bug-report`.
+
+### 10.3 Dzień launchu (3.07) — operacyjnie
+
+| Godzina | Akcja | Kto |
+|---|---|---|
+| 14:00 | Final pre-launch test, server stress test | Sevin |
+| 16:00 | Discord post: „1 godzina!", reminder rolla `@SMP Waitlist` | Quezo |
+| 17:00 | **OTWARCIE SMP** — Discord `@everyone`, pingi, livestream ON na Twitch + YT | Cały zespół |
+| 17:00–19:00 | Livestream Quezo „pierwsza godzina na HEX SMP" | Quezo |
+| 19:00–22:00 | Sevin w grze, gada z graczami, pierwsza linia bug-report | Sevin |
+| 22:00 | Post-launch summary na Discord: ilu wbiło, top 3 zarobki, co dalej | Cały zespół |
+| Następny dzień | Rolka „pierwsza doba HEX SMP w liczbach" — content na tydzień | Quezo |
+
+### 10.4 Lekcje z notatek post-event 03.04, których MUSICIE NIE powtórzyć przy SMP
+
+(Bezpośrednio z Waszego feedbacku z eventu)
+
+- **Nie zmieniać plików sklepu po testach generalnych** (luka infinity cash) → MVP SMP do 25.06 + tydzień freeze.
+- **Testy dostępowe z poziomu różnych ról** (VIP/ELITA/MEDIA/GRACZ) — przed launchem każda ranga przechodzi pełny flow.
+- **Plan dnia z buforem 10 min** — launch też uwzględnia bufor na rebooty.
+- **Backup plan: live „Sevin twerkuje póki nie dodamy zasobów"** — czyli jeden członek zespołu zawsze online jako face-saver.
+
+---
+
+## 11. Marketing event-driven — kalendarz publikacji do listopada ⭐ NOWA SEKCJA
+
+Każde wydarzenie z Waszego kalendarza (notatki sek. 4) to **pretext do 2-tygodniowej kampanii**, nie pojedynczy post. Marketingowo każdy event ma fazę: hype (T-14 do T-3) → final push (T-2 do T-0) → recap & repurposing (T+1 do T+7).
+
+| Data | Wydarzenie | Marketingowy cel | Konkretne deliverable |
+|---|---|---|---|
+| **16.05** | HEX VIII Titanic + 1z10 | +15 Discord, test promo rolek | 2 promo rolki (12.05, 15.05) z UNIKALNYMI vanity invitami, recap rolka 17.05, devlog post |
+| 30.05 | Mini PVP Eliminator | Test pluginów PVP, retencja istniejących | 1 rolka teaser, post-event clip kompilacja |
+| 13.06 | Wyspa Kanibali | Pretest mechanik survival, retencja | Rolka „za kulisami wyspy", devlog |
+| **3.07** | **SMP LAUNCH** | **+30 Discord, ~10 D7 SMP active** | Patrz sekcja 10 (cały playbook) |
+| 4.07 | HEX IX Star Wars Edition | Zamknięcie launch weekendu, +5 Discord | Eventowy stream, recap |
+| 22.08 | Serwer Minigry (Party) | +10 Discord, dywersyfikacja audience | Trailer 30s, ambasadorowie testują 1 tydzień wcześniej |
+| 19.09 | Parkour | +5 Discord, retencja | Map showcase rolki ×3 |
+| **wrzesień/paź** | **Awantura o Kasę z drużynami** | **+30 Discord (multi-creator)** | Sekcja 4.4.2 |
+| 24.10 | PVP launch + HEX X Halloween | +10 Discord, klimat sezonowy | Klimatyczne rolki Halloween-themed |
+| listopad | Buffer + Hogwart hype-up | Przygotowanie 2027 | Teaser Hogwart, content recap roku |
+
+**Zasada:** każdy event = minimum 5 rolek TikTok wokół niego (T-7, T-3, T-1, T-0, T+1). To 50+ rolek narzuconych przez kalendarz, bez wymyślania tematów.
+
+---
+
+## 12. Social proof first-mover — rozwiązanie diagnozy z notatek ⭐ NOWA SEKCJA
+
+Notatki dosłownie diagnozują problem (sek. 3 NEGATYWNE): *„Marketing - brak początkowych komentarzy, dummy komentarzy od kolegów. Algorytmy lubią lajki, komentarze, ulubione, a ludzie lubią gdy ktoś pisze, pyta, mówi wbijam — Tzw. Social Proofs. Porozmawiać ze znajomymi by nas realnie wspierali po wrzuceniu filmiku."*
+
+**Plan operacyjny (zero kosztów):**
+
+1. **Lista 8–12 zaufanych osób:** Capybit + Ania + Quezo + Sevin + Havix + Ławka + Daxel + peter + sonnee + 3 znajomych spoza projektu.
+2. **Grupa SMS / Messenger / Discord DM** o nazwie „HEX Boost Squad". Discord oddzielny kanał `#boost-squad`.
+3. **Każdy wrzucony TikTok → ping w grupie z linkiem.** Pierwsze 30 min: każdy lajkuje, komentuje (różne komentarze — naturalność), zapisuje.
+4. **Komentarze mają być naturalne, niepowtarzalne.** Przykłady (skopiujcie + wariujcie):
+   - „Wbijam na Discord, gdzie link?"
+   - „Czekam na SMP, dawno nie widziałem takiego pomysłu"
+   - „Kiedy start? Muszę być na początku"
+   - Pytania → szansa na reply video (sekcja 3.2 format B).
+5. **Po 24h sprawdzacie watch time + share rate** — jeśli zadziałało, ten format powtarzacie.
+
+**To NIE jest fake engagement w złym sensie** — to są realni ludzie, którzy autentycznie chcą Waszego sukcesu. Każdy serwer MC tak zaczynał. Jest to standardowy boostrap algorytmu.
+
+**Wpływ:** algorytm po 5–10 rolkach z taką pierwszą falą zaczyna pchać Wasze konto. 300 views → 800 views → 2000 views w skali 4–6 tygodni. **To jest najtańsza, najszybsza dźwignia, którą macie.**
+
+---
+
+## 13. Hardcore SMP Global EN + TikTokEN — strategiczna karta na 2027 ⭐ NOWA SEKCJA
+
+Notatki (sek. 14) wspominają opcję serwera Hardcore SMP po angielsku + TikTok EN. Krótka ocena strategiczna:
+
+**Czemu NIE w 2026:**
+- Polski rynek jeszcze nie spalony — macie miejsce na 250 → 500 osób PL bez konkurencji EN.
+- Algorytm TikTok EN jest dużo brutalniejszy: konkurujecie z amerykańskimi twórcami robiącymi 100k views standardowo.
+- Każdy split-focus = 50% spadek jakości obu kierunków.
+- Anglojęzyczny CS (Discord moderacja, support) wymaga osób ze swobodnym angielskim — luksus, którego nie macie.
+
+**Kiedy TAK (najwcześniej):**
+- Po 1.01.2027, jeśli polski Discord >300 osób i SMP retencja >25 stałych.
+- Hardcore SMP EN to nisza (small audience, ale lojalna). Dobry MVP w 2027 = osobny serwer, osobny Discord (NIE mieszać z PL), 1 dedykowany TikTok account EN.
+- Zacząć od **TikTok EN tylko** (3 mies. test, 0 kosztów oprócz czasu) — jeśli rolki łapią >5k views regularnie, dopiero wtedy serwer.
+
+**Jeden niski-ryzyko ruch DZISIAJ:** zarezerwujcie nazwę handle `@hexnetwork` na TikTok EN, Twitter, Instagram EN. Zero kosztu, ochrania brand na przyszłość.
+
+---
+
+## 14. Plan tygodnia 1 (konkretne ruchy do wykonania w 7 dni) — zaktualizowany
+
+| Dzień | Zadanie | Kto | Czas |
+|---|---|---|---|
+| 1 (pon 18.05) | Stworzyć 7 vanity invites Discord (hex-tiktok, hex-yt, hex-promo1205, hex-promo1505, hex-titanic, hex-quiz, hex-lista1) | Sevin | 15 min |
+| 1 | Zalogować link `discord.gg/hex-promo1205` w opisie promo rolki 12.05 (retroaktywnie) | Quezo | 5 min |
+| 1 | Wysłać brief do Ławki / Daxela / petera / sonnee z propozycją „Ambasador HEX" (sekcja 4.4.1) | Capybit | 30 min |
+| 1 | Założyć kanał `#boost-squad` na Discord (sekcja 12) + zaprosić 8–12 zaufanych osób | Sevin | 30 min |
+| 2 | Zgłosić serwer na 5 list MC (sekcja 4.1) z UNIKALNYMI vanity invites per lista | Sevin | 1.5 h |
+| 2 | Pierwsze posty Sevina na publiczny Discord (życie codzienne) — codzienna rutyna od dziś | Sevin | 10 min/dzień |
+| 3 | Wysłać 5 wiadomości partnerskich do innych polskich Discordów MC (sekcja 4.2 skrypt) | Quezo | 1 h |
+| 3 | Nagrać 3 rolki Devlog POV (HEX SMP work-in-progress) — zaplanować publikację na śr/pt/sob | Quezo | 30 min |
+| 4 | Brief dla Havixa: quiz Web Share API + dynamic OG image + `/dolacz` landing | Havix przyjmuje | brief 15 min |
+| 4 | Publikacja pierwszej rolki + ping `#boost-squad` (komentarze pierwsze 30 min) | Quezo + squad | 5 + 30 min |
+| 5 | Reply video do komentarzy z 4 dnia (sekcja 3.2 format B) | Quezo | 20 min |
+| 5–6 | Sevin/Havix: MVP daily quests plugin + miniony konfiguracja (priorytet pod SMP) | Sevin + Havix | praca |
+| 6 | Promo rolka 15.05 — równolegle wrzuć z `discord.gg/hex-promo1505` w opisie | Quezo | 30 min |
+| 7 | Przegląd: który vanity invite zadziałał? Porównaj 12.05 vs 15.05 vs organic. Zapisz w `tracker.md` | Capybit | 30 min |
+
+**Total: ~7h zespołowo w tygodniu 1, później 3–4h/tydz. dla marketingu + osobna praca techniczna nad SMP MVP.**
+
+### Po 16.05 (po Titanicu) — weryfikacja
+
+W notatkach post-event będziecie mieli odpowiedź na pytanie: czy promo rolki przyniosły graczy? Jeśli `hex-promo1205` + `hex-promo1505` dały razem ≥5 nowych — ROI jest. Skalujecie pod SMP launch (lipiec). Jeśli ≤2 — odpalamy resztę 200 zł jako budżet promo na sticker / wsparcie ambasadorów.
+
+---
+
+## 15. Budżet — gdzie wydać 200–300 zł/mies. SENSOWNIE (zaktualizowany)
+
+**Maj (planowane):** 200 zł = 2 promo rolki (Quezo). PRZYJMUJEMY — z trackingiem.
+
+| Pozycja | Koszt/mies. | Kiedy zaczyna mieć sens |
+|---|---|---|
+| Promo rolki 12.05 + 15.05 (Titanic) | 200 zł (maj) | ✅ już zaplanowane. KPI: ≥5 Discord/200 zł = warto kontynuować |
+| Nagrody dla TOP 3 referal (kubek/naklejki) | 50 zł | Od czerwca (gdy referal v2 działa) |
+| Wsparcie ambasadorów (drobny upominek, VIP rangi, koszt symbol.) | 30 zł | Od czerwca |
+| Trailer SMP 30s (Fiverr) | 100 zł (jednorazowo, czerwiec) | T-2 przed launchem 3.07 |
+| Nagrody event „Awantura o Kasę" | 200–300 zł (jednorazowo, wrzesień) | Tylko jeśli drugżyny twiercdzą „wchodzimy" |
+| Boost płatny TikToka (wyselekcjonowana rolka >2000 organic views) | 100 zł | **TYLKO** gdy film organicznie złapał, lipiec+ |
+| Discord Server Boost (gdy >50 boosters) | 0–30 zł | Gdy macie 250+ osób |
+| Sticker pack (50 szt., dla ambasadorów + referal top) | 30 zł (jednorazowo) | Czerwiec/lipiec |
+
+**Lipiec budżet szczyt:** 300 zł — trailer (100) + boost promo SMP launch (100) + nagrody mini event (100).
+
+**Reguła v2:** każda zł wydana ma vanity-invite ID. Po miesiącu sprawdzacie ROI per zł — nie po przeczuciu, tylko po liczbach.
+
+---
+
+## 16. Checklist priorytetowa v2 (do oznaczania)
+
+### Tydzień 1 (do 24.05)
+- [ ] Vanity invites Discord (7+ sztuk, per kanał)
+- [ ] Promo rolki 12.05 + 15.05 z UNIKALNYMI vanity invites — śledzenie konwersji
+- [ ] Brief do Ławki, Daxela, petera, sonnee — oferta ambasadorska
+- [ ] Kanał `#boost-squad` na Discord + zaproszone 8–12 zaufanych osób
+- [ ] 5 list MC zgłoszone (z unikalnymi vanity invites)
+- [ ] Sevin „prowadzi życie" na Discord codziennie — nawyk uruchomiony
+- [ ] Pierwsza rolka z formatu Devlog POV wrzucona z pingiem `#boost-squad`
+
+### Tydzień 2–4 (do 14.06)
+- [ ] Quiz `/hexSmp`: Web Share API + dynamic OG image (Havix)
+- [ ] Strona `/dolacz` live (Havix)
+- [ ] 20+ rolek TikTok wrzuconych (mix formatów A+B+C)
+- [ ] Każda rolka cross-postowana na YT Shorts + IG Reels
+- [ ] Referal v2 — zasady + bot invite tracking
+- [ ] 4 ambasadorów aktywowanych (role na Discord, VIP, dedykowane rangi)
+- [ ] Mini Event PVP Eliminator (30.05) jako test pluginu PVP
+- [ ] Pre-launch SMP — teaser fazy 1 i 2 (sek. 10.1) wykonany
+
+### Miesiąc 2 (czerwiec)
+- [ ] Mini Event Wyspa Kanibali (13.06) wykonany
+- [ ] Pre-launch SMP — fazy 3, 4, 5 (zapisy + waitlist)
+- [ ] Devlog → Astro Content Collection (zaplecze SEO)
+- [ ] Sticky CTA Discord na stronie
+- [ ] Live member count widget na hero
+- [ ] MVP SMP gotowe 25.06 — tydzień testowy wewnętrzny
+- [ ] Trailer SMP 30s wykonany (zlecony Fiverr 100 zł)
+
+### Miesiąc 3 (lipiec) — 🔥 SMP LAUNCH MIESIĄC
+- [ ] 1.07: Waitlist dostaje dostęp (early access)
+- [ ] **3.07: SMP LAUNCH** (sekcja 10.3 dzień launchu)
+- [ ] 4.07: HEX IX Star Wars Edition
+- [ ] Pierwszy boost płatny TikToka (na rolce z pre-launch, która złapała >2000 views)
+- [ ] 11.07: Mini event (z notatek)
+- [ ] Codzienne livestreamy Quezo/Sevin pierwszy tydzień po launchu
+- [ ] Pierwsze partnerstwa Discord z aktualnym SMP jako argumentem
+
+### Miesiąc 4–5 (sierpień–wrzesień)
+- [ ] Bazaar SMP po MVP (sierpień)
+- [ ] Custom moby — pierwszy boss (sierpień), drugi (wrzesień)
+- [ ] Serwer Minigry launch 22.08
+- [ ] Parkour launch 19.09
+- [ ] Mini event 19.09
+- [ ] 1–2 pierwsi obcy mikroinfluencerzy zaproszeni z VIP
+- [ ] Hall of Fame na stronie (top zapraszający + top gracze SMP)
+- [ ] **Awantura o Kasę** — publicity stunt z drużynami (wrzesień/październik)
+
+### Miesiąc 6–7 (październik–listopad)
+- [ ] PVP launch + HEX X Halloween 24.10
+- [ ] Drugi mikroinfluencer (jeśli pierwszy działa)
+- [ ] Sezonowy reset rankingu SMP (1.10)
+- [ ] Sezon 2 leaderboardy + nagrody
+- [ ] Pre-launch hype Hogwart (start 8.01.2027)
+- [ ] **Listopadowy review:** czy 250 Discord + 20 stale aktywnych SMP osiągnięte?
+- [ ] Audyt: które kanały dają ROI? Plan 2027 v3 strategii.
+
+---
+
+## 12. Ostrzeżenia (rzeczy, które mogą Was zniechęcić)
+
+- **Pierwsze 4–6 tygodni TikToka będzie wyglądało jak porażka.** 300–500 views/film, brak skoku. To NORMALNE. Algorytm uczy się Was 30–50 filmów. Wytrzymajcie. To moment, w którym 90% rezygnuje.
+- **Pierwszy partnerski Discord da Wam 3 osoby, a nie 30.** Nie wszystkie wymiany konwertują równie dobrze. Liczy się masa — 20 partnerstw da 1 wybitne i 19 średnich.
+- **Quiz może mieć niskie ukończenie (10–20%) na początku.** To kwestia traffic source. Z TikToka — gorzej. Z listy MC — lepiej. Iterujcie.
+- **Discord-bot tracking inviteów ma błędy** (vanity URL przepisuje source). Trzymajcie ręcznie spreadsheet z manualną weryfikacją co tydzień.
+- **Lipcowy launch SMP będzie pierwszą weryfikacją.** Jeśli do 1.07 macie 200+ Discord, kampania zadziała. Jeśli mniej — agresywniej cisnąć referal v2 i partnerstwa w czerwcu.
+
+---
+
+## 13. Mierzenie sukcesu w listopadzie 2026
+
+Pytajcie się:
+
+1. Czy Discord ma 270+? → sukces strategii.
+2. Czy znamy 3 NAJSKUTECZNIEJSZE kanały? (z vanity invites)
+3. Czy TikTok ma >2000 średnio views/film? → algorytm Was zna.
+4. Czy 1–2 mikro-twórców regularnie wspomina o HEX? → community-driven growth started.
+5. Czy quiz daje >100 ukończeń/mies.? → marketing-asset działa.
+
+Jeśli 3 z 5 = TAK → strategia działa, skalujecie ją w 2027.
+Jeśli 1 z 5 lub mniej → wracamy do diagnostyki, sprawdzamy gdzie wycieka lejek (traffic → quiz → Discord → retencja).
+
+---
+
+## v2 — changelog (13.05.2026)
+
+- Cel przesunięty z 270/31.10 na **250/30.11** (+ bufor +1 mies., realistyczniej).
+- Dodany **cel #2: 20 stale aktywnych SMP** — nowa sekcja 9 (retencja).
+- Nowa sekcja 10: **SMP Launch Playbook 3.07** (6-tyg. kampania).
+- Nowa sekcja 11: **Marketing event-driven** kalendarz publikacji.
+- Nowa sekcja 12: **Boost Squad** rozwiązanie dummy comments (z notatek).
+- Nowa sekcja 13: **Hardcore EN** — ocena strategiczna (odkładamy na 2027).
+- Sekcja 4.4 przepisana: **aktywacja Ławki/Daxela/petera/sonnee** jako ambasadorów (największy ROI ruch).
+- Sekcja 4.4.2 dodana: **Awantura o Kasę** z drużynami influencerów jako publicity stunt (wrzesień/paź).
+- KPI rozszerzone o retencję SMP D1/D7/D30 + lejek konwersji.
+- Budżet uwzględnia **promo rolki 12.05 + 15.05** (juz w planie Quezo) z trackingiem.
+- Plan tygodnia 1 rozpisany **per członek zespołu** (Havix/Sevin/Quezo/Capybit).
+- Kryteria sukcesu rozszerzone z 5 do 8 pytań, z mocnym wczesnym sygnałem 30.07 (post-launch SMP).
+</script>
+<script>
+(function(){
+  const deck = document.getElementById('deck');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  const progressFill = document.getElementById('progress-fill');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const helpOverlay = document.getElementById('help-overlay');
+  const mdModal = document.getElementById('md-modal');
+  const mdContent = document.getElementById('md-content');
+  const mdToc = document.getElementById('md-toc');
+  const mdTocToggle = document.getElementById('md-toc-toggle');
+  const mdClose = document.getElementById('md-close');
+  const strategyButtons = Array.from(document.querySelectorAll('[data-open-strategy]'));
+  const markdownSource = document.getElementById('strategy-markdown').textContent.replace(/^\n/, '');
+  let current = 0;
+  let isScrolling = false;
+  let mdLoaded = false;
+
+  function updateUI(){
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    progressFill.style.width = (((current + 1) / slides.length) * 100) + '%';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+  }
+
+  function goTo(idx){
+    if(idx < 0 || idx >= slides.length) return;
+    current = idx;
+    isScrolling = true;
+    slides[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => { isScrolling = false; }, 700);
+    updateUI();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    if(isScrolling) return;
+    entries.forEach((entry) => {
+      if(entry.isIntersecting && entry.intersectionRatio > 0.55){
+        const idx = slides.indexOf(entry.target);
+        if(idx !== -1 && idx !== current){
+          current = idx;
+          updateUI();
+        }
+      }
+    });
+  }, { root: deck, threshold: [0.55, 0.75] });
+  slides.forEach((slide) => io.observe(slide));
+
+  function slugify(s){
+    return s.toLowerCase()
+      .replace(/[ąćęłńóśźż]/g, (c) => ({ą:'a', ć:'c', ę:'e', ł:'l', ń:'n', ó:'o', ś:'s', ź:'z', ż:'z'}[c] || c))
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function escapeHtml(text){
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function inlineMarkdown(text){
+    let html = escapeHtml(text);
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return html;
+  }
+
+  function parseList(lines, startIndex){
+    const items = [];
+    const ordered = /^\s*\d+\.\s+/.test(lines[startIndex]);
+    let i = startIndex;
+    while(i < lines.length){
+      const line = lines[i];
+      if(ordered && !/^\s*\d+\.\s+/.test(line)) break;
+      if(!ordered && !/^\s*[-*]\s+/.test(line)) break;
+      const itemText = line.replace(/^\s*(?:\d+\.|[-*])\s+/, '');
+      items.push('<li>' + inlineMarkdown(itemText.trim()) + '</li>');
+      i += 1;
+    }
+    return {
+      html: '<' + (ordered ? 'ol' : 'ul') + '>' + items.join('') + '</' + (ordered ? 'ol' : 'ul') + '>',
+      nextIndex: i
+    };
+  }
+
+  function parseTable(lines, startIndex){
+    const rows = [];
+    let i = startIndex;
+    while(i < lines.length && /\|/.test(lines[i])){
+      rows.push(lines[i]);
+      i += 1;
+    }
+    if(rows.length < 2 || !/^\s*\|?\s*[-:]/.test(rows[1])){
+      return null;
+    }
+    const parseCells = (row) => row.split('|').map((cell) => cell.trim()).filter((_, idx, arr) => !(idx === 0 && arr[idx] === '') && !(idx === arr.length - 1 && arr[idx] === ''));
+    const headerCells = parseCells(rows[0]).map((cell) => '<th>' + inlineMarkdown(cell) + '</th>').join('');
+    const bodyRows = rows.slice(2).map((row) => '<tr>' + parseCells(row).map((cell) => '<td>' + inlineMarkdown(cell) + '</td>').join('') + '</tr>').join('');
+    return {
+      html: '<table><thead><tr>' + headerCells + '</tr></thead><tbody>' + bodyRows + '</tbody></table>',
+      nextIndex: i
+    };
+  }
+
+  function parseBlockquote(lines, startIndex){
+    const parts = [];
+    let i = startIndex;
+    while(i < lines.length && /^\s*>/.test(lines[i])){
+      parts.push(lines[i].replace(/^\s*>\s?/, ''));
+      i += 1;
+    }
+    return {
+      html: '<blockquote><p>' + inlineMarkdown(parts.join(' ')) + '</p></blockquote>',
+      nextIndex: i
+    };
+  }
+
+  function parseParagraph(lines, startIndex){
+    const parts = [];
+    let i = startIndex;
+    while(i < lines.length){
+      const line = lines[i];
+      if(!line.trim()) break;
+      if(/^#{1,4}\s+/.test(line)) break;
+      if(/^\s*```/.test(line)) break;
+      if(/^\s*>/.test(line)) break;
+      if(/^\s*(?:[-*]|\d+\.)\s+/.test(line)) break;
+      if(/^\s*---+\s*$/.test(line)) break;
+      if(/\|/.test(line) && i + 1 < lines.length && /^\s*\|?\s*[-:]/.test(lines[i + 1])) break;
+      parts.push(line.trim());
+      i += 1;
+    }
+    return {
+      html: '<p>' + inlineMarkdown(parts.join(' ')) + '</p>',
+      nextIndex: i
+    };
+  }
+
+  function renderMarkdown(md){
+    const lines = md.replace(/\r/g, '').split('\n');
+    const html = [];
+    let i = 0;
+    while(i < lines.length){
+      const line = lines[i];
+      if(!line.trim()){
+        i += 1;
+        continue;
+      }
+      if(/^\s*```/.test(line)){
+        const codeLines = [];
+        i += 1;
+        while(i < lines.length && !/^\s*```/.test(lines[i])){
+          codeLines.push(lines[i]);
+          i += 1;
+        }
+        i += 1;
+        html.push('<pre><code>' + escapeHtml(codeLines.join('\n')) + '</code></pre>');
+        continue;
+      }
+      const heading = line.match(/^(#{1,4})\s+(.*)$/);
+      if(heading){
+        const level = heading[1].length;
+        const text = heading[2].trim();
+        const id = slugify(text);
+        html.push(`<h${level} id="${id}">${inlineMarkdown(text)}</h${level}>`);
+        i += 1;
+        continue;
+      }
+      if(/^\s*---+\s*$/.test(line)){
+        html.push('<hr />');
+        i += 1;
+        continue;
+      }
+      const table = parseTable(lines, i);
+      if(table){
+        html.push(table.html);
+        i = table.nextIndex;
+        continue;
+      }
+      if(/^\s*>/.test(line)){
+        const blockquote = parseBlockquote(lines, i);
+        html.push(blockquote.html);
+        i = blockquote.nextIndex;
+        continue;
+      }
+      if(/^\s*(?:[-*]|\d+\.)\s+/.test(line)){
+        const list = parseList(lines, i);
+        html.push(list.html);
+        i = list.nextIndex;
+        continue;
+      }
+      const paragraph = parseParagraph(lines, i);
+      html.push(paragraph.html);
+      i = paragraph.nextIndex;
+    }
+    return html.join('\n');
+  }
+
+  function buildToc(){
+    const headings = mdContent.querySelectorAll('h1, h2, h3, h4');
+    let html = '<h4>Spis treści</h4>';
+    headings.forEach((h) => {
+      if(!h.id) h.id = slugify(h.textContent);
+      const lvl = h.tagName.toLowerCase();
+      html += `<a href="#${h.id}" class="lvl-${lvl[1]}" data-target="${h.id}">${h.textContent}</a>`;
+    });
+    mdToc.innerHTML = html;
+    mdToc.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(a.dataset.target);
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(window.innerWidth < 900) mdToc.hidden = true;
+      });
+    });
+  }
+
+  function renderMd(){
+    if(mdLoaded) return;
+    mdContent.innerHTML = renderMarkdown(markdownSource);
+    buildToc();
+    mdLoaded = true;
+  }
+
+  function openMd(){
+    mdModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    renderMd();
+  }
+
+  function closeMd(){
+    mdModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function roundedRect(ctx, x, y, width, height, radius){
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+  }
+
+  function fitCanvas(canvas, minHeight){
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const width = Math.max(rect.width || 640, 320);
+    const height = Math.max(rect.height || minHeight || 320, minHeight || 320);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx, width, height };
+  }
+
+  function drawGrid(ctx, left, top, width, height, rows){
+    ctx.save();
+    ctx.strokeStyle = '#262d39';
+    ctx.lineWidth = 1;
+    for(let i = 0; i <= rows; i += 1){
+      const y = top + (height / rows) * i;
+      ctx.beginPath();
+      ctx.moveTo(left, y);
+      ctx.lineTo(left + width, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawLineChart(canvasId, cfg){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const { ctx, width, height } = fitCanvas(canvas, 340);
+    const pad = { top: 26, right: 26, bottom: 60, left: 56 };
+    const plotW = width - pad.left - pad.right;
+    const plotH = height - pad.top - pad.bottom;
+    const min = cfg.min;
+    const max = cfg.max;
+    ctx.clearRect(0, 0, width, height);
+    drawGrid(ctx, pad.left, pad.top, plotW, plotH, 5);
+
+    ctx.fillStyle = '#9aa3b3';
+    ctx.font = '12px Segoe UI';
+    for(let i = 0; i <= 5; i += 1){
+      const value = max - ((max - min) / 5) * i;
+      const y = pad.top + (plotH / 5) * i;
+      ctx.fillText(Math.round(value), 10, y + 4);
+    }
+
+    const xStep = plotW / (cfg.labels.length - 1);
+    ctx.strokeStyle = '#1a1f28';
+    ctx.beginPath();
+    ctx.moveTo(pad.left, pad.top + plotH);
+    ctx.lineTo(pad.left + plotW, pad.top + plotH);
+    ctx.stroke();
+
+    function yFor(value){
+      return pad.top + plotH - ((value - min) / (max - min)) * plotH;
+    }
+
+    const planPoints = cfg.plan.map((v, i) => ({ x: pad.left + xStep * i, y: yFor(v) }));
+    const altPoints = cfg.alt.map((v, i) => ({ x: pad.left + xStep * i, y: yFor(v) }));
+
+    ctx.beginPath();
+    ctx.moveTo(planPoints[0].x, pad.top + plotH);
+    planPoints.forEach((p) => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(planPoints[planPoints.length - 1].x, pad.top + plotH);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255,166,0,.18)';
+    ctx.fill();
+
+    ctx.beginPath();
+    planPoints.forEach((p, idx) => idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.strokeStyle = '#ffa600';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    ctx.beginPath();
+    altPoints.forEach((p, idx) => idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = '#64b4ff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    planPoints.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffa600';
+      ctx.fill();
+    });
+    altPoints.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#64b4ff';
+      ctx.fill();
+    });
+
+    ctx.fillStyle = '#9aa3b3';
+    ctx.font = '12px Segoe UI';
+    cfg.labels.forEach((label, i) => {
+      const x = pad.left + xStep * i;
+      ctx.save();
+      ctx.translate(x, height - 34);
+      ctx.rotate(-0.28);
+      ctx.fillText(label, -18, 0);
+      ctx.restore();
+    });
+
+    ctx.fillStyle = '#e0d8cc';
+    ctx.fillRect(width - 210, 12, 12, 12);
+    ctx.fillStyle = '#e0d8cc';
+    ctx.fillText('Plan (target)', width - 190, 22);
+    ctx.strokeStyle = '#64b4ff';
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.moveTo(width - 210, 42);
+    ctx.lineTo(width - 198, 42);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#e0d8cc';
+    ctx.fillText('Scenariusz konserwatywny', width - 190, 46);
+  }
+
+  function drawGroupedBarChart(canvasId, cfg){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const { ctx, width, height } = fitCanvas(canvas, 340);
+    const pad = { top: 26, right: 26, bottom: 78, left: 56 };
+    const plotW = width - pad.left - pad.right;
+    const plotH = height - pad.top - pad.bottom;
+    const max = cfg.max;
+    ctx.clearRect(0, 0, width, height);
+    drawGrid(ctx, pad.left, pad.top, plotW, plotH, 5);
+
+    ctx.fillStyle = '#9aa3b3';
+    ctx.font = '12px Segoe UI';
+    for(let i = 0; i <= 5; i += 1){
+      const value = max - (max / 5) * i;
+      const y = pad.top + (plotH / 5) * i;
+      ctx.fillText(Math.round(value), 10, y + 4);
+    }
+
+    const groups = cfg.labels.length;
+    const groupW = plotW / groups;
+    const barW = Math.min(22, groupW * 0.28);
+    cfg.labels.forEach((label, i) => {
+      const center = pad.left + groupW * i + groupW / 2;
+      const x1 = center - barW - 4;
+      const x2 = center + 4;
+      const h1 = (cfg.series1[i] / max) * plotH;
+      ctx.fillStyle = 'rgba(100,180,255,.45)';
+      ctx.strokeStyle = '#64b4ff';
+      ctx.lineWidth = 2;
+      roundedRect(ctx, x1, pad.top + plotH - h1, barW, h1, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      const value2 = cfg.series2[i];
+      if(typeof value2 === 'number'){
+        const h2 = (value2 / max) * plotH;
+        ctx.fillStyle = 'rgba(255,166,0,.88)';
+        ctx.strokeStyle = '#ffa600';
+        roundedRect(ctx, x2, pad.top + plotH - h2, barW, h2, 6);
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      ctx.save();
+      ctx.translate(center - 18, height - 44);
+      const lines = label.split('\n');
+      ctx.fillStyle = '#9aa3b3';
+      ctx.font = '11px Segoe UI';
+      lines.forEach((line, idx) => ctx.fillText(line, 0, idx * 14));
+      ctx.restore();
+    });
+  }
+
+  function drawHorizontalBarChart(canvasId, cfg){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const { ctx, width, height } = fitCanvas(canvas, 320);
+    const pad = { top: 24, right: 24, bottom: 20, left: 120 };
+    const plotW = width - pad.left - pad.right;
+    const plotH = height - pad.top - pad.bottom;
+    const barGap = 12;
+    const barH = (plotH - barGap * (cfg.labels.length - 1)) / cfg.labels.length;
+    ctx.clearRect(0, 0, width, height);
+    cfg.labels.forEach((label, i) => {
+      const y = pad.top + i * (barH + barGap);
+      const w = (cfg.values[i] / 100) * plotW;
+      ctx.fillStyle = '#1a1f28';
+      roundedRect(ctx, pad.left, y, plotW, barH, 8);
+      ctx.fill();
+      ctx.fillStyle = cfg.colors[i];
+      roundedRect(ctx, pad.left, y, w, barH, 8);
+      ctx.fill();
+      ctx.fillStyle = '#e0d8cc';
+      ctx.font = '700 12px Segoe UI';
+      ctx.fillText(label, 12, y + barH * 0.68);
+      ctx.fillStyle = '#0a0b0e';
+      ctx.fillText(cfg.values[i] + ' / 100', pad.left + Math.max(10, w - 58), y + barH * 0.68);
+    });
+  }
+
+  function drawDoughnut(canvasId, cfg){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const { ctx, width, height } = fitCanvas(canvas, 300);
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) * 0.28;
+    const inner = radius * 0.58;
+    const total = cfg.values.reduce((sum, v) => sum + v, 0);
+    let start = -Math.PI / 2;
+    ctx.clearRect(0, 0, width, height);
+    cfg.values.forEach((value, i) => {
+      const angle = (value / total) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, start, start + angle);
+      ctx.closePath();
+      ctx.fillStyle = cfg.colors[i];
+      ctx.fill();
+      start += angle;
+    });
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, inner, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#e0d8cc';
+    ctx.font = '700 14px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('Budżet', centerX, centerY - 4);
+    ctx.font = '12px Segoe UI';
+    ctx.fillStyle = '#9aa3b3';
+    ctx.fillText(total + ' zł', centerX, centerY + 18);
+  }
+
+  function renderCharts(){
+    drawLineChart('chartDiscord', {
+      labels: ['Start', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad'],
+      plan: [133, 150, 170, 210, 225, 235, 245, 250],
+      alt: [133, 145, 158, 178, 190, 198, 210, 218],
+      min: 120,
+      max: 260
+    });
+
+    drawGroupedBarChart('chartSMP', {
+      labels: ['T1\n3-10.07', 'T2\n10-17.07', 'T4\n31.07', 'T8\nsierpień', 'T12\nwrzesień', 'T16\npaździernik', 'T20\nlistopad'],
+      series1: [35, 17, 13, 17, 20, 23, 26],
+      series2: [null, null, 9, 13, 16, 19, 22],
+      max: 40
+    });
+
+    drawHorizontalBarChart('chartAlgo', {
+      labels: ['Share / Save', 'Comments', 'Watch time %', 'Loop rate', 'Likes'],
+      values: [100, 85, 80, 60, 35],
+      colors: ['#ffa600', 'rgba(255,166,0,.82)', 'rgba(255,166,0,.68)', 'rgba(255,166,0,.52)', 'rgba(255,166,0,.36)']
+    });
+
+    drawDoughnut('chartBudget', {
+      values: [200, 100, 250, 100, 50, 30, 30],
+      colors: ['#ffa600', '#ffcc66', '#64b4ff', '#6ddf94', '#ffd166', '#a18fff', '#ff6b6b']
+    });
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  helpOverlay.addEventListener('click', () => { helpOverlay.hidden = true; });
+  strategyButtons.forEach((button) => button.addEventListener('click', openMd));
+  mdClose.addEventListener('click', closeMd);
+  mdTocToggle.addEventListener('click', () => { mdToc.hidden = !mdToc.hidden; });
+  mdModal.addEventListener('click', (e) => { if(e.target === mdModal) closeMd(); });
+  window.addEventListener('resize', () => renderCharts());
+
+  document.addEventListener('keydown', (e) => {
+    if(!mdModal.hidden){
+      if(e.key === 'Escape'){ closeMd(); e.preventDefault(); }
+      return;
+    }
+    if(!helpOverlay.hidden){
+      if(e.key === 'Escape' || e.key === '?') helpOverlay.hidden = true;
+      return;
+    }
+    switch(e.key){
+      case 'ArrowRight':
+      case 'PageDown':
+      case ' ':
+        e.preventDefault();
+        goTo(current + 1);
+        break;
+      case 'ArrowLeft':
+      case 'PageUp':
+        e.preventDefault();
+        goTo(current - 1);
+        break;
+      case 'Home':
+        e.preventDefault();
+        goTo(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        goTo(slides.length - 1);
+        break;
+      case 'f':
+      case 'F':
+        if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+        break;
+      case 'm':
+      case 'M':
+        openMd();
+        break;
+      case '?':
+        helpOverlay.hidden = false;
+        break;
+    }
+  });
+
+  updateUI();
+  renderCharts();
+})();
+
+</script>
+</body>
+</html>

@@ -15,6 +15,32 @@ const base = import.meta.env.BASE_URL;
 
 const editions = [
     {
+        title: "Turniej HEX VIII",
+        subtitle: "Titanic + 1 z 10",
+        date: "16.05.2026",
+        players: 33,
+        prize: "570 zł",
+        prizeValue: 570,
+        winner: "ThePinkSquiddo, xFabianeu, KozowyKubus",
+        winnerLabel: "Zwycięzcy",
+        tags: ["2026", "inspirowane"],
+        games: ["Simon mówi", "Prawda/Fałsz", "Questy na statku", "Ucieczka z tonącego okrętu", "1 z 10"],
+        images: ["images/Archive/Hex8/1.png", "images/Archive/Hex8/2.png", "images/Archive/Hex8/3.png", "images/Archive/Hex8/4.png"],
+    },
+    {
+        title: "Turniej HEX VII",
+        subtitle: "",
+        date: "3.04.2026",
+        players: 33,
+        prize: "570 zł",
+        prizeValue: 570,
+        winner: "ThePinkSquiddo, xFabianeu, KozowyKubus",
+        winnerLabel: "Zwycięzcy",
+        tags: ["2026", "klasyczny"],
+        games: ["Skok z wiaderkiem wody", "Tor przeszkód", "Sumo", "Popcorn", "Małpi Gaj", "Disco-Podłoga", "Mob Arena", "Lot Elytrą"],
+        images: ["images/Archive/Hex7/1.png", "images/Archive/Hex7/2.png", "images/Archive/Hex7/3.png", "images/Archive/Hex7/4.png"],
+    },
+    {
         title: "Turniej HEX VI",
         subtitle: "Świąteczny",
         date: "13.12.2025",
@@ -174,7 +200,7 @@ const filters = [
 
         <div class="archiveTimeline">
             {editions.map((ed, i) => (
-                <article class="editionCard" data-tags={ed.tags.join(" ")}>
+                <article id={`hex${editions.length - i}`} class="editionCard" data-tags={ed.tags.join(" ")}>
                     <div class="editionHeader">
                         <div class="editionTitleBlock">
                             <span class="editionNumber">#{editions.length - i}</span>
